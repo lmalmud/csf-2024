@@ -1,2 +1,3 @@
-TODO: list team members, document who did what, discuss
-anything interesting about your implementation.
+Lucy Malmud (no partner)
+There is not anything particularly of note about this implementation.
+

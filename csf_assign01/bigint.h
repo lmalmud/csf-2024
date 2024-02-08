@@ -6,6 +6,8 @@
 #include <string>
 #include <cstdint>
 
+using std::vector;
+
 //! @file
 //! Arbitrary-precision integer data type.
 
@@ -14,7 +16,44 @@
 //! to record whether or not the value is negative.
 class BigInt {
 private:
-  // TODO: add fields
+  // TODO: add fields - DONE
+  bool neg;
+  vector<uint64_t> val; // the least significant parts are first
+
+  //! Zero check.
+  //!
+  //! @return true if this is zero, false otherwise
+  bool is_zero() const;
+
+  //! Add magnitudes.
+  //!
+  //! @param lhs BigInt reference to be added to
+  //! @param rhs BigInt reference
+  //! @return the BigInt value representing the sum of the operands
+  static BigInt add_magnitudes(const BigInt &lhs, const BigInt &rhs);
+
+  //! Subtract magnitudes.
+  //!
+  //! @param lhs BigInt reference to be subtracted from
+  //! @param rhs BigInt reference
+  //! @return the BigInt value representing the difference of the operands
+  static BigInt subtract_magnitudes(const BigInt &lhs, const BigInt &rhs);
+
+  //! Comparie magnitudes - absolute value greater/less than.
+  //!
+  //! @param lhs the BigInt to be compared to against
+  //! @param rhs
+  //! @return int following the same conventions as the compare() function
+  //!     regardless of signs
+  static int compare_magnitudes(const BigInt &lhs, const BigInt &rhs);
+
+  //! Set bit operator.
+  //!
+  //! @param n integer representing the number of bit to be set
+  //! @param value boolean true if the nth bit should be set to 1
+  void set_nth_bit(unsigned n, bool value);
+
+  //BigInt div_by_2() const;
 
 public:
   //! Default constructor.
@@ -182,6 +221,8 @@ public:
   //!
   //! @return the value of this BigInt object in decimal (base-10)
   std::string to_dec() const;
+
+  friend std::ostream& operator<<(std::ostream& os, BigInt& rhs);
 
 private:
   // TODO: add helper functions
