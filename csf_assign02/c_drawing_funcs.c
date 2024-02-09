@@ -10,15 +10,102 @@
 ////////////////////////////////////////////////////////////////////////
 
 // TODO: implement helper functions
+
+//
+// Get the red component of a color
+//
+// Parameters:
+//   color   - a 32 bit integer
+// Return:
+//   uint8_t - Bits 24-31
+//
 uint8_t get_r(uint32_t color) {
   return color >> 24;
 }
 
+//
+// Get the green component of a color
+//
+// Parameters:
+//   color   - a 32 bit integer
+// Return:
+//   uint8_t - Bits 16-23
+//
 uint8_t get_g(uint32_t color) {
   return (color & 0x00ff0000) >> 16;
 }
-uint8_t get_b(uint32_t color);
-uint8_t get_a(uint32_t color);
+
+//
+// Get the blue component of a color
+//
+// Parameters:
+//   color   - a 32 bit integer
+// Return:
+//   uint8_t - Bits 8–15
+//
+uint8_t get_b(uint32_t color) {
+  return (color & 0x0000ff00) >> 8;
+}
+
+//
+// Get the opacity (alpha) of a color
+//
+// Parameters:
+//   color   - a 32 bit integer
+// Return:
+//   uint8_t - Bits 0–7
+//
+uint8_t get_a(uint32_t color) {
+  return color & 0x000000ff;
+}
+
+//
+// Squares a number
+//
+// Parameters:
+//   x   - a 64 bit integer
+// Return:
+//   x * x - a 64 bit integer
+//
+int64_t square(int64_t x) {
+  return x * x;
+}
+
+//
+// Returns the square of the distance between two points (x1, y1)
+// and (x2, y2)
+//
+// Parameters:
+//   x1   - a 64 bit integer representing
+//   y1   - a 64 bit integer
+//   x2   - a 64 bit integer
+//   y2   - a 64 bit integer
+// Return:
+//   (x1 - x2)^2 + (y1 - y2)^2 - the square distance as a 64 bit integer
+//
+int64_t square_dist(int64_t x1, int64_t y1, int64_t x2, int64_t y2) {
+  return square(x1 - x2) + square(y1 - y2);
+}
+
+//
+// Returns true if 0 <= x <= image_width and
+// 0 <= y <= image_height
+//
+// Parameters:
+//   img - 
+//   x - 
+//   y -
+// Return:
+//   0 if out of bounds
+//
+int32_t in_bounds(struct Image *img, int32_t x, int32_t y) {
+  if (x < 0 || y < 0 || x >= img->width || y >= img->height) {
+    return 0;
+  } else {
+    return 1;
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////
 // API functions
 ////////////////////////////////////////////////////////////////////////

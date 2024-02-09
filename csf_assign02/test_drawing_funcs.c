@@ -82,17 +82,24 @@ void check_picture(struct Image *img, Picture *p) {
 }
 
 // prototypes of test functions
-// TODO: add prototypes for your helper functions
 void test_draw_pixel(TestObjs *objs);
 void test_draw_rect(TestObjs *objs);
 void test_draw_circle(TestObjs *objs);
 void test_draw_circle_clip(TestObjs *objs);
 void test_draw_tile(TestObjs *objs);
 void test_draw_sprite(TestObjs *objs);
+
+// TODO: add prototypes for your helper functions
 void test_get_r(TestObjs *objs);
 void test_get_g(TestObjs *objs);
 void test_get_b(TestObjs *objs);
 void test_get_a(TestObjs *objs);
+void test_squaring_and_distance(TestObjs *objs);
+void test_blend_components(TestObjs *objs);
+void test_blend_colors(TestObjs *objs);
+void test_in_bounds(TestObjs *objs);
+void test_compute_index(TestObjs *objs);
+void test_clamp(TestObjs *objs);
 
 int main(int argc, char **argv) {
   if (argc > 1) {
@@ -115,6 +122,12 @@ int main(int argc, char **argv) {
   TEST(test_get_g);
   TEST(test_get_b);
   TEST(test_get_a);
+  TEST(test_squaring_and_distance);
+  TEST(test_blend_colors);
+  TEST(test_blend_components);
+  TEST(test_in_bounds);
+  TEST(test_clamp);
+  TEST(test_compute_index);
 
   TEST_FINI();
 }
@@ -289,7 +302,6 @@ void test_get_r(TestObjs *objs) {
   ASSERT(purple_result = 0x89);
 }
 
-// r: 0x89, g: 0x71, b: 0xde, a: 0x51
 void test_get_g(TestObjs *objs) {
   uint8_t red_result = get_g(objs->opaque_red);
   ASSERT(red_result == 0);
@@ -300,9 +312,46 @@ void test_get_g(TestObjs *objs) {
 }
 
 void test_get_b(TestObjs *objs) {
-
+  uint8_t red_result = get_b(objs->opaque_red);
+  ASSERT(red_result == 0);
+  uint8_t green_result = get_b(objs->transparent_green);
+  ASSERT(green_result == 0);
+  uint8_t purple_result = get_b(objs->seethrough_purple);
+  ASSERT(purple_result == 0xde);
 }
 
 void test_get_a(TestObjs *objs) {
+  uint8_t red_result = get_a(objs->opaque_red);
+  ASSERT(red_result == 0xff);
+  uint8_t green_result = get_a(objs->transparent_green);
+  ASSERT(green_result == 0);
+  uint8_t purple_result = get_a(objs->seethrough_purple);
+  ASSERT(purple_result == 0x51);
+}
+
+void test_squaring_and_distance(TestObjs *objs) {
+  ASSERT(square(1) == 1);
+  ASSERT(square_dist(0, 3, 4, 0) == 25);
+}
+
+void test_blend_components(TestObjs *objs) {
+
+}
+
+void test_blend_colors(TestObjs *objs) {
+
+}
+
+void test_in_bounds(TestObjs *objs) {
+  ASSERT(in_bounds(&(objs->small), SMALL_W + 1, 0) == 0);
+  ASSERT(in_bounds(&(objs->small), 0, SMALL_H) == 0);
+  ASSERT(in_bounds(&(objs->small), 0, 0) != 0);
+}
+
+void test_compute_index(TestObjs *objs) {
+
+}
+
+void test_clamp(TestObjs *objs) {
 
 }
