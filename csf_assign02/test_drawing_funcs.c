@@ -5,7 +5,6 @@
 #include "image.h"
 #include "drawing_funcs.h"
 #include "tctest.h"
-// TODO: add prototypes for your helper functions
 
 // an expected color identified by a (non-zero) character code
 typedef struct {
@@ -24,6 +23,9 @@ typedef struct {
   struct Image large;
   struct Image tilemap;
   struct Image spritemap;
+  uint32_t opaque_red;
+  uint32_t transparent_green;
+  uint32_t seethrough_purple;
 } TestObjs;
 
 // dimensions and pixel index computation for "small" test image (objs->small)
@@ -42,6 +44,9 @@ TestObjs *setup(void) {
   init_image(&objs->large, LARGE_W, LARGE_H);
   objs->tilemap.data = NULL;
   objs->spritemap.data = NULL;
+  objs->opaque_red = 0xff0000ff;
+  objs->transparent_green = 0x00ff0000;
+  objs->seethrough_purple = 0x8971de51; // r: 0x89, g: 0x71, b: 0xde, a: 0x51
   return objs;
 }
 
@@ -77,12 +82,17 @@ void check_picture(struct Image *img, Picture *p) {
 }
 
 // prototypes of test functions
+// TODO: add prototypes for your helper functions
 void test_draw_pixel(TestObjs *objs);
 void test_draw_rect(TestObjs *objs);
 void test_draw_circle(TestObjs *objs);
 void test_draw_circle_clip(TestObjs *objs);
 void test_draw_tile(TestObjs *objs);
 void test_draw_sprite(TestObjs *objs);
+void test_get_r(TestObjs *objs);
+void test_get_g(TestObjs *objs);
+void test_get_b(TestObjs *objs);
+void test_get_a(TestObjs *objs);
 
 int main(int argc, char **argv) {
   if (argc > 1) {
@@ -99,6 +109,12 @@ int main(int argc, char **argv) {
   TEST(test_draw_circle_clip);
   TEST(test_draw_tile);
   TEST(test_draw_sprite);
+
+  // TESTS FOR HELPER FUNCTIONS
+  TEST(test_get_r);
+  TEST(test_get_g);
+  TEST(test_get_b);
+  TEST(test_get_a);
 
   TEST_FINI();
 }
@@ -261,4 +277,32 @@ void test_draw_sprite(TestObjs *objs) {
   };
 
   check_picture(&objs->large, &pic);
+}
+
+// TESTS FOR HELPER FUNCTIONS
+void test_get_r(TestObjs *objs) {
+  uint8_t red_result = get_r(objs->opaque_red);
+  ASSERT(red_result == 0xff);
+  uint8_t green_result = get_r(objs->transparent_green);
+  ASSERT(green_result == 0);
+  uint8_t purple_result = get_r(objs->seethrough_purple);
+  ASSERT(purple_result = 0x89);
+}
+
+// r: 0x89, g: 0x71, b: 0xde, a: 0x51
+void test_get_g(TestObjs *objs) {
+  uint8_t red_result = get_g(objs->opaque_red);
+  ASSERT(red_result == 0);
+  uint8_t green_result = get_g(objs->transparent_green);
+  ASSERT(green_result == 0xff);
+  uint8_t purple_result = get_g(objs->seethrough_purple);
+  ASSERT(purple_result == 0x71);
+}
+
+void test_get_b(TestObjs *objs) {
+
+}
+
+void test_get_a(TestObjs *objs) {
+
 }
