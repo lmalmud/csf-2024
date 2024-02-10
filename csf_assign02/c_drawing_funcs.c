@@ -106,6 +106,53 @@ int32_t in_bounds(struct Image *img, int32_t x, int32_t y) {
   }
 }
 
+// Computes the corresponding array index to a given point (x, y)
+//
+// Parameters:
+//   img - the image to which we will be translating x, y coordinates
+//   x - desired x position (row major order)
+//   y - desired y position
+// Return:
+//   index - representing the appropriate pixel of the array
+//
+uint32_t compute_index(struct Image *img, int32_t x, int32_t y) {
+  return img->width * y + x;
+}
+
+// Blends foreground and background color component
+// values using a specified alpha (opacity) value.
+// note this operation is meant to be performed on each component
+//
+// Parameters:
+//   fg - an 8-bit integer that is the foreground color component
+//   bg - an 8-bit integer that is the background color component
+//   alpha - a number representing the opacity
+// Return:
+//   index - representing the appropriate pixel of the array
+//
+uint8_t blend_components(uint8_t fg, uint8_t bg, uint8_t alpha) {
+  return ((alpha * fg) + ((255 - alpha) * bg)) / 255;
+}
+
+// Blends foreground and background colors
+// using the opacity of the foreground color
+//
+// Parameters:
+//   fg - a 32-bit integer that is the foreground color
+//   bg - a 32-bit integer that is the background color
+// Return:
+//   unit32_t - the blended color
+// alpha, blue, green, red (most -> least significant)
+uint32_t blend_colors(uint32_t fg, uint32_t bg) {
+  uint32_t fg_alpha = get_a(fg);
+  uint32_t result = 0xff << 24;
+  uint32_t b_res = blend_components(get_b(fg), get_b(bg), fg_alpha) << 16;
+  uint32_t g_res = blend_components(get_g(fg), get_g(bg), fg_alpha) << 8;
+  uint32_t r_res = blend_components(get_r(fg), get_r(bg), fg_alpha);
+  result = result + b_res + g_res + r_res;
+  return result;
+}
+
 ////////////////////////////////////////////////////////////////////////
 // API functions
 ////////////////////////////////////////////////////////////////////////

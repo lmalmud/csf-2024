@@ -335,21 +335,31 @@ void test_squaring_and_distance(TestObjs *objs) {
 }
 
 void test_blend_components(TestObjs *objs) {
-
+  ASSERT(blend_components(0xff, 0xee, 0) == 0xee);
+  ASSERT(blend_components(0x0b, 0x11, 0x1f) == 16);
+  ASSERT(blend_components(0x11, 0x12, 0x1f) == 17);
+  ASSERT(blend_components(0x43, 0xe1, 0x1f) == 205);
 }
 
+// alpha, blue, green, red (most -> least significant)
 void test_blend_colors(TestObjs *objs) {
-
+  // the problem is that the result for green is giving 0xf when it should
+  // be giving 0x11
+  ASSERT(blend_colors(0x1f0b1143, 0x001112e1) == 0xff1011cd);
 }
 
 void test_in_bounds(TestObjs *objs) {
-  ASSERT(in_bounds(&(objs->small), SMALL_W + 1, 0) == 0);
-  ASSERT(in_bounds(&(objs->small), 0, SMALL_H) == 0);
-  ASSERT(in_bounds(&(objs->small), 0, 0) != 0);
+  ASSERT(in_bounds(&objs->small, SMALL_W + 1, 0) == 0);
+  ASSERT(in_bounds(&objs->small, 0, SMALL_H) == 0);
+  ASSERT(in_bounds(&objs->small, 0, 0) != 0);
 }
 
 void test_compute_index(TestObjs *objs) {
-
+  ASSERT(compute_index(&objs->small, 0, 0) == 0);
+  ASSERT(compute_index(&objs->small, 1, 1) == 9);
+  ASSERT(compute_index(&objs->small, 0, 2) == 16);
+  ASSERT(compute_index(&objs->small, 6, 0) == 6);
+  ASSERT(compute_index(&objs->small, 7, 5) == 47);
 }
 
 void test_clamp(TestObjs *objs) {
