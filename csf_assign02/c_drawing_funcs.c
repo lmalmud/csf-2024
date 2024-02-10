@@ -92,9 +92,9 @@ int64_t square_dist(int64_t x1, int64_t y1, int64_t x2, int64_t y2) {
 // 0 <= y <= image_height
 //
 // Parameters:
-//   img - 
-//   x - 
-//   y -
+//   img - the image we will compare dimensions of
+//   x - target x value
+//   y - target y value
 // Return:
 //   0 if out of bounds
 //
@@ -142,15 +142,45 @@ uint8_t blend_components(uint8_t fg, uint8_t bg, uint8_t alpha) {
 //   bg - a 32-bit integer that is the background color
 // Return:
 //   unit32_t - the blended color
-// alpha, blue, green, red (most -> least significant)
+//
 uint32_t blend_colors(uint32_t fg, uint32_t bg) {
+  // alpha, blue, green, red (least -> most significant)
   uint32_t fg_alpha = get_a(fg);
-  uint32_t result = 0xff << 24;
-  uint32_t b_res = blend_components(get_b(fg), get_b(bg), fg_alpha) << 16;
-  uint32_t g_res = blend_components(get_g(fg), get_g(bg), fg_alpha) << 8;
-  uint32_t r_res = blend_components(get_r(fg), get_r(bg), fg_alpha);
-  result = result + b_res + g_res + r_res;
+  uint32_t result = 0xff; // the alpha value (least significant)
+  result += blend_components(get_b(fg), get_b(bg), fg_alpha) << 8;
+  result += blend_components(get_g(fg), get_g(bg), fg_alpha) << 16;
+  result += blend_components(get_r(fg), get_r(bg), fg_alpha) << 24;
   return result;
+}
+
+// Sets a pixel of an image to the given color
+// note: does not blend the two colors
+//
+// Parameters:
+//   img - a point to the image to be modified
+//   index - the index of the pixel
+//   color - a 32-bit integer that is the color we are setting the pixel to
+//
+void set_pixel(struct Image *img, uint32_t index, uint32_t color) {
+  img->data[index] = color;
+}
+
+// Constrains a value so it is in the range [min, max]
+//
+// Parameters:
+//   val - a 32-bit integer that is the value to be constrained
+//   min - a 32-bit integer that is the minimum allowed value
+//   max - a 32-bit integer that is the maximum allowed value
+// Return:
+//   unit32_t - constrained value
+//
+int32_t clamp(int32_t val, int32_t min, int32_t max) {
+  if (val < min) {
+    val = min;
+  } else if (val > max) {
+    val = max;
+  }
+  return val;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -167,7 +197,12 @@ uint32_t blend_colors(uint32_t fg, uint32_t bg) {
 //   color - uint32_t color value
 //
 void draw_pixel(struct Image *img, int32_t x, int32_t y, uint32_t color) {
-  // TODO: implement
+  // TODO: implement - DONE
+  if (in_bounds(img, x, y)) { // only modify the image if the pixel is within bounds
+    uint32_t index = compute_index(img, x, y);
+    uint32_t result_color = blend_colors(color, img->data[index]);
+    set_pixel(img, index, result_color);
+  }
 }
 
 //
@@ -183,7 +218,15 @@ void draw_pixel(struct Image *img, int32_t x, int32_t y, uint32_t color) {
 void draw_rect(struct Image *img,
                const struct Rect *rect,
                uint32_t color) {
-  // TODO: implement
+  // TODO: implement - DONE
+  // since draw pixel does not draw when things are out of bounds,
+  // it is okay to not check that the rectange is entirely in bounds
+  for (int i = 0; i < rect->width; i++) {
+    for (int j = 0; j < rect->height; ++j) {
+      // offset by the current pixel from start position
+      draw_pixel(img, rect->x + i, rect->y + j, color);
+    }
+  }
 }
 
 //
@@ -222,6 +265,19 @@ void draw_tile(struct Image *img,
                struct Image *tilemap,
                const struct Rect *tile) {
  // TODO: implement
+  for (int i = 0; i < tile->width; ++i) {
+    for (int j = 0; j < tile->height; ++j) {
+      if (in_bounds(img, x + i, y + j)) {
+        uint32_t index_dest = compute_index(img, x + i, y + j);
+
+        // we know i, j are in bounds because they are the loop conditions
+        uint32_t index_source = compute_index(tilemap, i, j);
+        uint32_t copied_color = tilemap->data[index_source];
+        set_pixel(img, index_dest, copied_color);
+      }
+
+    }
+  }
 }
 
 //

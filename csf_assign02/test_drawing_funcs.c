@@ -100,6 +100,7 @@ void test_blend_colors(TestObjs *objs);
 void test_in_bounds(TestObjs *objs);
 void test_compute_index(TestObjs *objs);
 void test_clamp(TestObjs *objs);
+void test_set_pixel(TestObjs *objs);
 
 int main(int argc, char **argv) {
   if (argc > 1) {
@@ -128,6 +129,7 @@ int main(int argc, char **argv) {
   TEST(test_in_bounds);
   TEST(test_clamp);
   TEST(test_compute_index);
+  TEST(test_set_pixel);
 
   TEST_FINI();
 }
@@ -341,11 +343,8 @@ void test_blend_components(TestObjs *objs) {
   ASSERT(blend_components(0x43, 0xe1, 0x1f) == 205);
 }
 
-// alpha, blue, green, red (most -> least significant)
 void test_blend_colors(TestObjs *objs) {
-  // the problem is that the result for green is giving 0xf when it should
-  // be giving 0x11
-  ASSERT(blend_colors(0x1f0b1143, 0x001112e1) == 0xff1011cd);
+  ASSERT(blend_colors(0x43110b1f, 0xe1121100) == 0xcd1110ff);
 }
 
 void test_in_bounds(TestObjs *objs) {
@@ -362,6 +361,15 @@ void test_compute_index(TestObjs *objs) {
   ASSERT(compute_index(&objs->small, 7, 5) == 47);
 }
 
-void test_clamp(TestObjs *objs) {
+void test_set_pixel(TestObjs *objs) {
+  set_pixel(&objs->small, 0, 0x00000000);
+  ASSERT(objs->small.data[0] == 0x00000000);
+  set_pixel(&objs->small, 10, 0x12345678);
+  ASSERT(objs->small.data[10] == 0x12345678);
+}
 
+void test_clamp(TestObjs *objs) {
+  ASSERT(clamp(0, 2, 5) == 2);
+  ASSERT(clamp(10, 3, 7) == 7);
+  ASSERT(clamp(3, 2, 4) == 3);
 }
