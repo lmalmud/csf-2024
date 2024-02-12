@@ -197,7 +197,6 @@ int32_t clamp(int32_t val, int32_t min, int32_t max) {
 //   color - uint32_t color value
 //
 void draw_pixel(struct Image *img, int32_t x, int32_t y, uint32_t color) {
-  // TODO: implement - DONE
   if (in_bounds(img, x, y)) { // only modify the image if the pixel is within bounds
     uint32_t index = compute_index(img, x, y);
     uint32_t result_color = blend_colors(color, img->data[index]);
@@ -218,7 +217,6 @@ void draw_pixel(struct Image *img, int32_t x, int32_t y, uint32_t color) {
 void draw_rect(struct Image *img,
                const struct Rect *rect,
                uint32_t color) {
-  // TODO: implement - DONE
   // since draw pixel does not draw when things are out of bounds,
   // it is okay to not check that the rectange is entirely in bounds
   for (int i = 0; i < rect->width; i++) {
@@ -243,7 +241,15 @@ void draw_rect(struct Image *img,
 void draw_circle(struct Image *img,
                  int32_t x, int32_t y, int32_t r,
                  uint32_t color) {
-  // TODO: implement
+  // we will consider if all points (i, j) are in the image
+  for (int i = 0; i < img->width; ++i) {
+    for (int j = 0; j < img->height; ++j) {
+      int dist_square = square(x - i) + square(y - j);
+      if (dist_square <= square(r)) {
+        draw_pixel(img, i, j, color);
+      }
+    }
+  }
 }
 
 //
@@ -264,14 +270,14 @@ void draw_tile(struct Image *img,
                int32_t x, int32_t y,
                struct Image *tilemap,
                const struct Rect *tile) {
- // TODO: implement
   for (int i = 0; i < tile->width; ++i) {
     for (int j = 0; j < tile->height; ++j) {
       if (in_bounds(img, x + i, y + j)) {
         uint32_t index_dest = compute_index(img, x + i, y + j);
 
         // we know i, j are in bounds because they are the loop conditions
-        uint32_t index_source = compute_index(tilemap, i, j);
+        // note we offset the index by the start position of the tile
+        uint32_t index_source = compute_index(tilemap, tile->x + i, tile->y + j);
         uint32_t copied_color = tilemap->data[index_source];
         set_pixel(img, index_dest, copied_color);
       }
@@ -299,5 +305,23 @@ void draw_sprite(struct Image *img,
                  int32_t x, int32_t y,
                  struct Image *spritemap,
                  const struct Rect *sprite) {
-  // TODO: implement
+  for (int i = 0; i < sprite->width; ++i) {
+    for (int j = 0; j < sprite->height; ++j) {
+      if (in_bounds(img, x + i, y + j)) {
+
+        uint32_t index_dest = compute_index(img, x + i, y + j);
+        uint32_t index_source = compute_index(spritemap, sprite->x + i, sprite->y + j);
+        uint32_t copied_color = spritemap->data[index_source];
+
+        // modify the destination alpha to be alpha of the source image
+        uint8_t alpha = get_a(copied_color);
+        img->data[index_dest] = img->data[index_dest] >> 2;
+        img->data[index_dest] = img->data[index_dest] << 2;
+        img->data[index_dest] += alpha;
+        
+        draw_pixel(img, x + i, y + j, copied_color);
+      }
+
+    }
+  }
 }
