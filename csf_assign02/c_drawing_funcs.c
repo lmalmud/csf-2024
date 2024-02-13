@@ -271,8 +271,16 @@ void draw_tile(struct Image *img,
                struct Image *tilemap,
                const struct Rect *tile) {
 
-  // if tile not entirely within bounds
-  if ((clamp(x + tile->width, 0, y + img->width) != x + tile->width) || (clamp(y + tile->height, 0, img->height) != y + tile->height)) {
+  int all_in_bounds = 1;
+  for (int i = 0; i < tile->width; ++i) {
+    for (int j = 0; j < tile->height; ++j) {
+      if (!in_bounds(img, x + i, y + j)) {
+        all_in_bounds = 0;
+      }
+    }
+  }
+
+  if (!all_in_bounds) {
     return;
   }
 
@@ -310,8 +318,16 @@ void draw_sprite(struct Image *img,
                  struct Image *spritemap,
                  const struct Rect *sprite) {
 
-  // if tile not entirely within bounds
-  if ((clamp(x + sprite->width, 0, y + img->width) != x + sprite->width) || (clamp(y + sprite->height, 0, img->height) != y + sprite->height )) {
+  int all_in_bounds = 1;
+  for (int i = 0; i < sprite->width; ++i) {
+    for (int j = 0; j < sprite->height; ++j) {
+      if (!in_bounds(img, x + i, y + j)) {
+        all_in_bounds = 0;
+      }
+    }
+  }
+
+  if (!all_in_bounds) {
     return;
   }
 
