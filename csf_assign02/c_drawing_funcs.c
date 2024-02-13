@@ -270,17 +270,21 @@ void draw_tile(struct Image *img,
                int32_t x, int32_t y,
                struct Image *tilemap,
                const struct Rect *tile) {
+
+  // if tile not entirely within bounds
+  if ((clamp(x + tile->width, 0, y + img->width) != x + tile->width) || (clamp(y + tile->height, 0, img->height) != y + tile->height)) {
+    return;
+  }
+
   for (int i = 0; i < tile->width; ++i) {
     for (int j = 0; j < tile->height; ++j) {
-      if (in_bounds(img, x + i, y + j)) {
         uint32_t index_dest = compute_index(img, x + i, y + j);
 
-        // we know i, j are in bounds because they are the loop conditions
-        // note we offset the index by the start position of the tile
-        uint32_t index_source = compute_index(tilemap, tile->x + i, tile->y + j);
-        uint32_t copied_color = tilemap->data[index_source];
-        set_pixel(img, index_dest, copied_color);
-      }
+      // we know i, j are in bounds because they are the loop conditions
+      // note we offset the index by the start position of the tile
+      uint32_t index_source = compute_index(tilemap, tile->x + i, tile->y + j);
+      uint32_t copied_color = tilemap->data[index_source];
+      set_pixel(img, index_dest, copied_color);
 
     }
   }
@@ -305,22 +309,26 @@ void draw_sprite(struct Image *img,
                  int32_t x, int32_t y,
                  struct Image *spritemap,
                  const struct Rect *sprite) {
+
+  // if tile not entirely within bounds
+  if ((clamp(x + sprite->width, 0, y + img->width) != x + sprite->width) || (clamp(y + sprite->height, 0, img->height) != y + sprite->height )) {
+    return;
+  }
+
   for (int i = 0; i < sprite->width; ++i) {
     for (int j = 0; j < sprite->height; ++j) {
-      if (in_bounds(img, x + i, y + j)) {
 
-        uint32_t index_dest = compute_index(img, x + i, y + j);
-        uint32_t index_source = compute_index(spritemap, sprite->x + i, sprite->y + j);
-        uint32_t copied_color = spritemap->data[index_source];
+      uint32_t index_dest = compute_index(img, x + i, y + j);
+      uint32_t index_source = compute_index(spritemap, sprite->x + i, sprite->y + j);
+      uint32_t copied_color = spritemap->data[index_source];
 
-        // modify the destination alpha to be alpha of the source image
-        uint8_t alpha = get_a(copied_color);
-        img->data[index_dest] = img->data[index_dest] >> 2;
-        img->data[index_dest] = img->data[index_dest] << 2;
-        img->data[index_dest] += alpha;
-        
-        draw_pixel(img, x + i, y + j, copied_color);
-      }
+      // modify the destination alpha to be alpha of the source image
+      uint8_t alpha = get_a(copied_color);
+      img->data[index_dest] = img->data[index_dest] >> 2;
+      img->data[index_dest] = img->data[index_dest] << 2;
+      img->data[index_dest] += alpha;
+      
+      draw_pixel(img, x + i, y + j, copied_color); // handles out-of-bounds
 
     }
   }
