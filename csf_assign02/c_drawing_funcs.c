@@ -274,7 +274,7 @@ void draw_tile(struct Image *img,
   int all_in_bounds = 1;
   for (int i = 0; i < tile->width; ++i) {
     for (int j = 0; j < tile->height; ++j) {
-      if (!in_bounds(img, x + i, y + j)) {
+      if (!in_bounds(tilemap, i, j)) {
         all_in_bounds = 0;
       }
     }
@@ -286,13 +286,15 @@ void draw_tile(struct Image *img,
 
   for (int i = 0; i < tile->width; ++i) {
     for (int j = 0; j < tile->height; ++j) {
+        
+      if (in_bounds(img, x + i, y + j)) {
         uint32_t index_dest = compute_index(img, x + i, y + j);
-
-      // we know i, j are in bounds because they are the loop conditions
-      // note we offset the index by the start position of the tile
-      uint32_t index_source = compute_index(tilemap, tile->x + i, tile->y + j);
-      uint32_t copied_color = tilemap->data[index_source];
-      set_pixel(img, index_dest, copied_color);
+        // we know i, j are in bounds because they are the loop conditions
+        // note we offset the index by the start position of the tile
+        uint32_t index_source = compute_index(tilemap, tile->x + i, tile->y + j);
+        uint32_t copied_color = tilemap->data[index_source];
+        set_pixel(img, index_dest, copied_color);
+      }
 
     }
   }
@@ -321,7 +323,7 @@ void draw_sprite(struct Image *img,
   int all_in_bounds = 1;
   for (int i = 0; i < sprite->width; ++i) {
     for (int j = 0; j < sprite->height; ++j) {
-      if (!in_bounds(img, x + i, y + j)) {
+      if (!in_bounds(spritemap, x + i, y + j)) {
         all_in_bounds = 0;
       }
     }
