@@ -338,13 +338,13 @@ void test_squaring_and_distance(TestObjs *objs) {
 
 void test_blend_components(TestObjs *objs) {
   ASSERT(blend_components(0xff, 0xee, 0) == 0xee);
-  ASSERT(blend_components(0x0b, 0x11, 0x1f) == 16);
+  ASSERT(blend_components(0x44, 0x1e, 0x1f) == 0x22);
   ASSERT(blend_components(0x11, 0x12, 0x1f) == 17);
   ASSERT(blend_components(0x43, 0xe1, 0x1f) == 205);
 }
 
 void test_blend_colors(TestObjs *objs) {
-  ASSERT(blend_colors(0x43110b1f, 0xe1121100) == 0xcd1110ff);
+  ASSERT(blend_colors(0x4311441f, 0xe1121e00) == 0xcd1122ff);
 }
 
 void test_in_bounds(TestObjs *objs) {
