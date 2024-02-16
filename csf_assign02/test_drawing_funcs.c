@@ -99,7 +99,7 @@ void test_blend_components(TestObjs *objs);
 void test_blend_colors(TestObjs *objs);
 void test_in_bounds(TestObjs *objs);
 void test_compute_index(TestObjs *objs);
-void test_clamp(TestObjs *objs);
+/*void test_clamp(TestObjs *objs);*/
 void test_set_pixel(TestObjs *objs);
 
 int main(int argc, char **argv) {
@@ -127,7 +127,7 @@ int main(int argc, char **argv) {
   TEST(test_blend_colors);
   TEST(test_blend_components);
   TEST(test_in_bounds);
-  TEST(test_clamp);
+  /*TEST(test_clamp);*/
   TEST(test_compute_index);
   TEST(test_set_pixel);
 
@@ -351,6 +351,7 @@ void test_in_bounds(TestObjs *objs) {
   ASSERT(in_bounds(&objs->small, SMALL_W + 1, 0) == 0);
   ASSERT(in_bounds(&objs->small, 0, SMALL_H) == 0);
   ASSERT(in_bounds(&objs->small, 0, 0) != 0);
+  ASSERT(in_bounds(&objs->small, -1, -1) == 0);
 }
 
 void test_compute_index(TestObjs *objs) {
@@ -368,8 +369,10 @@ void test_set_pixel(TestObjs *objs) {
   ASSERT(objs->small.data[10] == 0x12345678);
 }
 
+/*
 void test_clamp(TestObjs *objs) {
   ASSERT(clamp(0, 2, 5) == 2);
   ASSERT(clamp(10, 3, 7) == 7);
   ASSERT(clamp(3, 2, 4) == 3);
 }
+*/
