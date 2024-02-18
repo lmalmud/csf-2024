@@ -156,6 +156,9 @@ in_bounds:
 */
 	.globl compute_index
 compute_index:
+	imul IMAGE_WIDTH_OFFSET(%rdi), %edx 	/* edx = y * img->width */
+	addl %esi, %edx							/* edx += x */
+	movl %edx, %eax							/* move computed index to return register */
 	ret
 
 /*
@@ -172,6 +175,9 @@ compute_index:
  */
 	.globl blend_components
 blend_components:
+	/* %r8b, %r9b, %rcx */
+	imul %dl, %dil			/* alpha * fg = fg */
+	movb $255, %r8b			/* %r8b = 255 */
 	ret
 
 /*
