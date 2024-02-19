@@ -200,8 +200,9 @@ blend_components:
 blend_colors:
 	movl %edi, %r12d		/* %r12d = fg */
 	movl %esi, %r13d		/* %r13d = bg */
+	movl %r12d, %edi
 	call get_a				/* the foreground color is already in %edi */
-	movb %al, %r8b			/* %r8b = get_a(fg) */
+	movb %al, %r8b			/* %r8b = get_a(fg) - NOTE: gdb says void when trying to print, but works for %r8 */
 	movl $0xff, %ebx		/* %ebx (result) = 0xff */
 	call get_b				/* the foreground color is already in %edi */
 	movb %al, %r9b			/* %r9b = get_b(fg) */
@@ -211,8 +212,11 @@ blend_colors:
 	movb %r9b, %dil			/* set up get_b(fg) as first argument to blend_components */
 	movb %r8b, %dl			/* set up get_a(fg) as third argument to blend_components */
 	call blend_components
-	shl $8, %eax			/* shift blue component 8 bits left */
-	addl %eax, %ebx			/* adds blue components to result */
+	movl $0, %r15d			/* want to make all zero before we shift */
+	movb %al, %r15b			/* %r15b holds the blended blue before shifting */
+	shl $8, %r15d				/* shift blue component 8 bits left */
+	addl %r15d, %ebx			/* adds blue components to result */
+	movl %ebx, %eax			/* set up return */
 	ret
 
 /*
