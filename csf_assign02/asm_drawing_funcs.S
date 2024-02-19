@@ -175,9 +175,15 @@ compute_index:
  */
 	.globl blend_components
 blend_components:
-	/* %r8b, %r9b, %rcx */
-	imul %dl, %dil			/* alpha * fg = fg */
-	movb $255, %r8b			/* %r8b = 255 */
+	imul %edx, %edi			/* %edi = alpha * fg */
+	movq $255, %r8			/* %r8b = 255 */
+	subb %dl, %r8b			/* %r8b = 255 - alpha */
+	imul %esi, %r8d			/* %r8b = (255 - alpha) * bg */
+	addl %edi, %r8d			/* %r8b = (alpha * fg) + ((255 - alpha) * bg) */
+	movq $0, %rdx
+	movq %r8, %rax			/* %rdx:%rax is the dividend */
+	movq $255, %r9			/* put divisor in %r9 */
+	idiv %r9				/* result automatically stored in %rax (return register) */
 	ret
 
 /*
@@ -192,6 +198,21 @@ blend_components:
 */
 	.globl blend_colors
 blend_colors:
+	movl %edi, %r12d		/* %r12d = fg */
+	movl %esi, %r13d		/* %r13d = bg */
+	call get_a				/* the foreground color is already in %edi */
+	movb %al, %r8b			/* %r8b = get_a(fg) */
+	movl $0xff, %ebx		/* %ebx (result) = 0xff */
+	call get_b				/* the foreground color is already in %edi */
+	movb %al, %r9b			/* %r9b = get_b(fg) */
+	movl %esi, %edi			/* %edi = bg */
+	call get_b				/* %al = get_b(bg) */
+	movb %al, %sil			/* set up get_b(bg) as second argument to blend_components */
+	movb %r9b, %dil			/* set up get_b(fg) as first argument to blend_components */
+	movb %r8b, %dl			/* set up get_a(fg) as third argument to blend_components */
+	call blend_components
+	shl $8, %eax			/* shift blue component 8 bits left */
+	addl %eax, %ebx			/* adds blue components to result */
 	ret
 
 /*
