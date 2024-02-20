@@ -227,8 +227,13 @@ blend_colors:
 	movl $0, %r15d			/* want to make all zero before we shift */
 	movb %al, %r15b			/* %r15b holds the blended blue before shifting */
 	shl $8, %r15d			/* shift blue component 8 bits left */
-	addl %r15d, %ebx		/* adds blue components to result */
-	movl %ebx, %eax			/* set up return */
+	addl %r15d, -4(%rbp)	/* adds blue components to result */
+
+							/* blend green */
+
+							/* blend red */
+
+	movl -4(%rbp), %eax		/* set up return */
 	addq $16, %rsp			/* restore */
 	popq %rbp
 	ret
