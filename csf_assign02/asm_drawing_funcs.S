@@ -171,15 +171,21 @@ compute_index:
  *   %sil 	- bg an 8-bit integer that is the background color component
  *   %dl 	- alpha a number representing the opacity
  * Return:
- *   %al 	- index representing the appropriate pixel of the array (8 bits)
+ *   %al 	- resulting blended color
  */
 	.globl blend_components
 blend_components:
-	imul %edx, %edi			/* %edi = alpha * fg */
+	movl $0, %r10d			/* going to use the lowest 8 bits for foreground */
+	movl $0, %r11d			/* going to use the lowest 8 bits for background */
+	movl $0, %r9d			/* going to use the lowest 8 bits for alpha */
+	movb %dil, %r10b		/* %r10b = fg */
+	movb %sil, %r11b		/* %r11b = bg */
+	movb %dl, %r9b			/* %r9b = alpha */
+	imul %r9d, %r10d		/* %r10d = alpha * fg */
 	movq $255, %r8			/* %r8b = 255 */
-	subb %dl, %r8b			/* %r8b = 255 - alpha */
-	imul %esi, %r8d			/* %r8b = (255 - alpha) * bg */
-	addl %edi, %r8d			/* %r8b = (alpha * fg) + ((255 - alpha) * bg) */
+	subb %r9b, %r8b			/* %r8b = 255 - alpha */
+	imul %r11d, %r8d		/* %r8b = (255 - alpha) * bg */
+	addl %r10d, %r8d		/* %r8b = (alpha * fg) + ((255 - alpha) * bg) */
 	movq $0, %rdx
 	movq %r8, %rax			/* %rdx:%rax is the dividend */
 	movq $255, %r9			/* put divisor in %r9 */
