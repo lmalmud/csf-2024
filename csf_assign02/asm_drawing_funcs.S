@@ -278,7 +278,12 @@ blend_colors:
 */
 	.globl set_pixel
 set_pixel:
-	ret
+	movl %esi, %r15d								/* preserve index */
+	movq $0, %rsi									/* clear all bits of index */
+	movl %r15d, %esi								/* put index back to %esi */
+	leaq IMAGE_DATA_OFFSET(%rdi, %rsi, 4), %r10		/* img->data[index] */
+	movl %edx, %r10								/* use brackets to indicate the literal address */
+
 
 /***********************************************************************
    Public API functions
