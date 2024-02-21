@@ -202,10 +202,6 @@ blend_components:
  * Return:
  *   %eax 	- the blended color (32 bits)
 */
-
-/* leaq -16(%rbp), dest - pass address of first variable */
-
-
 	.globl blend_colors
 blend_colors:
 							/* allocating local variables */
@@ -281,8 +277,8 @@ set_pixel:
 	movl %esi, %r15d								/* preserve index */
 	movq $0, %rsi									/* clear all bits of index */
 	movl %r15d, %esi								/* put index back to %esi */
-	leaq IMAGE_DATA_OFFSET(%rdi, %rsi, 4), %r10		/* img->data[index] */
-	movl %edx, %r10								/* use brackets to indicate the literal address */
+	movl %edx, IMAGE_DATA_OFFSET(%rdi, %rsi, 4)		/* img->data[index] */
+	ret
 
 
 /***********************************************************************
@@ -300,7 +296,39 @@ set_pixel:
  */
 	.globl draw_pixel
 draw_pixel:
-	/* TODO: implement */
+								/* allocating local variables */
+	pushq %rbp					/* save original value of rbp */
+	movq %rsp, %rbp				/* %rbp points to top of allocated area */
+	subq $32, %rsp				/* allocate 4 bytes (not all used) */
+	movq %rdi, -32(%rbp)		/* -32(%rbp) = pointer Img */
+	movl %esi, -16(%rbp)		/* -16(%rbp) = x */
+	movl %edx, -12(%rbp)		/* -12(%rbp) = y */
+	movl %ecx, -8(%rbp)			/* -8(%ecx) = color */
+
+	call in_bounds				/* arguments are already set up */
+	cmp $0, %eax				/* if !in_bounds */
+	je .Ldraw_pixel_return		/* go to return if out of bounds */
+	movq -32(%rbp), %rdi		/* Img pointer as first argument */
+	movl -16(%rbp), %esi		/* x as second argument */
+	movl -12(%rbp), %edx		/* y as third argument */
+	call compute_index
+	movq $0, %r10				/* clear register before accessing lower 32 so it can be used as index */
+	movl %eax, %r10d			/* %r10d = index */
+
+	movl -8(%ecx), %edi								/* move foreground (color) as first argument */
+	movq -32(%rbp), %r15							/* temporarily store in %r15 because we cannot nest computations */
+	movl IMAGE_DATA_OFFSET(%r15, %r10, 4), %esi		/* current color of the image */
+	call blend_colors
+
+	movq -32(%rbp), %rdi		/* set Img pointer as first parameter */
+	movl %r10d, %esi			/* set index as second parameter */
+	movl %eax, %edx 			/* set result_color as third parameter */
+	call set_pixel
+
+	addq $32, %rsp			/* restore */
+	popq %rbp
+
+.Ldraw_pixel_return:
 	ret
 
 
