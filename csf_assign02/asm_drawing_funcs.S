@@ -277,7 +277,8 @@ set_pixel:
 	movl %esi, %r15d								/* preserve index */
 	movq $0, %rsi									/* clear all bits of index */
 	movl %r15d, %esi								/* put index back to %esi */
-	movl %edx, IMAGE_DATA_OFFSET(%rdi, %rsi, 4)		/* img->data[index] */
+	leaq IMAGE_DATA_OFFSET(%rdi), %r10				/* base address of array in %r10 - FIXME */
+	movl %edx, (%r10, %rsi, 4)						/* img->data[index] */
 	ret
 
 
@@ -303,7 +304,7 @@ draw_pixel:
 	movq %rdi, -32(%rbp)		/* -32(%rbp) = pointer Img */
 	movl %esi, -16(%rbp)		/* -16(%rbp) = x */
 	movl %edx, -12(%rbp)		/* -12(%rbp) = y */
-	movl %ecx, -8(%rbp)			/* -8(%ecx) = color */
+	movl %ecx, -8(%rbp)			/* -8(%rbp) = color */
 
 	call in_bounds				/* arguments are already set up */
 	cmp $0, %eax				/* if !in_bounds */
@@ -315,7 +316,7 @@ draw_pixel:
 	movq $0, %r10				/* clear register before accessing lower 32 so it can be used as index */
 	movl %eax, %r10d			/* %r10d = index */
 
-	movl -8(%ecx), %edi								/* move foreground (color) as first argument */
+	movl -8(%rbp), %edi								/* move foreground (color) as first argument */
 	movq -32(%rbp), %r15							/* temporarily store in %r15 because we cannot nest computations */
 	movl IMAGE_DATA_OFFSET(%r15, %r10, 4), %esi		/* current color of the image */
 	call blend_colors
