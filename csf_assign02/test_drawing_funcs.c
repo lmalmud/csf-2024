@@ -345,6 +345,7 @@ void test_blend_components(TestObjs *objs) {
 
 void test_blend_colors(TestObjs *objs) {
   ASSERT(blend_colors(0x0000441f, 0x00001e00) == 0x000022ff);
+  ASSERT(blend_colors(0x0044001f, 0x001e0000) == 0x002200ff);
   ASSERT(blend_colors(0x4311441f, 0xe1121e00) == 0xcd1122ff);
 }
 

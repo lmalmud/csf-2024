@@ -208,14 +208,17 @@ blend_components:
 
 	.globl blend_colors
 blend_colors:
+							/* allocating local variables */
 	pushq %rbp				/* save original value of rbp */
 	movq %rsp, %rbp			/* %rbp points to top of allocated area */
 	subq $16, %rsp			/* allocate 16 bytes */
-	movl %edi, -16(%rbp)	/* memory[0] = fg */
-	movl %esi, -12(%rbp)	/* memory[1] = bg */
+	movl %edi, -16(%rbp)	/* -16(%rbp) = fg */
+	movl %esi, -12(%rbp)	/* -12(%rbp) = bg */
 	call get_a				/* foreground is already in %edi */
-	movb %al, -8(%rbp)		/* memory[2] = get_a(fg) */
-	movl $0xff, -4(%rbp)	/* memory[3] (result) = 0xff */
+	movb %al, -8(%rbp)		/* -8(%rbp) = get_a(fg) */
+	movl $0xff, -4(%rbp)	/* -4(%rbp) (result) = 0xff */
+
+							/* blue component */
 	call get_b				/* the foreground color is already in %edi */
 	movb %al, %r10b			/* %r10b = get_b(fg) */
 	movl -12(%rbp), %edi	/* %edi = bg */
@@ -229,9 +232,35 @@ blend_colors:
 	shl $8, %r15d			/* shift blue component 8 bits left */
 	addl %r15d, -4(%rbp)	/* adds blue components to result */
 
-							/* blend green */
+							/* green component */
+	movl -16(%rbp), %edi	/* set up fg as argument */
+	call get_g
+	movb %al, %r10b			/* %r10b = get_g(fg) */
+	movl -12(%rbp), %edi	/* set up bg as argument */
+	call get_g
+	movb %al, %sil			/* set up get_g(bg) as second argument */
+	movb %r10b, %dil		/* set up get_g(fb) as first argument */
+	movb -8(%rbp), %dl		/* set up get_a(fg) as third argument */
+	call blend_components
+	movl $0, %r15d
+	movb %al, %r15b
+	shl $16, %r15d			/* shifts blended green 16 left */
+	addl %r15d, -4(%rbp)	/* adds green component to result */
 
-							/* blend red */
+							/* red component */
+	movl -16(%rbp), %edi	/* set up fg as argument */
+	call get_r
+	movb %al, %r10b			/* %r10b = get_r(fg) */
+	movl -12(%rbp), %edi	/* set up bg as argument */
+	call get_r
+	movb %al, %sil			/* set up get_r(bg) as second argument */
+	movb %r10b, %dil		/* set up get_r(fb) as first argument */
+	movb -8(%rbp), %dl		/* set up get_r(fg) as third argument */
+	call blend_components
+	movl $0, %r15d
+	movb %al, %r15b
+	shl $24, %r15d			/* shifts blended red 16 left */
+	addl %r15d, -4(%rbp)	/* adds red component to result */
 
 	movl -4(%rbp), %eax		/* set up return */
 	addq $16, %rsp			/* restore */
