@@ -175,17 +175,17 @@ compute_index:
  */
 	.globl blend_components
 blend_components:
-	movl $0, %r8d			/* going to use the lowest 8 bits for foreground */
-	movl $0, %r9d			/* going to use the lowest 8 bits for background */
-	movl $0, %r9d			/* going to use the lowest 8 bits for alpha */
-	movb %dil, %r8b		/* %r8b = fg */
-	movb %sil, %r9b		/* %r9b = bg */
-	movb %dl, %r9b			/* %r9b = alpha */
-	imul %r9d, %r8d		/* %r8d = alpha * fg */
+	movq $0, %rcx			/* going to use the lowest 8 bits for foreground */
+	movq $0, %r10			/* going to use the lowest 8 bits for background */
+	movq $0, %r9			/* going to use the lowest 8 bits for alpha */
+	movb %dil, %cl			/* %cl (lowest 8 of %rcx) = fg */
+	movb %sil, %r10b		/* %r10b (lowest 8 of %r10) = bg */
+	movb %dl, %r9b			/* %r9b (lowest 8 of %r9) = alpha */
+	imul %r9d, %ecx			/* %ecx (lowest 32 of %rcx) = alpha * fg */
 	movq $255, %r8			/* %r8b = 255 */
 	subb %r9b, %r8b			/* %r8b = 255 - alpha */
-	imul %r9d, %r8d		/* %r8b = (255 - alpha) * bg */
-	addl %r8d, %r8d		/* %r8b = (alpha * fg) + ((255 - alpha) * bg) */
+	imul %r10d, %r8d		/* %r8b = (255 - alpha) * bg */
+	addl %ecx, %r8d			/* %r8b = (alpha * fg) + ((255 - alpha) * bg) */
 	movq $0, %rdx
 	movq %r8, %rax			/* %rdx:%rax is the dividend */
 	movq $255, %r9			/* put divisor in %r9 */
@@ -311,11 +311,11 @@ draw_pixel:
 	movl -12(%rbp), %edx		/* y as third argument */
 	call compute_index
 	movq $0, %r10				/* clear register before accessing lower 32 so it can be used as index */
-	movl %eax, %r10d			/* %r10d = index WHAT I JUST REALIZED IS THAT BLEND COLORS FUCKS WITH R10 WHICH IS NOT ALLOWED */
+	movl %eax, %r10d			/* %r10d = index */
 
-	movl -4(%rbp), %edi								/* move foreground (color) as first argument */
-	movq -32(%rbp), %r15							/* temporarily store in %r15 because we cannot nest computations */
-	movq IMAGE_DATA_OFFSET(%r15), %r15				/* put base address of array in %r15*/
+	movl -4(%rbp), %edi						/* move foreground (color) as first argument */
+	movq -32(%rbp), %r15					/* temporarily store in %r15 because we cannot nest computations */
+	movq IMAGE_DATA_OFFSET(%r15), %r15		/* put base address of array in %r15*/
 	leaq (%r15, %r10, 4), %r15
 	movl (%r15), %esi						/* current color of the image */
 	call blend_colors

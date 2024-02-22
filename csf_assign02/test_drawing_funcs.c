@@ -133,12 +133,16 @@ int main(int argc, char **argv) {
 }
 
 void test_draw_pixel(TestObjs *objs) {
+  // ASSERT(blend_colors(0x0000441f, 0x00001e00) == 0x000022ff);
+  set_pixel(&objs->small, 0, 0x00001e00);
+  draw_pixel(&objs->small, 0, 0, 0x0000441f);
+  ASSERT(objs->small.data[0] == 0x000022ff);
+
   // initially objs->small pixels are opaque black
   ASSERT(objs->small.data[SMALL_IDX(3, 2)] == 0x000000FFU);
   ASSERT(objs->small.data[SMALL_IDX(5, 4)] == 0x000000FFU);
 
   // test drawing completely opaque pixels
-  // objs->small is 8x6 so (3, 2) ->
   draw_pixel(&objs->small, 3, 2, 0xFF0000FF); // opaque red
   ASSERT(objs->small.data[SMALL_IDX(3, 2)] == 0xFF0000FF);
   draw_pixel(&objs->small, 5, 4, 0x800080FF); // opaque magenta (half-intensity)
@@ -336,6 +340,7 @@ void test_squaring_and_distance(TestObjs *objs) {
 }
 
 void test_blend_components(TestObjs *objs) {
+  // fg gb alpha
   ASSERT(blend_components(0xff, 0xee, 0) == 0xee);
   ASSERT(blend_components(0x44, 0x1e, 0x1f) == 0x22);
   ASSERT(blend_components(0x11, 0x12, 0x1f) == 17);
