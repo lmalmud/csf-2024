@@ -133,8 +133,6 @@ int main(int argc, char **argv) {
 }
 
 void test_draw_pixel(TestObjs *objs) {
-  draw_pixel(&objs->small, 3, 2, 0xFF0000FF);
-
   // initially objs->small pixels are opaque black
   ASSERT(objs->small.data[SMALL_IDX(3, 2)] == 0x000000FFU);
   ASSERT(objs->small.data[SMALL_IDX(5, 4)] == 0x000000FFU);

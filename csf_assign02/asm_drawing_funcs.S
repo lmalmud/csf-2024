@@ -175,17 +175,17 @@ compute_index:
  */
 	.globl blend_components
 blend_components:
-	movl $0, %r10d			/* going to use the lowest 8 bits for foreground */
-	movl $0, %r11d			/* going to use the lowest 8 bits for background */
+	movl $0, %r8d			/* going to use the lowest 8 bits for foreground */
+	movl $0, %r9d			/* going to use the lowest 8 bits for background */
 	movl $0, %r9d			/* going to use the lowest 8 bits for alpha */
-	movb %dil, %r10b		/* %r10b = fg */
-	movb %sil, %r11b		/* %r11b = bg */
+	movb %dil, %r8b		/* %r8b = fg */
+	movb %sil, %r9b		/* %r9b = bg */
 	movb %dl, %r9b			/* %r9b = alpha */
-	imul %r9d, %r10d		/* %r10d = alpha * fg */
+	imul %r9d, %r8d		/* %r8d = alpha * fg */
 	movq $255, %r8			/* %r8b = 255 */
 	subb %r9b, %r8b			/* %r8b = 255 - alpha */
-	imul %r11d, %r8d		/* %r8b = (255 - alpha) * bg */
-	addl %r10d, %r8d		/* %r8b = (alpha * fg) + ((255 - alpha) * bg) */
+	imul %r9d, %r8d		/* %r8b = (255 - alpha) * bg */
+	addl %r8d, %r8d		/* %r8b = (alpha * fg) + ((255 - alpha) * bg) */
 	movq $0, %rdx
 	movq %r8, %rax			/* %rdx:%rax is the dividend */
 	movq $255, %r9			/* put divisor in %r9 */
@@ -216,11 +216,11 @@ blend_colors:
 
 							/* blue component */
 	call get_b				/* the foreground color is already in %edi */
-	movb %al, %r10b			/* %r10b = get_b(fg) */
+	movb %al, %r9b			/* %r9b = get_b(fg) */
 	movl -12(%rbp), %edi	/* %edi = bg */
 	call get_b				/* %al = get_b(bg) */
 	movb %al, %sil			/* set up get_b(bg) as second argument to blend_components */
-	movb %r10b, %dil		/* set up get_b(fg) as first argument to blend_components */
+	movb %r9b, %dil		/* set up get_b(fg) as first argument to blend_components */
 	movb -8(%rbp), %dl		/* set up get_a(fg) as third argument to blend_components */
 	call blend_components
 	movl $0, %r15d			/* want to make all zero before we shift */
@@ -231,11 +231,11 @@ blend_colors:
 							/* green component */
 	movl -16(%rbp), %edi	/* set up fg as argument */
 	call get_g
-	movb %al, %r10b			/* %r10b = get_g(fg) */
+	movb %al, %r9b			/* %r9b = get_g(fg) */
 	movl -12(%rbp), %edi	/* set up bg as argument */
 	call get_g
 	movb %al, %sil			/* set up get_g(bg) as second argument */
-	movb %r10b, %dil		/* set up get_g(fb) as first argument */
+	movb %r9b, %dil		/* set up get_g(fb) as first argument */
 	movb -8(%rbp), %dl		/* set up get_a(fg) as third argument */
 	call blend_components
 	movl $0, %r15d
@@ -246,11 +246,11 @@ blend_colors:
 							/* red component */
 	movl -16(%rbp), %edi	/* set up fg as argument */
 	call get_r
-	movb %al, %r10b			/* %r10b = get_r(fg) */
+	movb %al, %r9b			/* %r9b = get_r(fg) */
 	movl -12(%rbp), %edi	/* set up bg as argument */
 	call get_r
 	movb %al, %sil			/* set up get_r(bg) as second argument */
-	movb %r10b, %dil		/* set up get_r(fb) as first argument */
+	movb %r9b, %dil		/* set up get_r(fb) as first argument */
 	movb -8(%rbp), %dl		/* set up get_r(fg) as third argument */
 	call blend_components
 	movl $0, %r15d
