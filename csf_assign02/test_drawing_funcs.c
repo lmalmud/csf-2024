@@ -122,8 +122,8 @@ int main(int argc, char **argv) {
   TEST(test_get_b);
   TEST(test_get_a);
   TEST(test_squaring_and_distance);
-  TEST(test_blend_colors);
   TEST(test_blend_components);
+  TEST(test_blend_colors);
   TEST(test_in_bounds);
   TEST(test_compute_index);
   TEST(test_set_pixel);
@@ -133,7 +133,7 @@ int main(int argc, char **argv) {
 }
 
 void test_draw_pixel(TestObjs *objs) {
-  // ASSERT(blend_colors(0x0000441f, 0x00001e00) == 0x000022ff);
+  // my own test case added
   set_pixel(&objs->small, 0, 0x00001e00);
   draw_pixel(&objs->small, 0, 0, 0x0000441f);
   ASSERT(objs->small.data[0] == 0x000022ff);
@@ -341,6 +341,7 @@ void test_squaring_and_distance(TestObjs *objs) {
 
 void test_blend_components(TestObjs *objs) {
   // fg gb alpha
+  ASSERT(blend_components(0x80, 0xFF, 0xFF) == 0x80);
   ASSERT(blend_components(0xff, 0xee, 0) == 0xee);
   ASSERT(blend_components(0x44, 0x1e, 0x1f) == 0x22);
   ASSERT(blend_components(0x11, 0x12, 0x1f) == 17);
@@ -348,6 +349,9 @@ void test_blend_components(TestObjs *objs) {
 }
 
 void test_blend_colors(TestObjs *objs) {
+  ASSERT(blend_colors(0xFF0000FF, 0x000000FFU) == 0xFF0000FF); // taken from draw_pixel
+  ASSERT(blend_colors(0x800080FF, 0xFF0000FF) == 0x800080FF); // taken from draw_pixel
+  ASSERT(blend_colors(0x800080FF, 0xFF0000FF) == 0x800080FF); // taken from draw_pixel
   ASSERT(blend_colors(0x0000441f, 0x00001e00) == 0x000022ff);
   ASSERT(blend_colors(0x0044001f, 0x001e0000) == 0x002200ff);
   ASSERT(blend_colors(0x4311441f, 0xe1121e00) == 0xcd1122ff);

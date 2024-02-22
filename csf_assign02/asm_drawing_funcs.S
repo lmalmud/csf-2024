@@ -175,6 +175,7 @@ compute_index:
  */
 	.globl blend_components
 blend_components:
+	/* ((alpha * fg) + ((255 - alpha) * bg)) / 255 */
 	movq $0, %rcx			/* going to use the lowest 8 bits for foreground */
 	movq $0, %r10			/* going to use the lowest 8 bits for background */
 	movq $0, %r9			/* going to use the lowest 8 bits for alpha */
@@ -301,6 +302,7 @@ draw_pixel:
 	movq %rdi, -32(%rbp)		/* -32(%rbp) = pointer Img */
 	movl %esi, -16(%rbp)		/* -16(%rbp) = x */
 	movl %edx, -12(%rbp)		/* -12(%rbp) = y */
+								/* -8(%rbp) = index */
 	movl %ecx, -4(%rbp)			/* -4(%rbp) = color */
 
 	call in_bounds				/* arguments are already set up */
@@ -310,8 +312,8 @@ draw_pixel:
 	movl -16(%rbp), %esi		/* x as second argument */
 	movl -12(%rbp), %edx		/* y as third argument */
 	call compute_index
-	movq $0, %r10				/* clear register before accessing lower 32 so it can be used as index */
-	movl %eax, %r10d			/* %r10d = index */
+	movl $0, -8(%rbp)				/* clear index register before accessing lower 32 so it can be used as index */
+	movl %eax, -8(%rbp)			/* -8(%rbp) = index */
 
 	movl -4(%rbp), %edi						/* move foreground (color) as first argument */
 	movq -32(%rbp), %r15					/* temporarily store in %r15 because we cannot nest computations */
@@ -323,7 +325,7 @@ draw_pixel:
 	movl %eax, %edx 			/* set result_color as third parameter */
 	movq -32(%rbp), %r11		/* compute addres of Image */
 	movq %r11, %rdi				/* set Img pointer as first parameter */
-	movl %r10d, %esi			/* set index as second parameter */
+	movl -8(%rbp), %esi			/* set index as second parameter */
 	call set_pixel
 
 	addq $32, %rsp			/* restore */
