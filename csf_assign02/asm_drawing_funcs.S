@@ -317,7 +317,8 @@ draw_pixel:
 	movl -4(%rbp), %edi						/* move foreground (color) as first argument */
 	movq -32(%rbp), %r15					/* temporarily store in %r15 because we cannot nest computations */
 	movq IMAGE_DATA_OFFSET(%r15), %r15		/* put base address of array in %r15*/
-	movl -8(%rbp), %r10d
+	movq $0, %r10
+	movl -8(%rbp), %r10d					/* temporarily put address in %r10d */
 	leaq (%r15, %r10, 4), %r15
 	movl (%r15), %esi						/* current color of the image */
 	call blend_colors
