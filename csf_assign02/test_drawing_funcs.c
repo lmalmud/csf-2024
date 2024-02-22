@@ -133,11 +133,14 @@ int main(int argc, char **argv) {
 }
 
 void test_draw_pixel(TestObjs *objs) {
+  draw_pixel(&objs->small, 3, 2, 0xFF0000FF);
+
   // initially objs->small pixels are opaque black
   ASSERT(objs->small.data[SMALL_IDX(3, 2)] == 0x000000FFU);
   ASSERT(objs->small.data[SMALL_IDX(5, 4)] == 0x000000FFU);
 
   // test drawing completely opaque pixels
+  // objs->small is 8x6 so (3, 2) ->
   draw_pixel(&objs->small, 3, 2, 0xFF0000FF); // opaque red
   ASSERT(objs->small.data[SMALL_IDX(3, 2)] == 0xFF0000FF);
   draw_pixel(&objs->small, 5, 4, 0x800080FF); // opaque magenta (half-intensity)
@@ -363,6 +366,8 @@ void test_compute_index(TestObjs *objs) {
 }
 
 void test_set_pixel(TestObjs *objs) {
+  set_pixel(&objs->small, 1, 0x00000000);
+  ASSERT(objs->small.data[1] == 0x00000000);
   set_pixel(&objs->small, 0, 0x00000000);
   ASSERT(objs->small.data[0] == 0x00000000);
   set_pixel(&objs->small, 10, 0x12345678);

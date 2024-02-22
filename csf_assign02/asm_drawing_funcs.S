@@ -274,11 +274,8 @@ blend_colors:
 */
 	.globl set_pixel
 set_pixel:
-	movl %esi, %r15d								/* preserve index */
-	movq $0, %rsi									/* clear all bits of index */
-	movl %r15d, %esi								/* put index back to %esi */
-	leaq IMAGE_DATA_OFFSET(%rdi), %r10				/* base address of array in %r10 - FIXME */
-	movl %edx, (%r10, %rsi, 4)						/* img->data[index] */
+	movq IMAGE_DATA_OFFSET(%rdi), %rdi		/* base address of array in %r10 */
+	movl %edx, (%rdi, %rsi, 4)
 	ret
 
 
@@ -304,7 +301,7 @@ draw_pixel:
 	movq %rdi, -32(%rbp)		/* -32(%rbp) = pointer Img */
 	movl %esi, -16(%rbp)		/* -16(%rbp) = x */
 	movl %edx, -12(%rbp)		/* -12(%rbp) = y */
-	movl %ecx, -8(%rbp)			/* -8(%rbp) = color */
+	movl %ecx, -4(%rbp)			/* -4(%rbp) = color */
 
 	call in_bounds				/* arguments are already set up */
 	cmp $0, %eax				/* if !in_bounds */
@@ -314,16 +311,19 @@ draw_pixel:
 	movl -12(%rbp), %edx		/* y as third argument */
 	call compute_index
 	movq $0, %r10				/* clear register before accessing lower 32 so it can be used as index */
-	movl %eax, %r10d			/* %r10d = index */
+	movl %eax, %r10d			/* %r10d = index WHAT I JUST REALIZED IS THAT BLEND COLORS FUCKS WITH R10 WHICH IS NOT ALLOWED */
 
-	movl -8(%rbp), %edi								/* move foreground (color) as first argument */
+	movl -4(%rbp), %edi								/* move foreground (color) as first argument */
 	movq -32(%rbp), %r15							/* temporarily store in %r15 because we cannot nest computations */
-	movl IMAGE_DATA_OFFSET(%r15, %r10, 4), %esi		/* current color of the image */
+	movq IMAGE_DATA_OFFSET(%r15), %r15				/* put base address of array in %r15*/
+	leaq (%r15, %r10, 4), %r15
+	movl (%r15), %esi						/* current color of the image */
 	call blend_colors
-
-	movq -32(%rbp), %rdi		/* set Img pointer as first parameter */
-	movl %r10d, %esi			/* set index as second parameter */
+	
 	movl %eax, %edx 			/* set result_color as third parameter */
+	movq -32(%rbp), %r11		/* compute addres of Image */
+	movq %r11, %rdi				/* set Img pointer as first parameter */
+	movl %r10d, %esi			/* set index as second parameter */
 	call set_pixel
 
 	addq $32, %rsp			/* restore */
