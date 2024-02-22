@@ -312,12 +312,12 @@ draw_pixel:
 	movl -16(%rbp), %esi		/* x as second argument */
 	movl -12(%rbp), %edx		/* y as third argument */
 	call compute_index
-	movl $0, -8(%rbp)				/* clear index register before accessing lower 32 so it can be used as index */
 	movl %eax, -8(%rbp)			/* -8(%rbp) = index */
 
 	movl -4(%rbp), %edi						/* move foreground (color) as first argument */
 	movq -32(%rbp), %r15					/* temporarily store in %r15 because we cannot nest computations */
 	movq IMAGE_DATA_OFFSET(%r15), %r15		/* put base address of array in %r15*/
+	movl -8(%rbp), %r10d
 	leaq (%r15, %r10, 4), %r15
 	movl (%r15), %esi						/* current color of the image */
 	call blend_colors

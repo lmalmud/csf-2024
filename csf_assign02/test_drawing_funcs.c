@@ -149,6 +149,7 @@ void test_draw_pixel(TestObjs *objs) {
   ASSERT(objs->small.data[SMALL_IDX(5, 4)] == 0x800080FF);
 
   // test color blending
+  // bg = 0xFF0000FF, fg = 0x00FF0080, a = 80 -> 0x7f
   draw_pixel(&objs->small, 3, 2, 0x00FF0080); // half-opaque full-intensity green
   ASSERT(objs->small.data[SMALL_IDX(3, 2)] == 0x7F8000FF);
   draw_pixel(&objs->small, 4, 2, 0x0000FF40); // 1/4-opaque full-intensity blue
@@ -349,6 +350,7 @@ void test_blend_components(TestObjs *objs) {
 }
 
 void test_blend_colors(TestObjs *objs) {
+  ASSERT(blend_colors(0x00FF0080, 0xFF0000FF) ==  0x7F8000FF);
   ASSERT(blend_colors(0xFF0000FF, 0x000000FFU) == 0xFF0000FF); // taken from draw_pixel
   ASSERT(blend_colors(0x800080FF, 0xFF0000FF) == 0x800080FF); // taken from draw_pixel
   ASSERT(blend_colors(0x800080FF, 0xFF0000FF) == 0x800080FF); // taken from draw_pixel
