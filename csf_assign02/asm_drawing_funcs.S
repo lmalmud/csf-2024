@@ -50,7 +50,7 @@ square:
 square_dist:
 	subq %rdx, %rdi 		/* rdi = rdi - rdx (x1 = x1 - x2) */
 	call square 			/* rdi = x1 - x2 */
-	movq %rax, %rdx 		/* rdx = (x1 - x2)^2 GOOD */ 
+	movq %rax, %rdx 		/* rdx = (x1 - x2)^2 */ 
 	subq %rcx, %rsi 		/* rsi = rsi - rcx (y1 = y1 - y2) */
 	movq %rsi, %rdi 		/* set up parameter */
 	call square 			/* rdi = y1 - y2 */
@@ -329,11 +329,11 @@ draw_pixel:
 	movl -8(%rbp), %esi			/* set index as second parameter */
 	call set_pixel
 
+.Ldraw_pixel_return:
 	addq $32, %rsp			/* restore */
 	popq %rbp
-
-.Ldraw_pixel_return:
-	ret
+	
+	ret						/* FIXME */
 
 
 /*
