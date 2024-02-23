@@ -332,7 +332,7 @@ draw_pixel:
 .Ldraw_pixel_return:
 	addq $32, %rsp			/* restore */
 	popq %rbp
-	
+
 	ret						/* FIXME */
 
 
@@ -345,10 +345,25 @@ draw_pixel:
  *   %rdi     - pointer to struct Image
  *   %rsi     - pointer to struct Rect
  *   %edx     - uint32_t color value
+ * Registers:
+ *	 %r9d	  - i counter (uint32)
+ *	 %r8d	  - j counter (uint32)
  */
 	.globl draw_rect
 draw_rect:
-	/* TODO: implement */
+	movl $0, %r9d		/* %r9d (i) = 0 */
+	movl $0, %r8d		/* %r8d (j) = 0 */
+	jmp .Loutercond
+.Loutertop
+
+.Linnertop
+
+.Linnercond
+
+.Loutercond:
+	cmpl %r9d, IMAGE_WIDTH_OFFSET(%rdi)		/* rect->width - i > 0, continue loop */
+	ja .Loutertop
+
 	ret
 
 /*
