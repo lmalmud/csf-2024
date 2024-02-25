@@ -346,23 +346,47 @@ draw_pixel:
  *   %rsi     - pointer to struct Rect
  *   %edx     - uint32_t color value
  * Registers:
- *	 %r9d	  - i counter (uint32)
- *	 %r8d	  - j counter (uint32)
+ *	 %ebx (%rbx)    - i counter (uint32)
+ *	 %ebp (%rbp)	- j counter (uint32)
+ *	 %r12			- save pointer to Image
+ *	 %r13			- save pointer to Rect
+ *   %r14d (%r14)   - color value (uint32)
  */
 	.globl draw_rect
 draw_rect:
-	movl $0, %r9d		/* %r9d (i) = 0 */
-	movl $0, %r8d		/* %r8d (j) = 0 */
-	jmp .Loutercond
-.Loutertop
+	pushq %rbx
+	pushq %rbp
+	pushq %r12
+	pushq %r13								/* push odd number of values for stack alignment */
+	pushq %r14								/* save values before we overwrite */
+	movq %rdi, %r12							/* %r12 = pointer to Image */
+	movq %rsi, %r13							/* %r13 = pointer to Rect */
+	movl %edx, %r14d						/* %r14d = color */
+	movl $-1, %ebx							/* i = -1 (we are about to increment) - may cause issues with negative comparison */
+.Loutertop:
+	inc %ebx								/* i++ (starts at 0) */
+	cmpl %ebx, IMAGE_WIDTH_OFFSET(%r12)		/* rect->width - i <= 0, exit loop */
+	jbe .Ldraw_rect_return					/* if done, jump to return */
+	movl $0, %ebp							/* j = 0 */
+.Linnertop:
+	cmpl %ebp, IMAGE_HEIGHT_OFFSET(%r12)	/* rect->height - j <= 0, exit loop */
+	jbe .Loutertop							/* we want to exit the loop */
+	movq %r12, %rdi							/* %rdi (first parameter) = address of Image */
+	movl RECT_X_OFFSET(%r13), %esi			/* %esi = img->x */
+	addl %ebx, %esi							/* %esi (second parameter) = img->x + i */
+	movl RECT_Y_OFFSET(%r13), %edx			/* %edx = img->y */
+	addl %ebp, %edx							/* %edx (third parameter) = img->y + j */
+	movl %r14d, %ecx						/* %ecx (fourth parameter) = color */
+	call draw_pixel
+	inc %ebp								/* j++ */
+	jmp .Linnertop							/* return back to check the inner loop condition */
 
-.Linnertop
-
-.Linnercond
-
-.Loutercond:
-	cmpl %r9d, IMAGE_WIDTH_OFFSET(%rdi)		/* rect->width - i > 0, continue loop */
-	ja .Loutertop
+.Ldraw_rect_return:
+	popq %r14
+	popq %r13
+	popq %r12
+	popq %rbp
+	popq %rbx
 
 	ret
 
