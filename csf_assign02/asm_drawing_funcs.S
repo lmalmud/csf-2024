@@ -410,6 +410,8 @@ draw_rect:
  *   %r14d (%r14)   - y (uint32)
  *   %r15d (%r15)	- color (uint32)
  */
+/* x = 2, y = 2, r = 2 */
+
 	.globl draw_circle
 draw_circle:
 							/* allocating local variables */
