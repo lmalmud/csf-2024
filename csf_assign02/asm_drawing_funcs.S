@@ -402,13 +402,6 @@ draw_rect:
  *   %edx     - y coordinate of circle's center
  *   %ecx     - radius of circle
  *   %r8d     - uint32_t color value
- * Registeres:
-  *	 %ebx (%rbx)    - i counter (uint32)
- *	 %ebp (%rbp)	- j counter (uint32)
- *	 %r12			- save pointer to Image
- *	 %r13d (%r13)	- x (uint32)
- *   %r14d (%r14)   - y (uint32)
- *   %r15d (%r15)	- color (uint32)
  */
 /* x = 2, y = 2, r = 2 */
 
@@ -419,42 +412,46 @@ draw_circle:
 	movq %rsp, %rbp			/* %rbp points to top of allocated area */
 	subq $80, %rsp			/* allocate 64 bytes */
 	movl %ecx, -80(%rbp)	/* -80(%rbp) = r */
+							/* could store eight bytes at -72(%rbp) */
 	movq %rdi, -64(%rbp)	/* -64(%rbp) = pointer to Image */
 	movl %esi, -48(%rbp)	/* -48(%rbp) = x (center of circle) */
 	movl %edx, -40(%rbp)	/* -40(%rbp) = y (center of circle) */
 	movl %r8d, -32(%rbp)	/* -32(%rbp) = color */
 	movl $-1, -24(%rbp)		/* -24(%rbp) = i = 0 */
 
-	movl -80(%rbp), %edi
+	movl -80(%rbp), %edi	/* %edi = r */
 	call square
 	movl %eax, -80(%rbp)	/* -80(%rbp) = r ^ 2 */
 
-.Loutertop_draw_circle:			/* QUESTION: DO LABELS EXIST LOCALLY? Can I have two identical labels within different functions? */
+.Loutertop_draw_circle:								/* QUESTION: DO LABELS EXIST LOCALLY? Can I have two identical labels within different functions? */
 	incl -24(%rbp)									/* i++ (starts at 0) */
-	movl -24(%rbp), %r9d
+	movl -24(%rbp), %r9d							/* %r9d = i */
 	movq -64(%rbp), %r8								/* temporarily store Image pointer so it can be offset */
+	movl IMAGE_WIDTH_OFFSET(%r8), %r10d
 	cmpl %r9d, IMAGE_WIDTH_OFFSET(%r8)				/* img->width - i <= 0, exit loop */
 	jbe .Ldraw_circle_return						/* if done, jump to return */
 	movl $0, -16(%rbp)								/* -16(%rbp) = j = 0 */
 
 .Linnertop_draw_circle:
-	movl -16(%rbp), %r9d
+	movl -16(%rbp), %r9d						/* %r9d = j */
 	movq -64(%rbp), %r8							/* temporarily store Image pointer so it may be offset */
 	cmpl %r9d, IMAGE_HEIGHT_OFFSET(%r8)			/* img->height - j <= 0, exit loop */
 	jbe .Loutertop_draw_circle
 
+	movl $0, -8(%rbp)						/* -8(%rbp) = dist_squared (set to zero) */
 	movq $0, %rdi							/* %rdi = 0 (clear upper bits) */
-	movl -48(%rbp), %edi						/* %edi = x */
-	subl %ebx, %edi							/* %rdi = x - i */
+	movl -48(%rbp), %edi					/* %edi (lower 32 of %rdi) = x */
+	subl -24(%rbp), %edi					/* %rdi = x - i */
 	call square
 	movl %eax, -8(%rbp)						/* -8(%rbp)	= (x - i) ^ 2 - only lower 32 bits */
-	movq $0, %rdi
-	movl 40(%rbp), %edi
+	movq $0, %rdi							/* %rdi = 0 (clear upper bits) */
+	movl 40(%rbp), %edi						/* %edi (lower 32 bits of %rdi) = y */
+	subl -16(%rbp), %edi					/* %edi = y - j */
 	call square
-	addl %eax, -8(%rbp)						/* -8(%rbp) = (x - i) ^ 2 + (y - j) ^ 2
-	movl -8(%rbp), %r9d
-	cmpl %r9d, -80(%rbp)
-	jb .Ldraw_circle_increment				/* r^2 - dist_square < 0 */
+	addl %eax, -8(%rbp)						/* -8(%rbp) = (x - i) ^ 2 + (y - j) ^ 2 */
+	movl -8(%rbp), %r9d						/* %r9d = dist_squared */
+	cmpl %r9d, -80(%rbp)					/* r^2 - [(x - i) ^ 2 + (y - j) ^ 2] */
+	jl .Ldraw_circle_increment				/* r^2 - dist_square < 0 - FIXME: is sign incorrect? should this be a unsigned comparison? */
 											/* set up arguments for drawing a pixel */
 	movq -64(%rbp), %rdi					/* %rdi = pointer to Image (first argument) */
 	movl -24(%rbp), %esi					/* %esi = i (second argument) */
