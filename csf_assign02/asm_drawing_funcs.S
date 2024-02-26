@@ -481,10 +481,154 @@ draw_circle:
  *   %edx - y coordinate of location where tile should be copied
  *   %rcx - pointer to Image (the tilemap)
  *   %r8  - pointer to Rect (the tile)
+ * Registeres:
+  *	 %ebx (%rbx)    - i counter (uint32)
+ *	 %ebp (%rbp)	- j counter (uint32)
+ *	 %r12			- save pointer to Image
+ *	 %r13d (%r13)	- x (uint32)
+ *   %r14d (%r14)   - y (uint32)
+ *   %r15d (%r15)	- color (uint32)
  */
 	.globl draw_tile
 draw_tile:
-	/* TODO: implement */
+
+	pushq %rbp			/* allocating local variables */
+	movq %rsp, %rbp  /* %rbp points to top of allocated area */
+	subq $96, %rsp   /* allocate 96 bytes */
+
+	movq %rdi, -96(%rbp) /* -80(%rbp) = pointer to Image (dest image) */
+	movl %esi, -80(%rbp) /* -64(%rbp) = x coordinate of location where tile should be copied */
+	movl %edx, -72(%rbp) /* -56(%rbp) = y coordinate of location where tile should be copied */
+	movq %rcx, -54(%rbp) /* -48(%rbp) = pointer to Image (the tilemap) */
+	movq %r8, -48(%rbp) /* -32(%rbp) = pointer to Rect (the tile) */
+	
+	movl RECT_X_OFFSET(%r8), -32(%ebp) /* stores the value for i - starts at tile->x */
+	decl -32(%ebp)
+
+						/* IS THIS CODE REDUNDANT - I think it is*/
+
+	movl RECT_Y_OFFSET(%r8), -24(%ebp) /* stores the value for j - starts at tile->y */
+	decl -24(%ebp)
+
+	movl RECT_WIDTH_OFFSET(%r8), -16(%ebp) /* starts as tile->x - stores the upper most bound of the outer loop  */
+	addl -32(%ebp), -16(%ebp) /* becomes this after tile->x + tile->width adding tile->width */
+
+	movl RECT_HEIGHT_OFFSET(%r8), -8(%ebp) /* starts as tile->y - stores the upper most bound of the inner loop  */
+	addl -24(%ebp), -8(%ebp) /* becomes this after tile->y + tile->height adding tile->height */
+
+	jmp .Louterloop_invalid
+
+
+.Louterloop_invalid
+	incl -32(%ebp) /* incriments i */
+	cmpl -32(%ebp), -16(%ebp) /* compares i and tile->x + tile->width */
+	jbe .Louterloop_draw /* if i >= tile->x + tile->width jump */
+	movl RECT_Y_OFFSET(%r8), -24(%ebp) /* set the value for j */
+
+	//decl -24(%rbp) - unnessisary decriment
+
+.Linnerloop_invalid
+	cmpl -24(%rbp), -8(%rbp)
+	jbe .Louterloop_invalid
+
+	movq -96(%rbp), %rdi /* assigns the image */
+	movl -32(%rbp), %rsi /* assigns the i value */
+	movl -24(%rbp), %rdx /* assigns the j value */
+
+	call in_bounds /* call the function with params */
+
+	cmpl $0, %eax /* compare if %eax is equal to zero */
+	jz .Lend /* jump if the values are equal */
+
+	incl -24(%ebp) /* increment the inner loop j */
+
+	jmp .Linnerloop_invalid
+
+.Lreset_values 
+	
+	movl $0, -32(%ebp) /* reset the values for i to -1 */
+	decl -32(%ebp)
+
+	movl $0, -24(%ebp) /* reset the values for j to -1 */
+	decl -24(%ebp)
+
+	movl RECT_WIDTH_OFFSET(%r8), -16(%ebp) /* seting the outer loop to width */
+	movl RECT_HEIGHT_OFFSET(%r8), -8(%ebp) /* seting the outer loop to height */
+
+.Louterloop_draw
+	incl -32(%ebp) /* incriments i */
+	cmpl -32(%ebp), -16(%ebp) /* compares i and tile->width */
+	jbe .Lend /* if i >= tile->width jump */
+	movl $0, -24(%ebp) /* reset the values for j */
+
+	//decl -24(%ebp) /* decriment j by 1 */
+
+.Linnerloop_draw
+
+	cmpl -24(%ebp), -8(%ebp)
+	jbe .Louterloop_draw
+
+	// before stuff
+	
+	movl $0, %eax
+
+	movq -96(%rbp), %rdi /* set rdi to img */
+	movl RECT_X_OFFSET(%r8), %esi /* set rsi to x + i */
+	addl -32(%ebp), %esi
+	movl RECT_Y_OFFSET(%r8), %edx /* set rds to y + i */
+	addl -24(%ebp), %esi
+
+	call in_bounds
+
+	cmpl $1, %eax
+	jz .Lset_pixel
+
+.Ljump_back
+	// after stuff
+
+	incl -24(%ebp)
+	jmp .Louterloop_draw
+
+.Lset_pixel
+
+	movl $0, %eax
+
+	movq -96(%rbp), %rdi /* set rdi to img */
+	movl -80(%ebp), %esi /* set rsi to x + i */
+	addl -32(%ebp), %esi
+	movl -72(%ebp), %edx /* set rds to y + i */
+	addl -24(%ebp), %esi
+
+	call compute_index
+
+	movl %eax, %r10d /* store index_dest in r10d*/
+
+	movl $0, %eax
+
+	movq -54(%rbp), %rdi /* set rdi to img */
+	movl RECT_X_OFFSET(%r8d), %esi /* set rsi to tile->x + i */
+	addl -32(%ebp), %esi
+	movl RECT_Y_OFFSET(%r8d), %edx /* set rds to tile->y + i */
+	addl -24(%ebp), %esi
+
+	call compute_index
+
+	movl %eax, %r11d /* store index_dest in r11d*/
+
+	movl IMAGE_DATA_OFFSET(%rcx, %r11, 4), %r11
+
+	movq -54(%rbp), %rdi /* set rdi to img */
+	movl %r10d, %esi
+	movl %r11d, %edx
+	
+	call set_pixel
+
+	jmp .Ljump_back
+	
+.Lend
+
+	addq $96, %rsp
+	popq %rbp
 	ret
 
 /*
