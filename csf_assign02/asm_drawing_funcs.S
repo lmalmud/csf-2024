@@ -430,13 +430,15 @@ draw_circle:
 .Loutertop_draw_circle:			/* QUESTION: DO LABELS EXIST LOCALLY? Can I have two identical labels within different functions? */
 	incl -24(%rbp)									/* i++ (starts at 0) */
 	movl -24(%rbp), %r9d
-	cmpl %r9d, IMAGE_WIDTH_OFFSET(%r12)				/* img->width - i <= 0, exit loop */
+	movq -64(%rbp), %r8								/* temporarily store Image pointer so it can be offset */
+	cmpl %r9d, IMAGE_WIDTH_OFFSET(%r8)				/* img->width - i <= 0, exit loop */
 	jbe .Ldraw_circle_return						/* if done, jump to return */
 	movl $0, -16(%rbp)								/* -16(%rbp) = j = 0 */
 
 .Linnertop_draw_circle:
 	movl -16(%rbp), %r9d
-	cmpl %r9d, IMAGE_HEIGHT_OFFSET(%r12)			/* img->height - j <= 0, exit loop */
+	movq -64(%rbp), %r8							/* temporarily store Image pointer so it may be offset */
+	cmpl %r9d, IMAGE_HEIGHT_OFFSET(%r8)			/* img->height - j <= 0, exit loop */
 	jbe .Loutertop_draw_circle
 
 	movq $0, %rdi							/* %rdi = 0 (clear upper bits) */
