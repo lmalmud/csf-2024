@@ -366,7 +366,7 @@ draw_rect:
 	movl %edx, %r14d						/* %r14d = color */
 	movl $-1, %ebx							/* i = -1 (we are about to increment) - may cause issues with negative comparison */
 .Loutertop:
-	inc %ebx								/* i++ (starts at 0) */
+	incl %ebx								/* i++ (starts at 0) */
 	cmpl %ebx, RECT_WIDTH_OFFSET(%r13)		/* rect->width - i <= 0, exit loop */
 	jbe .Ldraw_rect_return					/* if done, jump to return */
 	movl $0, %ebp							/* j = 0 */
@@ -380,7 +380,7 @@ draw_rect:
 	addl %ebp, %edx							/* %edx (third parameter) = img->y + j */
 	movl %r14d, %ecx						/* %ecx (fourth parameter) = color */
 	call draw_pixel
-	inc %ebp								/* j++ */
+	incl %ebp								/* j++ */
 	jmp .Linnertop							/* return back to check the inner loop condition */
 
 .Ldraw_rect_return:
@@ -402,10 +402,51 @@ draw_rect:
  *   %edx     - y coordinate of circle's center
  *   %ecx     - radius of circle
  *   %r8d     - uint32_t color value
+ * Registeres:
+  *	 %ebx (%rbx)    - i counter (uint32)
+ *	 %ebp (%rbp)	- j counter (uint32)
+ *	 %r12			- save pointer to Image
+ *	 %r13d (%r13)	- x (uint32)
+ *   %r14d (%r14)   - y (uint32)
+ *   %r15d (%r15)	- color (uint32)
  */
 	.globl draw_circle
 draw_circle:
-	/* TODO: implement */
+							/* allocating local variables */
+	pushq %rbp				/* save original value of rbp */
+	movq %rsp, %rbp			/* %rbp points to top of allocated area */
+	subq $64, %rsp			/* allocate 64 bytes */
+
+	movq %rdi, -64(%rbp)	/* -64(%rbp) = pointer to Image */
+	movl %esi, -48(%rbp)	/* -48(%rbp) = x (center of circle) */
+	movl %edx, -40(%rbp)	/* -40(%rbp) = y (center of circle) */
+	movl %r8d, -32(%rbp)	/* -32(%rbp) = color */
+	movl $-1, -24(%rbp)		/* -24(%rbp) = i = 0 */
+
+.Loutertop_draw_circle:			/* QUESTION: DO LABELS EXIST LOCALLY? Can I have two identical labels within different functions? */
+	incl -24(%rbp)										/* i++ (starts at 0) */
+	movl -24(%rbp), %r9d
+	cmpl %r9d, IMAGE_WIDTH_OFFSET(%r12)				/* img->width - i <= 0, exit loop */
+	jbe .Ldraw_circle_return						/* if done, jump to return */
+	movl $0, -16(%rbp)								/* -16(%rbp) = j = 0 */
+
+.Linnertop_draw_circle:
+	movl -16(%rbp), %r9d
+	cmpl %r9d, IMAGE_HEIGHT_OFFSET(%r12)			/* img->height - j <= 0, exit loop */
+	jbe .Loutertop
+
+	movl %r13d, %rdi						/* %rdi = x (should automatically clear upper 32) FIXME IF BROKEN */
+	subl %ebx, %rdi							/* %rdi = x - i */
+	call square
+	movl %rax, -8(%rbp)						/* -8(%rbp)	= (x - i) ^ 2
+
+	call draw_pixel
+	incl -16(%rbp)							/* j++ */
+	jmp .Linnertop							/* return back to check the inner loop condition */
+
+.Ldraw_circle_return:
+	addq $64, %rsp			/* restore */
+	popq %rbp
 	ret
 
 /*
