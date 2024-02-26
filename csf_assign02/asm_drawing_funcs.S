@@ -352,6 +352,8 @@ draw_pixel:
  *	 %r13			- save pointer to Rect
  *   %r14d (%r14)   - color value (uint32)
  */
+
+ // red rect x = 2, y = 2, width = 3, height = 3
 	.globl draw_rect
 draw_rect:
 	pushq %rbx
@@ -365,11 +367,11 @@ draw_rect:
 	movl $-1, %ebx							/* i = -1 (we are about to increment) - may cause issues with negative comparison */
 .Loutertop:
 	inc %ebx								/* i++ (starts at 0) */
-	cmpl %ebx, IMAGE_WIDTH_OFFSET(%r12)		/* rect->width - i <= 0, exit loop */
+	cmpl %ebx, RECT_WIDTH_OFFSET(%r13)		/* rect->width - i <= 0, exit loop */
 	jbe .Ldraw_rect_return					/* if done, jump to return */
 	movl $0, %ebp							/* j = 0 */
 .Linnertop:
-	cmpl %ebp, IMAGE_HEIGHT_OFFSET(%r12)	/* rect->height - j <= 0, exit loop */
+	cmpl %ebp, RECT_HEIGHT_OFFSET(%r13)	/* rect->height - j <= 0, exit loop */
 	jbe .Loutertop							/* we want to exit the loop */
 	movq %r12, %rdi							/* %rdi (first parameter) = address of Image */
 	movl RECT_X_OFFSET(%r13), %esi			/* %esi = img->x */
