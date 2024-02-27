@@ -468,6 +468,7 @@ draw_circle:
 	popq %rbp
 	ret
 
+
 /*
  * Draw a tile by copying all pixels in the region
  * enclosed by the tile parameter in the tilemap image
@@ -489,7 +490,168 @@ draw_circle:
  *   %r14d (%r14)   - y (uint32)
  *   %r15d (%r15)	- color (uint32)
  */
- 
+	.globl draw_tile
+draw_tile:
+
+	pushq %r12  /* i-pointer */
+	pushq %r13  /* j-pointer */
+
+	movq $0, %r12 /* assign the pointer 0 */
+	movq $0, %r13 /* assign the pointer 0 */
+
+	pushq %rbp      /* allocating local variables */
+	movq %rsp, %rbp  /* %rbp points to top of allocated area */
+	subq $96, %rsp   /* allocate 96 bytes */
+
+	movq %rdi, -96(%rbp) /* -96(%rbp) = pointer to Image (dest image) */
+	movl %esi, -80(%rbp) /* -80(%rbp) = x coordinate of location where tile should be copied */
+	movl %edx, -72(%rbp) /* -72(%rbp) = y coordinate of location where tile should be copied */
+	movq %rcx, -54(%rbp) /* -54(%rbp) = pointer to Image (the tilemap) */
+	movq %r8, -48(%rbp) /* -48(%rbp) = pointer to Rect (the tile) */
+	
+    movl RECT_X_OFFSET(%r8), %r12d
+    movl %r12d, -32(%rbp) /* -32(%rbp) = stores tile->x */
+
+    movl RECT_Y_OFFSET(%r8), %r13d
+    movl %r13d, -24(%rbp) /* -32(%rbp) = stores tile->y */
+
+
+	movl RECT_WIDTH_OFFSET(%r8), %r12d /* starts as tile->x - stores the upper most bound of the outer loop  */
+	addl -32(%ebp), %r12d /* becomes this after tile->x + tile->width adding tile->width */
+	movl %r12d, -16(%ebp) /* save val to -16(%ebp) */
+
+	movl RECT_HEIGHT_OFFSET(%r8), %r12d /* starts as tile->y - stores the upper most bound of the inner loop  */
+	addl -24(%ebp), %r12d /* becomes this after tile->y + tile->height adding tile->height */
+	movl %r12d, -8(%ebp) /* save val to -8(%ebp) */
+
+    
+    movl -32(%rbp), %r12d /* move over start pointer tile->x */
+    decl %r12d /* decriment by 1 */
+
+	movl -24(%rbp), %r13d /* move over start pointer tile->y */
+	decl %r13d /* decriment by 1 */
+    
+	jmp .Louterloop_invalid
+
+
+.Louterloop_invalid:
+	incl %r12d /* increments i */
+
+	cmpl %r12d, -16(%rbp) /* compares i and tile->x + tile->width */
+	jbe .Louterloop_draw /* if i >= tile->x + tile->width jump */
+	movl RECT_Y_OFFSET(%r8), %r13d /* set the value for j */
+
+	//decl -24(%rbp) - unnessisary decriment
+
+.Linnerloop_invalid:
+	cmpl %r13d, -8(%rbp)
+	jbe .Louterloop_invalid
+
+	movq -96(%rbp), %rdi /* assigns the image */
+	movl %r12d, %esi /* assigns the i value */
+	movl %r13d, %edx /* assigns the j value */
+
+	call in_bounds /* call the function with params */
+
+	cmpl $0, %eax /* compare if %eax is equal to zero */
+	jz .Lend /* jump if the values are equal */
+
+	incl %r13d /* increment the inner loop j */
+
+	jmp .Linnerloop_invalid
+
+.Lreset_values:
+	
+	movl $0, %r12d /* reset the values for i to -1 */
+	decl %r12d
+
+	movl $0, %r13d /* reset the values for j to -1 */
+	decl %r13d
+
+	movl RECT_WIDTH_OFFSET(%r8), %r10d
+	movl %r10d, -16(%rbp) /* seting the outer loop to width */
+	movl RECT_HEIGHT_OFFSET(%r8), %r10d
+	movl %r10d, -8(%rbp) /* seting the outer loop to height */
+
+.Louterloop_draw:
+	incl %r12d /* incriments i */
+	cmpl %r12d, -16(%rbp) /* compares i and tile->width */
+	jbe .Lend /* if i >= tile->width jump */
+	movl $0, %r13d /* reset the values for j */
+
+	//decl -24(%ebp) /* decriment j by 1 */
+
+.Linnerloop_draw:
+
+	cmpl %r13d, -8(%rbp)
+	jbe .Louterloop_draw
+
+	// before stuff
+	
+	movl $0, %eax
+
+	movq -96(%rbp), %rdi /* set rdi to img */
+	movl RECT_X_OFFSET(%r8), %esi /* set rsi to x + i */
+	addl -32(%ebp), %esi
+	movl RECT_Y_OFFSET(%r8), %edx /* set rds to y + i */
+	addl -24(%ebp), %esi
+
+	call in_bounds
+
+	cmpl $1, %eax
+	jz .Lset_pixel
+
+.Ljump_back:
+	// after stuff
+
+	incl -24(%ebp)
+	jmp .Louterloop_draw
+
+.Lset_pixel:
+
+	movl $0, %eax
+
+	movq -96(%rbp), %rdi /* set rdi to img */
+	movl -80(%ebp), %esi /* set rsi to x + i */
+	addl -32(%ebp), %esi
+	movl -72(%ebp), %edx /* set rds to y + i */
+	addl -24(%ebp), %esi
+
+	call compute_index
+
+	movl %eax, %r10d /* store index_dest in r10d*/
+
+	movl $0, %eax
+
+	movq -54(%rbp), %rdi /* set rdi to img */
+	movl RECT_X_OFFSET(%r8), %esi /* set rsi to tile->x + i */
+	addl -32(%ebp), %esi
+	movl RECT_Y_OFFSET(%r8), %edx /* set rds to tile->y + i */
+	addl -24(%ebp), %esi
+
+	call compute_index
+
+	movl %eax, %r11d /* store index_dest in r11d*/
+
+	movl IMAGE_DATA_OFFSET(%rcx, %r11, 4), %r11d
+
+	movq -54(%rbp), %rdi /* set rdi to img */
+	movl %r10d, %esi
+	movl %r11d, %edx
+	
+	call set_pixel
+
+	jmp .Ljump_back
+	
+.Lend:
+
+	addq $96, %rsp
+	popq %rbp
+
+	popq %r13
+	popq %r12
+	ret
+
 /*
  * Draw a sprite by copying all pixels in the region
  * enclosed by the sprite parameter in the spritemap image

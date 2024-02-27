@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/malcolmkrolick/Documents/GitHub/csf-2024/csf_assign02",
+      "program": "/Users/malcolmkrolick/Documents/GitHub/csf-2024/csf_assign02/build/Debug/outDebug"
+    }
+  ]
+}
