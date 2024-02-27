@@ -419,6 +419,7 @@ draw_circle:
 	movl %r8d, -32(%rbp)	/* -32(%rbp) = color */
 	movl $-1, -24(%rbp)		/* -24(%rbp) = i = 0 */
 
+	movq $0, %rdi			/* clear upper 32 bits of %rdi */
 	movl -80(%rbp), %edi	/* %edi = r */
 	call square
 	movl %eax, -80(%rbp)	/* -80(%rbp) = r ^ 2 */
@@ -443,9 +444,9 @@ draw_circle:
 	movl -48(%rbp), %edi					/* %edi (lower 32 of %rdi) = x */
 	subl -24(%rbp), %edi					/* %rdi = x - i */
 	call square
-	movl %eax, -8(%rbp)						/* -8(%rbp)	= (x - i) ^ 2 - only lower 32 bits */
+	movl %eax, -8(%rbp)						/* -8(%rbp)	= (x - i) ^ 2 - only lower 32 bits - SEEMED CORRECT */
 	movq $0, %rdi							/* %rdi = 0 (clear upper bits) */
-	movl 40(%rbp), %edi						/* %edi (lower 32 bits of %rdi) = y */
+	movl -40(%rbp), %edi						/* %edi (lower 32 bits of %rdi) = y */
 	subl -16(%rbp), %edi					/* %edi = y - j */
 	call square
 	addl %eax, -8(%rbp)						/* -8(%rbp) = (x - i) ^ 2 + (y - j) ^ 2 */

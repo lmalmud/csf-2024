@@ -246,7 +246,7 @@ void draw_circle(struct Image *img,
     for (int j = 0; j < img->height; ++j) {
       int dist_square = square(x - i) + square(y - j);
       if (dist_square <= square(r)) {
-        draw_pixel(img, i, j, color);
+        draw_pixel(img, i, j, color); // this should be x - j
       }
     }
   }
