@@ -470,6 +470,7 @@ draw_circle:
 	ret
 
 
+
 /*
  * Draw a tile by copying all pixels in the region
  * enclosed by the tile parameter in the tilemap image
@@ -484,12 +485,8 @@ draw_circle:
  *   %rcx - pointer to Image (the tilemap)
  *   %r8  - pointer to Rect (the tile)
  * Registeres:
-  *	 %ebx (%rbx)    - i counter (uint32)
- *	 %ebp (%rbp)	- j counter (uint32)
- *	 %r12			- save pointer to Image
- *	 %r13d (%r13)	- x (uint32)
- *   %r14d (%r14)   - y (uint32)
- *   %r15d (%r15)	- color (uint32)
+  *	 %r12d (%r12)    - i counter (uint32)
+ *	 %r13d (%r13)	- j counter (uint32)
  */
 	.globl draw_tile
 draw_tile:
@@ -596,10 +593,10 @@ draw_tile:
 	movl $0, %eax
 
 	movq -96(%rbp), %rdi /* set rdi to img */
-	movl RECT_X_OFFSET(%r8), %esi /* set rsi to x + i */
-	addl -32(%rbp), %esi
-	movl RECT_Y_OFFSET(%r8), %edx /* set rds to y + i */
-	addl -24(%rbp), %esi
+	movl -80(%rbp), %esi /* set rsi to x + i */
+	addl %r12d, %esi
+	movl -72(%rbp), %edx /* set rds to y + j */
+	addl %r13d, %edx
 
 	call in_bounds
 
@@ -609,7 +606,7 @@ draw_tile:
 .Ljump_back:
 	// after stuff
 
-	incl %r13d
+	incl %r13d /* increment j */
 	jmp .Linnerloop_draw
 
 .Lset_pixel:
@@ -617,10 +614,10 @@ draw_tile:
 	movl $0, %eax
 
 	movq -96(%rbp), %rdi /* set rdi to img */
-	movl -80(%rbp), %esi /* set rsi to x + i */
+	movl -80(%rbp), %esi /* set rsi to x + i */ /*WTF*/
 	addl %r12d, %esi
 	movl -72(%rbp), %edx /* set rds to y + i */
-	addl %r13d, %esi
+	addl %r13d, %edx
 
 	call compute_index
 
@@ -629,10 +626,14 @@ draw_tile:
 	movl $0, %eax
 
 	movq -64(%rbp), %rdi /* set rdi to tilemap */
-	movl RECT_X_OFFSET(%r8), %esi /* set rsi to tile->x + i */
+
+	movq -48(%rbp), %rsi /* load rect */
+	movl RECT_X_OFFSET(%rsi), %esi /* set rsi to tile->x + i */
 	addl %r12d, %esi  /*CHECK D vs no d*/
-	movl RECT_Y_OFFSET(%r8), %edx /* set rds to tile->y + i */
-	addl %r13d, %esi
+
+	movq -48(%rbp), %rdx /* load rect */
+	movl RECT_Y_OFFSET(%rdx), %edx /* set rds to tile->y + i */
+	addl %r13d, %edx
 
 	call compute_index
 
