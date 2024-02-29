@@ -674,25 +674,31 @@ draw_sprite:
 	pushq %rbp							/* save original value of rbp */
 	movq %rsp, %rbp						/* %rbp points to top of allocated area */
 	subq $160, %rsp						/* allocate 4 bytes (not all used) */
-	movq %rdi, -160(%rbp)				/* -160(%rbp) = pointer to dest */
+	movq %rdi, -160(%rbp)				/* -160(%rbp) = pointer to img */
 	movq %rcx, -144(%rbp)				/* -144(%rbp) = pointer to spritemap */
 	movq %r8, -128(%rbp)				/* -128(%rbp) = pointer to sprite (Rect) */
 	movl %esi, -112(%rbp)				/* -112(%rbp) = x */
 	movl %edx, -104(%rbp)				/* -104(%rbp) = y */
-	movl $-1, -96(%rbp)					/* -96(%rbp) = i = - 1*/
+	movl RECT_X_OFFSET(%r8), %r9d		/* %r9d = sprite->x */
+	subl $1, %r9d						/* %r9d = sprite->x - 1 */
+	movl %r9d, -96(%rbp)				/* -96(%rbp) = i = sprite->x - 1*/
 
 .Loutertop_draw_sprite_1:				/* top of the first loop */
 	incl -96(%rbp)						/* i++ */
 	movl -96(%rbp), %r8d				/* %r8d = i */
 	movq -128(%rbp), %r9				/* %r9 = sprite */
-	cmpl %r8d, RECT_X_OFFSET(%r9d) 		/* sprite->x - i */
+	movl RECT_X_OFFSET(%r9d), %ecx		/* %ecx = sprite->x */
+	addl RECT_WIDTH_OFFSET(%r9d), %ecx	/* %ecx = sprite->x + sprite->width */
+	cmpl %r8d, %ecx 					/* (sprite->x + sprite->width) - i */
 	jbe .Ldraw_sprite_first_loop_done	/* loop done - entire image in bounds */
 	movl $0, -88(%rbp)					/* j = 0 */
 
-.Linner_top_draw_sprite_1:				/* bottom of the first loop */
+.Linner_top_draw_sprite_1:				/* top of the inner first loop */
 	movq -128(%rbp), %r9				/* %r9 = sprite */
 	movl -88(%rbp), %r8d				/* %r8d = j */
-	cmpl %r8d, RECT_Y_OFFSET(%r9d)		/* sprite->height - j */
+	movl RECT_Y_OFFSET(%r9d), %ecx		/* %ecx = sprite->y */
+	addl RECT_HEIGHT_OFFSET(%r9d), %ecx	/* %ecx = sprite->y + sprite->height */
+	cmpl %r8d, RECT_Y_OFFSET(%r9d)		/* (sprite->y + sprite->height) - j */
 	jbe .Loutertop_draw_sprite_1		/* end of inner loop, go to outer */
 
 	movq -144(%rbp), %rdi				/* %rdi = spritemap (first parameter) */
@@ -700,17 +706,91 @@ draw_sprite:
 	movl -88(%rbp), %edx				/* %edx = j (third parameter) */
 	call in_bounds
 	cmpl $0, %eax						/* in_bounds == 0 */
-	jz Ldraw_sprite_return				/* return if out of bounds */
-	
+	jz .Ldraw_sprite_return				/* return if out of bounds */
+	incl -88(%rbp)						/* j++ */
+	jmp .Linner_top_draw_sprite_1		/* return back to check condition */
 
 .Ldraw_sprite_first_loop_done:			/* the entire rectangle is in bounds */
 	movl $-1, -96(%rbp)					/* -96(%rbp) = i = - 1*/
-.Loutertop_draw_sprite_2:				/* top of the second loop */
 
-.Linner_top_draw_sprite_2:		/* bottom of the second loop */
+.Loutertop_draw_sprite_2:				/* top of the second loop */
+	incl -96(%rbp)						/* i++ (sprite->width) */
+	movl -96(%rbp), %r8d				/* %r8d = i */
+	movq -128(%rbp), %r9				/* %r9 = sprite */
+	cmpl %r8d, RECT_WIDTH_OFFSET(%r9)	/* sprite->width - i */
+	jbe .Ldraw_sprite_return			/* outer loop is done */
+	movl $0, -88(%rbp)					/* j = 0 */
+
+.Linner_top_draw_sprite_2:				/* top of the inner second loop */
+	movq -128(%rbp), %r9				/* %r9 = sprite */
+	movl -88(%rbp), %r8d				/* %r8d = j */
+	cmpl %r8d, RECT_HEIGHT_OFFSET(%r9)	/* sprite->height - j */
+	jbe .Loutertop_draw_sprite_2		/* inner loop has terminated */
+
+										/* body of loop
+	movl -112(%rbp), %r9d				/* %r9d = x */
+	addl -96(%rbp), %r9d				/* %r9d = x + i */
+	movl %r9d, -80(%rbp)				/* -80(%rbp) = x + i */
+	movl -104(%rbp), %r9d				/* %r9d = y */
+	addl -88(%rbp), %r9d				/* %r9d = y + j */
+	movl %r9d, -72(%rbp)				/* -72(%rbp) = y + j */
+
+	movq -160(%rbp), %rdi				/* %rdi = img (first argument) */
+	movl -80(%rbp), %esi				/* %esi = x + i */
+	movl -72(%rbp), %edx				/* %edx = y + j */
+	call in_bounds
+	jz .Linner_bottom_draw_sprite_2		/* if out of bounds, do not try and draw the pixel - skip to ++j */
+
+	movq -160(%rbp), %rdi				/* %rdi = img (first argument) */
+	movl -80(%rbp), %esi				/* %esi = x + i */
+	movl -72(%rbp), %edx				/* %edx = y + j */
+	call compute_index
+	movl %eax, -64(%rbp)				/* -64(%rbp) = index_dest */
+	movq -128(%rbp), %r9				/* %r9 = sprite */
+	movl RECT_X_OFFSET(%r9d), %r8d		/* %r8d = sprite->x */
+	addl -96(%rbp), %r8d				/* %r8d = sprite->x + i */
+	movl RECT_Y_OFFSET(%r9d), %ecx		/* %ecx = sprite->y */
+	addl -88(%rbp), %ecx				/* %ecx = sprite->y + j */
+	movq -144(%rbp), %rdi				/* %rdi = spritemap (first argument) */
+	movl %r8d, %esi						/* %esi = sprite->x + i (second argument) */
+	movl %ecx, %edx						/* %edx = sprite->y + j (third argument) */
+	call compute_index
+	movl %eax, -56(%rbp)						/* -56(%rbp) = index_source */
+	movq -144(%rbp), %r9						/* %r9 = spritemap */
+	movq $0, %r8								/* clear upper bits of %r8 */
+	movl -56(%rbp), %r8d						/* %r8d = index_source */
+	movl IMAGE_DATA_OFFSET(%r9, %r8, 4), %r9d	/* %r9d = spritemap->data[index_source] */
+	movl %r9d, -48(%rbp)						/* -48(%rbp) = copied_color */
+	movl %r9d, %edi								/* %r9d = copied_color (first argument) */
+	call get_a
+	movb %al, -40(%rbp)							/* -40(%rbp) = alpha */
+
+	movq -160(%rbp), %r9						/* %r9 = img */
+	movq $0, %r8								/* clear upper bits of r8 */
+	movl -64(%rbp), %r8d						/* %r8d = index_dex */
+	movl IMAGE_DATA_OFFSET(%r9, %r8, 4), %ecx	/* %ecx = img->data[index_dest] */
+	shr $2, %ecx
+	movl %ecx, IMAGE_DATA_OFFSET(%r9, %r8, 4)	/* img->data[index_dest] = img->data[index_dest] >> 2 */
+	movl IMAGE_DATA_OFFSET(%r9, %r8, 4), %ecx	/* %ecx = img->data[index_dest] */
+	shl $2, %ecx
+	movl %ecx, IMAGE_DATA_OFFSET(%r9, %r8, 4)	/* img->data[index_dest] = img->data[index_dest] << 2 */ 
+	movq $0, %rdi								/* clear upper bits of %rdi */
+	movb -40(%rbp), %dil						/* %dil = alpha */
+	movl IMAGE_DATA_OFFSET(%r9, %r8, 4), %esi	/* %esi = img->data[index_dest] */
+	addl %edi, %esi								/* esi = img->data[index_dest] + alpha */
+	movl %esi, IMAGE_DATA_OFFSET(%r9, %r8, 4)	/* img->data[index_dest] += alpha */
+	movq -160(%rbp), %rdi						/* %rdi = image (first argument) */
+	movl -80(%rbp), %esi						/* %esi = x + i (second argument) */
+	movl -72(%rbp), %edx						/* %edx = y + j (third argument) */
+	movl -48(%rbp), %ecx						/* %ecx = copied_color (fourth argument) */
+	call draw_pixel
+
+.Linner_bottom_draw_sprite_2:
+	incl -88(%rbp)						/* j++ */
+	jmp .Linner_top_draw_sprite_2		/* check inner loop condition */
 
 .Ldraw_sprite_return:
-	addq $160, %rsp				/* restore */
+	addq $160, %rsp						/* restore */
 	popq %rbp
 	ret
 
