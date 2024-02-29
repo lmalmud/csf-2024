@@ -1,6 +1,8 @@
 Lucy Malmud
-lmalmud2
 
-I did not work with a partner on this assignment.
+Malcolm Krolick
 
-There is nothing particularly to note about this implementation.
+Lucy worked on draw_circle and draw_pixel.
+Malcolm worked on draw_tile and draw_sprite.
+
+There is nothing particularly special to note about this implementation.

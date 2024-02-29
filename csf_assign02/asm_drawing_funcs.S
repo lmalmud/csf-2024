@@ -371,7 +371,7 @@ draw_rect:
 	jbe .Ldraw_rect_return					/* if done, jump to return */
 	movl $0, %ebp							/* j = 0 */
 .Linnertop:
-	cmpl %ebp, RECT_HEIGHT_OFFSET(%r13)	/* rect->height - j <= 0, exit loop */
+	cmpl %ebp, RECT_HEIGHT_OFFSET(%r13)		/* rect->height - j <= 0, exit loop */
 	jbe .Loutertop							/* we want to exit the loop */
 	movq %r12, %rdi							/* %rdi (first parameter) = address of Image */
 	movl RECT_X_OFFSET(%r13), %esi			/* %esi = img->x */
@@ -446,7 +446,7 @@ draw_circle:
 	call square
 	movl %eax, -8(%rbp)						/* -8(%rbp)	= (x - i) ^ 2 - only lower 32 bits - SEEMED CORRECT */
 	movq $0, %rdi							/* %rdi = 0 (clear upper bits) */
-	movl -40(%rbp), %edi						/* %edi (lower 32 bits of %rdi) = y */
+	movl -40(%rbp), %edi					/* %edi (lower 32 bits of %rdi) = y */
 	subl -16(%rbp), %edi					/* %edi = y - j */
 	call square
 	addl %eax, -8(%rbp)						/* -8(%rbp) = (x - i) ^ 2 + (y - j) ^ 2 */
@@ -465,7 +465,7 @@ draw_circle:
 	jmp .Linnertop_draw_circle				/* return back to check the inner loop condition */
 
 .Ldraw_circle_return:
-	addq $80, %rsp			/* restore */
+	addq $80, %rsp							/* restore */
 	popq %rbp
 	ret
 
@@ -670,7 +670,48 @@ draw_tile:
  */
 	.globl draw_sprite
 draw_sprite:
-	/* TODO: implement */
+										/* allocating local variables */
+	pushq %rbp							/* save original value of rbp */
+	movq %rsp, %rbp						/* %rbp points to top of allocated area */
+	subq $160, %rsp						/* allocate 4 bytes (not all used) */
+	movq %rdi, -160(%rbp)				/* -160(%rbp) = pointer to dest */
+	movq %rcx, -144(%rbp)				/* -144(%rbp) = pointer to spritemap */
+	movq %r8, -128(%rbp)				/* -128(%rbp) = pointer to sprite (Rect) */
+	movl %esi, -112(%rbp)				/* -112(%rbp) = x */
+	movl %edx, -104(%rbp)				/* -104(%rbp) = y */
+	movl $-1, -96(%rbp)					/* -96(%rbp) = i = - 1*/
+
+.Loutertop_draw_sprite_1:				/* top of the first loop */
+	incl -96(%rbp)						/* i++ */
+	movl -96(%rbp), %r8d				/* %r8d = i */
+	movq -128(%rbp), %r9				/* %r9 = sprite */
+	cmpl %r8d, RECT_X_OFFSET(%r9d) 		/* sprite->x - i */
+	jbe .Ldraw_sprite_first_loop_done	/* loop done - entire image in bounds */
+	movl $0, -88(%rbp)					/* j = 0 */
+
+.Linner_top_draw_sprite_1:				/* bottom of the first loop */
+	movq -128(%rbp), %r9				/* %r9 = sprite */
+	movl -88(%rbp), %r8d				/* %r8d = j */
+	cmpl %r8d, RECT_Y_OFFSET(%r9d)		/* sprite->height - j */
+	jbe .Loutertop_draw_sprite_1		/* end of inner loop, go to outer */
+
+	movq -144(%rbp), %rdi				/* %rdi = spritemap (first parameter) */
+	movl -96(%rbp), %esi				/* %esi = i (second parameter) */
+	movl -88(%rbp), %edx				/* %edx = j (third parameter) */
+	call in_bounds
+	cmpl $0, %eax						/* in_bounds == 0 */
+	jz Ldraw_sprite_return				/* return if out of bounds */
+	
+
+.Ldraw_sprite_first_loop_done:			/* the entire rectangle is in bounds */
+	movl $-1, -96(%rbp)					/* -96(%rbp) = i = - 1*/
+.Loutertop_draw_sprite_2:				/* top of the second loop */
+
+.Linner_top_draw_sprite_2:		/* bottom of the second loop */
+
+.Ldraw_sprite_return:
+	addq $160, %rsp				/* restore */
+	popq %rbp
 	ret
 
 /*
