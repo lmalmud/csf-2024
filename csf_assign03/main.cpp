@@ -9,10 +9,13 @@
 
 using std::cout;
 using std::endl;
+using std::cerr;
 
 int main(int argc, char **argv){
 
-	std::cout << "cache simulator";
+	if (argc != 7) {
+		cerr << "ERROR: Not enough arguments present." << endl;
+	}
 
 	int num_sets; // number of sets in the cache
 	int num_blocks; // number of blocks in the cache
@@ -22,5 +25,5 @@ int main(int argc, char **argv){
 	bool lru; // true if lru, false if fifo
 
 	num_sets = std::stoi(argv[1]);
-	cout << num_sets << endl;
+
 }

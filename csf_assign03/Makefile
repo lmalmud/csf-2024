@@ -1,12 +1,15 @@
 # Makefile for CSF Assignment 3
 
-CC = gcc
-CFLAGS = -Wall -Wextra -pedantic
+CC = g++
+CFLAGS = -std=c++11 -Wall -Wextra -pedantic
 
 EXES = main
 
-main : main.cpp
-	$(CC) $(CFLAGS) -c main.cpp -o main.o
+csim : main.o
+	$(CC) -o csim main.o 
+
+main.o : main.cpp
+	$(CC) $(CFLAGS) -c main.cpp
 
 clean :
 	rm -f *.o $(EXES)
