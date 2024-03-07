@@ -17,18 +17,33 @@
 class Cache {
 	private:
 		std::vector<Set> sets;
-		uint32_t getTag(int address);
+		
 		int numSets,  numBlocks,  bytesPerBlock;
 		bool writeAllocate, writeThrough, lru;
 
+		uint32_t getTag(int address);
+
+
+
+		void handleLoadMiss(int address);
+
+		void handleLoadHit(int address);
+
+		void handleStoreMiss(int address);
+
+		void handleStoreHit(int address);
+
 
 	public:
+		
 		Cache(int numSets, int numBlocks, int bytesPerBlock, bool writeAllocate, bool writeThrough, bool lru);
+		
 		void getStatistics();
-
+		
 		void load(std::string addressString);
-
+		
 		void store(std::string addressString);
+
 
 };
 
