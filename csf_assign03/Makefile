@@ -1,7 +1,7 @@
 # Makefile for CSF Assignment 3
 
 CC = g++
-CFLAGS = -std=c++11 -Wall -Wextra -pedantic
+CFLAGS = -std=c++11 -g -Wall -Wextra -pedantic
 
 EXES = main
 
