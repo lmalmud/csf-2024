@@ -11,11 +11,14 @@ Cache::Cache(int numSets, int numBlocks, int bytesPerBlock, bool writeAllocate, 
 	this->writeThrough = writeThrough;
 	this->lru = lru;
 
+	//create sets
+
 }
 
 
 void Cache::load(std::string addressString){
 	uint32_t address;
 	address = stoi(addressString, nullptr, 16);
-	int tage = getTag(address);
+	int index = getIndex(address);
+	int tag = getTag(address);
 }
