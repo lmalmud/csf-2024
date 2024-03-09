@@ -11,12 +11,15 @@
 #ifndef SLOT_H
 #define SLOT_H
 
-//each slot = cache block
-class Slot {
+class Slot { // note that a slot is the same as a block
 	public:
-		uint32_t tag, load_ts, access_ts;
-		bool valid, wasModified;
-		Slot();
+		uint32_t tag;
+		bool dirty;
+		uint32_t load_ts, access_ts;
+		int bytes_per_block;
+
+		Slot(int bytes_per_block);
+
 		
 	private:
 };

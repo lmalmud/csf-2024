@@ -27,9 +27,11 @@ int main(int argc, char **argv){
 		return 1;
 	}
 
-	int num_sets; // number of sets in the cache
-	int num_blocks; // number of blocks in the cache
-	int num_bytes; // number of bytes per block
+	// NOTE: converted all types to uint32_t because an address is uint32,
+	// so it does not make sense for any of these to be larger
+	uint32_t num_sets; // number of sets in the cache
+	uint32_t num_blocks; // number of blocks in the cache
+	uint32_t num_bytes; // number of bytes per block
 	bool write_allocate; // true if write-allocate, false if no-write-allocate
 	bool write_through; // true if write-through, false if write-back
 	bool lru; // true if lru, false if fifo

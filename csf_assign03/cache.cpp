@@ -1,8 +1,5 @@
 #include "cache.h"
 
-
-
-
 Cache::Cache(int numSets, int numBlocks, int bytesPerBlock, bool writeAllocate, bool writeThrough, bool lru){
 	this->numSets = numSets;
 	this->numBlocks = numBlocks;
@@ -11,7 +8,10 @@ Cache::Cache(int numSets, int numBlocks, int bytesPerBlock, bool writeAllocate, 
 	this->writeThrough = writeThrough;
 	this->lru = lru;
 
-	//create sets
+	// create sets
+	for (int i = 0; i < this->numSets; ++i) {
+		sets.push_back(Set(this->numBlocks, this->bytesPerBlock)); // calls Set constructor
+	}
 
 }
 

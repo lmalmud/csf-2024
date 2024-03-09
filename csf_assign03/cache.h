@@ -49,5 +49,3 @@ class Cache {
 };
 
 #endif // CACHE_H
-
-
