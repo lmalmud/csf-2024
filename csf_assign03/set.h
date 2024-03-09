@@ -15,6 +15,7 @@
 class Set {
 	public:
 		std::vector<Slot> slots;
+		Set(int numBlocks, int bytesPerBlock);
 		
 	private:
 };
