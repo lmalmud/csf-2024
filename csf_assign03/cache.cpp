@@ -21,4 +21,6 @@ void Cache::load(std::string addressString){
 	address = stoi(addressString, nullptr, 16);
 	int index = getIndex(address);
 	int tag = getTag(address);
+	
+
 }
