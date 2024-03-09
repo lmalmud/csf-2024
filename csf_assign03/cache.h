@@ -24,7 +24,7 @@ class Cache {
 		uint32_t getIndex(int address);
 		uint32_t getTag(int address);
 
-
+		int numOffsetBits, numIndexBits, numTagBits;
 
 		void handleLoadMiss(int address);
 

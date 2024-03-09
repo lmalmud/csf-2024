@@ -15,6 +15,10 @@ Cache::Cache(int numSets, int numBlocks, int bytesPerBlock, bool writeAllocate, 
 
 }
 
+uint32_t Cache::getIndex(int address) {
+	// we knw
+}
+
 
 void Cache::load(std::string addressString){
 	uint32_t address;
