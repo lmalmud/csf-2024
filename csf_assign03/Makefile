@@ -6,7 +6,7 @@ CFLAGS = -std=c++11 -g -Wall -Wextra -pedantic
 EXES = main
 
 csim : main.o cache.o set.o slot.o
-	$(CC) -o csim main.o 
+	$(CC) -o csim main.o cache.o set.o slot.o
 
 main.o : main.cpp
 	$(CC) $(CFLAGS) -c main.cpp
