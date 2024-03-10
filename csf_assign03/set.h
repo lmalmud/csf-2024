@@ -15,11 +15,18 @@
 class Set {
 	public:
 		std::vector<Slot> slots;
-		Set(int numBlocks, int bytesPerBlock);
-		Slot* isHit(int tag);
+		Set(int numBlocks);
+		Slot* isHit(uint32_t tag);
+		void add(uint32_t tag, bool is_lru);
 		
 	private:
-		int numBlocks;
+		int numBlocks; // the number of slots n the vector
+
+		Slot* lru();
+		Slot* fifo();
+
+		void updateAccess(Slot* mostRecent);
+		
 };
 
 #endif //SET_H

@@ -21,7 +21,7 @@ Cache::Cache(int numSets, int numBlocks, int bytesPerBlock, bool writeAllocate, 
 
 	// create sets
 	for (int i = 0; i < this->numSets; ++i) {
-		sets.push_back(Set(this->numBlocks, this->bytesPerBlock)); // calls Set constructor
+		sets.push_back(Set(this->numBlocks)); // calls Set constructor
 	}
 
 	/*
@@ -106,10 +106,10 @@ void Cache::handleStoreHit(int address, Slot* slot){
 
 
 void Cache::handleStoreMiss(int address){
-	if(writeAllocate) {
+	if (writeAllocate) {
 		handleLoadMiss(address);
-		//update stats accordingly for writing to cache
-	} else {
+		// update stats accordingly for writing to cache
+	} else { // if the cache is no-write-allocate, we bypass the cache
 		//no-write allocate
 		//update stats for writing to memory
 		//this->totalCycles += 
@@ -118,19 +118,24 @@ void Cache::handleStoreMiss(int address){
 
 
 void Cache::handleLoadHit(int address, Slot* slot){
-	//update slot's access time
-	this->loadHits ++;
-	this->totalLoads ++;
+	// update slot's access time
+	this->loadHits++;
+	this->totalLoads++;
 	slot->access_ts = this->cacheClock;
 	this->totalCycles += 1; // loads from the cache only take one cycle
 }
 
-void Cache::handleLoadMiss(int address){
+void Cache::handleLoadMiss(int address) {
 	// need to move the data from main memory into the cache
 	// we know that we are going to have to fill up one of the slots- but which one?
 	this->loadMisses++;
 	this->totalLoads++;
-	this->totalCycles += 100; // loads from memory take 100 cycles for each four byte quantity that is transferred
+
+	// add the value to the set
+	sets.at(getIndex(address)).add(getTag(address), this->lru);
+	
+	// loads from memory take 100 cycles for each four byte quantity that is transferred
+	this->totalCycles += ((this->bytesPerBlock / 4) * 100);
 }
 
 void Cache::tick() {
