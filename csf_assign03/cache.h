@@ -23,7 +23,7 @@ class Cache {
 
 		int numOffsetBits, numIndexBits, numTagBits;
 
-				uint32_t getIndex(int address);
+		uint32_t getIndex(int address);
 		uint32_t getTag(int address);
 		uint32_t getOffset(int offset);
 

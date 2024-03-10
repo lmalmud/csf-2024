@@ -81,7 +81,7 @@ int main(int argc, char **argv){
 	string addressString;
 
 	std::stringstream ss;
-	Cache* cache = new Cache(num_sets, num_blocks, num_blocks, write_allocate, write_through, lru);
+	Cache* cache = new Cache(num_sets, num_blocks, num_bytes, write_allocate, write_through, lru);
 
 	/*
   	while (std::getline(std::cin, line)){
