@@ -16,8 +16,10 @@ class Set {
 	public:
 		std::vector<Slot> slots;
 		Set(int numBlocks, int bytesPerBlock);
+		bool isHit(int tag);
 		
 	private:
+		int numBlocks;
 };
 
 #endif //SET_H
