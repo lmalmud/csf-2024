@@ -31,7 +31,6 @@ class Cache {
 		uint32_t loadMisses;
 		uint32_t storeHits;
 		uint32_t storeMisses;
-		
 		uint32_t totalCycles;
 
 		uint32_t getIndex(int address);
@@ -46,6 +45,8 @@ class Cache {
 
 		void handleStoreHit(int address, Slot* slot);
 
+		void tick();
+
 
 	public:
 		
@@ -53,9 +54,9 @@ class Cache {
 		
 		void getStatistics();
 		
-		void load(std::string addressString);
+		void load(uint32_t address);
 		
-		void store(std::string addressString);
+		void store(uint32_t address);
 
 
 };

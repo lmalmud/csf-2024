@@ -20,8 +20,6 @@ using std::string;
 
 int main(int argc, char **argv){
 
-	int test = stoi("0xFF", nullptr, 16);
-
 	if (argc != 7) {
 		cerr << "ERROR: Not enough arguments present." << endl;
 		return 1;
@@ -82,22 +80,25 @@ int main(int argc, char **argv){
 
 	std::stringstream ss;
 	Cache* cache = new Cache(num_sets, num_blocks, num_bytes, write_allocate, write_through, lru);
-
-	/*
+	
   	while (std::getline(std::cin, line)){
 		ss << line;
 		ss >> command;
 		ss >> addressString;
 		ss.str("");
 		ss.clear();
-		if(command.compare("l") == 0){
-			cache->load(addressString);
+
+		uint32_t address;
+		address = stoi(addressString, nullptr, 16); // convert address to integer from base 16
+
+		if(command.compare("l") == 0) {
+			cache->load(address);
 		}
 		else if (command.compare("s") == 0) {
-			cache->store(addressString);
+			cache->store(address);
 		}
 	}
-	cache->getStatistics();*/
+	cache->getStatistics();
 
 	return 0;
 }

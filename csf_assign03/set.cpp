@@ -10,7 +10,7 @@ Set::Set(int numBlocks, int bytesPerBlock) {
 
 //not sure if this is the correct logic
 Slot* Set::isHit(int tag){
-	for(int i = 0; i < numBlocks; i++){
+	for (int i = 0; i < numBlocks; i++){
 		if(slots.at(i).tag == tag){
 			return &(slots.at(i));
 		}
