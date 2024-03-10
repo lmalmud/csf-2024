@@ -16,7 +16,7 @@ class Set {
 	public:
 		std::vector<Slot> slots;
 		Set(int numBlocks, int bytesPerBlock);
-		bool isHit(int tag);
+		Slot* isHit(int tag);
 		
 	private:
 		int numBlocks;

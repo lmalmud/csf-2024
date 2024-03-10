@@ -22,6 +22,17 @@ class Cache {
 		bool writeAllocate, writeThrough, lru;
 
 		int numOffsetBits, numIndexBits, numTagBits;
+		uint32_t cacheClock;
+		
+		//statistics:
+		uint32_t totalLoads;
+		uint32_t totalStores;
+		uint32_t loadHits;
+		uint32_t loadMisses;
+		uint32_t storeHits;
+		uint32_t storeMisses;
+		
+		uint32_t totalCycles;
 
 		uint32_t getIndex(int address);
 		uint32_t getTag(int address);
@@ -29,11 +40,11 @@ class Cache {
 
 		void handleLoadMiss(int address);
 
-		void handleLoadHit(int address);
+		void handleLoadHit(int address, Slot* slot);
 
 		void handleStoreMiss(int address);
 
-		void handleStoreHit(int address);
+		void handleStoreHit(int address, Slot* slot);
 
 
 	public:

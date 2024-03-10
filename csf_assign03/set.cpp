@@ -9,12 +9,11 @@ Set::Set(int numBlocks, int bytesPerBlock) {
 }
 
 //not sure if this is the correct logic
-bool Set::isHit(int tag){
+Slot* Set::isHit(int tag){
 	for(int i = 0; i < numBlocks; i++){
 		if(slots.at(i).tag == tag){
-			//update time accessed and other statistics
-			return true;
+			return &(slots.at(i));
 		}
 	}
-	return false;
+	return nullptr;
 }
