@@ -29,11 +29,11 @@ Cache::Cache(int numSets, int numBlocks, int bytesPerBlock, bool writeAllocate, 
 	std::cout << "getIndex(0x12345678): " << getIndex(0x12345678) << std::endl;
 	std::cout << "getOffset(0x123456): " << getOffset(0x12345678) << std::endl;
 	std::cout << "getTag(0x12345678): " << getTag(0x12345678) << std::endl;
-	*/
 	std::cout << "numSets: " << this->numSets << std::endl;
 	std::cout << "this->numOffsetBits: " << this->numOffsetBits << std::endl;
 	std::cout << "this->numIndexBits: " << this->numIndexBits << std::endl;
 	std::cout << "this->numTagBits: " << this->numTagBits << std::endl;
+	*/
 	
 }
 
