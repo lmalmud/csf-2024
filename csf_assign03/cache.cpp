@@ -116,6 +116,7 @@ void Cache::handleStoreHit(int address, Slot* slot) {
 	
 	if (this->writeThrough) { // none of the blocks will be dirty
 		writeToMemory();
+		slot->dirty = false;
 	} else {
 		if (slot->dirty) { // if the block was dirty, the previous value needs to be written to memory
 			writeToMemory(); // the block stays dirty, but now for a different value
@@ -138,10 +139,9 @@ void Cache::overwriteBlock(int address) {
 	not in the cache. */
 void Cache::handleStoreMiss(int address) {
 	// std::cout << "store miss..." << std::endl;
-	if (writeAllocate) {
-		overwriteBlock(address);// we have to load from main memory, then update
-		//handleLoadMiss(address); 
-	} else {
+	if (writeAllocate) { // MUST: load into cache, update line in cache
+		overwriteBlock(address); // handles both loading into cache and updating line
+	} else { // MUST: write straight to memory
 		// if the cache is no-write-allocate since we bypass the cache
 		writeToMemory(); // update stats for writing to memory
 	}	
