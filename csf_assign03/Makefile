@@ -3,7 +3,7 @@
 CC = g++
 CFLAGS = -std=c++11 -g -Wall -Wextra -pedantic
 
-EXES = main
+EXES = csim
 
 csim : main.o cache.o set.o slot.o
 	$(CC) -o csim main.o cache.o set.o slot.o
@@ -20,5 +20,9 @@ set.o : set.cpp slot.o
 slot.o : slot.cpp
 	$(CC) $(CFLAGS) -c slot.cpp
 
+solution:
+	zip solution.zip Makefile *.cpp *.h runTest.sh
+
 clean :
-	rm -f *.o $(EXES)
+	rm -f *.o $(EXES) solution.zip
+

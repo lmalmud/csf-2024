@@ -55,7 +55,8 @@ void Set::add(uint32_t tag, bool is_lru, uint32_t time) {
 	Slot* target = is_lru ? lru() : fifo();
 	target->tag = tag; // update the least recently used block
 	target->load_ts = time; // since the block was just loaded
-	updateAccess(target); // need to also update all accesses
+	target->access_ts = time;
+	// updateAccess(target); // need to also update all accesses
 	target->valid = true; // now the slot contains a valid address
 }
 

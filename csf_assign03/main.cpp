@@ -101,7 +101,8 @@ int main(int argc, char **argv){
 		}
 
 		// To display output, uncomment:
-		//cout << *cache << endl;
+		// cout << cache->getTag(address) << endl;
+		// cout << *cache << endl;
 	}
 	cache->getStatistics();
 

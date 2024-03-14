@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/csim",
-			"args": ["256", "4", "16", "write-allocate", "write-back", "lru"],
+			"args": ["8", "4", "16", "write-allocate", "write-back", "fifo"],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",
 			"environment": [],
