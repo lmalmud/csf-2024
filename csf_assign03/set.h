@@ -23,7 +23,6 @@ class Set {
 		bool add(uint32_t tag, bool is_lru, uint32_t time);
 		int howManyDirty();
 
-		void updateAccess(Slot* mostRecent);
 		friend ostream& operator<<(ostream& os, const Set& s);
 		
 	private:

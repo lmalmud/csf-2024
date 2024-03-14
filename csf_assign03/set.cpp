@@ -54,29 +54,15 @@ bool Set::add(uint32_t tag, bool is_lru, uint32_t time) {
 	// the line that we replace is determined by what replacement strategy
 	Slot* target = is_lru ? lru() : fifo();
 	bool replacedDirtyBlock = false;
-	if(target->valid && target->dirty) {
+	if (target->valid && target->dirty) {
 		replacedDirtyBlock = true;
 	}
 	target->tag = tag; // update the least recently used block
 	target->load_ts = time; // since the block was just loaded
-	target->access_ts = time;
-	// updateAccess(target); // need to also update all accesses
+	target->access_ts = time; // since the block was just used
 	target->valid = true; // now the slot contains a valid address
 	target->dirty = false;
 	return replacedDirtyBlock;
-}
-
-/* Given the slot that was most recently accessed, sets
-	its access_ts to 0 and increments all other accesses
-	accordingly. */
-void Set::updateAccess(Slot* mostRecent) {
-	for(auto slot = this->slots.begin(); slot != this->slots.end(); ++slot) {
-		if (slot->tag != mostRecent->tag) { // slots are uniquely identified by their tags
-			slot->access_ts++;
-		} else {
-			mostRecent->access_ts = 0; // FIXME
-		}
-	}
 }
 
 int Set::howManyDirty(){

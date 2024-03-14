@@ -21,3 +21,6 @@ Here, we have 2 offset bits and 30 tag bits.
 l 0x5 1     tag is 1 and offset is 1, should be a load miss
 l 0x5 1     tag is 1 and offset is 1, should be a load hit
 l 0x9 1     tag is 2 and offset is 1, should be a load miss and EVICT the value present
+
+for provided test files...
+./csim 256 4 16 write-allocate write-back lru < write01.trace

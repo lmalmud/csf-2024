@@ -108,30 +108,39 @@ void Cache::store(uint32_t address){
 	in the cache. */
 void Cache::handleStoreHit(int address, Slot* slot) {
 	// std::cout << "store hit..." << std::endl;
-	// this->storeHits++; // increment hits
 
 	// the following operations occur whether it is write-allocate or not
 	slot->access_ts = cacheClock; // update cache slot time accessed
-	// this->sets.at(getIndex(address)).updateAccess(slot); // adjust the lru times of everything
+	slot->load_ts = cacheClock; // update since a new value was loaded (check me NOT SURE- do we count same tag but new value as new?)
 	this->totalCycles += 1; // add one cycle for writing to cache
 	
 	if (this->writeThrough) { // none of the blocks will be dirty
 		writeToMemory();
 	} else {
-		slot->dirty = true; // update dirty bit: now inconsistent with main memory
+		if (slot->dirty) { // if the block was dirty, the previous value needs to be written to memory
+			writeToMemory(); // the block stays dirty, but now for a different value
+		} else { // if the block wasn't dirty, it now is
+			slot->dirty = true; // update dirty bit: now inconsistent with main memory
+		}
 	}
 	this->tick();
+}
+
+void Cache::overwriteBlock(int address) {
+	bool replacedDirtyBlock = sets.at(getIndex(address)).add(getTag(address), this->lru, this->cacheClock);
+	this->totalCycles++;
+	if(!writeThrough && replacedDirtyBlock) {
+		writeToMemory(); // if write back and we just evicted a dirty block need to account for writing it to main mem
+	}
 }
 
 /* This occurs when you are trying to rewrite a value, but it is
 	not in the cache. */
 void Cache::handleStoreMiss(int address) {
 	// std::cout << "store miss..." << std::endl;
-	// this->storeMisses++;
-	if (writeAllocate) { // note that on write-allocate, we do not write to memory
-		handleLoadMiss(address);
-		// sets.at(getIndex(address)).add(getTag(address), this->lru, this->cacheClock);
-		// this->totalCycles += 1; // writing to the cache takes one cycle
+	if (writeAllocate) {
+		overwriteBlock(address);// we have to load from main memory, then update
+		//handleLoadMiss(address); 
 	} else {
 		// if the cache is no-write-allocate since we bypass the cache
 		writeToMemory(); // update stats for writing to memory
@@ -143,14 +152,12 @@ void Cache::handleStoreMiss(int address) {
 void Cache::handleLoadHit(int address, Slot* slot) {
 	// std::cout << "load hit..." << std::endl;
 	// update slot's access time
-	// this->loadHits++;
 	// QUESTION: is the load time updated if the item was already in the cache?
-	if(slot->valid == 1) {
-		slot->access_ts = this->cacheClock;
-	}
-	else{
-		slot->load_ts = this->cacheClock; // set the time that the slot was added
-	}
+	//if (slot->valid == 1) {
+	slot->access_ts = this->cacheClock;
+	//} else {
+	//slot->load_ts = this->cacheClock; // set the time that the slot was added - it was already there, so we don't modify this
+	//}
 	// this->sets.at(getIndex(address)).updateAccess(slot); // adjust the lru times of everything
 	this->totalCycles += 1; // loads from the cache only take one cycle
 	this->tick();
@@ -158,20 +165,8 @@ void Cache::handleLoadHit(int address, Slot* slot) {
 
 void Cache::handleLoadMiss(int address) {
 	// std::cout << "load miss..." << std::endl;
-	// need to move the data from main memory into the cache
-	// we know that we are going to have to fill up one of the slots- but which one?
-	// this->loadMisses++;
-
-	// add the value to the set
-	
-	bool replacedDirtyBlock = sets.at(getIndex(address)).add(getTag(address), this->lru, this->cacheClock);
-	this->totalCycles++;
-	writeToMemory();
-
-	if(!writeThrough && replacedDirtyBlock) {
-		writeToMemory(); //if write back and we just evicted a dirty block need to account for writing it to main mem
-	}
-	
+	overwriteBlock(address);
+	writeToMemory(); // the time it takes to load the value from main memory
 	this->tick();
 }
 
