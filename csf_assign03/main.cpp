@@ -90,9 +90,8 @@ int main(int argc, char **argv){
 		ss.clear();
 
 		uint32_t address;
-		// cout << "addressString: " << addressString.substr(2, addressString.length() - 2) << std::endl;
-		address = stoi(addressString, nullptr, 16); // convert address to integer from base 16
-		// cout << "address.... " << address << std::endl;
+		// changed from stoi since that can only capture 32 bit SIGNED integers
+		address = strtoul(addressString.c_str(), nullptr, 16); // convert address to integer from base 16
 
 		if(command.compare("l") == 0) {
 			cache->load(address);
