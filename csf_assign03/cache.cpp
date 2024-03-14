@@ -113,6 +113,8 @@ void Cache::handleStoreHit(int address, Slot* slot) {
 	if (this->writeThrough) {
 		writeToMemory(); // also write to memory
 	} else {
+		cout << "clock: " << cacheClock << endl;
+		cout << "address: " << address << endl;
 		cout << "MADE DIRTY" << endl;
 		slot->dirty = true; // now there is an inconsistency between the slot and memory
 	}
@@ -143,7 +145,9 @@ void Cache::handleLoadMiss(int address) {
 	this->totalCycles++;
 	if (!writeThrough && replacedDirtyBlock) {
 		writeToMemory(); // if write back and we just evicted a dirty block need to account for writing it to main mem
-		sets.at(getIndex(address)).isHit(getTag(address))->dirty = true; // now the value is inconsistent
+		// FIXME: is the slot now considered dirty or clean?
+		// if the indices are the same, then is the block clean and otherwise it is dirty?
+		sets.at(getIndex(address)).isHit(getTag(address))->dirty = true;
 	}
 	writeToMemory(); // the time it takes to load the value from main memory
 	this->tick();
