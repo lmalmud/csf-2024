@@ -52,7 +52,7 @@ Slot* Set::fifo() {
 /* Adds the address to the cache. */
 bool Set::add(uint32_t tag, bool is_lru, uint32_t time) {
 	// the line that we replace is determined by what replacement strategy
-	Slot* target = is_lru ? lru() : fifo();
+	Slot* target = is_lru ? lru() : fifo(); // the block that will be evicted
 	bool replacedDirtyBlock = false;
 	if (target->valid && target->dirty) {
 		replacedDirtyBlock = true;

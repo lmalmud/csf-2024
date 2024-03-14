@@ -75,8 +75,6 @@ void Cache::load(uint32_t address){
 		this->loadHits++;
 		handleLoadHit(address, currSlot); // will increment loadHits
 	}
-
-	// this->tick(); // update the internal cache clock
 }
 
 /* Updates the appropriate number of cycles for writing to memroy. */
@@ -85,50 +83,48 @@ void Cache::writeToMemory() {
 	this->totalCycles += ((this->bytesPerBlock / 4) * 100);
 }
 
+/* Given an address, adds it to the cache, assuming that it is consistent
+	with memory. Evicts dirty blocks and updates memory count appropriately. 
+	Does not assume that main memory is acccessed in order to write initial value. */
+void Cache::overwriteBlock(int address) {
+	bool replacedDirtyBlock = sets.at(getIndex(address)).add(getTag(address), this->lru, this->cacheClock);
+	this->totalCycles++;
+	if (!writeThrough && replacedDirtyBlock) {
+		writeToMemory(); // if write back and we just evicted a dirty block need to account for writing it to main mem
+	}
+}
+
 void Cache::store(uint32_t address){
-	// std::cout << "storing..." << std::endl;
+
 	int index = getIndex(address);
 	int tag = getTag(address);
 
 	Slot* currSlot = sets.at(index).isHit(tag);
 	this->totalStores++;
-	// cout << getIndex(address) << endl; //for displaying the index
+
 	if (currSlot == nullptr) {
 		this->storeMisses++;
 		handleStoreMiss(address);
 	} else {
 		this->storeHits++;
-		// cout << getTag(address) << "\t" << currSlot->tag << endl;
 		handleStoreHit(address, currSlot);
 	}
-	// this->tick(); // update the internal cache clock
 }
 
 /* This occurs when you are trying to rewrite a value, and it is
 	in the cache. */
 void Cache::handleStoreHit(int address, Slot* slot) {
-	// std::cout << "store hit..." << std::endl;
 
 	// the following operations occur whether it is write-allocate or not
 	slot->access_ts = cacheClock; // update cache slot time accessed
 	slot->load_ts = cacheClock; // update since a new value was loaded (check me NOT SURE- do we count same tag but new value as new?)
 	this->totalCycles += 1; // add one cycle for writing to cache
 	
-	if (this->writeThrough) { // none of the blocks will be dirty
-		writeToMemory();
-		slot->dirty = false;
-	} else {
-		overwriteBlock(address);
+	overwriteBlock(address); // always write to the cache
+	if (this->writeThrough) {
+		writeToMemory(); // also write to memory
 	}
 	this->tick();
-}
-
-void Cache::overwriteBlock(int address) {
-	bool replacedDirtyBlock = sets.at(getIndex(address)).add(getTag(address), this->lru, this->cacheClock);
-	this->totalCycles++;
-	if(!writeThrough && replacedDirtyBlock) {
-		writeToMemory(); // if write back and we just evicted a dirty block need to account for writing it to main mem
-	}
 }
 
 /* This occurs when you are trying to rewrite a value, but it is
@@ -136,6 +132,7 @@ void Cache::overwriteBlock(int address) {
 void Cache::handleStoreMiss(int address) {
 	writeToMemory(); // on a write miss, you always have to load from memory first
 	if (writeAllocate) { // MUST: load into cache, update line in cache
+		// note that we do not have to write to memory once more because we already have the value from memory
 		overwriteBlock(address); // handles both loading into cache and updating line
 	}
 	this->tick();
@@ -143,21 +140,12 @@ void Cache::handleStoreMiss(int address) {
 
 
 void Cache::handleLoadHit(int address, Slot* slot) {
-	// std::cout << "load hit..." << std::endl;
-	// update slot's access time
-	// QUESTION: is the load time updated if the item was already in the cache?
-	//if (slot->valid == 1) {
 	slot->access_ts = this->cacheClock;
-	//} else {
-	//slot->load_ts = this->cacheClock; // set the time that the slot was added - it was already there, so we don't modify this
-	//}
-	// this->sets.at(getIndex(address)).updateAccess(slot); // adjust the lru times of everything
 	this->totalCycles += 1; // loads from the cache only take one cycle
 	this->tick();
 }
 
 void Cache::handleLoadMiss(int address) {
-	// std::cout << "load miss..." << std::endl;
 	overwriteBlock(address);
 	writeToMemory(); // the time it takes to load the value from main memory
 	this->tick();
