@@ -104,6 +104,7 @@ int main(int argc, char **argv){
 		// cout << cache->getTag(address) << endl;
 		// cout << *cache << endl;
 	}
+	cache->cleanUpCache();
 	cache->getStatistics();
 
 	return 0;

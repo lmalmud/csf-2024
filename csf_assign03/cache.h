@@ -63,6 +63,8 @@ class Cache {
 		void store(uint32_t address);
 
 		void writeToMemory();
+
+		void cleanUpCache();
 };
 
 #endif // CACHE_H

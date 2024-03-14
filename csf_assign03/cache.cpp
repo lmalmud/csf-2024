@@ -129,9 +129,9 @@ void Cache::handleStoreMiss(int address) {
 	// std::cout << "store miss..." << std::endl;
 	// this->storeMisses++;
 	if (writeAllocate) { // note that on write-allocate, we do not write to memory
-		
-		sets.at(getIndex(address)).add(getTag(address), this->lru, this->cacheClock);
-		this->totalCycles += 1; // writing to the cache takes one cycle
+		handleLoadMiss(address);
+		// sets.at(getIndex(address)).add(getTag(address), this->lru, this->cacheClock);
+		// this->totalCycles += 1; // writing to the cache takes one cycle
 	} else {
 		// if the cache is no-write-allocate since we bypass the cache
 		writeToMemory(); // update stats for writing to memory
@@ -145,7 +145,12 @@ void Cache::handleLoadHit(int address, Slot* slot) {
 	// update slot's access time
 	// this->loadHits++;
 	// QUESTION: is the load time updated if the item was already in the cache?
-	slot->load_ts = this->cacheClock; // set the time that the slow was added
+	if(slot->valid == 1) {
+		slot->access_ts = this->cacheClock;
+	}
+	else{
+		slot->load_ts = this->cacheClock; // set the time that the slot was added
+	}
 	// this->sets.at(getIndex(address)).updateAccess(slot); // adjust the lru times of everything
 	this->totalCycles += 1; // loads from the cache only take one cycle
 	this->tick();
@@ -159,9 +164,14 @@ void Cache::handleLoadMiss(int address) {
 
 	// add the value to the set
 	
-	sets.at(getIndex(address)).add(getTag(address), this->lru, this->cacheClock);
+	bool replacedDirtyBlock = sets.at(getIndex(address)).add(getTag(address), this->lru, this->cacheClock);
+	this->totalCycles++;
+	writeToMemory();
 
-	writeToMemory(); // update memory stats
+	if(!writeThrough && replacedDirtyBlock) {
+		writeToMemory(); //if write back and we just evicted a dirty block need to account for writing it to main mem
+	}
+	
 	this->tick();
 }
 
@@ -177,6 +187,19 @@ void Cache::getStatistics() {
 	cout << "Store hits: " << this->storeHits << endl;
 	cout << "Store misses: " << this->storeMisses << endl;
 	cout << "Total cycles: " << this->totalCycles << endl;
+}
+
+//not sure if we want this but it goes through at the end of the cache's life and stores any dirty blocks
+void Cache::cleanUpCache(){
+	if(writeThrough){
+		return;
+	}
+	int numDirty = 0;
+	for(int i = 0; i < numSets; i++) {
+		numDirty += sets.at(i).howManyDirty();
+	}
+	this->totalCycles += numDirty * ((this->bytesPerBlock / 4) * 100);
+	cout << numDirty << endl;
 }
 
 ostream& operator<<(ostream& os, const Cache& c) {

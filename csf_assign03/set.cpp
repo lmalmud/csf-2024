@@ -50,14 +50,20 @@ Slot* Set::fifo() {
 }
 
 /* Adds the address to the cache. */
-void Set::add(uint32_t tag, bool is_lru, uint32_t time) {
+bool Set::add(uint32_t tag, bool is_lru, uint32_t time) {
 	// the line that we replace is determined by what replacement strategy
 	Slot* target = is_lru ? lru() : fifo();
+	bool replacedDirtyBlock = false;
+	if(target->valid && target->dirty) {
+		replacedDirtyBlock = true;
+	}
 	target->tag = tag; // update the least recently used block
 	target->load_ts = time; // since the block was just loaded
 	target->access_ts = time;
 	// updateAccess(target); // need to also update all accesses
 	target->valid = true; // now the slot contains a valid address
+	target->dirty = false;
+	return replacedDirtyBlock;
 }
 
 /* Given the slot that was most recently accessed, sets
@@ -71,6 +77,16 @@ void Set::updateAccess(Slot* mostRecent) {
 			mostRecent->access_ts = 0; // FIXME
 		}
 	}
+}
+
+int Set::howManyDirty(){
+	int count = 0; 
+	for(int i = 0; i < numBlocks; i++) {
+		if(slots.at(i).dirty && slots.at(i).valid) {
+			count ++;
+		}
+	}
+	return count;
 }
 
 ostream& operator<<(ostream& os, const Set& s) {

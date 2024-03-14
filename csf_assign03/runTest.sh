@@ -18,7 +18,7 @@ echo "direct map cache with 8 blocks of size 16
 
 echo "top courselore post gcc.trace
 "
-./csim 256 4 16 write-allocate write-back fifo < write02.trace 
+./csim 256 4 16 write-allocate write-back fifo < gcc.trace
 echo " Expected:
 Total loads: 318197
 Total stores: 197486
