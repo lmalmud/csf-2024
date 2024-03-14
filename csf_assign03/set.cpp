@@ -61,6 +61,19 @@ void Set::add(uint32_t tag, bool is_lru) {
 	its access_ts to 0 and increments all other accesses
 	accordingly. */
 void Set::updateAccess(Slot* mostRecent) {
-	mostRecent->access_ts = 0; // FIXME
-	//for(auto slot = this->slots.begin(); slot !=)
+	for(auto slot = this->slots.begin(); slot != this->slots.end(); ++slot) {
+		if (slot->tag != mostRecent->tag) { // slots are uniquely identified by their tags
+			slot->access_ts++;
+		} else {
+			mostRecent->access_ts = 0; // FIXME
+		}
+	}
+}
+
+ostream& operator<<(ostream& os, const Set& s) {
+	os << "\tSET." << endl;
+	for (int i = 0; i < s.numBlocks; ++i) {
+		os << s.slots.at(i);
+	}
+	return os;
 }

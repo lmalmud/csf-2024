@@ -82,6 +82,7 @@ int main(int argc, char **argv){
 	Cache* cache = new Cache(num_sets, num_blocks, num_bytes, write_allocate, write_through, lru);
 	
   	while (std::getline(std::cin, line)){
+
 		ss << line;
 		ss >> command;
 		ss >> addressString;
@@ -97,6 +98,8 @@ int main(int argc, char **argv){
 		else if (command.compare("s") == 0) {
 			cache->store(address);
 		}
+
+		cout << *cache << endl;
 	}
 	cache->getStatistics();
 

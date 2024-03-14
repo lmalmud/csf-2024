@@ -121,7 +121,8 @@ void Cache::handleLoadHit(int address, Slot* slot){
 	// update slot's access time
 	this->loadHits++;
 	this->totalLoads++;
-	slot->access_ts = this->cacheClock;
+	slot->load_ts = this->cacheClock; // set the time that the slow was added
+	this->sets.at(getIndex(address)).updateAccess(slot); // adjust the lru times of everything
 	this->totalCycles += 1; // loads from the cache only take one cycle
 }
 
@@ -150,4 +151,13 @@ void Cache::getStatistics() {
 	cout << "Store hits: " << this->storeHits << endl;
 	cout << "Store misses: " << this->storeMisses << endl;
 	cout << "Total cycles: " << this->totalCycles << endl;
+}
+
+ostream& operator<<(ostream& os, const Cache& c) {
+	os << "CACHE." << endl;
+	for (int i = 0; i < c.numSets; ++i) {
+		os << i << endl;
+		os << c.sets.at(i);
+	}
+	return os;
 }

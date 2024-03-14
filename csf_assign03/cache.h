@@ -47,6 +47,8 @@ class Cache {
 
 		void tick();
 
+		friend ostream& operator<<(ostream& os, const Cache& c);
+
 
 	public:
 		

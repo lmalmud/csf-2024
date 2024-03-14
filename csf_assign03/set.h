@@ -12,12 +12,18 @@
 #ifndef SET_H
 #define SET_H
 
+using std::ostream;
+using std::endl;
+
 class Set {
 	public:
 		std::vector<Slot> slots;
 		Set(int numBlocks);
 		Slot* isHit(uint32_t tag);
 		void add(uint32_t tag, bool is_lru);
+
+		void updateAccess(Slot* mostRecent);
+		friend ostream& operator<<(ostream& os, const Set& s);
 		
 	private:
 		int numBlocks; // the number of slots n the vector
@@ -25,7 +31,7 @@ class Set {
 		Slot* lru();
 		Slot* fifo();
 
-		void updateAccess(Slot* mostRecent);
+		
 		
 };
 
