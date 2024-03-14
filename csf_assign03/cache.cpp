@@ -118,11 +118,7 @@ void Cache::handleStoreHit(int address, Slot* slot) {
 		writeToMemory();
 		slot->dirty = false;
 	} else {
-		if (slot->dirty) { // if the block was dirty, the previous value needs to be written to memory
-			writeToMemory(); // the block stays dirty, but now for a different value
-		} else { // if the block wasn't dirty, it now is
-			slot->dirty = true; // update dirty bit: now inconsistent with main memory
-		}
+		overwriteBlock(address);
 	}
 	this->tick();
 }
@@ -138,13 +134,10 @@ void Cache::overwriteBlock(int address) {
 /* This occurs when you are trying to rewrite a value, but it is
 	not in the cache. */
 void Cache::handleStoreMiss(int address) {
-	// std::cout << "store miss..." << std::endl;
+	writeToMemory(); // on a write miss, you always have to load from memory first
 	if (writeAllocate) { // MUST: load into cache, update line in cache
 		overwriteBlock(address); // handles both loading into cache and updating line
-	} else { // MUST: write straight to memory
-		// if the cache is no-write-allocate since we bypass the cache
-		writeToMemory(); // update stats for writing to memory
-	}	
+	}
 	this->tick();
 }
 
