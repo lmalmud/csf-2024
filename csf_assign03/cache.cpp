@@ -91,6 +91,7 @@ void Cache::overwriteBlock(int address) {
 	this->totalCycles++;
 	if (!writeThrough && replacedDirtyBlock) {
 		writeToMemory(); // if write back and we just evicted a dirty block need to account for writing it to main mem
+		sets.at(getIndex(address)).isHit(getTag(address))->dirty = true; // now the value is inconsistent
 	}
 }
 
@@ -123,6 +124,9 @@ void Cache::handleStoreHit(int address, Slot* slot) {
 	overwriteBlock(address); // always write to the cache
 	if (this->writeThrough) {
 		writeToMemory(); // also write to memory
+	} else {
+		cout << "MADE DIRTY" << endl;
+		slot->dirty = true; // now there is an inconsistency between the slot and memory
 	}
 	this->tick();
 }
