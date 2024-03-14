@@ -48,7 +48,7 @@ class Cache {
 		void handleStoreHit(int address, Slot* slot);
 
 		void tick();
-		void overwriteBlock(int address);
+
 
 		friend ostream& operator<<(ostream& os, const Cache& c);
 
