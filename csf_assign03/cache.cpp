@@ -29,11 +29,11 @@ Cache::Cache(int numSets, int numBlocks, int bytesPerBlock, bool writeAllocate, 
 	std::cout << "getIndex(0x12345678): " << getIndex(0x12345678) << std::endl;
 	std::cout << "getOffset(0x123456): " << getOffset(0x12345678) << std::endl;
 	std::cout << "getTag(0x12345678): " << getTag(0x12345678) << std::endl;
-	*/
 	std::cout << "numSets: " << this->numSets << std::endl;
 	std::cout << "this->numOffsetBits: " << this->numOffsetBits << std::endl;
 	std::cout << "this->numIndexBits: " << this->numIndexBits << std::endl;
 	std::cout << "this->numTagBits: " << this->numTagBits << std::endl;
+	*/
 	
 }
 
@@ -60,7 +60,6 @@ uint32_t Cache::getTag(int address) {
 
 
 void Cache::load(uint32_t address){
-	std::cout << "loading..." << std::endl;
 	int index = getIndex(address);
 	int tag = getTag(address);
 
@@ -83,7 +82,6 @@ void Cache::writeToMemory() {
 }
 
 void Cache::store(uint32_t address){
-	std::cout << "storing..." << std::endl;
 	int index = getIndex(address);
 	int tag = getTag(address);
 
@@ -101,7 +99,6 @@ void Cache::store(uint32_t address){
 /* This occurs when you are trying to rewrite a value, and it is
 	in the cache. */
 void Cache::handleStoreHit(int address, Slot* slot) {
-	std::cout << "store hit..." << std::endl;
 	this->storeHits++; // increment hits
 
 	// the following operations occur whether it is write-allocate or not
@@ -119,9 +116,9 @@ void Cache::handleStoreHit(int address, Slot* slot) {
 /* This occurs when you are trying to rewrite a value, but it is
 	not in the cache. */
 void Cache::handleStoreMiss(int address) {
-	std::cout << "store miss..." << std::endl;
 	this->storeMisses++;
 	if (writeAllocate) { // note that on write-allocate, we do not write to memory
+		writeToMemory(); // since we evicted a block, we write it to memory
 		sets.at(getIndex(address)).add(getTag(address), this->lru, this->cacheClock);
 		this->totalCycles += 1; // writing to the cache takes one cycle
 	} else {
@@ -132,7 +129,6 @@ void Cache::handleStoreMiss(int address) {
 
 
 void Cache::handleLoadHit(int address, Slot* slot) {
-	std::cout << "load hit..." << std::endl;
 	// update slot's access time
 	this->loadHits++;
 	// QUESTION: is the load time updated if the item was already in the cache?
@@ -142,7 +138,6 @@ void Cache::handleLoadHit(int address, Slot* slot) {
 }
 
 void Cache::handleLoadMiss(int address) {
-	std::cout << "load miss..." << std::endl;
 	// need to move the data from main memory into the cache
 	// we know that we are going to have to fill up one of the slots- but which one?
 	this->loadMisses++;
