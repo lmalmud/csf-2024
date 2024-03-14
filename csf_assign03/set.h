@@ -20,7 +20,7 @@ class Set {
 		std::vector<Slot> slots;
 		Set(int numBlocks);
 		Slot* isHit(uint32_t tag);
-		void add(uint32_t tag, bool is_lru);
+		void add(uint32_t tag, bool is_lru, uint32_t time);
 
 		void updateAccess(Slot* mostRecent);
 		friend ostream& operator<<(ostream& os, const Set& s);

@@ -19,7 +19,9 @@ class Cache {
 		std::vector<Set> sets;
 		
 		int numSets,  numBlocks,  bytesPerBlock;
-		bool writeAllocate, writeThrough, lru;
+		bool writeAllocate; // if false, then no-write-alocate
+		bool writeThrough; // if false, then writeBack
+		bool lru; // if false, then fifo
 
 		int numOffsetBits, numIndexBits, numTagBits;
 		uint32_t cacheClock;
@@ -60,7 +62,7 @@ class Cache {
 		
 		void store(uint32_t address);
 
-
+		void writeToMemory();
 };
 
 #endif // CACHE_H
