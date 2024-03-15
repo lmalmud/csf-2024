@@ -61,7 +61,7 @@ bool Set::add(uint32_t tag, bool is_lru, uint32_t time) {
 	target->load_ts = time; // since the block was just loaded
 	target->access_ts = time; // since the block was just used
 	target->valid = true; // now the slot contains a valid address
-	target->dirty = false;
+	target->dirty = true; // CHANGED
 	return replacedDirtyBlock;
 }
 

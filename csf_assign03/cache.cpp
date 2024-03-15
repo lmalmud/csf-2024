@@ -109,13 +109,10 @@ void Cache::handleStoreHit(int address, Slot* slot) {
 	slot->load_ts = cacheClock; // update since a new value was loaded (check me NOT SURE- do we count same tag but new value as new?)
 	this->totalCycles += 1; // add one cycle for writing to cache
 	
-	//overwriteBlock(address); // always write to the cache - MATCHING GRADESCOPE REMOVED
 	if (this->writeThrough) {
 		writeToMemory(); // also write to memory
 	} else {
-		cout << "clock: " << cacheClock << endl;
-		cout << "address: " << address << endl;
-		cout << "MADE DIRTY" << endl;
+		// because the tag was there, so it did not have to be loaded
 		slot->dirty = true; // now there is an inconsistency between the slot and memory
 	}
 	this->tick();
@@ -129,6 +126,7 @@ void Cache::handleStoreMiss(int address) {
 	} else {
 		writeToMemory();
 	}
+	
 	this->tick();
 }
 
@@ -145,8 +143,6 @@ void Cache::handleLoadMiss(int address) {
 	this->totalCycles++;
 	if (!writeThrough && replacedDirtyBlock) {
 		writeToMemory(); // if write back and we just evicted a dirty block need to account for writing it to main mem
-		// FIXME: is the slot now considered dirty or clean?
-		// if the indices are the same, then is the block clean and otherwise it is dirty?
 		sets.at(getIndex(address)).isHit(getTag(address))->dirty = true;
 	}
 	writeToMemory(); // the time it takes to load the value from main memory
@@ -167,7 +163,8 @@ void Cache::getStatistics() {
 	cout << "Total cycles: " << this->totalCycles << endl;
 }
 
-//not sure if we want this but it goes through at the end of the cache's life and stores any dirty blocks
+/* Not sure if we want this but it goes through at the end of the cache's
+	life and stores any dirty blocks. */
 void Cache::cleanUpCache(){
 	if(writeThrough){
 		return;
