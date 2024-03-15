@@ -24,25 +24,12 @@ Cache::Cache(int numSets, int numBlocks, int bytesPerBlock, bool writeAllocate, 
 		sets.push_back(Set(this->numBlocks)); // calls Set constructor
 	}
 
-	/*
-	std::cout << "testing...." << std::endl;
-	std::cout << "getIndex(0x12345678): " << getIndex(0x12345678) << std::endl;
-	std::cout << "getOffset(0x123456): " << getOffset(0x12345678) << std::endl;
-	std::cout << "getTag(0x12345678): " << getTag(0x12345678) << std::endl;
-	std::cout << "numSets: " << this->numSets << std::endl;
-	std::cout << "this->numOffsetBits: " << this->numOffsetBits << std::endl;
-	std::cout << "this->numIndexBits: " << this->numIndexBits << std::endl;
-	std::cout << "this->numTagBits: " << this->numTagBits << std::endl;
-	*/
-	
 }
 
 /* Returns the part of the 32-bit address that corresponds
    	to the index. It is stored in the middle of the address. 
 	Tells you which set to look into. */
 uint32_t Cache::getIndex(int address) {
-	//std::cout << "(address >> this->numTagBits): " << (address >> this->numTagBits) << std::endl;
-	//std::cout << "((1 << this->numIndexBits) - 1): " << ((1 << this->numIndexBits) - 1) << std::endl;
 	return (address >> this->numOffsetBits) & ((1 << this->numIndexBits) - 1);
 }
 
@@ -60,18 +47,15 @@ uint32_t Cache::getTag(int address) {
 
 
 void Cache::load(uint32_t address){
-	// std::cout << "loading..." << std::endl;
 	int index = getIndex(address);
 	int tag = getTag(address);
 
 	Slot* currSlot = sets.at(index).isHit(tag);
 	this->totalLoads++; // always increment total loads
-	// cout << getIndex(address) << endl; //for displaying the index
 	if(currSlot == nullptr){
 		this->loadMisses++;
 		handleLoadMiss(address); // will increment loadMisses
 	} else {
-		// cout << getTag(address) << "\t" << currSlot->tag << endl;
 		this->loadHits++;
 		handleLoadHit(address, currSlot); // will increment loadHits
 	}
@@ -123,7 +107,7 @@ void Cache::handleStoreHit(int address, Slot* slot) {
 void Cache::handleStoreMiss(int address) {
 	if (writeAllocate) { 
 		handleLoadMiss(address); // must put it in the cache first, which is handled by this function
-		sets.at(getIndex(address)).isHit(getTag(address))->dirty = false;
+		sets.at(getIndex(address)).isHit(getTag(address))->dirty = true; // now there is an inconsistency between the slot and memory
 	} else {
 		totalCycles += 100;
 	}
@@ -145,10 +129,6 @@ void Cache::handleLoadMiss(int address) {
 	this->totalCycles++;
 	if (!writeThrough && replacedDirtyBlock) {
 		writeToMemory(); // if write back and we just evicted a dirty block need to account for writing it to main mem
-		// FIXME: should the block be dirty right now?
-		//should be not dirty b/c its now a new block. This is to 
-		//account for writing what was previously in the block back to main memory
-		// sets.at(getIndex(address)).isHit(getTag(address))->dirty = false;
 	}
 	writeToMemory(); // the time it takes to load the value from main memory
 	this->tick();
@@ -167,9 +147,6 @@ void Cache::getStatistics() {
 	cout << "Store misses: " << this->storeMisses << endl;
 	cout << "Total cycles: " << this->totalCycles << endl;
 }
-
-/* Not sure if we want this but it goes through at the end of the cache's
-	life and stores any dirty blocks. */
 
 
 ostream& operator<<(ostream& os, const Cache& c) {
