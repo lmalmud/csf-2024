@@ -143,7 +143,7 @@ void Cache::handleLoadMiss(int address) {
 	this->totalCycles++;
 	if (!writeThrough && replacedDirtyBlock) {
 		writeToMemory(); // if write back and we just evicted a dirty block need to account for writing it to main mem
-		sets.at(getIndex(address)).isHit(getTag(address))->dirty = true;
+		sets.at(getIndex(address)).isHit(getTag(address))->dirty = false; // JUST CHANGED
 	}
 	writeToMemory(); // the time it takes to load the value from main memory
 	this->tick();
