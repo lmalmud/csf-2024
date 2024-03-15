@@ -1,0 +1,5185 @@
+CSF Project 3 Results
+test case  1  ==> ./csim  1 1 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 13415
+Load misses: 304782
+Store hits: 13556
+Store misses: 183930
+Total cycles: 68468201
+
+test case  2  ==> ./csim  1 1 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 13415
+Load misses: 304782
+Store hits: 13556
+Store misses: 183930
+Total cycles: 68633215
+
+test case  3  ==> ./csim  1 1 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 10396
+Load misses: 307801
+Store hits: 16247
+Store misses: 181239
+Total cycles: 50555343
+
+test case  4  ==> ./csim  1 1 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 16869
+Load misses: 203799
+Store hits: 6150
+Store misses: 76375
+Total cycles: 36358194
+
+test case  5  ==> ./csim  1 1 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 16869
+Load misses: 203799
+Store hits: 6150
+Store misses: 76375
+Total cycles: 36286769
+
+test case  6  ==> ./csim  1 1 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 4089
+Load misses: 216579
+Store hits: 8730
+Store misses: 73795
+Total cycles: 29923219
+
+test case  7  ==> ./csim  1 1 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 13415
+Load misses: 304782
+Store hits: 13556
+Store misses: 183930
+Total cycles: 68468201
+
+test case  8  ==> ./csim  1 1 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 13415
+Load misses: 304782
+Store hits: 13556
+Store misses: 183930
+Total cycles: 68633215
+
+test case  9  ==> ./csim  1 1 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 10396
+Load misses: 307801
+Store hits: 16247
+Store misses: 181239
+Total cycles: 50555343
+
+test case  10  ==> ./csim  1 1 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 16869
+Load misses: 203799
+Store hits: 6150
+Store misses: 76375
+Total cycles: 36358194
+
+test case  11  ==> ./csim  1 1 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 16869
+Load misses: 203799
+Store hits: 6150
+Store misses: 76375
+Total cycles: 36286769
+
+test case  12  ==> ./csim  1 1 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 4089
+Load misses: 216579
+Store hits: 8730
+Store misses: 73795
+Total cycles: 29923219
+
+test case  13  ==> ./csim  1 1 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 104421
+Load misses: 213776
+Store hits: 96673
+Store misses: 100813
+Total cycles: 346119507
+
+test case  14  ==> ./csim  1 1 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 104421
+Load misses: 213776
+Store hits: 96673
+Store misses: 100813
+Total cycles: 271524221
+
+test case  15  ==> ./csim  1 1 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 105414
+Load misses: 212783
+Store hits: 34709
+Store misses: 162777
+Total cycles: 190115123
+
+test case  16  ==> ./csim  1 1 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 58414
+Load misses: 162254
+Store hits: 33704
+Store misses: 48821
+Total cycles: 213910539
+
+test case  17  ==> ./csim  1 1 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 58414
+Load misses: 162254
+Store hits: 33704
+Store misses: 48821
+Total cycles: 177170914
+
+test case  18  ==> ./csim  1 1 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 46247
+Load misses: 174421
+Store hits: 13199
+Store misses: 69326
+Total cycles: 147848746
+
+test case  19  ==> ./csim  1 1 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 104421
+Load misses: 213776
+Store hits: 96673
+Store misses: 100813
+Total cycles: 346119507
+
+test case  20  ==> ./csim  1 1 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 104421
+Load misses: 213776
+Store hits: 96673
+Store misses: 100813
+Total cycles: 271524221
+
+test case  21  ==> ./csim  1 1 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 105414
+Load misses: 212783
+Store hits: 34709
+Store misses: 162777
+Total cycles: 190115123
+
+test case  22  ==> ./csim  1 1 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 58414
+Load misses: 162254
+Store hits: 33704
+Store misses: 48821
+Total cycles: 213910539
+
+test case  23  ==> ./csim  1 1 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 58414
+Load misses: 162254
+Store hits: 33704
+Store misses: 48821
+Total cycles: 177170914
+
+test case  24  ==> ./csim  1 1 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 46247
+Load misses: 174421
+Store hits: 13199
+Store misses: 69326
+Total cycles: 147848746
+
+test case  25  ==> ./csim  1 1 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 146456
+Load misses: 171741
+Store hits: 138334
+Store misses: 59152
+Total cycles: 991975942
+
+test case  26  ==> ./csim  1 1 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 146456
+Load misses: 171741
+Store hits: 138334
+Store misses: 59152
+Total cycles: 758752656
+
+test case  27  ==> ./csim  1 1 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 144307
+Load misses: 173890
+Store hits: 53301
+Store misses: 144185
+Total cycles: 576394208
+
+test case  28  ==> ./csim  1 1 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 78098
+Load misses: 142570
+Store hits: 41450
+Store misses: 41075
+Total cycles: 747475823
+
+test case  29  ==> ./csim  1 1 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 78098
+Load misses: 142570
+Store hits: 41450
+Store misses: 41075
+Total cycles: 595994598
+
+test case  30  ==> ./csim  1 1 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 68121
+Load misses: 152547
+Store hits: 20582
+Store misses: 61943
+Total cycles: 496491603
+
+test case  31  ==> ./csim  1 1 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 146456
+Load misses: 171741
+Store hits: 138334
+Store misses: 59152
+Total cycles: 991975942
+
+test case  32  ==> ./csim  1 1 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 146456
+Load misses: 171741
+Store hits: 138334
+Store misses: 59152
+Total cycles: 758752656
+
+test case  33  ==> ./csim  1 1 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 144307
+Load misses: 173890
+Store hits: 53301
+Store misses: 144185
+Total cycles: 576394208
+
+test case  34  ==> ./csim  1 1 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 78098
+Load misses: 142570
+Store hits: 41450
+Store misses: 41075
+Total cycles: 747475823
+
+test case  35  ==> ./csim  1 1 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 78098
+Load misses: 142570
+Store hits: 41450
+Store misses: 41075
+Total cycles: 595994598
+
+test case  36  ==> ./csim  1 1 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 68121
+Load misses: 152547
+Store hits: 20582
+Store misses: 61943
+Total cycles: 496491603
+
+test case  37  ==> ./csim  1 4 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 49699
+Load misses: 268498
+Store hits: 27806
+Store misses: 169680
+Total cycles: 62915285
+
+test case  38  ==> ./csim  1 4 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 49699
+Load misses: 268498
+Store hits: 27806
+Store misses: 169680
+Total cycles: 63616099
+
+test case  39  ==> ./csim  1 4 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 44944
+Load misses: 273253
+Store hits: 35418
+Store misses: 162068
+Total cycles: 47154262
+
+test case  40  ==> ./csim  1 4 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 24225
+Load misses: 196443
+Store hits: 12315
+Store misses: 70210
+Total cycles: 34901850
+
+test case  41  ==> ./csim  1 4 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 24225
+Load misses: 196443
+Store hits: 12315
+Store misses: 70210
+Total cycles: 34942025
+
+test case  42  ==> ./csim  1 4 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 12361
+Load misses: 208307
+Store hits: 13447
+Store misses: 69078
+Total cycles: 29109008
+
+test case  43  ==> ./csim  1 4 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 47878
+Load misses: 270319
+Store hits: 26879
+Store misses: 170607
+Total cycles: 63282064
+
+test case  44  ==> ./csim  1 4 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 47878
+Load misses: 270319
+Store hits: 26879
+Store misses: 170607
+Total cycles: 63889078
+
+test case  45  ==> ./csim  1 4 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 41542
+Load misses: 276655
+Store hits: 34769
+Store misses: 162717
+Total cycles: 47490411
+
+test case  46  ==> ./csim  1 4 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 22750
+Load misses: 197918
+Store hits: 12358
+Store misses: 70167
+Total cycles: 35056875
+
+test case  47  ==> ./csim  1 4 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 22750
+Load misses: 197918
+Store hits: 12358
+Store misses: 70167
+Total cycles: 35083750
+
+test case  48  ==> ./csim  1 4 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 11187
+Load misses: 209481
+Store hits: 13385
+Store misses: 69140
+Total cycles: 29225172
+
+test case  49  ==> ./csim  1 4 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 164735
+Load misses: 153462
+Store hits: 140315
+Store misses: 57171
+Total cycles: 231655021
+
+test case  50  ==> ./csim  1 4 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 164735
+Load misses: 153462
+Store hits: 140315
+Store misses: 57171
+Total cycles: 188419735
+
+test case  51  ==> ./csim  1 4 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 163991
+Load misses: 154206
+Store hits: 80486
+Store misses: 117000
+Total cycles: 143357877
+
+test case  52  ==> ./csim  1 4 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 94644
+Load misses: 126024
+Store hits: 55585
+Store misses: 26940
+Total cycles: 155926769
+
+test case  53  ==> ./csim  1 4 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 94644
+Load misses: 126024
+Store hits: 55585
+Store misses: 26940
+Total cycles: 130718344
+
+test case  54  ==> ./csim  1 4 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 89218
+Load misses: 131450
+Store hits: 27895
+Store misses: 54630
+Total cycles: 113529613
+
+test case  55  ==> ./csim  1 4 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 168068
+Load misses: 150129
+Store hits: 142064
+Store misses: 55422
+Total cycles: 226487954
+
+test case  56  ==> ./csim  1 4 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 168068
+Load misses: 150129
+Store hits: 142064
+Store misses: 55422
+Total cycles: 184357468
+
+test case  57  ==> ./csim  1 4 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 164561
+Load misses: 153636
+Store hits: 75521
+Store misses: 121965
+Total cycles: 142897482
+
+test case  58  ==> ./csim  1 4 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 92861
+Load misses: 127807
+Store hits: 55039
+Store misses: 27486
+Total cycles: 158156186
+
+test case  59  ==> ./csim  1 4 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 92861
+Load misses: 127807
+Store hits: 55039
+Store misses: 27486
+Total cycles: 132579761
+
+test case  60  ==> ./csim  1 4 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 88885
+Load misses: 131783
+Store hits: 27672
+Store misses: 54853
+Total cycles: 113795457
+
+test case  61  ==> ./csim  1 4 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 222058
+Load misses: 96139
+Store hits: 177034
+Store misses: 20452
+Total cycles: 505171544
+
+test case  62  ==> ./csim  1 4 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 222058
+Load misses: 96139
+Store hits: 177034
+Store misses: 20452
+Total cycles: 393061858
+
+test case  63  ==> ./csim  1 4 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 221567
+Load misses: 96630
+Store hits: 141502
+Store misses: 55984
+Total cycles: 329327669
+
+test case  64  ==> ./csim  1 4 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 123598
+Load misses: 97070
+Store hits: 65140
+Store misses: 17385
+Total cycles: 458426923
+
+test case  65  ==> ./csim  1 4 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 123598
+Load misses: 97070
+Store hits: 65140
+Store misses: 17385
+Total cycles: 374632098
+
+test case  66  ==> ./csim  1 4 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 118443
+Load misses: 102225
+Store hits: 39108
+Store misses: 43417
+Total cycles: 335530051
+
+test case  67  ==> ./csim  1 4 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 218272
+Load misses: 99925
+Store hits: 171530
+Store misses: 25956
+Total cycles: 557318158
+
+test case  68  ==> ./csim  1 4 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 218272
+Load misses: 99925
+Store hits: 171530
+Store misses: 25956
+Total cycles: 422786072
+
+test case  69  ==> ./csim  1 4 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 218439
+Load misses: 99758
+Store hits: 118890
+Store misses: 78596
+Total cycles: 339311529
+
+test case  70  ==> ./csim  1 4 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 120071
+Load misses: 100597
+Store hits: 63553
+Store misses: 18972
+Total cycles: 488685796
+
+test case  71  ==> ./csim  1 4 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 120071
+Load misses: 100597
+Store hits: 63553
+Store misses: 18972
+Total cycles: 390993371
+
+test case  72  ==> ./csim  1 4 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 115950
+Load misses: 104718
+Store hits: 38555
+Store misses: 43970
+Total cycles: 343504605
+
+test case  73  ==> ./csim  1 16 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 148444
+Load misses: 169753
+Store hits: 82283
+Store misses: 115203
+Total cycles: 44258730
+
+test case  74  ==> ./csim  1 16 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 148444
+Load misses: 169753
+Store hits: 82283
+Store misses: 115203
+Total cycles: 48392644
+
+test case  75  ==> ./csim  1 16 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 141525
+Load misses: 176672
+Store hits: 97308
+Store misses: 100178
+Total cycles: 37654633
+
+test case  76  ==> ./csim  1 16 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 50405
+Load misses: 170263
+Store hits: 36453
+Store misses: 46072
+Total cycles: 28077230
+
+test case  77  ==> ./csim  1 16 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 50405
+Load misses: 170263
+Store hits: 36453
+Store misses: 46072
+Total cycles: 29936405
+
+test case  78  ==> ./csim  1 16 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 48157
+Load misses: 172511
+Store hits: 44025
+Store misses: 38500
+Total cycles: 25595782
+
+test case  79  ==> ./csim  1 16 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 146221
+Load misses: 171976
+Store hits: 79912
+Store misses: 117574
+Total cycles: 45353907
+
+test case  80  ==> ./csim  1 16 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 146221
+Load misses: 171976
+Store hits: 79912
+Store misses: 117574
+Total cycles: 48849821
+
+test case  81  ==> ./csim  1 16 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 117779
+Load misses: 200418
+Store hits: 94389
+Store misses: 103097
+Total cycles: 40002568
+
+test case  82  ==> ./csim  1 16 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 47280
+Load misses: 173388
+Store hits: 29393
+Store misses: 53132
+Total cycles: 29965305
+
+test case  83  ==> ./csim  1 16 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 47280
+Load misses: 173388
+Store hits: 29393
+Store misses: 53132
+Total cycles: 30951780
+
+test case  84  ==> ./csim  1 16 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 32926
+Load misses: 187742
+Store hits: 39317
+Store misses: 43208
+Total cycles: 27098943
+
+test case  85  ==> ./csim  1 16 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 274063
+Load misses: 44134
+Store hits: 183488
+Store misses: 13998
+Total cycles: 65174749
+
+test case  86  ==> ./csim  1 16 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 274063
+Load misses: 44134
+Store hits: 183488
+Store misses: 13998
+Total cycles: 66528263
+
+test case  87  ==> ./csim  1 16 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 270600
+Load misses: 47597
+Store hits: 150222
+Store misses: 47264
+Total cycles: 58247022
+
+test case  88  ==> ./csim  1 16 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 191565
+Load misses: 29103
+Store hits: 71276
+Store misses: 11249
+Total cycles: 50434890
+
+test case  89  ==> ./csim  1 16 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 191565
+Load misses: 29103
+Store hits: 71276
+Store misses: 11249
+Total cycles: 40725665
+
+test case  90  ==> ./csim  1 16 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 192971
+Load misses: 27697
+Store hits: 58545
+Store misses: 23980
+Total cycles: 30661616
+
+test case  91  ==> ./csim  1 16 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 264756
+Load misses: 53441
+Store hits: 178630
+Store misses: 18856
+Total cycles: 84403042
+
+test case  92  ==> ./csim  1 16 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 264756
+Load misses: 53441
+Store hits: 178630
+Store misses: 18856
+Total cycles: 77850956
+
+test case  93  ==> ./csim  1 16 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 259837
+Load misses: 58360
+Store hits: 145329
+Store misses: 52157
+Total cycles: 66841766
+
+test case  94  ==> ./csim  1 16 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 181593
+Load misses: 39075
+Store hits: 70324
+Store misses: 12201
+Total cycles: 62299318
+
+test case  95  ==> ./csim  1 16 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 181593
+Load misses: 39075
+Store hits: 70324
+Store misses: 12201
+Total cycles: 49454893
+
+test case  96  ==> ./csim  1 16 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 182776
+Load misses: 37892
+Store hits: 57396
+Store misses: 25129
+Total cycles: 38806272
+
+test case  97  ==> ./csim  1 16 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 298825
+Load misses: 19372
+Store hits: 193115
+Store misses: 4371
+Total cycles: 102029111
+
+test case  98  ==> ./csim  1 16 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 298825
+Load misses: 19372
+Store hits: 193115
+Store misses: 4371
+Total cycles: 96025025
+
+test case  99  ==> ./csim  1 16 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 298383
+Load misses: 19814
+Store hits: 167836
+Store misses: 29650
+Total cycles: 83619619
+
+test case  100  ==> ./csim  1 16 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 209942
+Load misses: 10726
+Store hits: 79096
+Store misses: 3429
+Total cycles: 67169267
+
+test case  101  ==> ./csim  1 16 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 209942
+Load misses: 10726
+Store hits: 79096
+Store misses: 3429
+Total cycles: 53758442
+
+test case  102  ==> ./csim  1 16 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 212574
+Load misses: 8094
+Store hits: 68411
+Store misses: 14114
+Total cycles: 34434285
+
+test case  103  ==> ./csim  1 16 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 293846
+Load misses: 24351
+Store hits: 191679
+Store misses: 5807
+Total cycles: 134657732
+
+test case  104  ==> ./csim  1 16 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 293846
+Load misses: 24351
+Store hits: 191679
+Store misses: 5807
+Total cycles: 116548046
+
+test case  105  ==> ./csim  1 16 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 293741
+Load misses: 24456
+Store hits: 164604
+Store misses: 32882
+Total cycles: 98466145
+
+test case  106  ==> ./csim  1 16 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 206151
+Load misses: 14517
+Store hits: 78774
+Store misses: 3751
+Total cycles: 88941476
+
+test case  107  ==> ./csim  1 16 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 206151
+Load misses: 14517
+Store hits: 78774
+Store misses: 3751
+Total cycles: 66916251
+
+test case  108  ==> ./csim  1 16 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 210310
+Load misses: 10358
+Store hits: 67754
+Store misses: 14771
+Total cycles: 41676164
+
+test case  109  ==> ./csim  1 64 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 280332
+Load misses: 37865
+Store hits: 157127
+Store misses: 40359
+Total cycles: 13246618
+
+test case  110  ==> ./csim  1 64 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 280332
+Load misses: 37865
+Store hits: 157127
+Store misses: 40359
+Total cycles: 27851332
+
+test case  111  ==> ./csim  1 64 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 280277
+Load misses: 37920
+Store hits: 147511
+Store misses: 49975
+Total cycles: 23968388
+
+test case  112  ==> ./csim  1 64 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 196793
+Load misses: 23875
+Store hits: 54792
+Store misses: 27733
+Total cycles: 8652618
+
+test case  113  ==> ./csim  1 64 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 196793
+Load misses: 23875
+Store hits: 54792
+Store misses: 27733
+Total cycles: 13610093
+
+test case  114  ==> ./csim  1 64 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 199292
+Load misses: 21376
+Store hits: 52188
+Store misses: 30337
+Total cycles: 10641580
+
+test case  115  ==> ./csim  1 64 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 271045
+Load misses: 47152
+Store hits: 151629
+Store misses: 45857
+Total cycles: 15773531
+
+test case  116  ==> ./csim  1 64 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 271045
+Load misses: 47152
+Store hits: 151629
+Store misses: 45857
+Total cycles: 29320545
+
+test case  117  ==> ./csim  1 64 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 269280
+Load misses: 48917
+Store hits: 142536
+Store misses: 54950
+Total cycles: 25052116
+
+test case  118  ==> ./csim  1 64 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 185055
+Load misses: 35613
+Store hits: 53229
+Store misses: 29296
+Total cycles: 10551780
+
+test case  119  ==> ./csim  1 64 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 185055
+Load misses: 35613
+Store hits: 53229
+Store misses: 29296
+Total cycles: 14928455
+
+test case  120  ==> ./csim  1 64 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 192525
+Load misses: 28143
+Store hits: 51553
+Store misses: 30972
+Total cycles: 11310878
+
+test case  121  ==> ./csim  1 64 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 308097
+Load misses: 10100
+Store hits: 191177
+Store misses: 6309
+Total cycles: 20140783
+
+test case  122  ==> ./csim  1 64 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 308097
+Load misses: 10100
+Store hits: 191177
+Store misses: 6309
+Total cycles: 33183897
+
+test case  123  ==> ./csim  1 64 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 307086
+Load misses: 11111
+Store hits: 165062
+Store misses: 32424
+Total cycles: 29109548
+
+test case  124  ==> ./csim  1 64 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214684
+Load misses: 5984
+Store hits: 75575
+Store misses: 6950
+Total cycles: 17003609
+
+test case  125  ==> ./csim  1 64 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214684
+Load misses: 5984
+Store hits: 75575
+Store misses: 6950
+Total cycles: 18814384
+
+test case  126  ==> ./csim  1 64 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 213958
+Load misses: 6710
+Store hits: 60788
+Store misses: 21737
+Total cycles: 13895246
+
+test case  127  ==> ./csim  1 64 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 304532
+Load misses: 13665
+Store hits: 190204
+Store misses: 7282
+Total cycles: 25799618
+
+test case  128  ==> ./csim  1 64 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 304532
+Load misses: 13665
+Store hits: 190204
+Store misses: 7282
+Total cycles: 36810732
+
+test case  129  ==> ./csim  1 64 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 303226
+Load misses: 14971
+Store hits: 162947
+Store misses: 34539
+Total cycles: 32191573
+
+test case  130  ==> ./csim  1 64 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211124
+Load misses: 9544
+Store hits: 74853
+Store misses: 7672
+Total cycles: 22248849
+
+test case  131  ==> ./csim  1 64 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211124
+Load misses: 9544
+Store hits: 74853
+Store misses: 7672
+Total cycles: 22236424
+
+test case  132  ==> ./csim  1 64 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 212196
+Load misses: 8472
+Store hits: 60377
+Store misses: 22148
+Total cycles: 15302673
+
+test case  133  ==> ./csim  1 64 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315532
+Load misses: 2665
+Store hits: 195791
+Store misses: 1695
+Total cycles: 21873018
+
+test case  134  ==> ./csim  1 64 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315532
+Load misses: 2665
+Store hits: 195791
+Store misses: 1695
+Total cycles: 34016132
+
+test case  135  ==> ./csim  1 64 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314978
+Load misses: 3219
+Store hits: 176242
+Store misses: 21244
+Total cycles: 30540620
+
+test case  136  ==> ./csim  1 64 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219566
+Load misses: 1102
+Store hits: 80825
+Store misses: 1700
+Total cycles: 15406091
+
+test case  137  ==> ./csim  1 64 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219566
+Load misses: 1102
+Store hits: 80825
+Store misses: 1700
+Total cycles: 17438466
+
+test case  138  ==> ./csim  1 64 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219011
+Load misses: 1657
+Store hits: 69850
+Store misses: 12675
+Total cycles: 13843761
+
+test case  139  ==> ./csim  1 64 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313974
+Load misses: 4223
+Store hits: 195545
+Store misses: 1941
+Total cycles: 30002660
+
+test case  140  ==> ./csim  1 64 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313974
+Load misses: 4223
+Store hits: 195545
+Store misses: 1941
+Total cycles: 39787374
+
+test case  141  ==> ./csim  1 64 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313504
+Load misses: 4693
+Store hits: 173800
+Store misses: 23686
+Total cycles: 35253504
+
+test case  142  ==> ./csim  1 64 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218552
+Load misses: 2116
+Store hits: 80615
+Store misses: 1910
+Total cycles: 21229077
+
+test case  143  ==> ./csim  1 64 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218552
+Load misses: 2116
+Store hits: 80615
+Store misses: 1910
+Total cycles: 21354252
+
+test case  144  ==> ./csim  1 64 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218394
+Load misses: 2274
+Store hits: 69486
+Store misses: 13039
+Total cycles: 15817180
+
+test case  145  ==> ./csim  4 1 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 39889
+Load misses: 278308
+Store hits: 21863
+Store misses: 175623
+Total cycles: 64711175
+
+test case  146  ==> ./csim  4 1 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 39889
+Load misses: 278308
+Store hits: 21863
+Store misses: 175623
+Total cycles: 65181589
+
+test case  147  ==> ./csim  4 1 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 34615
+Load misses: 283582
+Store hits: 24330
+Store misses: 173156
+Total cycles: 48165745
+
+test case  148  ==> ./csim  4 1 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 19990
+Load misses: 200678
+Store hits: 9398
+Store misses: 73127
+Total cycles: 35585815
+
+test case  149  ==> ./csim  4 1 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 19990
+Load misses: 200678
+Store hits: 9398
+Store misses: 73127
+Total cycles: 35652990
+
+test case  150  ==> ./csim  4 1 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 9337
+Load misses: 211331
+Store hits: 10817
+Store misses: 71708
+Total cycles: 29405754
+
+test case  151  ==> ./csim  4 1 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 39889
+Load misses: 278308
+Store hits: 21863
+Store misses: 175623
+Total cycles: 64711175
+
+test case  152  ==> ./csim  4 1 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 39889
+Load misses: 278308
+Store hits: 21863
+Store misses: 175623
+Total cycles: 65181589
+
+test case  153  ==> ./csim  4 1 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 34615
+Load misses: 283582
+Store hits: 24330
+Store misses: 173156
+Total cycles: 48165745
+
+test case  154  ==> ./csim  4 1 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 19990
+Load misses: 200678
+Store hits: 9398
+Store misses: 73127
+Total cycles: 35585815
+
+test case  155  ==> ./csim  4 1 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 19990
+Load misses: 200678
+Store hits: 9398
+Store misses: 73127
+Total cycles: 35652990
+
+test case  156  ==> ./csim  4 1 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 9337
+Load misses: 211331
+Store hits: 10817
+Store misses: 71708
+Total cycles: 29405754
+
+test case  157  ==> ./csim  4 1 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 165558
+Load misses: 152639
+Store hits: 147166
+Store misses: 50320
+Total cycles: 224358244
+
+test case  158  ==> ./csim  4 1 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 165558
+Load misses: 152639
+Store hits: 147166
+Store misses: 50320
+Total cycles: 182281358
+
+test case  159  ==> ./csim  4 1 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 159579
+Load misses: 158618
+Store hits: 83931
+Store misses: 113555
+Total cycles: 146886510
+
+test case  160  ==> ./csim  4 1 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 91757
+Load misses: 128911
+Store hits: 54383
+Store misses: 28142
+Total cycles: 156699882
+
+test case  161  ==> ./csim  4 1 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 91757
+Load misses: 128911
+Store hits: 54383
+Store misses: 28142
+Total cycles: 133986657
+
+test case  162  ==> ./csim  4 1 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 91675
+Load misses: 128993
+Store hits: 31094
+Store misses: 51431
+Total cycles: 111569669
+
+test case  163  ==> ./csim  4 1 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 165558
+Load misses: 152639
+Store hits: 147166
+Store misses: 50320
+Total cycles: 224358244
+
+test case  164  ==> ./csim  4 1 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 165558
+Load misses: 152639
+Store hits: 147166
+Store misses: 50320
+Total cycles: 182281358
+
+test case  165  ==> ./csim  4 1 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 159579
+Load misses: 158618
+Store hits: 83931
+Store misses: 113555
+Total cycles: 146886510
+
+test case  166  ==> ./csim  4 1 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 91757
+Load misses: 128911
+Store hits: 54383
+Store misses: 28142
+Total cycles: 156699882
+
+test case  167  ==> ./csim  4 1 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 91757
+Load misses: 128911
+Store hits: 54383
+Store misses: 28142
+Total cycles: 133986657
+
+test case  168  ==> ./csim  4 1 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 91675
+Load misses: 128993
+Store hits: 31094
+Store misses: 51431
+Total cycles: 111569669
+
+test case  169  ==> ./csim  4 1 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 207713
+Load misses: 110484
+Store hits: 166819
+Store misses: 30667
+Total cycles: 605880399
+
+test case  170  ==> ./csim  4 1 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 207713
+Load misses: 110484
+Store hits: 166819
+Store misses: 30667
+Total cycles: 471639513
+
+test case  171  ==> ./csim  4 1 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 207886
+Load misses: 110311
+Store hits: 84582
+Store misses: 112904
+Total cycles: 373036268
+
+test case  172  ==> ./csim  4 1 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 116864
+Load misses: 103804
+Store hits: 63854
+Store misses: 18671
+Total cycles: 489997789
+
+test case  173  ==> ./csim  4 1 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 116864
+Load misses: 103804
+Store hits: 63854
+Store misses: 18671
+Total cycles: 400289364
+
+test case  174  ==> ./csim  4 1 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 116275
+Load misses: 104393
+Store hits: 43018
+Store misses: 39507
+Total cycles: 342469393
+
+test case  175  ==> ./csim  4 1 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 207713
+Load misses: 110484
+Store hits: 166819
+Store misses: 30667
+Total cycles: 605880399
+
+test case  176  ==> ./csim  4 1 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 207713
+Load misses: 110484
+Store hits: 166819
+Store misses: 30667
+Total cycles: 471639513
+
+test case  177  ==> ./csim  4 1 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 207886
+Load misses: 110311
+Store hits: 84582
+Store misses: 112904
+Total cycles: 373036268
+
+test case  178  ==> ./csim  4 1 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 116864
+Load misses: 103804
+Store hits: 63854
+Store misses: 18671
+Total cycles: 489997789
+
+test case  179  ==> ./csim  4 1 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 116864
+Load misses: 103804
+Store hits: 63854
+Store misses: 18671
+Total cycles: 400289364
+
+test case  180  ==> ./csim  4 1 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 116275
+Load misses: 104393
+Store hits: 43018
+Store misses: 39507
+Total cycles: 342469393
+
+test case  181  ==> ./csim  4 4 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 94800
+Load misses: 223397
+Store hits: 50481
+Store misses: 147005
+Total cycles: 54608886
+
+test case  182  ==> ./csim  4 4 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 94800
+Load misses: 223397
+Store hits: 50481
+Store misses: 147005
+Total cycles: 56883600
+
+test case  183  ==> ./csim  4 4 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 88725
+Load misses: 229472
+Store hits: 64753
+Store misses: 132733
+Total cycles: 42849278
+
+test case  184  ==> ./csim  4 4 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 40269
+Load misses: 180399
+Store hits: 25648
+Store misses: 56877
+Total cycles: 30906194
+
+test case  185  ==> ./csim  4 4 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 40269
+Load misses: 180399
+Store hits: 25648
+Store misses: 56877
+Total cycles: 32020369
+
+test case  186  ==> ./csim  4 4 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 28767
+Load misses: 191901
+Store hits: 25772
+Store misses: 56753
+Total cycles: 27497139
+
+test case  187  ==> ./csim  4 4 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 92275
+Load misses: 225922
+Store hits: 49715
+Store misses: 147771
+Total cycles: 55170561
+
+test case  188  ==> ./csim  4 4 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 92275
+Load misses: 225922
+Store hits: 49715
+Store misses: 147771
+Total cycles: 57210175
+
+test case  189  ==> ./csim  4 4 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 86898
+Load misses: 231299
+Store hits: 64182
+Store misses: 133304
+Total cycles: 43029580
+
+test case  190  ==> ./csim  4 4 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 38042
+Load misses: 182626
+Store hits: 25702
+Store misses: 56823
+Total cycles: 31211567
+
+test case  191  ==> ./csim  4 4 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 38042
+Load misses: 182626
+Store hits: 25702
+Store misses: 56823
+Total cycles: 32235442
+
+test case  192  ==> ./csim  4 4 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 27990
+Load misses: 192678
+Store hits: 25704
+Store misses: 56821
+Total cycles: 27573994
+
+test case  193  ==> ./csim  4 4 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 268836
+Load misses: 49361
+Store hits: 182468
+Store misses: 15018
+Total cycles: 72739122
+
+test case  194  ==> ./csim  4 4 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 268836
+Load misses: 49361
+Store hits: 182468
+Store misses: 15018
+Total cycles: 71520636
+
+test case  195  ==> ./csim  4 4 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 267006
+Load misses: 51191
+Store hits: 148153
+Store misses: 49333
+Total cycles: 61116559
+
+test case  196  ==> ./csim  4 4 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 160298
+Load misses: 60370
+Store hits: 70890
+Store misses: 11635
+Total cycles: 75430023
+
+test case  197  ==> ./csim  4 4 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 160298
+Load misses: 60370
+Store hits: 70890
+Store misses: 11635
+Total cycles: 66016798
+
+test case  198  ==> ./csim  4 4 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 165447
+Load misses: 55221
+Store hits: 58599
+Store misses: 23926
+Total cycles: 52653346
+
+test case  199  ==> ./csim  4 4 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 263884
+Load misses: 54313
+Store hits: 179935
+Store misses: 17551
+Total cycles: 83088570
+
+test case  200  ==> ./csim  4 4 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 263884
+Load misses: 54313
+Store hits: 179935
+Store misses: 17551
+Total cycles: 77503684
+
+test case  201  ==> ./csim  4 4 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 260971
+Load misses: 57226
+Store hits: 143692
+Store misses: 53794
+Total cycles: 65934063
+
+test case  202  ==> ./csim  4 4 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 155917
+Load misses: 64751
+Store hits: 70046
+Store misses: 12479
+Total cycles: 81666442
+
+test case  203  ==> ./csim  4 4 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 155917
+Load misses: 64751
+Store hits: 70046
+Store misses: 12479
+Total cycles: 70192417
+
+test case  204  ==> ./csim  4 4 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 160663
+Load misses: 60005
+Store hits: 56915
+Store misses: 25610
+Total cycles: 56474078
+
+test case  205  ==> ./csim  4 4 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 292331
+Load misses: 25866
+Store hits: 192279
+Store misses: 5207
+Total cycles: 132112217
+
+test case  206  ==> ./csim  4 4 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 292331
+Load misses: 25866
+Store hits: 192279
+Store misses: 5207
+Total cycles: 119474531
+
+test case  207  ==> ./csim  4 4 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 292044
+Load misses: 26153
+Store hits: 166387
+Store misses: 31099
+Total cycles: 103896631
+
+test case  208  ==> ./csim  4 4 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 206316
+Load misses: 14352
+Store hits: 78559
+Store misses: 3966
+Total cycles: 84445641
+
+test case  209  ==> ./csim  4 4 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 206316
+Load misses: 14352
+Store hits: 78559
+Store misses: 3966
+Total cycles: 67076416
+
+test case  210  ==> ./csim  4 4 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 209249
+Load misses: 11419
+Store hits: 68028
+Store misses: 14497
+Total cycles: 45070577
+
+test case  211  ==> ./csim  4 4 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 288351
+Load misses: 29846
+Store hits: 191371
+Store misses: 6115
+Total cycles: 156242637
+
+test case  212  ==> ./csim  4 4 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 288351
+Load misses: 29846
+Store hits: 191371
+Store misses: 6115
+Total cycles: 135112151
+
+test case  213  ==> ./csim  4 4 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 288007
+Load misses: 30190
+Store hits: 163980
+Store misses: 33506
+Total cycles: 116808587
+
+test case  214  ==> ./csim  4 4 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 201750
+Load misses: 18918
+Store hits: 78156
+Store misses: 4369
+Total cycles: 105113075
+
+test case  215  ==> ./csim  4 4 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 201750
+Load misses: 18918
+Store hits: 78156
+Store misses: 4369
+Total cycles: 82972650
+
+test case  216  ==> ./csim  4 4 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 205997
+Load misses: 14671
+Store hits: 67417
+Store misses: 15108
+Total cycles: 55473114
+
+test case  217  ==> ./csim  4 16 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 252449
+Load misses: 65748
+Store hits: 145938
+Store misses: 51548
+Total cycles: 18863535
+
+test case  218  ==> ./csim  4 16 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 252449
+Load misses: 65748
+Store hits: 145938
+Store misses: 51548
+Total cycles: 31730649
+
+test case  219  ==> ./csim  4 16 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 247135
+Load misses: 71062
+Store hits: 136779
+Store misses: 60707
+Total cycles: 27238714
+
+test case  220  ==> ./csim  4 16 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 181183
+Load misses: 39485
+Store hits: 52164
+Store misses: 30361
+Total cycles: 11258508
+
+test case  221  ==> ./csim  4 16 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 181183
+Load misses: 39485
+Store hits: 52164
+Store misses: 30361
+Total cycles: 15418283
+
+test case  222  ==> ./csim  4 16 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 192096
+Load misses: 28572
+Store hits: 51145
+Store misses: 31380
+Total cycles: 11352941
+
+test case  223  ==> ./csim  4 16 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 239236
+Load misses: 78961
+Store hits: 133156
+Store misses: 64330
+Total cycles: 23496422
+
+test case  224  ==> ./csim  4 16 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 239236
+Load misses: 78961
+Store hits: 133156
+Store misses: 64330
+Total cycles: 34316936
+
+test case  225  ==> ./csim  4 16 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 229620
+Load misses: 88577
+Store hits: 129110
+Store misses: 68376
+Total cycles: 28965030
+
+test case  226  ==> ./csim  4 16 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 157142
+Load misses: 63526
+Store hits: 48706
+Store misses: 33819
+Total cycles: 15073467
+
+test case  227  ==> ./csim  4 16 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 157142
+Load misses: 63526
+Store hits: 48706
+Store misses: 33819
+Total cycles: 18144142
+
+test case  228  ==> ./csim  4 16 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 176925
+Load misses: 43743
+Store hits: 50104
+Store misses: 32421
+Total cycles: 12853829
+
+test case  229  ==> ./csim  4 16 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 307537
+Load misses: 10660
+Store hits: 191091
+Store misses: 6395
+Total cycles: 20918623
+
+test case  230  ==> ./csim  4 16 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 307537
+Load misses: 10660
+Store hits: 191091
+Store misses: 6395
+Total cycles: 33700137
+
+test case  231  ==> ./csim  4 16 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 306225
+Load misses: 11972
+Store hits: 164865
+Store misses: 32621
+Total cycles: 29797290
+
+test case  232  ==> ./csim  4 16 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214518
+Load misses: 6150
+Store hits: 75630
+Store misses: 6895
+Total cycles: 17094643
+
+test case  233  ==> ./csim  4 16 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214518
+Load misses: 6150
+Store hits: 75630
+Store misses: 6895
+Total cycles: 18903018
+
+test case  234  ==> ./csim  4 16 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214193
+Load misses: 6475
+Store hits: 60858
+Store misses: 21667
+Total cycles: 13707551
+
+test case  235  ==> ./csim  4 16 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 304252
+Load misses: 13945
+Store hits: 190231
+Store misses: 7255
+Total cycles: 26071338
+
+test case  236  ==> ./csim  4 16 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 304252
+Load misses: 13945
+Store hits: 190231
+Store misses: 7255
+Total cycles: 37012852
+
+test case  237  ==> ./csim  4 16 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 302716
+Load misses: 15481
+Store hits: 162901
+Store misses: 34585
+Total cycles: 32599017
+
+test case  238  ==> ./csim  4 16 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211194
+Load misses: 9474
+Store hits: 74830
+Store misses: 7695
+Total cycles: 22171319
+
+test case  239  ==> ./csim  4 16 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211194
+Load misses: 9474
+Store hits: 74830
+Store misses: 7695
+Total cycles: 22198894
+
+test case  240  ==> ./csim  4 16 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 212432
+Load misses: 8236
+Store hits: 60424
+Store misses: 22101
+Total cycles: 15114156
+
+test case  241  ==> ./csim  4 16 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315040
+Load misses: 3157
+Store hits: 195752
+Store misses: 1734
+Total cycles: 24176526
+
+test case  242  ==> ./csim  4 16 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315040
+Load misses: 3157
+Store hits: 195752
+Store misses: 1734
+Total cycles: 35714840
+
+test case  243  ==> ./csim  4 16 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314520
+Load misses: 3677
+Store hits: 174548
+Store misses: 22938
+Total cycles: 32004068
+
+test case  244  ==> ./csim  4 16 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219545
+Load misses: 1123
+Store hits: 80781
+Store misses: 1744
+Total cycles: 15921270
+
+test case  245  ==> ./csim  4 16 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219545
+Load misses: 1123
+Store hits: 80781
+Store misses: 1744
+Total cycles: 17646445
+
+test case  246  ==> ./csim  4 16 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219012
+Load misses: 1656
+Store hits: 69837
+Store misses: 12688
+Total cycles: 13840549
+
+test case  247  ==> ./csim  4 16 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313559
+Load misses: 4638
+Store hits: 195480
+Store misses: 2006
+Total cycles: 32130245
+
+test case  248  ==> ./csim  4 16 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313559
+Load misses: 4638
+Store hits: 195480
+Store misses: 2006
+Total cycles: 41322959
+
+test case  249  ==> ./csim  4 16 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313155
+Load misses: 5042
+Store hits: 173743
+Store misses: 23743
+Total cycles: 36369898
+
+test case  250  ==> ./csim  4 16 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218526
+Load misses: 2142
+Store hits: 80555
+Store misses: 1970
+Total cycles: 21766651
+
+test case  251  ==> ./csim  4 16 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218526
+Load misses: 2142
+Store hits: 80555
+Store misses: 1970
+Total cycles: 21629426
+
+test case  252  ==> ./csim  4 16 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218442
+Load misses: 2226
+Store hits: 69543
+Store misses: 12982
+Total cycles: 15663685
+
+test case  253  ==> ./csim  4 64 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 302689
+Load misses: 15508
+Store hits: 165198
+Store misses: 32288
+Total cycles: 8789475
+
+test case  254  ==> ./csim  4 64 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 302689
+Load misses: 15508
+Store hits: 165198
+Store misses: 32288
+Total cycles: 24830889
+
+test case  255  ==> ./csim  4 64 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 300717
+Load misses: 17480
+Store hits: 154760
+Store misses: 42726
+Total cycles: 21952077
+
+test case  256  ==> ./csim  4 64 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 204882
+Load misses: 15786
+Store hits: 58360
+Store misses: 24165
+Total cycles: 6852607
+
+test case  257  ==> ./csim  4 64 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 204882
+Load misses: 15786
+Store hits: 58360
+Store misses: 24165
+Total cycles: 12452482
+
+test case  258  ==> ./csim  4 64 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 205203
+Load misses: 15465
+Store hits: 53672
+Store misses: 28853
+Total cycles: 10057875
+
+test case  259  ==> ./csim  4 64 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 296098
+Load misses: 22099
+Store hits: 162509
+Store misses: 34977
+Total cycles: 10294184
+
+test case  260  ==> ./csim  4 64 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 296098
+Load misses: 22099
+Store hits: 162509
+Store misses: 34977
+Total cycles: 25752298
+
+test case  261  ==> ./csim  4 64 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 294158
+Load misses: 24039
+Store hits: 150644
+Store misses: 46842
+Total cycles: 22597302
+
+test case  262  ==> ./csim  4 64 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 198501
+Load misses: 22167
+Store hits: 56704
+Store misses: 25821
+Total cycles: 8033426
+
+test case  263  ==> ./csim  4 64 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 198501
+Load misses: 22167
+Store hits: 56704
+Store misses: 25821
+Total cycles: 13249801
+
+test case  264  ==> ./csim  4 64 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 202326
+Load misses: 18342
+Store hits: 53345
+Store misses: 29180
+Total cycles: 10342371
+
+test case  265  ==> ./csim  4 64 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315153
+Load misses: 3044
+Store hits: 192485
+Store misses: 5001
+Total cycles: 11500639
+
+test case  266  ==> ./csim  4 64 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315153
+Load misses: 3044
+Store hits: 192485
+Store misses: 5001
+Total cycles: 26499753
+
+test case  267  ==> ./csim  4 64 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313191
+Load misses: 5006
+Store hits: 168904
+Store misses: 28582
+Total cycles: 24235495
+
+test case  268  ==> ./csim  4 64 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219495
+Load misses: 1173
+Store hits: 76610
+Store misses: 5915
+Total cycles: 10779620
+
+test case  269  ==> ./csim  4 64 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219495
+Load misses: 1173
+Store hits: 76610
+Store misses: 5915
+Total cycles: 14142395
+
+test case  270  ==> ./csim  4 64 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218406
+Load misses: 2262
+Store hits: 61969
+Store misses: 20556
+Total cycles: 10342475
+
+test case  271  ==> ./csim  4 64 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314132
+Load misses: 4065
+Store hits: 192247
+Store misses: 5239
+Total cycles: 12970818
+
+test case  272  ==> ./csim  4 64 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314132
+Load misses: 4065
+Store hits: 192247
+Store misses: 5239
+Total cycles: 27505932
+
+test case  273  ==> ./csim  4 64 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 312187
+Load misses: 6010
+Store hits: 167405
+Store misses: 30081
+Total cycles: 25036192
+
+test case  274  ==> ./csim  4 64 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 217741
+Load misses: 2927
+Store hits: 76324
+Store misses: 6201
+Total cycles: 12937866
+
+test case  275  ==> ./csim  4 64 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 217741
+Load misses: 2927
+Store hits: 76324
+Store misses: 6201
+Total cycles: 15772641
+
+test case  276  ==> ./csim  4 64 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218067
+Load misses: 2601
+Store hits: 61842
+Store misses: 20683
+Total cycles: 10613209
+
+test case  277  ==> ./csim  4 64 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317129
+Load misses: 1068
+Store hits: 196061
+Store misses: 1425
+Total cycles: 13669815
+
+test case  278  ==> ./csim  4 64 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317129
+Load misses: 1068
+Store hits: 196061
+Store misses: 1425
+Total cycles: 28043329
+
+test case  279  ==> ./csim  4 64 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316487
+Load misses: 1710
+Store hits: 177158
+Store misses: 20328
+Total cycles: 25714245
+
+test case  280  ==> ./csim  4 64 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220346
+Load misses: 322
+Store hits: 80960
+Store misses: 1565
+Total cycles: 10878871
+
+test case  281  ==> ./csim  4 64 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220346
+Load misses: 322
+Store hits: 80960
+Store misses: 1565
+Total cycles: 14511246
+
+test case  282  ==> ./csim  4 64 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219689
+Load misses: 979
+Store hits: 70268
+Store misses: 12257
+Total cycles: 11675257
+
+test case  283  ==> ./csim  4 64 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316772
+Load misses: 1425
+Store hits: 195999
+Store misses: 1487
+Total cycles: 15608658
+
+test case  284  ==> ./csim  4 64 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316772
+Load misses: 1425
+Store hits: 195999
+Store misses: 1487
+Total cycles: 29383772
+
+test case  285  ==> ./csim  4 64 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316156
+Load misses: 2041
+Store hits: 177042
+Store misses: 20444
+Total cycles: 26772998
+
+test case  286  ==> ./csim  4 64 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220189
+Load misses: 479
+Store hits: 80915
+Store misses: 1610
+Total cycles: 11854714
+
+test case  287  ==> ./csim  4 64 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220189
+Load misses: 479
+Store hits: 80915
+Store misses: 1610
+Total cycles: 15157489
+
+test case  288  ==> ./csim  4 64 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219603
+Load misses: 1065
+Store hits: 70237
+Store misses: 12288
+Total cycles: 11950340
+
+test case  289  ==> ./csim  16 1 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 99416
+Load misses: 218781
+Store hits: 57002
+Store misses: 140484
+Total cycles: 53480202
+
+test case  290  ==> ./csim  16 1 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 99416
+Load misses: 218781
+Store hits: 57002
+Store misses: 140484
+Total cycles: 55774516
+
+test case  291  ==> ./csim  16 1 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 87022
+Load misses: 231175
+Store hits: 64799
+Store misses: 132687
+Total cycles: 43017921
+
+test case  292  ==> ./csim  16 1 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 37599
+Load misses: 183069
+Store hits: 28631
+Store misses: 53894
+Total cycles: 30611824
+
+test case  293  ==> ./csim  16 1 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 37599
+Load misses: 183069
+Store hits: 28631
+Store misses: 53894
+Total cycles: 31986399
+
+test case  294  ==> ./csim  16 1 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 38102
+Load misses: 182566
+Store hits: 28794
+Store misses: 53731
+Total cycles: 26575996
+
+test case  295  ==> ./csim  16 1 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 99416
+Load misses: 218781
+Store hits: 57002
+Store misses: 140484
+Total cycles: 53480202
+
+test case  296  ==> ./csim  16 1 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 99416
+Load misses: 218781
+Store hits: 57002
+Store misses: 140484
+Total cycles: 55774516
+
+test case  297  ==> ./csim  16 1 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 87022
+Load misses: 231175
+Store hits: 64799
+Store misses: 132687
+Total cycles: 43017921
+
+test case  298  ==> ./csim  16 1 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 37599
+Load misses: 183069
+Store hits: 28631
+Store misses: 53894
+Total cycles: 30611824
+
+test case  299  ==> ./csim  16 1 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 37599
+Load misses: 183069
+Store hits: 28631
+Store misses: 53894
+Total cycles: 31986399
+
+test case  300  ==> ./csim  16 1 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 38102
+Load misses: 182566
+Store hits: 28794
+Store misses: 53731
+Total cycles: 26575996
+
+test case  301  ==> ./csim  16 1 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 241353
+Load misses: 76844
+Store hits: 174723
+Store misses: 22763
+Total cycles: 109848439
+
+test case  302  ==> ./csim  16 1 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 241353
+Load misses: 76844
+Store hits: 174723
+Store misses: 22763
+Total cycles: 99675553
+
+test case  303  ==> ./csim  16 1 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 240658
+Load misses: 77539
+Store hits: 130660
+Store misses: 66826
+Total cycles: 82151118
+
+test case  304  ==> ./csim  16 1 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 151459
+Load misses: 69209
+Store hits: 67289
+Store misses: 15236
+Total cycles: 88681184
+
+test case  305  ==> ./csim  16 1 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 151459
+Load misses: 69209
+Store hits: 67289
+Store misses: 15236
+Total cycles: 75959959
+
+test case  306  ==> ./csim  16 1 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 155047
+Load misses: 65621
+Store hits: 53522
+Store misses: 29003
+Total cycles: 60957869
+
+test case  307  ==> ./csim  16 1 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 241353
+Load misses: 76844
+Store hits: 174723
+Store misses: 22763
+Total cycles: 109848439
+
+test case  308  ==> ./csim  16 1 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 241353
+Load misses: 76844
+Store hits: 174723
+Store misses: 22763
+Total cycles: 99675553
+
+test case  309  ==> ./csim  16 1 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 240658
+Load misses: 77539
+Store hits: 130660
+Store misses: 66826
+Total cycles: 82151118
+
+test case  310  ==> ./csim  16 1 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 151459
+Load misses: 69209
+Store hits: 67289
+Store misses: 15236
+Total cycles: 88681184
+
+test case  311  ==> ./csim  16 1 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 151459
+Load misses: 69209
+Store hits: 67289
+Store misses: 15236
+Total cycles: 75959959
+
+test case  312  ==> ./csim  16 1 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 155047
+Load misses: 65621
+Store hits: 53522
+Store misses: 29003
+Total cycles: 60957869
+
+test case  313  ==> ./csim  16 1 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 263360
+Load misses: 54837
+Store hits: 184774
+Store misses: 12712
+Total cycles: 289340846
+
+test case  314  ==> ./csim  16 1 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 263360
+Load misses: 54837
+Store hits: 184774
+Store misses: 12712
+Total cycles: 236168760
+
+test case  315  ==> ./csim  16 1 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 264663
+Load misses: 53534
+Store hits: 111250
+Store misses: 86236
+Total cycles: 191433313
+
+test case  316  ==> ./csim  16 1 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 167205
+Load misses: 53463
+Store hits: 73709
+Store misses: 8816
+Total cycles: 244278530
+
+test case  317  ==> ./csim  16 1 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 167205
+Load misses: 53463
+Store hits: 73709
+Store misses: 8816
+Total cycles: 207712505
+
+test case  318  ==> ./csim  16 1 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 169959
+Load misses: 50709
+Store hits: 60328
+Store misses: 22197
+Total cycles: 170751587
+
+test case  319  ==> ./csim  16 1 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 263360
+Load misses: 54837
+Store hits: 184774
+Store misses: 12712
+Total cycles: 289340846
+
+test case  320  ==> ./csim  16 1 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 263360
+Load misses: 54837
+Store hits: 184774
+Store misses: 12712
+Total cycles: 236168760
+
+test case  321  ==> ./csim  16 1 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 264663
+Load misses: 53534
+Store hits: 111250
+Store misses: 86236
+Total cycles: 191433313
+
+test case  322  ==> ./csim  16 1 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 167205
+Load misses: 53463
+Store hits: 73709
+Store misses: 8816
+Total cycles: 244278530
+
+test case  323  ==> ./csim  16 1 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 167205
+Load misses: 53463
+Store hits: 73709
+Store misses: 8816
+Total cycles: 207712505
+
+test case  324  ==> ./csim  16 1 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 169959
+Load misses: 50709
+Store hits: 60328
+Store misses: 22197
+Total cycles: 170751587
+
+test case  325  ==> ./csim  16 4 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 245032
+Load misses: 73165
+Store hits: 145255
+Store misses: 52231
+Total cycles: 19834718
+
+test case  326  ==> ./csim  16 4 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 245032
+Load misses: 73165
+Store hits: 145255
+Store misses: 52231
+Total cycles: 32533232
+
+test case  327  ==> ./csim  16 4 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 240348
+Load misses: 77849
+Store hits: 135720
+Store misses: 61766
+Total cycles: 27909568
+
+test case  328  ==> ./csim  16 4 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 155330
+Load misses: 65338
+Store hits: 49102
+Store misses: 33423
+Total cycles: 14290655
+
+test case  329  ==> ./csim  16 4 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 155330
+Load misses: 65338
+Store hits: 49102
+Store misses: 33423
+Total cycles: 18283930
+
+test case  330  ==> ./csim  16 4 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 167734
+Load misses: 52934
+Store hits: 49661
+Store misses: 32864
+Total cycles: 13763295
+
+test case  331  ==> ./csim  16 4 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 235615
+Load misses: 82582
+Store hits: 135447
+Store misses: 62039
+Total cycles: 23358701
+
+test case  332  ==> ./csim  16 4 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 235615
+Load misses: 82582
+Store hits: 135447
+Store misses: 62039
+Total cycles: 34446315
+
+test case  333  ==> ./csim  16 4 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 226615
+Load misses: 91582
+Store hits: 128438
+Store misses: 69048
+Total cycles: 29261853
+
+test case  334  ==> ./csim  16 4 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 145657
+Load misses: 75011
+Store hits: 45054
+Store misses: 37471
+Total cycles: 16497882
+
+test case  335  ==> ./csim  16 4 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 145657
+Load misses: 75011
+Store hits: 45054
+Store misses: 37471
+Total cycles: 19646357
+
+test case  336  ==> ./csim  16 4 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 157406
+Load misses: 63262
+Store hits: 49738
+Store misses: 32787
+Total cycles: 14785844
+
+test case  337  ==> ./csim  16 4 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 302910
+Load misses: 15287
+Store hits: 190800
+Store misses: 6686
+Total cycles: 25941996
+
+test case  338  ==> ./csim  16 4 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 302910
+Load misses: 15287
+Store hits: 190800
+Store misses: 6686
+Total cycles: 37629910
+
+test case  339  ==> ./csim  16 4 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 301429
+Load misses: 16768
+Store hits: 164057
+Store misses: 33429
+Total cycles: 33628486
+
+test case  340  ==> ./csim  16 4 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 213834
+Load misses: 6834
+Store hits: 75226
+Store misses: 7299
+Total cycles: 18442759
+
+test case  341  ==> ./csim  16 4 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 213834
+Load misses: 6834
+Store hits: 75226
+Store misses: 7299
+Total cycles: 19772734
+
+test case  342  ==> ./csim  16 4 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214070
+Load misses: 6598
+Store hits: 60763
+Store misses: 21762
+Total cycles: 13805733
+
+test case  343  ==> ./csim  16 4 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 299947
+Load misses: 18250
+Store hits: 190106
+Store misses: 7380
+Total cycles: 30275033
+
+test case  344  ==> ./csim  16 4 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 299947
+Load misses: 18250
+Store hits: 190106
+Store misses: 7380
+Total cycles: 40552547
+
+test case  345  ==> ./csim  16 4 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 298398
+Load misses: 19799
+Store hits: 162199
+Store misses: 35287
+Total cycles: 36048397
+
+test case  346  ==> ./csim  16 4 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211124
+Load misses: 9544
+Store hits: 74659
+Store misses: 7866
+Total cycles: 22377649
+
+test case  347  ==> ./csim  16 4 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211124
+Load misses: 9544
+Store hits: 74659
+Store misses: 7866
+Total cycles: 22391624
+
+test case  348  ==> ./csim  16 4 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 212374
+Load misses: 8294
+Store hits: 60339
+Store misses: 22186
+Total cycles: 15160413
+
+test case  349  ==> ./csim  16 4 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314035
+Load misses: 4162
+Store hits: 195548
+Store misses: 1938
+Total cycles: 29433121
+
+test case  350  ==> ./csim  16 4 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314035
+Load misses: 4162
+Store hits: 195548
+Store misses: 1938
+Total cycles: 39582635
+
+test case  351  ==> ./csim  16 4 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313543
+Load misses: 4654
+Store hits: 174046
+Store misses: 23440
+Total cycles: 35128989
+
+test case  352  ==> ./csim  16 4 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219283
+Load misses: 1385
+Store hits: 80726
+Store misses: 1799
+Total cycles: 17255408
+
+test case  353  ==> ./csim  16 4 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219283
+Load misses: 1385
+Store hits: 80726
+Store misses: 1799
+Total cycles: 18660583
+
+test case  354  ==> ./csim  16 4 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218895
+Load misses: 1773
+Store hits: 69880
+Store misses: 12645
+Total cycles: 14214875
+
+test case  355  ==> ./csim  16 4 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 312736
+Load misses: 5461
+Store hits: 195322
+Store misses: 2164
+Total cycles: 36513422
+
+test case  356  ==> ./csim  16 4 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 312736
+Load misses: 5461
+Store hits: 195322
+Store misses: 2164
+Total cycles: 44461336
+
+test case  357  ==> ./csim  16 4 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 312342
+Load misses: 5855
+Store hits: 173064
+Store misses: 24422
+Total cycles: 38970006
+
+test case  358  ==> ./csim  16 4 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218438
+Load misses: 2230
+Store hits: 80540
+Store misses: 1985
+Total cycles: 21971363
+
+test case  359  ==> ./csim  16 4 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218438
+Load misses: 2230
+Store hits: 80540
+Store misses: 1985
+Total cycles: 21958938
+
+test case  360  ==> ./csim  16 4 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218430
+Load misses: 2238
+Store hits: 69556
+Store misses: 12969
+Total cycles: 15702086
+
+test case  361  ==> ./csim  16 16 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 301985
+Load misses: 16212
+Store hits: 165096
+Store misses: 32390
+Total cycles: 8904471
+
+test case  362  ==> ./csim  16 16 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 301985
+Load misses: 16212
+Store hits: 165096
+Store misses: 32390
+Total cycles: 24910785
+
+test case  363  ==> ./csim  16 16 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 299851
+Load misses: 18346
+Store hits: 154513
+Store misses: 42973
+Total cycles: 22037564
+
+test case  364  ==> ./csim  16 16 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 204594
+Load misses: 16074
+Store hits: 58112
+Store misses: 24413
+Total cycles: 6943619
+
+test case  365  ==> ./csim  16 16 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 204594
+Load misses: 16074
+Store hits: 58112
+Store misses: 24413
+Total cycles: 12505794
+
+test case  366  ==> ./csim  16 16 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 205327
+Load misses: 15341
+Store hits: 53608
+Store misses: 28917
+Total cycles: 10045535
+
+test case  367  ==> ./csim  16 16 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 295941
+Load misses: 22256
+Store hits: 162723
+Store misses: 34763
+Total cycles: 10276127
+
+test case  368  ==> ./csim  16 16 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 295941
+Load misses: 22256
+Store hits: 162723
+Store misses: 34763
+Total cycles: 25746441
+
+test case  369  ==> ./csim  16 16 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 293809
+Load misses: 24388
+Store hits: 150769
+Store misses: 46717
+Total cycles: 22631978
+
+test case  370  ==> ./csim  16 16 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 198765
+Load misses: 21903
+Store hits: 56349
+Store misses: 26176
+Total cycles: 8074390
+
+test case  371  ==> ./csim  16 16 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 198765
+Load misses: 21903
+Store hits: 56349
+Store misses: 26176
+Total cycles: 13259165
+
+test case  372  ==> ./csim  16 16 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 202747
+Load misses: 17921
+Store hits: 53344
+Store misses: 29181
+Total cycles: 10300691
+
+test case  373  ==> ./csim  16 16 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315083
+Load misses: 3114
+Store hits: 192482
+Store misses: 5004
+Total cycles: 11580569
+
+test case  374  ==> ./csim  16 16 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315083
+Load misses: 3114
+Store hits: 192482
+Store misses: 5004
+Total cycles: 26558083
+
+test case  375  ==> ./csim  16 16 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313133
+Load misses: 5064
+Store hits: 168869
+Store misses: 28617
+Total cycles: 24281802
+
+test case  376  ==> ./csim  16 16 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219479
+Load misses: 1189
+Store hits: 76599
+Store misses: 5926
+Total cycles: 10814004
+
+test case  377  ==> ./csim  16 16 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219479
+Load misses: 1189
+Store hits: 76599
+Store misses: 5926
+Total cycles: 14163979
+
+test case  378  ==> ./csim  16 16 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218394
+Load misses: 2274
+Store hits: 61952
+Store misses: 20573
+Total cycles: 10352046
+
+test case  379  ==> ./csim  16 16 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314008
+Load misses: 4189
+Store hits: 192229
+Store misses: 5257
+Total cycles: 13124294
+
+test case  380  ==> ./csim  16 16 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314008
+Load misses: 4189
+Store hits: 192229
+Store misses: 5257
+Total cycles: 27619408
+
+test case  381  ==> ./csim  16 16 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 312065
+Load misses: 6132
+Store hits: 167445
+Store misses: 30041
+Total cycles: 25133710
+
+test case  382  ==> ./csim  16 16 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 217750
+Load misses: 2918
+Store hits: 76319
+Store misses: 6206
+Total cycles: 12931475
+
+test case  383  ==> ./csim  16 16 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 217750
+Load misses: 2918
+Store hits: 76319
+Store misses: 6206
+Total cycles: 15769450
+
+test case  384  ==> ./csim  16 16 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218073
+Load misses: 2595
+Store hits: 61832
+Store misses: 20693
+Total cycles: 10608405
+
+test case  385  ==> ./csim  16 16 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317113
+Load misses: 1084
+Store hits: 196065
+Store misses: 1421
+Total cycles: 13701799
+
+test case  386  ==> ./csim  16 16 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317113
+Load misses: 1084
+Store hits: 196065
+Store misses: 1421
+Total cycles: 28081713
+
+test case  387  ==> ./csim  16 16 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316476
+Load misses: 1721
+Store hits: 177133
+Store misses: 20353
+Total cycles: 25749409
+
+test case  388  ==> ./csim  16 16 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220344
+Load misses: 324
+Store hits: 80959
+Store misses: 1566
+Total cycles: 10894869
+
+test case  389  ==> ./csim  16 16 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220344
+Load misses: 324
+Store hits: 80959
+Store misses: 1566
+Total cycles: 14520844
+
+test case  390  ==> ./csim  16 16 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219685
+Load misses: 983
+Store hits: 70255
+Store misses: 12270
+Total cycles: 11688040
+
+test case  391  ==> ./csim  16 16 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316749
+Load misses: 1448
+Store hits: 196027
+Store misses: 1459
+Total cycles: 15519035
+
+test case  392  ==> ./csim  16 16 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316749
+Load misses: 1448
+Store hits: 196027
+Store misses: 1459
+Total cycles: 29367749
+
+test case  393  ==> ./csim  16 16 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316142
+Load misses: 2055
+Store hits: 176756
+Store misses: 20730
+Total cycles: 26817498
+
+test case  394  ==> ./csim  16 16 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220176
+Load misses: 492
+Store hits: 80919
+Store misses: 1606
+Total cycles: 11889901
+
+test case  395  ==> ./csim  16 16 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220176
+Load misses: 492
+Store hits: 80919
+Store misses: 1606
+Total cycles: 15186276
+
+test case  396  ==> ./csim  16 16 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219595
+Load misses: 1073
+Store hits: 70215
+Store misses: 12310
+Total cycles: 11975910
+
+test case  397  ==> ./csim  16 64 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 310396
+Load misses: 7801
+Store hits: 168720
+Store misses: 28766
+Total cycles: 7144882
+
+test case  398  ==> ./csim  16 64 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 310396
+Load misses: 7801
+Store hits: 168720
+Store misses: 28766
+Total cycles: 23715696
+
+test case  399  ==> ./csim  16 64 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 306387
+Load misses: 11810
+Store hits: 158979
+Store misses: 38507
+Total cycles: 21394966
+
+test case  400  ==> ./csim  16 64 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214399
+Load misses: 6269
+Store hits: 61226
+Store misses: 21299
+Total cycles: 5194124
+
+test case  401  ==> ./csim  16 64 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214399
+Load misses: 6269
+Store hits: 61226
+Store misses: 21299
+Total cycles: 11223699
+
+test case  402  ==> ./csim  16 64 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 216491
+Load misses: 4177
+Store hits: 55102
+Store misses: 27423
+Total cycles: 8941793
+
+test case  403  ==> ./csim  16 64 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 308354
+Load misses: 9843
+Store hits: 167799
+Store misses: 29687
+Total cycles: 7611640
+
+test case  404  ==> ./csim  16 64 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 308354
+Load misses: 9843
+Store hits: 167799
+Store misses: 29687
+Total cycles: 24009954
+
+test case  405  ==> ./csim  16 64 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 304839
+Load misses: 13358
+Store hits: 157874
+Store misses: 39612
+Total cycles: 21547113
+
+test case  406  ==> ./csim  16 64 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 210560
+Load misses: 10108
+Store hits: 60349
+Store misses: 22176
+Total cycles: 5808385
+
+test case  407  ==> ./csim  16 64 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 210560
+Load misses: 10108
+Store hits: 60349
+Store misses: 22176
+Total cycles: 11691460
+
+test case  408  ==> ./csim  16 64 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214055
+Load misses: 6613
+Store hits: 54933
+Store misses: 27592
+Total cycles: 9182788
+
+test case  409  ==> ./csim  16 64 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316213
+Load misses: 1984
+Store hits: 192869
+Store misses: 4617
+Total cycles: 9374499
+
+test case  410  ==> ./csim  16 64 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316213
+Load misses: 1984
+Store hits: 192869
+Store misses: 4617
+Total cycles: 25345613
+
+test case  411  ==> ./csim  16 64 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314152
+Load misses: 4045
+Store hits: 169519
+Store misses: 27967
+Total cycles: 23468271
+
+test case  412  ==> ./csim  16 64 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219983
+Load misses: 685
+Store hits: 76706
+Store misses: 5819
+Total cycles: 9565708
+
+test case  413  ==> ./csim  16 64 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219983
+Load misses: 685
+Store hits: 76706
+Store misses: 5819
+Total cycles: 13675683
+
+test case  414  ==> ./csim  16 64 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218614
+Load misses: 2054
+Store hits: 62144
+Store misses: 20381
+Total cycles: 10176458
+
+test case  415  ==> ./csim  16 64 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315889
+Load misses: 2308
+Store hits: 192801
+Store misses: 4685
+Total cycles: 9847775
+
+test case  416  ==> ./csim  16 64 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315889
+Load misses: 2308
+Store hits: 192801
+Store misses: 4685
+Total cycles: 25658889
+
+test case  417  ==> ./csim  16 64 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313869
+Load misses: 4328
+Store hits: 169177
+Store misses: 28309
+Total cycles: 23694046
+
+test case  418  ==> ./csim  16 64 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219681
+Load misses: 987
+Store hits: 76649
+Store misses: 5876
+Total cycles: 9968606
+
+test case  419  ==> ./csim  16 64 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219681
+Load misses: 987
+Store hits: 76649
+Store misses: 5876
+Total cycles: 13962581
+
+test case  420  ==> ./csim  16 64 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218560
+Load misses: 2108
+Store hits: 62122
+Store misses: 20403
+Total cycles: 10219582
+
+test case  421  ==> ./csim  16 64 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317458
+Load misses: 739
+Store hits: 196181
+Store misses: 1305
+Total cycles: 9513344
+
+test case  422  ==> ./csim  16 64 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317458
+Load misses: 739
+Store hits: 196181
+Store misses: 1305
+Total cycles: 26606858
+
+test case  423  ==> ./csim  16 64 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316752
+Load misses: 1445
+Store hits: 177754
+Store misses: 19732
+Total cycles: 24867106
+
+test case  424  ==> ./csim  16 64 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220382
+Load misses: 286
+Store hits: 80968
+Store misses: 1557
+Total cycles: 8763707
+
+test case  425  ==> ./csim  16 64 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220382
+Load misses: 286
+Store hits: 80968
+Store misses: 1557
+Total cycles: 14370482
+
+test case  426  ==> ./csim  16 64 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219723
+Load misses: 945
+Store hits: 70276
+Store misses: 12249
+Total cycles: 11566499
+
+test case  427  ==> ./csim  16 64 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317386
+Load misses: 811
+Store hits: 196167
+Store misses: 1319
+Total cycles: 9993272
+
+test case  428  ==> ./csim  16 64 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317386
+Load misses: 811
+Store hits: 196167
+Store misses: 1319
+Total cycles: 26881986
+
+test case  429  ==> ./csim  16 64 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316695
+Load misses: 1502
+Store hits: 177729
+Store misses: 19757
+Total cycles: 25049424
+
+test case  430  ==> ./csim  16 64 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220352
+Load misses: 316
+Store hits: 80955
+Store misses: 1570
+Total cycles: 8984477
+
+test case  431  ==> ./csim  16 64 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220352
+Load misses: 316
+Store hits: 80955
+Store misses: 1570
+Total cycles: 14508052
+
+test case  432  ==> ./csim  16 64 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219719
+Load misses: 949
+Store hits: 70276
+Store misses: 12249
+Total cycles: 11579295
+
+test case  433  ==> ./csim  64 1 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 221531
+Load misses: 96666
+Store hits: 139894
+Store misses: 57592
+Total cycles: 23817217
+
+test case  434  ==> ./csim  64 1 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 221531
+Load misses: 96666
+Store hits: 139894
+Store misses: 57592
+Total cycles: 35395931
+
+test case  435  ==> ./csim  64 1 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 221116
+Load misses: 97081
+Store hits: 130597
+Store misses: 66889
+Total cycles: 29808413
+
+test case  436  ==> ./csim  64 1 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 114616
+Load misses: 106052
+Store hits: 46905
+Store misses: 35620
+Total cycles: 19021041
+
+test case  437  ==> ./csim  64 1 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 114616
+Load misses: 106052
+Store hits: 46905
+Store misses: 35620
+Total cycles: 22534316
+
+test case  438  ==> ./csim  64 1 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 117427
+Load misses: 103241
+Store hits: 47298
+Store misses: 35227
+Total cycles: 18741325
+
+test case  439  ==> ./csim  64 1 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 221531
+Load misses: 96666
+Store hits: 139894
+Store misses: 57592
+Total cycles: 23817217
+
+test case  440  ==> ./csim  64 1 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 221531
+Load misses: 96666
+Store hits: 139894
+Store misses: 57592
+Total cycles: 35395931
+
+test case  441  ==> ./csim  64 1 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 221116
+Load misses: 97081
+Store hits: 130597
+Store misses: 66889
+Total cycles: 29808413
+
+test case  442  ==> ./csim  64 1 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 114616
+Load misses: 106052
+Store hits: 46905
+Store misses: 35620
+Total cycles: 19021041
+
+test case  443  ==> ./csim  64 1 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 114616
+Load misses: 106052
+Store hits: 46905
+Store misses: 35620
+Total cycles: 22534316
+
+test case  444  ==> ./csim  64 1 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 117427
+Load misses: 103241
+Store hits: 47298
+Store misses: 35227
+Total cycles: 18741325
+
+test case  445  ==> ./csim  64 1 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 279340
+Load misses: 38857
+Store hits: 183946
+Store misses: 13540
+Total cycles: 58796026
+
+test case  446  ==> ./csim  64 1 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 279340
+Load misses: 38857
+Store hits: 183946
+Store misses: 13540
+Total cycles: 61945540
+
+test case  447  ==> ./csim  64 1 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 279277
+Load misses: 38920
+Store hits: 143957
+Store misses: 53529
+Total cycles: 51307834
+
+test case  448  ==> ./csim  64 1 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 189631
+Load misses: 31037
+Store hits: 73085
+Store misses: 9440
+Total cycles: 42540156
+
+test case  449  ==> ./csim  64 1 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 189631
+Load misses: 31037
+Store hits: 73085
+Store misses: 9440
+Total cycles: 40823731
+
+test case  450  ==> ./csim  64 1 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 191705
+Load misses: 28963
+Store hits: 58580
+Store misses: 23945
+Total cycles: 31673185
+
+test case  451  ==> ./csim  64 1 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 279340
+Load misses: 38857
+Store hits: 183946
+Store misses: 13540
+Total cycles: 58796026
+
+test case  452  ==> ./csim  64 1 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 279340
+Load misses: 38857
+Store hits: 183946
+Store misses: 13540
+Total cycles: 61945540
+
+test case  453  ==> ./csim  64 1 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 279277
+Load misses: 38920
+Store hits: 143957
+Store misses: 53529
+Total cycles: 51307834
+
+test case  454  ==> ./csim  64 1 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 189631
+Load misses: 31037
+Store hits: 73085
+Store misses: 9440
+Total cycles: 42540156
+
+test case  455  ==> ./csim  64 1 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 189631
+Load misses: 31037
+Store hits: 73085
+Store misses: 9440
+Total cycles: 40823731
+
+test case  456  ==> ./csim  64 1 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 191705
+Load misses: 28963
+Store hits: 58580
+Store misses: 23945
+Total cycles: 31673185
+
+test case  457  ==> ./csim  64 1 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 298003
+Load misses: 20194
+Store hits: 191918
+Store misses: 5568
+Total cycles: 114159489
+
+test case  458  ==> ./csim  64 1 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 298003
+Load misses: 20194
+Store hits: 191918
+Store misses: 5568
+Total cycles: 102485003
+
+test case  459  ==> ./csim  64 1 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 298047
+Load misses: 20150
+Store hits: 167130
+Store misses: 30356
+Total cycles: 84693777
+
+test case  460  ==> ./csim  64 1 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211177
+Load misses: 9491
+Store hits: 79463
+Store misses: 3062
+Total cycles: 53557702
+
+test case  461  ==> ./csim  64 1 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211177
+Load misses: 9491
+Store hits: 79463
+Store misses: 3062
+Total cycles: 48633277
+
+test case  462  ==> ./csim  64 1 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211632
+Load misses: 9036
+Store hits: 68228
+Store misses: 14297
+Total cycles: 37447560
+
+test case  463  ==> ./csim  64 1 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 298003
+Load misses: 20194
+Store hits: 191918
+Store misses: 5568
+Total cycles: 114159489
+
+test case  464  ==> ./csim  64 1 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 298003
+Load misses: 20194
+Store hits: 191918
+Store misses: 5568
+Total cycles: 102485003
+
+test case  465  ==> ./csim  64 1 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 298047
+Load misses: 20150
+Store hits: 167130
+Store misses: 30356
+Total cycles: 84693777
+
+test case  466  ==> ./csim  64 1 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211177
+Load misses: 9491
+Store hits: 79463
+Store misses: 3062
+Total cycles: 53557702
+
+test case  467  ==> ./csim  64 1 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211177
+Load misses: 9491
+Store hits: 79463
+Store misses: 3062
+Total cycles: 48633277
+
+test case  468  ==> ./csim  64 1 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 211632
+Load misses: 9036
+Store hits: 68228
+Store misses: 14297
+Total cycles: 37447560
+
+test case  469  ==> ./csim  64 4 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 300101
+Load misses: 18096
+Store hits: 164798
+Store misses: 32688
+Total cycles: 9206987
+
+test case  470  ==> ./csim  64 4 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 300101
+Load misses: 18096
+Store hits: 164798
+Store misses: 32688
+Total cycles: 25127101
+
+test case  471  ==> ./csim  64 4 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 297735
+Load misses: 20462
+Store hits: 153917
+Store misses: 43569
+Total cycles: 22246452
+
+test case  472  ==> ./csim  64 4 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 204260
+Load misses: 16408
+Store hits: 58086
+Store misses: 24439
+Total cycles: 6978785
+
+test case  473  ==> ./csim  64 4 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 204260
+Load misses: 16408
+Store hits: 58086
+Store misses: 24439
+Total cycles: 12541460
+
+test case  474  ==> ./csim  64 4 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 205073
+Load misses: 15595
+Store hits: 53657
+Store misses: 28868
+Total cycles: 10070730
+
+test case  475  ==> ./csim  64 4 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 295156
+Load misses: 23041
+Store hits: 162775
+Store misses: 34711
+Total cycles: 10345742
+
+test case  476  ==> ./csim  64 4 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 295156
+Load misses: 23041
+Store hits: 162775
+Store misses: 34711
+Total cycles: 25818956
+
+test case  477  ==> ./csim  64 4 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 293469
+Load misses: 24728
+Store hits: 150742
+Store misses: 46744
+Total cycles: 22665611
+
+test case  478  ==> ./csim  64 4 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 198555
+Load misses: 22113
+Store hits: 56343
+Store misses: 26182
+Total cycles: 8075380
+
+test case  479  ==> ./csim  64 4 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 198555
+Load misses: 22113
+Store hits: 56343
+Store misses: 26182
+Total cycles: 13280555
+
+test case  480  ==> ./csim  64 4 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 202424
+Load misses: 18244
+Store hits: 53188
+Store misses: 29337
+Total cycles: 10332512
+
+test case  481  ==> ./csim  64 4 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314756
+Load misses: 3441
+Store hits: 192423
+Store misses: 5063
+Total cycles: 11991442
+
+test case  482  ==> ./csim  64 4 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314756
+Load misses: 3441
+Store hits: 192423
+Store misses: 5063
+Total cycles: 26866556
+
+test case  483  ==> ./csim  64 4 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 312848
+Load misses: 5349
+Store hits: 168760
+Store misses: 28726
+Total cycles: 24509408
+
+test case  484  ==> ./csim  64 4 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219345
+Load misses: 1323
+Store hits: 76571
+Store misses: 5954
+Total cycles: 11015470
+
+test case  485  ==> ./csim  64 4 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219345
+Load misses: 1323
+Store hits: 76571
+Store misses: 5954
+Total cycles: 14293445
+
+test case  486  ==> ./csim  64 4 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218216
+Load misses: 2452
+Store hits: 61908
+Store misses: 20617
+Total cycles: 10494224
+
+test case  487  ==> ./csim  64 4 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313766
+Load misses: 4431
+Store hits: 192187
+Store misses: 5299
+Total cycles: 13408052
+
+test case  488  ==> ./csim  64 4 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313766
+Load misses: 4431
+Store hits: 192187
+Store misses: 5299
+Total cycles: 27846366
+
+test case  489  ==> ./csim  64 4 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 311875
+Load misses: 6322
+Store hits: 167495
+Store misses: 29991
+Total cycles: 25285570
+
+test case  490  ==> ./csim  64 4 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 217756
+Load misses: 2912
+Store hits: 76294
+Store misses: 6231
+Total cycles: 12983481
+
+test case  491  ==> ./csim  64 4 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 217756
+Load misses: 2912
+Store hits: 76294
+Store misses: 6231
+Total cycles: 15784656
+
+test case  492  ==> ./csim  64 4 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 217878
+Load misses: 2790
+Store hits: 61764
+Store misses: 20761
+Total cycles: 10764142
+
+test case  493  ==> ./csim  64 4 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317016
+Load misses: 1181
+Store hits: 196045
+Store misses: 1441
+Total cycles: 14149702
+
+test case  494  ==> ./csim  64 4 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317016
+Load misses: 1181
+Store hits: 196045
+Store misses: 1441
+Total cycles: 28456016
+
+test case  495  ==> ./csim  64 4 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316383
+Load misses: 1814
+Store hits: 177122
+Store misses: 20364
+Total cycles: 26046905
+
+test case  496  ==> ./csim  64 4 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220318
+Load misses: 350
+Store hits: 80948
+Store misses: 1577
+Total cycles: 11070843
+
+test case  497  ==> ./csim  64 4 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220318
+Load misses: 350
+Store hits: 80948
+Store misses: 1577
+Total cycles: 14639218
+
+test case  498  ==> ./csim  64 4 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219661
+Load misses: 1007
+Store hits: 70224
+Store misses: 12301
+Total cycles: 11764785
+
+test case  499  ==> ./csim  64 4 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316664
+Load misses: 1533
+Store hits: 196010
+Store misses: 1476
+Total cycles: 15925350
+
+test case  500  ==> ./csim  64 4 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316664
+Load misses: 1533
+Store hits: 196010
+Store misses: 1476
+Total cycles: 29694064
+
+test case  501  ==> ./csim  64 4 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316072
+Load misses: 2125
+Store hits: 176959
+Store misses: 20527
+Total cycles: 27041631
+
+test case  502  ==> ./csim  64 4 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220161
+Load misses: 507
+Store hits: 80906
+Store misses: 1619
+Total cycles: 12008286
+
+test case  503  ==> ./csim  64 4 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220161
+Load misses: 507
+Store hits: 80906
+Store misses: 1619
+Total cycles: 15275861
+
+test case  504  ==> ./csim  64 4 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219573
+Load misses: 1095
+Store hits: 70153
+Store misses: 12372
+Total cycles: 12046226
+
+test case  505  ==> ./csim  64 16 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 310357
+Load misses: 7840
+Store hits: 168761
+Store misses: 28725
+Total cycles: 7143943
+
+test case  506  ==> ./csim  64 16 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 310357
+Load misses: 7840
+Store hits: 168761
+Store misses: 28725
+Total cycles: 23715457
+
+test case  507  ==> ./csim  64 16 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 306372
+Load misses: 11825
+Store hits: 158966
+Store misses: 38520
+Total cycles: 21396438
+
+test case  508  ==> ./csim  64 16 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214373
+Load misses: 6295
+Store hits: 61173
+Store misses: 21352
+Total cycles: 5208398
+
+test case  509  ==> ./csim  64 16 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214373
+Load misses: 6295
+Store hits: 61173
+Store misses: 21352
+Total cycles: 11231573
+
+test case  510  ==> ./csim  64 16 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 216500
+Load misses: 4168
+Store hits: 55077
+Store misses: 27448
+Total cycles: 8940877
+
+test case  511  ==> ./csim  64 16 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 308388
+Load misses: 9809
+Store hits: 167812
+Store misses: 29674
+Total cycles: 7605574
+
+test case  512  ==> ./csim  64 16 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 308388
+Load misses: 9809
+Store hits: 167812
+Store misses: 29674
+Total cycles: 24005288
+
+test case  513  ==> ./csim  64 16 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 304892
+Load misses: 13305
+Store hits: 157779
+Store misses: 39707
+Total cycles: 21541771
+
+test case  514  ==> ./csim  64 16 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 210566
+Load misses: 10102
+Store hits: 60303
+Store misses: 22222
+Total cycles: 5814991
+
+test case  515  ==> ./csim  64 16 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 210566
+Load misses: 10102
+Store hits: 60303
+Store misses: 22222
+Total cycles: 11695466
+
+test case  516  ==> ./csim  64 16 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 214946
+Load misses: 5722
+Store hits: 54913
+Store misses: 27612
+Total cycles: 9094559
+
+test case  517  ==> ./csim  64 16 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316205
+Load misses: 1992
+Store hits: 192860
+Store misses: 4626
+Total cycles: 9400891
+
+test case  518  ==> ./csim  64 16 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316205
+Load misses: 1992
+Store hits: 192860
+Store misses: 4626
+Total cycles: 25359205
+
+test case  519  ==> ./csim  64 16 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314129
+Load misses: 4068
+Store hits: 169568
+Store misses: 27918
+Total cycles: 23486697
+
+test case  520  ==> ./csim  64 16 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219983
+Load misses: 685
+Store hits: 76705
+Store misses: 5820
+Total cycles: 9567308
+
+test case  521  ==> ./csim  64 16 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219983
+Load misses: 685
+Store hits: 76705
+Store misses: 5820
+Total cycles: 13676483
+
+test case  522  ==> ./csim  64 16 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218611
+Load misses: 2057
+Store hits: 62144
+Store misses: 20381
+Total cycles: 10178855
+
+test case  523  ==> ./csim  64 16 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315886
+Load misses: 2311
+Store hits: 192802
+Store misses: 4684
+Total cycles: 9847772
+
+test case  524  ==> ./csim  64 16 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 315886
+Load misses: 2311
+Store hits: 192802
+Store misses: 4684
+Total cycles: 25660486
+
+test case  525  ==> ./csim  64 16 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 313849
+Load misses: 4348
+Store hits: 169223
+Store misses: 28263
+Total cycles: 23710072
+
+test case  526  ==> ./csim  64 16 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219680
+Load misses: 988
+Store hits: 76640
+Store misses: 5885
+Total cycles: 9981405
+
+test case  527  ==> ./csim  64 16 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219680
+Load misses: 988
+Store hits: 76640
+Store misses: 5885
+Total cycles: 13970580
+
+test case  528  ==> ./csim  64 16 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218560
+Load misses: 2108
+Store hits: 62121
+Store misses: 20404
+Total cycles: 10219581
+
+test case  529  ==> ./csim  64 16 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317446
+Load misses: 751
+Store hits: 196180
+Store misses: 1306
+Total cycles: 9580532
+
+test case  530  ==> ./csim  64 16 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317446
+Load misses: 751
+Store hits: 196180
+Store misses: 1306
+Total cycles: 26648446
+
+test case  531  ==> ./csim  64 16 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316748
+Load misses: 1449
+Store hits: 177754
+Store misses: 19732
+Total cycles: 24879902
+
+test case  532  ==> ./csim  64 16 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220382
+Load misses: 286
+Store hits: 80968
+Store misses: 1557
+Total cycles: 8760507
+
+test case  533  ==> ./csim  64 16 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220382
+Load misses: 286
+Store hits: 80968
+Store misses: 1557
+Total cycles: 14370482
+
+test case  534  ==> ./csim  64 16 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219723
+Load misses: 945
+Store hits: 70276
+Store misses: 12249
+Total cycles: 11566499
+
+test case  535  ==> ./csim  64 16 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317354
+Load misses: 843
+Store hits: 196167
+Store misses: 1319
+Total cycles: 10153240
+
+test case  536  ==> ./csim  64 16 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317354
+Load misses: 843
+Store hits: 196167
+Store misses: 1319
+Total cycles: 26984354
+
+test case  537  ==> ./csim  64 16 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316691
+Load misses: 1506
+Store hits: 177745
+Store misses: 19741
+Total cycles: 25062236
+
+test case  538  ==> ./csim  64 16 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220352
+Load misses: 316
+Store hits: 80955
+Store misses: 1570
+Total cycles: 8981277
+
+test case  539  ==> ./csim  64 16 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220352
+Load misses: 316
+Store hits: 80955
+Store misses: 1570
+Total cycles: 14508052
+
+test case  540  ==> ./csim  64 16 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219722
+Load misses: 946
+Store hits: 70275
+Store misses: 12250
+Total cycles: 11569697
+
+test case  541  ==> ./csim  64 64 4  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 312765
+Load misses: 5432
+Store hits: 169749
+Store misses: 27737
+Total cycles: 6412751
+
+test case  542  ==> ./csim  64 64 4  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 312765
+Load misses: 5432
+Store hits: 169749
+Store misses: 27737
+Total cycles: 23378265
+
+test case  543  ==> ./csim  64 64 4  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 308369
+Load misses: 9828
+Store hits: 159951
+Store misses: 37535
+Total cycles: 21199720
+
+test case  544  ==> ./csim  64 64 4  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218929
+Load misses: 1739
+Store hits: 61622
+Store misses: 20903
+Total cycles: 4474154
+
+test case  545  ==> ./csim  64 64 4  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218929
+Load misses: 1739
+Store hits: 61622
+Store misses: 20903
+Total cycles: 10735629
+
+test case  546  ==> ./csim  64 64 4  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 217195
+Load misses: 3473
+Store hits: 55351
+Store misses: 27174
+Total cycles: 8872346
+
+test case  547  ==> ./csim  64 64 4  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 312081
+Load misses: 6116
+Store hits: 169443
+Store misses: 28043
+Total cycles: 6566967
+
+test case  548  ==> ./csim  64 64 4  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 312081
+Load misses: 6116
+Store hits: 169443
+Store misses: 28043
+Total cycles: 23476581
+
+test case  549  ==> ./csim  64 64 4  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 307869
+Load misses: 10328
+Store hits: 159468
+Store misses: 38018
+Total cycles: 21248737
+
+test case  550  ==> ./csim  64 64 4  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 217390
+Load misses: 3278
+Store hits: 61410
+Store misses: 21115
+Total cycles: 4686115
+
+test case  551  ==> ./csim  64 64 4  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 217390
+Load misses: 3278
+Store hits: 61410
+Store misses: 21115
+Total cycles: 10909190
+
+test case  552  ==> ./csim  64 64 4  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 217145
+Load misses: 3523
+Store hits: 55334
+Store misses: 27191
+Total cycles: 8877279
+
+test case  553  ==> ./csim  64 64 32  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316610
+Load misses: 1587
+Store hits: 192939
+Store misses: 4547
+Total cycles: 6602896
+
+test case  554  ==> ./csim  64 64 32  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316610
+Load misses: 1587
+Store hits: 192939
+Store misses: 4547
+Total cycles: 24972410
+
+test case  555  ==> ./csim  64 64 32  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314403
+Load misses: 3794
+Store hits: 169733
+Store misses: 27753
+Total cycles: 23267936
+
+test case  556  ==> ./csim  64 64 32  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220069
+Load misses: 599
+Store hits: 76717
+Store misses: 5808
+Total cycles: 7258594
+
+test case  557  ==> ./csim  64 64 32  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220069
+Load misses: 599
+Store hits: 76717
+Store misses: 5808
+Total cycles: 13598169
+
+test case  558  ==> ./csim  64 64 32  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218642
+Load misses: 2026
+Store hits: 62147
+Store misses: 20378
+Total cycles: 10154089
+
+test case  559  ==> ./csim  64 64 32  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316501
+Load misses: 1696
+Store hits: 192919
+Store misses: 4567
+Total cycles: 6760387
+
+test case  560  ==> ./csim  64 64 32  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316501
+Load misses: 1696
+Store hits: 192919
+Store misses: 4567
+Total cycles: 25075501
+
+test case  561  ==> ./csim  64 64 32  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 314394
+Load misses: 3803
+Store hits: 169730
+Store misses: 27756
+Total cycles: 23275124
+
+test case  562  ==> ./csim  64 64 32  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220000
+Load misses: 668
+Store hits: 76705
+Store misses: 5820
+Total cycles: 7360125
+
+test case  563  ==> ./csim  64 64 32  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220000
+Load misses: 668
+Store hits: 76705
+Store misses: 5820
+Total cycles: 13662900
+
+test case  564  ==> ./csim  64 64 32  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 218642
+Load misses: 2026
+Store hits: 62147
+Store misses: 20378
+Total cycles: 10154089
+
+test case  565  ==> ./csim  64 64 128  write-allocate write-back  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317534
+Load misses: 663
+Store hits: 196200
+Store misses: 1286
+Total cycles: 6751820
+
+test case  566  ==> ./csim  64 64 128  write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317534
+Load misses: 663
+Store hits: 196200
+Store misses: 1286
+Total cycles: 26302934
+
+test case  567  ==> ./csim  64 64 128  no-write-allocate write-through  lru  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316784
+Load misses: 1413
+Store hits: 177768
+Store misses: 19718
+Total cycles: 24764752
+
+test case  568  ==> ./csim  64 64 128  write-allocate write-back  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220396
+Load misses: 272
+Store hits: 80971
+Store misses: 1554
+Total cycles: 6146121
+
+test case  569  ==> ./csim  64 64 128  write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220396
+Load misses: 272
+Store hits: 80971
+Store misses: 1554
+Total cycles: 14316096
+
+test case  570  ==> ./csim  64 64 128  no-write-allocate write-through  lru  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219723
+Load misses: 945
+Store hits: 70276
+Store misses: 12249
+Total cycles: 11566499
+
+test case  571  ==> ./csim  64 64 128  write-allocate write-back  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317534
+Load misses: 663
+Store hits: 196200
+Store misses: 1286
+Total cycles: 6751820
+
+test case  572  ==> ./csim  64 64 128  write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 317534
+Load misses: 663
+Store hits: 196200
+Store misses: 1286
+Total cycles: 26302934
+
+test case  573  ==> ./csim  64 64 128  no-write-allocate write-through  fifo  <  gcc.trace  <==
+Total loads: 318197
+Total stores: 197486
+Load hits: 316784
+Load misses: 1413
+Store hits: 177768
+Store misses: 19718
+Total cycles: 24764752
+
+test case  574  ==> ./csim  64 64 128  write-allocate write-back  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220396
+Load misses: 272
+Store hits: 80971
+Store misses: 1554
+Total cycles: 6146121
+
+test case  575  ==> ./csim  64 64 128  write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 220396
+Load misses: 272
+Store hits: 80971
+Store misses: 1554
+Total cycles: 14316096
+
+test case  576  ==> ./csim  64 64 128  no-write-allocate write-through  fifo  <  swim.trace  <==
+Total loads: 220668
+Total stores: 82525
+Load hits: 219723
+Load misses: 945
+Store hits: 70276
+Store misses: 12249
+Total cycles: 11566499
+

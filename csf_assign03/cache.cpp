@@ -110,7 +110,7 @@ void Cache::handleStoreHit(int address, Slot* slot) {
 	this->totalCycles += 1; // add one cycle for writing to cache
 	
 	if (this->writeThrough) {
-		writeToMemory(); // also write to memory
+		totalCycles += 100; // also write to memory
 	} else {
 		// because the tag was there, so it did not have to be loaded
 		slot->dirty = true; // now there is an inconsistency between the slot and memory
@@ -123,8 +123,9 @@ void Cache::handleStoreHit(int address, Slot* slot) {
 void Cache::handleStoreMiss(int address) {
 	if (writeAllocate) { 
 		handleLoadMiss(address); // must put it in the cache first, which is handled by this function
+		sets.at(getIndex(address)).isHit(getTag(address))->dirty = false;
 	} else {
-		writeToMemory();
+		totalCycles += 100;
 	}
 	
 	this->tick();
@@ -139,12 +140,15 @@ void Cache::handleLoadHit(int address, Slot* slot) {
 }
 
 void Cache::handleLoadMiss(int address) {
+
 	bool replacedDirtyBlock = sets.at(getIndex(address)).add(getTag(address), this->lru, this->cacheClock);
 	this->totalCycles++;
 	if (!writeThrough && replacedDirtyBlock) {
 		writeToMemory(); // if write back and we just evicted a dirty block need to account for writing it to main mem
 		// FIXME: should the block be dirty right now?
-		sets.at(getIndex(address)).isHit(getTag(address))->dirty = false;
+		//should be not dirty b/c its now a new block. This is to 
+		//account for writing what was previously in the block back to main memory
+		// sets.at(getIndex(address)).isHit(getTag(address))->dirty = false;
 	}
 	writeToMemory(); // the time it takes to load the value from main memory
 	this->tick();
@@ -166,17 +170,7 @@ void Cache::getStatistics() {
 
 /* Not sure if we want this but it goes through at the end of the cache's
 	life and stores any dirty blocks. */
-void Cache::cleanUpCache(){
-	if(writeThrough){
-		return;
-	}
-	int numDirty = 0;
-	for(int i = 0; i < numSets; i++) {
-		numDirty += sets.at(i).howManyDirty();
-	}
-	this->totalCycles += numDirty * ((this->bytesPerBlock / 4) * 100);
-	cout << numDirty << endl;
-}
+
 
 ostream& operator<<(ostream& os, const Cache& c) {
 	os << "CACHE. TIME: " << c.cacheClock << endl;

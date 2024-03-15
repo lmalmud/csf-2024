@@ -1,0 +1,3974 @@
+9c9
+< Total cycles: 80129983
+---
+> Total cycles: 68468201
+18c18
+< Total cycles: 50742483
+---
+> Total cycles: 68633215
+27c27
+< Total cycles: 50863144
+---
+> Total cycles: 50555343
+36c36
+< Total cycles: 48705093
+---
+> Total cycles: 36358194
+45c45
+< Total cycles: 28935593
+---
+> Total cycles: 36286769
+54c54
+< Total cycles: 30139798
+---
+> Total cycles: 29923219
+63c63
+< Total cycles: 80129983
+---
+> Total cycles: 68468201
+72c72
+< Total cycles: 50742483
+---
+> Total cycles: 68633215
+81c81
+< Total cycles: 50863144
+---
+> Total cycles: 50555343
+90c90
+< Total cycles: 48705093
+---
+> Total cycles: 36358194
+99c99
+< Total cycles: 28935593
+---
+> Total cycles: 36286769
+108c108
+< Total cycles: 30139798
+---
+> Total cycles: 29923219
+117c117
+< Total cycles: 449139683
+---
+> Total cycles: 346119507
+126c126
+< Total cycles: 261854183
+---
+> Total cycles: 271524221
+135c135
+< Total cycles: 190327906
+---
+> Total cycles: 190115123
+144c144
+< Total cycles: 313601593
+---
+> Total cycles: 213910539
+153c153
+< Total cycles: 172533593
+---
+> Total cycles: 177170914
+162c162
+< Total cycles: 148023167
+---
+> Total cycles: 147848746
+171c171
+< Total cycles: 449139683
+---
+> Total cycles: 346119507
+180c180
+< Total cycles: 261854183
+---
+> Total cycles: 271524221
+189c189
+< Total cycles: 190327906
+---
+> Total cycles: 190115123
+198c198
+< Total cycles: 313601593
+---
+> Total cycles: 213910539
+207c207
+< Total cycles: 172533593
+---
+> Total cycles: 177170914
+216c216
+< Total cycles: 148023167
+---
+> Total cycles: 147848746
+225c225
+< Total cycles: 1359168483
+---
+> Total cycles: 991975942
+234c234
+< Total cycles: 753206683
+---
+> Total cycles: 758752656
+243c243
+< Total cycles: 576568098
+---
+> Total cycles: 576394208
+252c252
+< Total cycles: 1092840793
+---
+> Total cycles: 747475823
+261c261
+< Total cycles: 592112193
+---
+> Total cycles: 595994598
+270c270
+< Total cycles: 496644150
+---
+> Total cycles: 496491603
+279c279
+< Total cycles: 1359168483
+---
+> Total cycles: 991975942
+288c288
+< Total cycles: 753206683
+---
+> Total cycles: 758752656
+297c297
+< Total cycles: 576568098
+---
+> Total cycles: 576394208
+306c306
+< Total cycles: 1092840793
+---
+> Total cycles: 747475823
+315c315
+< Total cycles: 592112193
+---
+> Total cycles: 595994598
+324c324
+< Total cycles: 496644150
+---
+> Total cycles: 496491603
+333c333
+< Total cycles: 71605983
+---
+> Total cycles: 62915285
+342c342
+< Total cycles: 47114083
+---
+> Total cycles: 63616099
+351c351
+< Total cycles: 47427515
+---
+> Total cycles: 47154262
+360c360
+< Total cycles: 46659093
+---
+> Total cycles: 34901850
+369c369
+< Total cycles: 28199993
+---
+> Total cycles: 34942025
+378c378
+< Total cycles: 29317315
+---
+> Total cycles: 29109008
+383,387c383,387
+< Load hits: 49699
+< Load misses: 268498
+< Store hits: 27806
+< Store misses: 169680
+< Total cycles: 71605983
+---
+> Load hits: 47878
+> Load misses: 270319
+> Store hits: 26879
+> Store misses: 170607
+> Total cycles: 63282064
+392,396c392,396
+< Load hits: 49699
+< Load misses: 268498
+< Store hits: 27806
+< Store misses: 169680
+< Total cycles: 47114083
+---
+> Load hits: 47878
+> Load misses: 270319
+> Store hits: 26879
+> Store misses: 170607
+> Total cycles: 63889078
+401,405c401,405
+< Load hits: 44944
+< Load misses: 273253
+< Store hits: 35418
+< Store misses: 162068
+< Total cycles: 47427515
+---
+> Load hits: 41542
+> Load misses: 276655
+> Store hits: 34769
+> Store misses: 162717
+> Total cycles: 47490411
+410,414c410,414
+< Load hits: 24225
+< Load misses: 196443
+< Store hits: 12315
+< Store misses: 70210
+< Total cycles: 46659093
+---
+> Load hits: 22750
+> Load misses: 197918
+> Store hits: 12358
+> Store misses: 70167
+> Total cycles: 35056875
+419,423c419,423
+< Load hits: 24225
+< Load misses: 196443
+< Store hits: 12315
+< Store misses: 70210
+< Total cycles: 28199993
+---
+> Load hits: 22750
+> Load misses: 197918
+> Store hits: 12358
+> Store misses: 70167
+> Total cycles: 35083750
+428,432c428,432
+< Load hits: 12361
+< Load misses: 208307
+< Store hits: 13447
+< Store misses: 69078
+< Total cycles: 29317315
+---
+> Load hits: 11187
+> Load misses: 209481
+> Store hits: 13385
+> Store misses: 69140
+> Total cycles: 29225172
+441c441
+< Total cycles: 319964483
+---
+> Total cycles: 231655021
+450c450
+< Total cycles: 183053583
+---
+> Total cycles: 188419735
+459c459
+< Total cycles: 143512083
+---
+> Total cycles: 143357877
+468c468
+< Total cycles: 237267993
+---
+> Total cycles: 155926769
+477c477
+< Total cycles: 128232893
+---
+> Total cycles: 130718344
+486c486
+< Total cycles: 113661063
+---
+> Total cycles: 113529613
+491,495c491,495
+< Load hits: 164735
+< Load misses: 153462
+< Store hits: 140315
+< Store misses: 57171
+< Total cycles: 319964483
+---
+> Load hits: 168068
+> Load misses: 150129
+> Store hits: 142064
+> Store misses: 55422
+> Total cycles: 226487954
+500,504c500,504
+< Load hits: 164735
+< Load misses: 153462
+< Store hits: 140315
+< Store misses: 57171
+< Total cycles: 183053583
+---
+> Load hits: 168068
+> Load misses: 150129
+> Store hits: 142064
+> Store misses: 55422
+> Total cycles: 184357468
+509,513c509,513
+< Load hits: 163991
+< Load misses: 154206
+< Store hits: 80486
+< Store misses: 117000
+< Total cycles: 143512083
+---
+> Load hits: 164561
+> Load misses: 153636
+> Store hits: 75521
+> Store misses: 121965
+> Total cycles: 142897482
+518,522c518,522
+< Load hits: 94644
+< Load misses: 126024
+< Store hits: 55585
+< Store misses: 26940
+< Total cycles: 237267993
+---
+> Load hits: 92861
+> Load misses: 127807
+> Store hits: 55039
+> Store misses: 27486
+> Total cycles: 158156186
+527,531c527,531
+< Load hits: 94644
+< Load misses: 126024
+< Store hits: 55585
+< Store misses: 26940
+< Total cycles: 128232893
+---
+> Load hits: 92861
+> Load misses: 127807
+> Store hits: 55039
+> Store misses: 27486
+> Total cycles: 132579761
+536,540c536,540
+< Load hits: 89218
+< Load misses: 131450
+< Store hits: 27895
+< Store misses: 54630
+< Total cycles: 113661063
+---
+> Load hits: 88885
+> Load misses: 131783
+> Store hits: 27672
+> Store misses: 54853
+> Total cycles: 113795457
+549c549
+< Total cycles: 714138083
+---
+> Total cycles: 505171544
+558c558
+< Total cycles: 391310283
+---
+> Total cycles: 393061858
+567c567
+< Total cycles: 329424299
+---
+> Total cycles: 329327669
+576c576
+< Total cycles: 719391193
+---
+> Total cycles: 458426923
+585c585
+< Total cycles: 373073193
+---
+> Total cycles: 374632098
+594c594
+< Total cycles: 335632276
+---
+> Total cycles: 335530051
+599,603c599,603
+< Load hits: 222058
+< Load misses: 96139
+< Store hits: 177034
+< Store misses: 20452
+< Total cycles: 714138083
+---
+> Load hits: 218272
+> Load misses: 99925
+> Store hits: 171530
+> Store misses: 25956
+> Total cycles: 557318158
+608,612c608,612
+< Load hits: 222058
+< Load misses: 96139
+< Store hits: 177034
+< Store misses: 20452
+< Total cycles: 391310283
+---
+> Load hits: 218272
+> Load misses: 99925
+> Store hits: 171530
+> Store misses: 25956
+> Total cycles: 422786072
+617,621c617,621
+< Load hits: 221567
+< Load misses: 96630
+< Store hits: 141502
+< Store misses: 55984
+< Total cycles: 329424299
+---
+> Load hits: 218439
+> Load misses: 99758
+> Store hits: 118890
+> Store misses: 78596
+> Total cycles: 339311529
+626,630c626,630
+< Load hits: 123598
+< Load misses: 97070
+< Store hits: 65140
+< Store misses: 17385
+< Total cycles: 719391193
+---
+> Load hits: 120071
+> Load misses: 100597
+> Store hits: 63553
+> Store misses: 18972
+> Total cycles: 488685796
+635,639c635,639
+< Load hits: 123598
+< Load misses: 97070
+< Store hits: 65140
+< Store misses: 17385
+< Total cycles: 373073193
+---
+> Load hits: 120071
+> Load misses: 100597
+> Store hits: 63553
+> Store misses: 18972
+> Total cycles: 390993371
+644,648c644,648
+< Load hits: 118443
+< Load misses: 102225
+< Store hits: 39108
+< Store misses: 43417
+< Total cycles: 335632276
+---
+> Load hits: 115950
+> Load misses: 104718
+> Store hits: 38555
+> Store misses: 43970
+> Total cycles: 343504605
+657c657
+< Total cycles: 47343383
+---
+> Total cycles: 44258730
+666c666
+< Total cycles: 37239583
+---
+> Total cycles: 48392644
+675c675
+< Total cycles: 37831305
+---
+> Total cycles: 37654633
+684c684
+< Total cycles: 39712893
+---
+> Total cycles: 28077230
+693c693
+< Total cycles: 25581993
+---
+> Total cycles: 29936405
+702c702
+< Total cycles: 25768293
+---
+> Total cycles: 25595782
+707,711c707,711
+< Load hits: 148444
+< Load misses: 169753
+< Store hits: 82283
+< Store misses: 115203
+< Total cycles: 47343383
+---
+> Load hits: 146221
+> Load misses: 171976
+> Store hits: 79912
+> Store misses: 117574
+> Total cycles: 45353907
+716,720c716,720
+< Load hits: 148444
+< Load misses: 169753
+< Store hits: 82283
+< Store misses: 115203
+< Total cycles: 37239583
+---
+> Load hits: 146221
+> Load misses: 171976
+> Store hits: 79912
+> Store misses: 117574
+> Total cycles: 48849821
+725,729c725,729
+< Load hits: 141525
+< Load misses: 176672
+< Store hits: 97308
+< Store misses: 100178
+< Total cycles: 37831305
+---
+> Load hits: 117779
+> Load misses: 200418
+> Store hits: 94389
+> Store misses: 103097
+> Total cycles: 40002568
+734,738c734,738
+< Load hits: 50405
+< Load misses: 170263
+< Store hits: 36453
+< Store misses: 46072
+< Total cycles: 39712893
+---
+> Load hits: 47280
+> Load misses: 173388
+> Store hits: 29393
+> Store misses: 53132
+> Total cycles: 29965305
+743,747c743,747
+< Load hits: 50405
+< Load misses: 170263
+< Store hits: 36453
+< Store misses: 46072
+< Total cycles: 25581993
+---
+> Load hits: 47280
+> Load misses: 173388
+> Store hits: 29393
+> Store misses: 53132
+> Total cycles: 30951780
+752,756c752,756
+< Load hits: 48157
+< Load misses: 172511
+< Store hits: 44025
+< Store misses: 38500
+< Total cycles: 25768293
+---
+> Load hits: 32926
+> Load misses: 187742
+> Store hits: 39317
+> Store misses: 43208
+> Total cycles: 27098943
+765c765
+< Total cycles: 91426083
+---
+> Total cycles: 65174749
+774c774
+< Total cycles: 65370083
+---
+> Total cycles: 66528263
+783c783
+< Total cycles: 58294619
+---
+> Total cycles: 58247022
+792c792
+< Total cycles: 61908793
+---
+> Total cycles: 50434890
+801c801
+< Total cycles: 39712393
+---
+> Total cycles: 40725665
+810c810
+< Total cycles: 30689313
+---
+> Total cycles: 30661616
+815,819c815,819
+< Load hits: 274063
+< Load misses: 44134
+< Store hits: 183488
+< Store misses: 13998
+< Total cycles: 91426083
+---
+> Load hits: 264756
+> Load misses: 53441
+> Store hits: 178630
+> Store misses: 18856
+> Total cycles: 84403042
+824,828c824,828
+< Load hits: 274063
+< Load misses: 44134
+< Store hits: 183488
+< Store misses: 13998
+< Total cycles: 65370083
+---
+> Load hits: 264756
+> Load misses: 53441
+> Store hits: 178630
+> Store misses: 18856
+> Total cycles: 77850956
+833,837c833,837
+< Load hits: 270600
+< Load misses: 47597
+< Store hits: 150222
+< Store misses: 47264
+< Total cycles: 58294619
+---
+> Load hits: 259837
+> Load misses: 58360
+> Store hits: 145329
+> Store misses: 52157
+> Total cycles: 66841766
+842,846c842,846
+< Load hits: 191565
+< Load misses: 29103
+< Store hits: 71276
+< Store misses: 11249
+< Total cycles: 61908793
+---
+> Load hits: 181593
+> Load misses: 39075
+> Store hits: 70324
+> Store misses: 12201
+> Total cycles: 62299318
+851,855c851,855
+< Load hits: 191565
+< Load misses: 29103
+< Store hits: 71276
+< Store misses: 11249
+< Total cycles: 39712393
+---
+> Load hits: 181593
+> Load misses: 39075
+> Store hits: 70324
+> Store misses: 12201
+> Total cycles: 49454893
+860,864c860,864
+< Load hits: 192971
+< Load misses: 27697
+< Store hits: 58545
+< Store misses: 23980
+< Total cycles: 30689313
+---
+> Load hits: 182776
+> Load misses: 37892
+> Store hits: 57396
+> Store misses: 25129
+> Total cycles: 38806272
+873c873
+< Total cycles: 148954083
+---
+> Total cycles: 102029111
+882c882
+< Total cycles: 95804783
+---
+> Total cycles: 96025025
+891c891
+< Total cycles: 83639433
+---
+> Total cycles: 83619619
+900c900
+< Total cycles: 88335193
+---
+> Total cycles: 67169267
+909c909
+< Total cycles: 53508793
+---
+> Total cycles: 53758442
+918c918
+< Total cycles: 34442379
+---
+> Total cycles: 34434285
+923,927c923,927
+< Load hits: 298825
+< Load misses: 19372
+< Store hits: 193115
+< Store misses: 4371
+< Total cycles: 148954083
+---
+> Load hits: 293846
+> Load misses: 24351
+> Store hits: 191679
+> Store misses: 5807
+> Total cycles: 134657732
+932,936c932,936
+< Load hits: 298825
+< Load misses: 19372
+< Store hits: 193115
+< Store misses: 4371
+< Total cycles: 95804783
+---
+> Load hits: 293846
+> Load misses: 24351
+> Store hits: 191679
+> Store misses: 5807
+> Total cycles: 116548046
+941,945c941,945
+< Load hits: 298383
+< Load misses: 19814
+< Store hits: 167836
+< Store misses: 29650
+< Total cycles: 83639433
+---
+> Load hits: 293741
+> Load misses: 24456
+> Store hits: 164604
+> Store misses: 32882
+> Total cycles: 98466145
+950,954c950,954
+< Load hits: 209942
+< Load misses: 10726
+< Store hits: 79096
+< Store misses: 3429
+< Total cycles: 88335193
+---
+> Load hits: 206151
+> Load misses: 14517
+> Store hits: 78774
+> Store misses: 3751
+> Total cycles: 88941476
+959,963c959,963
+< Load hits: 209942
+< Load misses: 10726
+< Store hits: 79096
+< Store misses: 3429
+< Total cycles: 53508793
+---
+> Load hits: 206151
+> Load misses: 14517
+> Store hits: 78774
+> Store misses: 3751
+> Total cycles: 66916251
+968,972c968,972
+< Load hits: 212574
+< Load misses: 8094
+< Store hits: 68411
+< Store misses: 14114
+< Total cycles: 34442379
+---
+> Load hits: 210310
+> Load misses: 10358
+> Store hits: 67754
+> Store misses: 14771
+> Total cycles: 41676164
+981c981
+< Total cycles: 13244583
+---
+> Total cycles: 13246618
+990c990
+< Total cycles: 24050783
+---
+> Total cycles: 27851332
+999c999
+< Total cycles: 24006308
+---
+> Total cycles: 23968388
+1008c1008
+< Total cycles: 8277293
+---
+> Total cycles: 8652618
+1017c1017
+< Total cycles: 10943193
+---
+> Total cycles: 13610093
+1026c1026
+< Total cycles: 10662956
+---
+> Total cycles: 10641580
+1031,1035c1031,1035
+< Load hits: 280332
+< Load misses: 37865
+< Store hits: 157127
+< Store misses: 40359
+< Total cycles: 13244583
+---
+> Load hits: 271045
+> Load misses: 47152
+> Store hits: 151629
+> Store misses: 45857
+> Total cycles: 15773531
+1040,1044c1040,1044
+< Load hits: 280332
+< Load misses: 37865
+< Store hits: 157127
+< Store misses: 40359
+< Total cycles: 24050783
+---
+> Load hits: 271045
+> Load misses: 47152
+> Store hits: 151629
+> Store misses: 45857
+> Total cycles: 29320545
+1049,1053c1049,1053
+< Load hits: 280277
+< Load misses: 37920
+< Store hits: 147511
+< Store misses: 49975
+< Total cycles: 24006308
+---
+> Load hits: 269280
+> Load misses: 48917
+> Store hits: 142536
+> Store misses: 54950
+> Total cycles: 25052116
+1058,1062c1058,1062
+< Load hits: 196793
+< Load misses: 23875
+< Store hits: 54792
+< Store misses: 27733
+< Total cycles: 8277293
+---
+> Load hits: 185055
+> Load misses: 35613
+> Store hits: 53229
+> Store misses: 29296
+> Total cycles: 10551780
+1067,1071c1067,1071
+< Load hits: 196793
+< Load misses: 23875
+< Store hits: 54792
+< Store misses: 27733
+< Total cycles: 10943193
+---
+> Load hits: 185055
+> Load misses: 35613
+> Store hits: 53229
+> Store misses: 29296
+> Total cycles: 14928455
+1076,1080c1076,1080
+< Load hits: 199292
+< Load misses: 21376
+< Store hits: 52188
+< Store misses: 30337
+< Total cycles: 10662956
+---
+> Load hits: 192525
+> Load misses: 28143
+> Store hits: 51553
+> Store misses: 30972
+> Total cycles: 11310878
+1089c1089
+< Total cycles: 26210883
+---
+> Total cycles: 20140783
+1098c1098
+< Total cycles: 32760583
+---
+> Total cycles: 33183897
+1107c1107
+< Total cycles: 29120659
+---
+> Total cycles: 29109548
+1116c1116
+< Total cycles: 20236793
+---
+> Total cycles: 17003609
+1125c1125
+< Total cycles: 18207893
+---
+> Total cycles: 18814384
+1134c1134
+< Total cycles: 13901956
+---
+> Total cycles: 13895246
+1139,1143c1139,1143
+< Load hits: 308097
+< Load misses: 10100
+< Store hits: 191177
+< Store misses: 6309
+< Total cycles: 26210883
+---
+> Load hits: 304532
+> Load misses: 13665
+> Store hits: 190204
+> Store misses: 7282
+> Total cycles: 25799618
+1148,1152c1148,1152
+< Load hits: 308097
+< Load misses: 10100
+< Store hits: 191177
+< Store misses: 6309
+< Total cycles: 32760583
+---
+> Load hits: 304532
+> Load misses: 13665
+> Store hits: 190204
+> Store misses: 7282
+> Total cycles: 36810732
+1157,1161c1157,1161
+< Load hits: 307086
+< Load misses: 11111
+< Store hits: 165062
+< Store misses: 32424
+< Total cycles: 29120659
+---
+> Load hits: 303226
+> Load misses: 14971
+> Store hits: 162947
+> Store misses: 34539
+> Total cycles: 32191573
+1166,1170c1166,1170
+< Load hits: 214684
+< Load misses: 5984
+< Store hits: 75575
+< Store misses: 6950
+< Total cycles: 20236793
+---
+> Load hits: 211124
+> Load misses: 9544
+> Store hits: 74853
+> Store misses: 7672
+> Total cycles: 22248849
+1175,1179c1175,1179
+< Load hits: 214684
+< Load misses: 5984
+< Store hits: 75575
+< Store misses: 6950
+< Total cycles: 18207893
+---
+> Load hits: 211124
+> Load misses: 9544
+> Store hits: 74853
+> Store misses: 7672
+> Total cycles: 22236424
+1184,1188c1184,1188
+< Load hits: 213958
+< Load misses: 6710
+< Store hits: 60788
+< Store misses: 21737
+< Total cycles: 13901956
+---
+> Load hits: 212196
+> Load misses: 8472
+> Store hits: 60377
+> Store misses: 22148
+> Total cycles: 15302673
+1197c1197
+< Total cycles: 27498083
+---
+> Total cycles: 21873018
+1206c1206
+< Total cycles: 34046783
+---
+> Total cycles: 34016132
+1215c1215
+< Total cycles: 30543839
+---
+> Total cycles: 30540620
+1224c1224
+< Total cycles: 17861593
+---
+> Total cycles: 15406091
+1233c1233
+< Total cycles: 17352093
+---
+> Total cycles: 17438466
+1242c1242
+< Total cycles: 13845418
+---
+> Total cycles: 13843761
+1247,1251c1247,1251
+< Load hits: 315532
+< Load misses: 2665
+< Store hits: 195791
+< Store misses: 1695
+< Total cycles: 27498083
+---
+> Load hits: 313974
+> Load misses: 4223
+> Store hits: 195545
+> Store misses: 1941
+> Total cycles: 30002660
+1256,1260c1256,1260
+< Load hits: 315532
+< Load misses: 2665
+< Store hits: 195791
+< Store misses: 1695
+< Total cycles: 34046783
+---
+> Load hits: 313974
+> Load misses: 4223
+> Store hits: 195545
+> Store misses: 1941
+> Total cycles: 39787374
+1265,1269c1265,1269
+< Load hits: 314978
+< Load misses: 3219
+< Store hits: 176242
+< Store misses: 21244
+< Total cycles: 30543839
+---
+> Load hits: 313504
+> Load misses: 4693
+> Store hits: 173800
+> Store misses: 23686
+> Total cycles: 35253504
+1274,1278c1274,1278
+< Load hits: 219566
+< Load misses: 1102
+< Store hits: 80825
+< Store misses: 1700
+< Total cycles: 17861593
+---
+> Load hits: 218552
+> Load misses: 2116
+> Store hits: 80615
+> Store misses: 1910
+> Total cycles: 21229077
+1283,1287c1283,1287
+< Load hits: 219566
+< Load misses: 1102
+< Store hits: 80825
+< Store misses: 1700
+< Total cycles: 17352093
+---
+> Load hits: 218552
+> Load misses: 2116
+> Store hits: 80615
+> Store misses: 1910
+> Total cycles: 21354252
+1292,1296c1292,1296
+< Load hits: 219011
+< Load misses: 1657
+< Store hits: 69850
+< Store misses: 12675
+< Total cycles: 13845418
+---
+> Load hits: 218394
+> Load misses: 2274
+> Store hits: 69486
+> Store misses: 13039
+> Total cycles: 15817180
+1305c1305
+< Total cycles: 74049983
+---
+> Total cycles: 64711175
+1314c1314
+< Total cycles: 48095083
+---
+> Total cycles: 65181589
+1323c1323
+< Total cycles: 48449327
+---
+> Total cycles: 48165745
+1332c1332
+< Total cycles: 47779393
+---
+> Total cycles: 35585815
+1341c1341
+< Total cycles: 28623493
+---
+> Total cycles: 35652990
+1350c1350
+< Total cycles: 29617085
+---
+> Total cycles: 29405754
+1359c1359
+< Total cycles: 74049983
+---
+> Total cycles: 64711175
+1368c1368
+< Total cycles: 48095083
+---
+> Total cycles: 65181589
+1377c1377
+< Total cycles: 48449327
+---
+> Total cycles: 48165745
+1386c1386
+< Total cycles: 47779393
+---
+> Total cycles: 35585815
+1395c1395
+< Total cycles: 28623493
+---
+> Total cycles: 35652990
+1404c1404
+< Total cycles: 29617085
+---
+> Total cycles: 29405754
+1413c1413
+< Total cycles: 308002083
+---
+> Total cycles: 224358244
+1422c1422
+< Total cycles: 177599483
+---
+> Total cycles: 182281358
+1431c1431
+< Total cycles: 147045128
+---
+> Total cycles: 146886510
+1440c1440
+< Total cycles: 241472793
+---
+> Total cycles: 156699882
+1449c1449
+< Total cycles: 131383893
+---
+> Total cycles: 133986657
+1458c1458
+< Total cycles: 111698662
+---
+> Total cycles: 111569669
+1467c1467
+< Total cycles: 308002083
+---
+> Total cycles: 224358244
+1476c1476
+< Total cycles: 177599483
+---
+> Total cycles: 182281358
+1485c1485
+< Total cycles: 147045128
+---
+> Total cycles: 146886510
+1494c1494
+< Total cycles: 241472793
+---
+> Total cycles: 156699882
+1503c1503
+< Total cycles: 131383893
+---
+> Total cycles: 133986657
+1512c1512
+< Total cycles: 111698662
+---
+> Total cycles: 111569669
+1521c1521
+< Total cycles: 857702883
+---
+> Total cycles: 605880399
+1530c1530
+< Total cycles: 468880783
+---
+> Total cycles: 471639513
+1539c1539
+< Total cycles: 373146579
+---
+> Total cycles: 373036268
+1548c1548
+< Total cycles: 760059993
+---
+> Total cycles: 489997789
+1557c1557
+< Total cycles: 398608593
+---
+> Total cycles: 400289364
+1566c1566
+< Total cycles: 342573786
+---
+> Total cycles: 342469393
+1575c1575
+< Total cycles: 857702883
+---
+> Total cycles: 605880399
+1584c1584
+< Total cycles: 468880783
+---
+> Total cycles: 471639513
+1593c1593
+< Total cycles: 373146579
+---
+> Total cycles: 373036268
+1602c1602
+< Total cycles: 760059993
+---
+> Total cycles: 489997789
+1611c1611
+< Total cycles: 398608593
+---
+> Total cycles: 400289364
+1620c1620
+< Total cycles: 342573786
+---
+> Total cycles: 342469393
+1629c1629
+< Total cycles: 60824083
+---
+> Total cycles: 54608886
+1638c1638
+< Total cycles: 42603983
+---
+> Total cycles: 56883600
+1647c1647
+< Total cycles: 43078750
+---
+> Total cycles: 42849278
+1656c1656
+< Total cycles: 42794593
+---
+> Total cycles: 30906194
+1665c1665
+< Total cycles: 26595593
+---
+> Total cycles: 32020369
+1674c1674
+< Total cycles: 27689040
+---
+> Total cycles: 27497139
+1679,1683c1679,1683
+< Load hits: 94800
+< Load misses: 223397
+< Store hits: 50481
+< Store misses: 147005
+< Total cycles: 60824083
+---
+> Load hits: 92275
+> Load misses: 225922
+> Store hits: 49715
+> Store misses: 147771
+> Total cycles: 55170561
+1688,1692c1688,1692
+< Load hits: 94800
+< Load misses: 223397
+< Store hits: 50481
+< Store misses: 147005
+< Total cycles: 42603983
+---
+> Load hits: 92275
+> Load misses: 225922
+> Store hits: 49715
+> Store misses: 147771
+> Total cycles: 57210175
+1697,1701c1697,1701
+< Load hits: 88725
+< Load misses: 229472
+< Store hits: 64753
+< Store misses: 132733
+< Total cycles: 43078750
+---
+> Load hits: 86898
+> Load misses: 231299
+> Store hits: 64182
+> Store misses: 133304
+> Total cycles: 43029580
+1706,1710c1706,1710
+< Load hits: 40269
+< Load misses: 180399
+< Store hits: 25648
+< Store misses: 56877
+< Total cycles: 42794593
+---
+> Load hits: 38042
+> Load misses: 182626
+> Store hits: 25702
+> Store misses: 56823
+> Total cycles: 31211567
+1715,1719c1715,1719
+< Load hits: 40269
+< Load misses: 180399
+< Store hits: 25648
+< Store misses: 56877
+< Total cycles: 26595593
+---
+> Load hits: 38042
+> Load misses: 182626
+> Store hits: 25702
+> Store misses: 56823
+> Total cycles: 32235442
+1724,1728c1724,1728
+< Load hits: 28767
+< Load misses: 191901
+< Store hits: 25772
+< Store misses: 56753
+< Total cycles: 27689040
+---
+> Load hits: 27990
+> Load misses: 192678
+> Store hits: 25704
+> Store misses: 56821
+> Total cycles: 27573994
+1737c1737
+< Total cycles: 100729283
+---
+> Total cycles: 72739122
+1746c1746
+< Total cycles: 70265683
+---
+> Total cycles: 71520636
+1755c1755
+< Total cycles: 61167750
+---
+> Total cycles: 61116559
+1764c1764
+< Total cycles: 112291993
+---
+> Total cycles: 75430023
+1773c1773
+< Total cycles: 64996193
+---
+> Total cycles: 66016798
+1782c1782
+< Total cycles: 52708567
+---
+> Total cycles: 52653346
+1787,1791c1787,1791
+< Load hits: 268836
+< Load misses: 49361
+< Store hits: 182468
+< Store misses: 15018
+< Total cycles: 100729283
+---
+> Load hits: 263884
+> Load misses: 54313
+> Store hits: 179935
+> Store misses: 17551
+> Total cycles: 83088570
+1796,1800c1796,1800
+< Load hits: 268836
+< Load misses: 49361
+< Store hits: 182468
+< Store misses: 15018
+< Total cycles: 70265683
+---
+> Load hits: 263884
+> Load misses: 54313
+> Store hits: 179935
+> Store misses: 17551
+> Total cycles: 77503684
+1805,1809c1805,1809
+< Load hits: 267006
+< Load misses: 51191
+< Store hits: 148153
+< Store misses: 49333
+< Total cycles: 61167750
+---
+> Load hits: 260971
+> Load misses: 57226
+> Store hits: 143692
+> Store misses: 53794
+> Total cycles: 65934063
+1814,1818c1814,1818
+< Load hits: 160298
+< Load misses: 60370
+< Store hits: 70890
+< Store misses: 11635
+< Total cycles: 112291993
+---
+> Load hits: 155917
+> Load misses: 64751
+> Store hits: 70046
+> Store misses: 12479
+> Total cycles: 81666442
+1823,1827c1823,1827
+< Load hits: 160298
+< Load misses: 60370
+< Store hits: 70890
+< Store misses: 11635
+< Total cycles: 64996193
+---
+> Load hits: 155917
+> Load misses: 64751
+> Store hits: 70046
+> Store misses: 12479
+> Total cycles: 70192417
+1832,1836c1832,1836
+< Load hits: 165447
+< Load misses: 55221
+< Store hits: 58599
+< Store misses: 23926
+< Total cycles: 52708567
+---
+> Load hits: 160663
+> Load misses: 60005
+> Store hits: 56915
+> Store misses: 25610
+> Total cycles: 56474078
+1845c1845
+< Total cycles: 195325283
+---
+> Total cycles: 132112217
+1854c1854
+< Total cycles: 119177183
+---
+> Total cycles: 119474531
+1863c1863
+< Total cycles: 103922784
+---
+> Total cycles: 103896631
+1872c1872
+< Total cycles: 114475993
+---
+> Total cycles: 84445641
+1881c1881
+< Total cycles: 66776693
+---
+> Total cycles: 67076416
+1890c1890
+< Total cycles: 45081996
+---
+> Total cycles: 45070577
+1895,1899c1895,1899
+< Load hits: 292331
+< Load misses: 25866
+< Store hits: 192279
+< Store misses: 5207
+< Total cycles: 195325283
+---
+> Load hits: 288351
+> Load misses: 29846
+> Store hits: 191371
+> Store misses: 6115
+> Total cycles: 156242637
+1904,1908c1904,1908
+< Load hits: 292331
+< Load misses: 25866
+< Store hits: 192279
+< Store misses: 5207
+< Total cycles: 119177183
+---
+> Load hits: 288351
+> Load misses: 29846
+> Store hits: 191371
+> Store misses: 6115
+> Total cycles: 135112151
+1913,1917c1913,1917
+< Load hits: 292044
+< Load misses: 26153
+< Store hits: 166387
+< Store misses: 31099
+< Total cycles: 103922784
+---
+> Load hits: 288007
+> Load misses: 30190
+> Store hits: 163980
+> Store misses: 33506
+> Total cycles: 116808587
+1922,1926c1922,1926
+< Load hits: 206316
+< Load misses: 14352
+< Store hits: 78559
+< Store misses: 3966
+< Total cycles: 114475993
+---
+> Load hits: 201750
+> Load misses: 18918
+> Store hits: 78156
+> Store misses: 4369
+> Total cycles: 105113075
+1931,1935c1931,1935
+< Load hits: 206316
+< Load misses: 14352
+< Store hits: 78559
+< Store misses: 3966
+< Total cycles: 66776693
+---
+> Load hits: 201750
+> Load misses: 18918
+> Store hits: 78156
+> Store misses: 4369
+> Total cycles: 82972650
+1940,1944c1940,1944
+< Load hits: 209249
+< Load misses: 11419
+< Store hits: 68028
+< Store misses: 14497
+< Total cycles: 45081996
+---
+> Load hits: 205997
+> Load misses: 14671
+> Store hits: 67417
+> Store misses: 15108
+> Total cycles: 55473114
+1953c1953
+< Total cycles: 20445583
+---
+> Total cycles: 18863535
+1962c1962
+< Total cycles: 26839083
+---
+> Total cycles: 31730649
+1971c1971
+< Total cycles: 27309776
+---
+> Total cycles: 27238714
+1980c1980
+< Total cycles: 11397493
+---
+> Total cycles: 11258508
+1989c1989
+< Total cycles: 12504193
+---
+> Total cycles: 15418283
+1998c1998
+< Total cycles: 11381513
+---
+> Total cycles: 11352941
+2003,2007c2003,2007
+< Load hits: 252449
+< Load misses: 65748
+< Store hits: 145938
+< Store misses: 51548
+< Total cycles: 20445583
+---
+> Load hits: 239236
+> Load misses: 78961
+> Store hits: 133156
+> Store misses: 64330
+> Total cycles: 23496422
+2012,2016c2012,2016
+< Load hits: 252449
+< Load misses: 65748
+< Store hits: 145938
+< Store misses: 51548
+< Total cycles: 26839083
+---
+> Load hits: 239236
+> Load misses: 78961
+> Store hits: 133156
+> Store misses: 64330
+> Total cycles: 34316936
+2021,2025c2021,2025
+< Load hits: 247135
+< Load misses: 71062
+< Store hits: 136779
+< Store misses: 60707
+< Total cycles: 27309776
+---
+> Load hits: 229620
+> Load misses: 88577
+> Store hits: 129110
+> Store misses: 68376
+> Total cycles: 28965030
+2030,2034c2030,2034
+< Load hits: 181183
+< Load misses: 39485
+< Store hits: 52164
+< Store misses: 30361
+< Total cycles: 11397493
+---
+> Load hits: 157142
+> Load misses: 63526
+> Store hits: 48706
+> Store misses: 33819
+> Total cycles: 15073467
+2039,2043c2039,2043
+< Load hits: 181183
+< Load misses: 39485
+< Store hits: 52164
+< Store misses: 30361
+< Total cycles: 12504193
+---
+> Load hits: 157142
+> Load misses: 63526
+> Store hits: 48706
+> Store misses: 33819
+> Total cycles: 18144142
+2048,2052c2048,2052
+< Load hits: 192096
+< Load misses: 28572
+< Store hits: 51145
+< Store misses: 31380
+< Total cycles: 11381513
+---
+> Load hits: 176925
+> Load misses: 43743
+> Store hits: 50104
+> Store misses: 32421
+> Total cycles: 12853829
+2061c2061
+< Total cycles: 27210883
+---
+> Total cycles: 20918623
+2070c2070
+< Total cycles: 33268783
+---
+> Total cycles: 33700137
+2079c2079
+< Total cycles: 29809262
+---
+> Total cycles: 29797290
+2088c2088
+< Total cycles: 20393593
+---
+> Total cycles: 17094643
+2097c2097
+< Total cycles: 18302193
+---
+> Total cycles: 18903018
+2106c2106
+< Total cycles: 13714026
+---
+> Total cycles: 13707551
+2111,2115c2111,2115
+< Load hits: 307537
+< Load misses: 10660
+< Store hits: 191091
+< Store misses: 6395
+< Total cycles: 27210883
+---
+> Load hits: 304252
+> Load misses: 13945
+> Store hits: 190231
+> Store misses: 7255
+> Total cycles: 26071338
+2120,2124c2120,2124
+< Load hits: 307537
+< Load misses: 10660
+< Store hits: 191091
+< Store misses: 6395
+< Total cycles: 33268783
+---
+> Load hits: 304252
+> Load misses: 13945
+> Store hits: 190231
+> Store misses: 7255
+> Total cycles: 37012852
+2129,2133c2129,2133
+< Load hits: 306225
+< Load misses: 11972
+< Store hits: 164865
+< Store misses: 32621
+< Total cycles: 29809262
+---
+> Load hits: 302716
+> Load misses: 15481
+> Store hits: 162901
+> Store misses: 34585
+> Total cycles: 32599017
+2138,2142c2138,2142
+< Load hits: 214518
+< Load misses: 6150
+< Store hits: 75630
+< Store misses: 6895
+< Total cycles: 20393593
+---
+> Load hits: 211194
+> Load misses: 9474
+> Store hits: 74830
+> Store misses: 7695
+> Total cycles: 22171319
+2147,2151c2147,2151
+< Load hits: 214518
+< Load misses: 6150
+< Store hits: 75630
+< Store misses: 6895
+< Total cycles: 18302193
+---
+> Load hits: 211194
+> Load misses: 9474
+> Store hits: 74830
+> Store misses: 7695
+> Total cycles: 22198894
+2156,2160c2156,2160
+< Load hits: 214193
+< Load misses: 6475
+< Store hits: 60858
+< Store misses: 21667
+< Total cycles: 13714026
+---
+> Load hits: 212432
+> Load misses: 8236
+> Store hits: 60424
+> Store misses: 22101
+> Total cycles: 15114156
+2169c2169
+< Total cycles: 30848483
+---
+> Total cycles: 24176526
+2178c2178
+< Total cycles: 35742083
+---
+> Total cycles: 35714840
+2187c2187
+< Total cycles: 32007745
+---
+> Total cycles: 32004068
+2196c2196
+< Total cycles: 18287193
+---
+> Total cycles: 15921270
+2205c2205
+< Total cycles: 17555693
+---
+> Total cycles: 17646445
+2214c2214
+< Total cycles: 13842205
+---
+> Total cycles: 13840549
+2219,2223c2219,2223
+< Load hits: 315040
+< Load misses: 3157
+< Store hits: 195752
+< Store misses: 1734
+< Total cycles: 30848483
+---
+> Load hits: 313559
+> Load misses: 4638
+> Store hits: 195480
+> Store misses: 2006
+> Total cycles: 32130245
+2228,2232c2228,2232
+< Load hits: 315040
+< Load misses: 3157
+< Store hits: 195752
+< Store misses: 1734
+< Total cycles: 35742083
+---
+> Load hits: 313559
+> Load misses: 4638
+> Store hits: 195480
+> Store misses: 2006
+> Total cycles: 41322959
+2237,2241c2237,2241
+< Load hits: 314520
+< Load misses: 3677
+< Store hits: 174548
+< Store misses: 22938
+< Total cycles: 32007745
+---
+> Load hits: 313155
+> Load misses: 5042
+> Store hits: 173743
+> Store misses: 23743
+> Total cycles: 36369898
+2246,2250c2246,2250
+< Load hits: 219545
+< Load misses: 1123
+< Store hits: 80781
+< Store misses: 1744
+< Total cycles: 18287193
+---
+> Load hits: 218526
+> Load misses: 2142
+> Store hits: 80555
+> Store misses: 1970
+> Total cycles: 21766651
+2255,2259c2255,2259
+< Load hits: 219545
+< Load misses: 1123
+< Store hits: 80781
+< Store misses: 1744
+< Total cycles: 17555693
+---
+> Load hits: 218526
+> Load misses: 2142
+> Store hits: 80555
+> Store misses: 1970
+> Total cycles: 21629426
+2264,2268c2264,2268
+< Load hits: 219012
+< Load misses: 1656
+< Store hits: 69837
+< Store misses: 12688
+< Total cycles: 13842205
+---
+> Load hits: 218442
+> Load misses: 2226
+> Store hits: 69543
+> Store misses: 12982
+> Total cycles: 15663685
+2277c2277
+< Total cycles: 7732083
+---
+> Total cycles: 8789475
+2286c2286
+< Total cycles: 21815083
+---
+> Total cycles: 24830889
+2295c2295
+< Total cycles: 21969557
+---
+> Total cycles: 21952077
+2304c2304
+< Total cycles: 6362293
+---
+> Total cycles: 6852607
+2313c2313
+< Total cycles: 10134293
+---
+> Total cycles: 12452482
+2322c2322
+< Total cycles: 10073340
+---
+> Total cycles: 10057875
+2327,2331c2327,2331
+< Load hits: 302689
+< Load misses: 15508
+< Store hits: 165198
+< Store misses: 32288
+< Total cycles: 7732083
+---
+> Load hits: 296098
+> Load misses: 22099
+> Store hits: 162509
+> Store misses: 34977
+> Total cycles: 10294184
+2336,2340c2336,2340
+< Load hits: 302689
+< Load misses: 15508
+< Store hits: 165198
+< Store misses: 32288
+< Total cycles: 21815083
+---
+> Load hits: 296098
+> Load misses: 22099
+> Store hits: 162509
+> Store misses: 34977
+> Total cycles: 25752298
+2345,2349c2345,2349
+< Load hits: 300717
+< Load misses: 17480
+< Store hits: 154760
+< Store misses: 42726
+< Total cycles: 21969557
+---
+> Load hits: 294158
+> Load misses: 24039
+> Store hits: 150644
+> Store misses: 46842
+> Total cycles: 22597302
+2354,2358c2354,2358
+< Load hits: 204882
+< Load misses: 15786
+< Store hits: 58360
+< Store misses: 24165
+< Total cycles: 6362293
+---
+> Load hits: 198501
+> Load misses: 22167
+> Store hits: 56704
+> Store misses: 25821
+> Total cycles: 8033426
+2363,2367c2363,2367
+< Load hits: 204882
+< Load misses: 15786
+< Store hits: 58360
+< Store misses: 24165
+< Total cycles: 10134293
+---
+> Load hits: 198501
+> Load misses: 22167
+> Store hits: 56704
+> Store misses: 25821
+> Total cycles: 13249801
+2372,2376c2372,2376
+< Load hits: 205203
+< Load misses: 15465
+< Store hits: 53672
+< Store misses: 28853
+< Total cycles: 10073340
+---
+> Load hits: 202326
+> Load misses: 18342
+> Store hits: 53345
+> Store misses: 29180
+> Total cycles: 10342371
+2385c2385
+< Total cycles: 12944483
+---
+> Total cycles: 11500639
+2394c2394
+< Total cycles: 26200183
+---
+> Total cycles: 26499753
+2403c2403
+< Total cycles: 24240501
+---
+> Total cycles: 24235495
+2412c2412
+< Total cycles: 10984793
+---
+> Total cycles: 10779620
+2421c2421
+< Total cycles: 13634593
+---
+> Total cycles: 14142395
+2430c2430
+< Total cycles: 10344737
+---
+> Total cycles: 10342475
+2435,2439c2435,2439
+< Load hits: 315153
+< Load misses: 3044
+< Store hits: 192485
+< Store misses: 5001
+< Total cycles: 12944483
+---
+> Load hits: 314132
+> Load misses: 4065
+> Store hits: 192247
+> Store misses: 5239
+> Total cycles: 12970818
+2444,2448c2444,2448
+< Load hits: 315153
+< Load misses: 3044
+< Store hits: 192485
+< Store misses: 5001
+< Total cycles: 26200183
+---
+> Load hits: 314132
+> Load misses: 4065
+> Store hits: 192247
+> Store misses: 5239
+> Total cycles: 27505932
+2453,2457c2453,2457
+< Load hits: 313191
+< Load misses: 5006
+< Store hits: 168904
+< Store misses: 28582
+< Total cycles: 24240501
+---
+> Load hits: 312187
+> Load misses: 6010
+> Store hits: 167405
+> Store misses: 30081
+> Total cycles: 25036192
+2462,2466c2462,2466
+< Load hits: 219495
+< Load misses: 1173
+< Store hits: 76610
+< Store misses: 5915
+< Total cycles: 10984793
+---
+> Load hits: 217741
+> Load misses: 2927
+> Store hits: 76324
+> Store misses: 6201
+> Total cycles: 12937866
+2471,2475c2471,2475
+< Load hits: 219495
+< Load misses: 1173
+< Store hits: 76610
+< Store misses: 5915
+< Total cycles: 13634593
+---
+> Load hits: 217741
+> Load misses: 2927
+> Store hits: 76324
+> Store misses: 6201
+> Total cycles: 15772641
+2480,2484c2480,2484
+< Load hits: 218406
+< Load misses: 2262
+< Store hits: 61969
+< Store misses: 20556
+< Total cycles: 10344737
+---
+> Load hits: 218067
+> Load misses: 2601
+> Store hits: 61842
+> Store misses: 20683
+> Total cycles: 10613209
+2493c2493
+< Total cycles: 15194083
+---
+> Total cycles: 13669815
+2502c2502
+< Total cycles: 28099383
+---
+> Total cycles: 28043329
+2511c2511
+< Total cycles: 25715955
+---
+> Total cycles: 25714245
+2520c2520
+< Total cycles: 11515993
+---
+> Total cycles: 10878871
+2529c2529
+< Total cycles: 14437593
+---
+> Total cycles: 14511246
+2538c2538
+< Total cycles: 11676236
+---
+> Total cycles: 11675257
+2543,2547c2543,2547
+< Load hits: 317129
+< Load misses: 1068
+< Store hits: 196061
+< Store misses: 1425
+< Total cycles: 15194083
+---
+> Load hits: 316772
+> Load misses: 1425
+> Store hits: 195999
+> Store misses: 1487
+> Total cycles: 15608658
+2552,2556c2552,2556
+< Load hits: 317129
+< Load misses: 1068
+< Store hits: 196061
+< Store misses: 1425
+< Total cycles: 28099383
+---
+> Load hits: 316772
+> Load misses: 1425
+> Store hits: 195999
+> Store misses: 1487
+> Total cycles: 29383772
+2561,2565c2561,2565
+< Load hits: 316487
+< Load misses: 1710
+< Store hits: 177158
+< Store misses: 20328
+< Total cycles: 25715955
+---
+> Load hits: 316156
+> Load misses: 2041
+> Store hits: 177042
+> Store misses: 20444
+> Total cycles: 26772998
+2570,2574c2570,2574
+< Load hits: 220346
+< Load misses: 322
+< Store hits: 80960
+< Store misses: 1565
+< Total cycles: 11515993
+---
+> Load hits: 220189
+> Load misses: 479
+> Store hits: 80915
+> Store misses: 1610
+> Total cycles: 11854714
+2579,2583c2579,2583
+< Load hits: 220346
+< Load misses: 322
+< Store hits: 80960
+< Store misses: 1565
+< Total cycles: 14437593
+---
+> Load hits: 220189
+> Load misses: 479
+> Store hits: 80915
+> Store misses: 1610
+> Total cycles: 15157489
+2588,2592c2588,2592
+< Load hits: 219689
+< Load misses: 979
+< Store hits: 70268
+< Store misses: 12257
+< Total cycles: 11676236
+---
+> Load hits: 219603
+> Load misses: 1065
+> Store hits: 70237
+> Store misses: 12288
+> Total cycles: 11950340
+2601c2601
+< Total cycles: 59269183
+---
+> Total cycles: 53480202
+2610c2610
+< Total cycles: 42142383
+---
+> Total cycles: 55774516
+2619c2619
+< Total cycles: 43249096
+---
+> Total cycles: 43017921
+2628c2628
+< Total cycles: 42614093
+---
+> Total cycles: 30611824
+2637c2637
+< Total cycles: 26862593
+---
+> Total cycles: 31986399
+2646c2646
+< Total cycles: 26758562
+---
+> Total cycles: 26575996
+2655c2655
+< Total cycles: 59269183
+---
+> Total cycles: 53480202
+2664c2664
+< Total cycles: 42142383
+---
+> Total cycles: 55774516
+2673c2673
+< Total cycles: 43249096
+---
+> Total cycles: 43017921
+2682c2682
+< Total cycles: 42614093
+---
+> Total cycles: 30611824
+2691c2691
+< Total cycles: 26862593
+---
+> Total cycles: 31986399
+2700c2700
+< Total cycles: 26758562
+---
+> Total cycles: 26575996
+2709c2709
+< Total cycles: 154075683
+---
+> Total cycles: 109848439
+2718c2718
+< Total cycles: 97673583
+---
+> Total cycles: 99675553
+2727c2727
+< Total cycles: 82228657
+---
+> Total cycles: 82151118
+2736c2736
+< Total cycles: 131037593
+---
+> Total cycles: 88681184
+2745c2745
+< Total cycles: 74588093
+---
+> Total cycles: 75959959
+2754c2754
+< Total cycles: 61023490
+---
+> Total cycles: 60957869
+2763c2763
+< Total cycles: 154075683
+---
+> Total cycles: 109848439
+2772c2772
+< Total cycles: 97673583
+---
+> Total cycles: 99675553
+2781c2781
+< Total cycles: 82228657
+---
+> Total cycles: 82151118
+2790c2790
+< Total cycles: 131037593
+---
+> Total cycles: 88681184
+2799c2799
+< Total cycles: 74588093
+---
+> Total cycles: 75959959
+2808c2808
+< Total cycles: 61023490
+---
+> Total cycles: 60957869
+2817c2817
+< Total cycles: 420147683
+---
+> Total cycles: 289340846
+2826c2826
+< Total cycles: 235149883
+---
+> Total cycles: 236168760
+2835c2835
+< Total cycles: 191486847
+---
+> Total cycles: 191433313
+2844c2844
+< Total cycles: 387298393
+---
+> Total cycles: 244278530
+2853c2853
+< Total cycles: 206966893
+---
+> Total cycles: 207712505
+2862c2862
+< Total cycles: 170802296
+---
+> Total cycles: 170751587
+2871c2871
+< Total cycles: 420147683
+---
+> Total cycles: 289340846
+2880c2880
+< Total cycles: 235149883
+---
+> Total cycles: 236168760
+2889c2889
+< Total cycles: 191486847
+---
+> Total cycles: 191433313
+2898c2898
+< Total cycles: 387298393
+---
+> Total cycles: 244278530
+2907c2907
+< Total cycles: 206966893
+---
+> Total cycles: 207712505
+2916c2916
+< Total cycles: 170802296
+---
+> Total cycles: 170751587
+2925c2925
+< Total cycles: 22053983
+---
+> Total cycles: 19834718
+2934c2934
+< Total cycles: 27580783
+---
+> Total cycles: 32533232
+2943c2943
+< Total cycles: 27987417
+---
+> Total cycles: 27909568
+2952c2952
+< Total cycles: 17046493
+---
+> Total cycles: 14290655
+2961c2961
+< Total cycles: 15089493
+---
+> Total cycles: 18283930
+2970c2970
+< Total cycles: 13816229
+---
+> Total cycles: 13763295
+2975,2979c2975,2979
+< Load hits: 245032
+< Load misses: 73165
+< Store hits: 145255
+< Store misses: 52231
+< Total cycles: 22053983
+---
+> Load hits: 235615
+> Load misses: 82582
+> Store hits: 135447
+> Store misses: 62039
+> Total cycles: 23358701
+2984,2988c2984,2988
+< Load hits: 245032
+< Load misses: 73165
+< Store hits: 145255
+< Store misses: 52231
+< Total cycles: 27580783
+---
+> Load hits: 235615
+> Load misses: 82582
+> Store hits: 135447
+> Store misses: 62039
+> Total cycles: 34446315
+2993,2997c2993,2997
+< Load hits: 240348
+< Load misses: 77849
+< Store hits: 135720
+< Store misses: 61766
+< Total cycles: 27987417
+---
+> Load hits: 226615
+> Load misses: 91582
+> Store hits: 128438
+> Store misses: 69048
+> Total cycles: 29261853
+3002,3006c3002,3006
+< Load hits: 155330
+< Load misses: 65338
+< Store hits: 49102
+< Store misses: 33423
+< Total cycles: 17046493
+---
+> Load hits: 145657
+> Load misses: 75011
+> Store hits: 45054
+> Store misses: 37471
+> Total cycles: 16497882
+3011,3015c3011,3015
+< Load hits: 155330
+< Load misses: 65338
+< Store hits: 49102
+< Store misses: 33423
+< Total cycles: 15089493
+---
+> Load hits: 145657
+> Load misses: 75011
+> Store hits: 45054
+> Store misses: 37471
+> Total cycles: 19646357
+3020,3024c3020,3024
+< Load hits: 167734
+< Load misses: 52934
+< Store hits: 49661
+< Store misses: 32864
+< Total cycles: 13816229
+---
+> Load hits: 157406
+> Load misses: 63262
+> Store hits: 49738
+> Store misses: 32787
+> Total cycles: 14785844
+3033c3033
+< Total cycles: 35001283
+---
+> Total cycles: 25941996
+3042c3042
+< Total cycles: 37174083
+---
+> Total cycles: 37629910
+3051c3051
+< Total cycles: 33645254
+---
+> Total cycles: 33628486
+3060c3060
+< Total cycles: 22074393
+---
+> Total cycles: 18442759
+3069c3069
+< Total cycles: 19132193
+---
+> Total cycles: 19772734
+3078c3078
+< Total cycles: 13812331
+---
+> Total cycles: 13805733
+3083,3087c3083,3087
+< Load hits: 302910
+< Load misses: 15287
+< Store hits: 190800
+< Store misses: 6686
+< Total cycles: 35001283
+---
+> Load hits: 299947
+> Load misses: 18250
+> Store hits: 190106
+> Store misses: 7380
+> Total cycles: 30275033
+3092,3096c3092,3096
+< Load hits: 302910
+< Load misses: 15287
+< Store hits: 190800
+< Store misses: 6686
+< Total cycles: 37174083
+---
+> Load hits: 299947
+> Load misses: 18250
+> Store hits: 190106
+> Store misses: 7380
+> Total cycles: 40552547
+3101,3105c3101,3105
+< Load hits: 301429
+< Load misses: 16768
+< Store hits: 164057
+< Store misses: 33429
+< Total cycles: 33645254
+---
+> Load hits: 298398
+> Load misses: 19799
+> Store hits: 162199
+> Store misses: 35287
+> Total cycles: 36048397
+3110,3114c3110,3114
+< Load hits: 213834
+< Load misses: 6834
+< Store hits: 75226
+< Store misses: 7299
+< Total cycles: 22074393
+---
+> Load hits: 211124
+> Load misses: 9544
+> Store hits: 74659
+> Store misses: 7866
+> Total cycles: 22377649
+3119,3123c3119,3123
+< Load hits: 213834
+< Load misses: 6834
+< Store hits: 75226
+< Store misses: 7299
+< Total cycles: 19132193
+---
+> Load hits: 211124
+> Load misses: 9544
+> Store hits: 74659
+> Store misses: 7866
+> Total cycles: 22391624
+3128,3132c3128,3132
+< Load hits: 214070
+< Load misses: 6598
+< Store hits: 60763
+< Store misses: 21762
+< Total cycles: 13812331
+---
+> Load hits: 212374
+> Load misses: 8294
+> Store hits: 60339
+> Store misses: 22186
+> Total cycles: 15160413
+3141c3141
+< Total cycles: 38438883
+---
+> Total cycles: 29433121
+3150c3150
+< Total cycles: 39590483
+---
+> Total cycles: 39582635
+3159c3159
+< Total cycles: 35133643
+---
+> Total cycles: 35128989
+3168c3168
+< Total cycles: 20197593
+---
+> Total cycles: 17255408
+3177c3177
+< Total cycles: 18564593
+---
+> Total cycles: 18660583
+3186c3186
+< Total cycles: 14216648
+---
+> Total cycles: 14214875
+3191,3195c3191,3195
+< Load hits: 314035
+< Load misses: 4162
+< Store hits: 195548
+< Store misses: 1938
+< Total cycles: 38438883
+---
+> Load hits: 312736
+> Load misses: 5461
+> Store hits: 195322
+> Store misses: 2164
+> Total cycles: 36513422
+3200,3204c3200,3204
+< Load hits: 314035
+< Load misses: 4162
+< Store hits: 195548
+< Store misses: 1938
+< Total cycles: 39590483
+---
+> Load hits: 312736
+> Load misses: 5461
+> Store hits: 195322
+> Store misses: 2164
+> Total cycles: 44461336
+3209,3213c3209,3213
+< Load hits: 313543
+< Load misses: 4654
+< Store hits: 174046
+< Store misses: 23440
+< Total cycles: 35133643
+---
+> Load hits: 312342
+> Load misses: 5855
+> Store hits: 173064
+> Store misses: 24422
+> Total cycles: 38970006
+3218,3222c3218,3222
+< Load hits: 219283
+< Load misses: 1385
+< Store hits: 80726
+< Store misses: 1799
+< Total cycles: 20197593
+---
+> Load hits: 218438
+> Load misses: 2230
+> Store hits: 80540
+> Store misses: 1985
+> Total cycles: 21971363
+3227,3231c3227,3231
+< Load hits: 219283
+< Load misses: 1385
+< Store hits: 80726
+< Store misses: 1799
+< Total cycles: 18564593
+---
+> Load hits: 218438
+> Load misses: 2230
+> Store hits: 80540
+> Store misses: 1985
+> Total cycles: 21958938
+3236,3240c3236,3240
+< Load hits: 218895
+< Load misses: 1773
+< Store hits: 69880
+< Store misses: 12645
+< Total cycles: 14216648
+---
+> Load hits: 218430
+> Load misses: 2238
+> Store hits: 69556
+> Store misses: 12969
+> Total cycles: 15702086
+3249c3249
+< Total cycles: 7886983
+---
+> Total cycles: 8904471
+3258c3258
+< Total cycles: 21885483
+---
+> Total cycles: 24910785
+3267c3267
+< Total cycles: 22055910
+---
+> Total cycles: 22037564
+3276c3276
+< Total cycles: 6430793
+---
+> Total cycles: 6943619
+3285c3285
+< Total cycles: 10163093
+---
+> Total cycles: 12505794
+3294c3294
+< Total cycles: 10060876
+---
+> Total cycles: 10045535
+3299,3303c3299,3303
+< Load hits: 301985
+< Load misses: 16212
+< Store hits: 165096
+< Store misses: 32390
+< Total cycles: 7886983
+---
+> Load hits: 295941
+> Load misses: 22256
+> Store hits: 162723
+> Store misses: 34763
+> Total cycles: 10276127
+3308,3312c3308,3312
+< Load hits: 301985
+< Load misses: 16212
+< Store hits: 165096
+< Store misses: 32390
+< Total cycles: 21885483
+---
+> Load hits: 295941
+> Load misses: 22256
+> Store hits: 162723
+> Store misses: 34763
+> Total cycles: 25746441
+3317,3321c3317,3321
+< Load hits: 299851
+< Load misses: 18346
+< Store hits: 154513
+< Store misses: 42973
+< Total cycles: 22055910
+---
+> Load hits: 293809
+> Load misses: 24388
+> Store hits: 150769
+> Store misses: 46717
+> Total cycles: 22631978
+3326,3330c3326,3330
+< Load hits: 204594
+< Load misses: 16074
+< Store hits: 58112
+< Store misses: 24413
+< Total cycles: 6430793
+---
+> Load hits: 198765
+> Load misses: 21903
+> Store hits: 56349
+> Store misses: 26176
+> Total cycles: 8074390
+3335,3339c3335,3339
+< Load hits: 204594
+< Load misses: 16074
+< Store hits: 58112
+< Store misses: 24413
+< Total cycles: 10163093
+---
+> Load hits: 198765
+> Load misses: 21903
+> Store hits: 56349
+> Store misses: 26176
+> Total cycles: 13259165
+3344,3348c3344,3348
+< Load hits: 205327
+< Load misses: 15341
+< Store hits: 53608
+< Store misses: 28917
+< Total cycles: 10060876
+---
+> Load hits: 202747
+> Load misses: 17921
+> Store hits: 53344
+> Store misses: 29181
+> Total cycles: 10300691
+3357c3357
+< Total cycles: 13050083
+---
+> Total cycles: 11580569
+3366c3366
+< Total cycles: 26258283
+---
+> Total cycles: 26558083
+3375c3375
+< Total cycles: 24286866
+---
+> Total cycles: 24281802
+3384c3384
+< Total cycles: 11025593
+---
+> Total cycles: 10814004
+3393c3393
+< Total cycles: 13655093
+---
+> Total cycles: 14163979
+3402c3402
+< Total cycles: 10354320
+---
+> Total cycles: 10352046
+3407,3411c3407,3411
+< Load hits: 315083
+< Load misses: 3114
+< Store hits: 192482
+< Store misses: 5004
+< Total cycles: 13050083
+---
+> Load hits: 314008
+> Load misses: 4189
+> Store hits: 192229
+> Store misses: 5257
+> Total cycles: 13124294
+3416,3420c3416,3420
+< Load hits: 315083
+< Load misses: 3114
+< Store hits: 192482
+< Store misses: 5004
+< Total cycles: 26258283
+---
+> Load hits: 314008
+> Load misses: 4189
+> Store hits: 192229
+> Store misses: 5257
+> Total cycles: 27619408
+3425,3429c3425,3429
+< Load hits: 313133
+< Load misses: 5064
+< Store hits: 168869
+< Store misses: 28617
+< Total cycles: 24286866
+---
+> Load hits: 312065
+> Load misses: 6132
+> Store hits: 167445
+> Store misses: 30041
+> Total cycles: 25133710
+3434,3438c3434,3438
+< Load hits: 219479
+< Load misses: 1189
+< Store hits: 76599
+< Store misses: 5926
+< Total cycles: 11025593
+---
+> Load hits: 217750
+> Load misses: 2918
+> Store hits: 76319
+> Store misses: 6206
+> Total cycles: 12931475
+3443,3447c3443,3447
+< Load hits: 219479
+< Load misses: 1189
+< Store hits: 76599
+< Store misses: 5926
+< Total cycles: 13655093
+---
+> Load hits: 217750
+> Load misses: 2918
+> Store hits: 76319
+> Store misses: 6206
+> Total cycles: 15769450
+3452,3456c3452,3456
+< Load hits: 218394
+< Load misses: 2274
+< Store hits: 61952
+< Store misses: 20573
+< Total cycles: 10354320
+---
+> Load hits: 218073
+> Load misses: 2595
+> Store hits: 61832
+> Store misses: 20693
+> Total cycles: 10608405
+3465c3465
+< Total cycles: 15277283
+---
+> Total cycles: 13701799
+3474c3474
+< Total cycles: 28138183
+---
+> Total cycles: 28081713
+3483c3483
+< Total cycles: 25751130
+---
+> Total cycles: 25749409
+3492c3492
+< Total cycles: 11531993
+---
+> Total cycles: 10894869
+3501c3501
+< Total cycles: 14447093
+---
+> Total cycles: 14520844
+3510c3510
+< Total cycles: 11689023
+---
+> Total cycles: 11688040
+3515,3519c3515,3519
+< Load hits: 317113
+< Load misses: 1084
+< Store hits: 196065
+< Store misses: 1421
+< Total cycles: 15277283
+---
+> Load hits: 316749
+> Load misses: 1448
+> Store hits: 196027
+> Store misses: 1459
+> Total cycles: 15519035
+3524,3528c3524,3528
+< Load hits: 317113
+< Load misses: 1084
+< Store hits: 196065
+< Store misses: 1421
+< Total cycles: 28138183
+---
+> Load hits: 316749
+> Load misses: 1448
+> Store hits: 196027
+> Store misses: 1459
+> Total cycles: 29367749
+3533,3537c3533,3537
+< Load hits: 316476
+< Load misses: 1721
+< Store hits: 177133
+< Store misses: 20353
+< Total cycles: 25751130
+---
+> Load hits: 316142
+> Load misses: 2055
+> Store hits: 176756
+> Store misses: 20730
+> Total cycles: 26817498
+3542,3546c3542,3546
+< Load hits: 220344
+< Load misses: 324
+< Store hits: 80959
+< Store misses: 1566
+< Total cycles: 11531993
+---
+> Load hits: 220176
+> Load misses: 492
+> Store hits: 80919
+> Store misses: 1606
+> Total cycles: 11889901
+3551,3555c3551,3555
+< Load hits: 220344
+< Load misses: 324
+< Store hits: 80959
+< Store misses: 1566
+< Total cycles: 14447093
+---
+> Load hits: 220176
+> Load misses: 492
+> Store hits: 80919
+> Store misses: 1606
+> Total cycles: 15186276
+3560,3564c3560,3564
+< Load hits: 219685
+< Load misses: 983
+< Store hits: 70255
+< Store misses: 12270
+< Total cycles: 11689023
+---
+> Load hits: 219595
+> Load misses: 1073
+> Store hits: 70215
+> Store misses: 12310
+> Total cycles: 11975910
+3573c3573
+< Total cycles: 5670383
+---
+> Total cycles: 7144882
+3582c3582
+< Total cycles: 21044383
+---
+> Total cycles: 23715696
+3591c3591
+< Total cycles: 21406776
+---
+> Total cycles: 21394966
+3600c3600
+< Total cycles: 4050993
+---
+> Total cycles: 5194124
+3609c3609
+< Total cycles: 9182593
+---
+> Total cycles: 11223699
+3618c3618
+< Total cycles: 8945970
+---
+> Total cycles: 8941793
+3623,3627c3623,3627
+< Load hits: 310396
+< Load misses: 7801
+< Store hits: 168720
+< Store misses: 28766
+< Total cycles: 5670383
+---
+> Load hits: 308354
+> Load misses: 9843
+> Store hits: 167799
+> Store misses: 29687
+> Total cycles: 7611640
+3632,3636c3632,3636
+< Load hits: 310396
+< Load misses: 7801
+< Store hits: 168720
+< Store misses: 28766
+< Total cycles: 21044383
+---
+> Load hits: 308354
+> Load misses: 9843
+> Store hits: 167799
+> Store misses: 29687
+> Total cycles: 24009954
+3641,3645c3641,3645
+< Load hits: 306387
+< Load misses: 11810
+< Store hits: 158979
+< Store misses: 38507
+< Total cycles: 21406776
+---
+> Load hits: 304839
+> Load misses: 13358
+> Store hits: 157874
+> Store misses: 39612
+> Total cycles: 21547113
+3650,3654c3650,3654
+< Load hits: 214399
+< Load misses: 6269
+< Store hits: 61226
+< Store misses: 21299
+< Total cycles: 4050993
+---
+> Load hits: 210560
+> Load misses: 10108
+> Store hits: 60349
+> Store misses: 22176
+> Total cycles: 5808385
+3659,3663c3659,3663
+< Load hits: 214399
+< Load misses: 6269
+< Store hits: 61226
+< Store misses: 21299
+< Total cycles: 9182593
+---
+> Load hits: 210560
+> Load misses: 10108
+> Store hits: 60349
+> Store misses: 22176
+> Total cycles: 11691460
+3668,3672c3668,3672
+< Load hits: 216491
+< Load misses: 4177
+< Store hits: 55102
+< Store misses: 27423
+< Total cycles: 8945970
+---
+> Load hits: 214055
+> Load misses: 6613
+> Store hits: 54933
+> Store misses: 27592
+> Total cycles: 9182788
+3681c3681
+< Total cycles: 10144483
+---
+> Total cycles: 9374499
+3690c3690
+< Total cycles: 25083383
+---
+> Total cycles: 25345613
+3699c3699
+< Total cycles: 23472316
+---
+> Total cycles: 23468271
+3708c3708
+< Total cycles: 9448793
+---
+> Total cycles: 9565708
+3717c3717
+< Total cycles: 13176993
+---
+> Total cycles: 13675683
+3726c3726
+< Total cycles: 10178512
+---
+> Total cycles: 10176458
+3731,3735c3731,3735
+< Load hits: 316213
+< Load misses: 1984
+< Store hits: 192869
+< Store misses: 4617
+< Total cycles: 10144483
+---
+> Load hits: 315889
+> Load misses: 2308
+> Store hits: 192801
+> Store misses: 4685
+> Total cycles: 9847775
+3740,3744c3740,3744
+< Load hits: 316213
+< Load misses: 1984
+< Store hits: 192869
+< Store misses: 4617
+< Total cycles: 25083383
+---
+> Load hits: 315889
+> Load misses: 2308
+> Store hits: 192801
+> Store misses: 4685
+> Total cycles: 25658889
+3749,3753c3749,3753
+< Load hits: 314152
+< Load misses: 4045
+< Store hits: 169519
+< Store misses: 27967
+< Total cycles: 23472316
+---
+> Load hits: 313869
+> Load misses: 4328
+> Store hits: 169177
+> Store misses: 28309
+> Total cycles: 23694046
+3758,3762c3758,3762
+< Load hits: 219983
+< Load misses: 685
+< Store hits: 76706
+< Store misses: 5819
+< Total cycles: 9448793
+---
+> Load hits: 219681
+> Load misses: 987
+> Store hits: 76649
+> Store misses: 5876
+> Total cycles: 9968606
+3767,3771c3767,3771
+< Load hits: 219983
+< Load misses: 685
+< Store hits: 76706
+< Store misses: 5819
+< Total cycles: 13176993
+---
+> Load hits: 219681
+> Load misses: 987
+> Store hits: 76649
+> Store misses: 5876
+> Total cycles: 13962581
+3776,3780c3776,3780
+< Load hits: 218614
+< Load misses: 2054
+< Store hits: 62144
+< Store misses: 20381
+< Total cycles: 10178512
+---
+> Load hits: 218560
+> Load misses: 2108
+> Store hits: 62122
+> Store misses: 20403
+> Total cycles: 10219582
+3789c3789
+< Total cycles: 10256483
+---
+> Total cycles: 9513344
+3798c3798
+< Total cycles: 26674583
+---
+> Total cycles: 26606858
+3807c3807
+< Total cycles: 24868551
+---
+> Total cycles: 24867106
+3816c3816
+< Total cycles: 8815193
+---
+> Total cycles: 8763707
+3825c3825
+< Total cycles: 14297593
+---
+> Total cycles: 14370482
+3834c3834
+< Total cycles: 11567444
+---
+> Total cycles: 11566499
+3839,3843c3839,3843
+< Load hits: 317458
+< Load misses: 739
+< Store hits: 196181
+< Store misses: 1305
+< Total cycles: 10256483
+---
+> Load hits: 317386
+> Load misses: 811
+> Store hits: 196167
+> Store misses: 1319
+> Total cycles: 9993272
+3848,3852c3848,3852
+< Load hits: 317458
+< Load misses: 739
+< Store hits: 196181
+< Store misses: 1305
+< Total cycles: 26674583
+---
+> Load hits: 317386
+> Load misses: 811
+> Store hits: 196167
+> Store misses: 1319
+> Total cycles: 26881986
+3857,3861c3857,3861
+< Load hits: 316752
+< Load misses: 1445
+< Store hits: 177754
+< Store misses: 19732
+< Total cycles: 24868551
+---
+> Load hits: 316695
+> Load misses: 1502
+> Store hits: 177729
+> Store misses: 19757
+> Total cycles: 25049424
+3866,3870c3866,3870
+< Load hits: 220382
+< Load misses: 286
+< Store hits: 80968
+< Store misses: 1557
+< Total cycles: 8815193
+---
+> Load hits: 220352
+> Load misses: 316
+> Store hits: 80955
+> Store misses: 1570
+> Total cycles: 8984477
+3875,3879c3875,3879
+< Load hits: 220382
+< Load misses: 286
+< Store hits: 80968
+< Store misses: 1557
+< Total cycles: 14297593
+---
+> Load hits: 220352
+> Load misses: 316
+> Store hits: 80955
+> Store misses: 1570
+> Total cycles: 14508052
+3884,3885c3884,3885
+< Load hits: 219723
+< Load misses: 945
+---
+> Load hits: 219719
+> Load misses: 949
+3888c3888
+< Total cycles: 11567444
+---
+> Total cycles: 11579295
+3897c3897
+< Total cycles: 27090283
+---
+> Total cycles: 23817217
+3906c3906
+< Total cycles: 29930883
+---
+> Total cycles: 35395931
+3915c3915
+< Total cycles: 29905494
+---
+> Total cycles: 29808413
+3924c3924
+< Total cycles: 25620493
+---
+> Total cycles: 19021041
+3933c3933
+< Total cycles: 19160893
+---
+> Total cycles: 22534316
+3942c3942
+< Total cycles: 18844566
+---
+> Total cycles: 18741325
+3951c3951
+< Total cycles: 27090283
+---
+> Total cycles: 23817217
+3960c3960
+< Total cycles: 29930883
+---
+> Total cycles: 35395931
+3969c3969
+< Total cycles: 29905494
+---
+> Total cycles: 29808413
+3978c3978
+< Total cycles: 25620493
+---
+> Total cycles: 19021041
+3987c3987
+< Total cycles: 19160893
+---
+> Total cycles: 22534316
+3996c3996
+< Total cycles: 18844566
+---
+> Total cycles: 18741325
+4005c4005
+< Total cycles: 82484483
+---
+> Total cycles: 58796026
+4014c4014
+< Total cycles: 60827883
+---
+> Total cycles: 61945540
+4023c4023
+< Total cycles: 51346754
+---
+> Total cycles: 51307834
+4032c4032
+< Total cycles: 63297593
+---
+> Total cycles: 42540156
+4041c4041
+< Total cycles: 39993293
+---
+> Total cycles: 40823731
+4050c4050
+< Total cycles: 31702148
+---
+> Total cycles: 31673185
+4059c4059
+< Total cycles: 82484483
+---
+> Total cycles: 58796026
+4068c4068
+< Total cycles: 60827883
+---
+> Total cycles: 61945540
+4077c4077
+< Total cycles: 51346754
+---
+> Total cycles: 51307834
+4086c4086
+< Total cycles: 63297593
+---
+> Total cycles: 42540156
+4095c4095
+< Total cycles: 39993293
+---
+> Total cycles: 40823731
+4104c4104
+< Total cycles: 31702148
+---
+> Total cycles: 31673185
+4113c4113
+< Total cycles: 157846883
+---
+> Total cycles: 114159489
+4122c4122
+< Total cycles: 102145883
+---
+> Total cycles: 102485003
+4131c4131
+< Total cycles: 84713927
+---
+> Total cycles: 84693777
+4140c4140
+< Total cycles: 78703193
+---
+> Total cycles: 53557702
+4149c4149
+< Total cycles: 48419093
+---
+> Total cycles: 48633277
+4158c4158
+< Total cycles: 37456596
+---
+> Total cycles: 37447560
+4167c4167
+< Total cycles: 157846883
+---
+> Total cycles: 114159489
+4176c4176
+< Total cycles: 102145883
+---
+> Total cycles: 102485003
+4185c4185
+< Total cycles: 84713927
+---
+> Total cycles: 84693777
+4194c4194
+< Total cycles: 78703193
+---
+> Total cycles: 53557702
+4203c4203
+< Total cycles: 48419093
+---
+> Total cycles: 48633277
+4212c4212
+< Total cycles: 37456596
+---
+> Total cycles: 37447560
+4221c4221
+< Total cycles: 8304783
+---
+> Total cycles: 9206987
+4230c4230
+< Total cycles: 22073883
+---
+> Total cycles: 25127101
+4239c4239
+< Total cycles: 22266914
+---
+> Total cycles: 22246452
+4248c4248
+< Total cycles: 6506593
+---
+> Total cycles: 6978785
+4257c4257
+< Total cycles: 10196493
+---
+> Total cycles: 12541460
+4266c4266
+< Total cycles: 10086325
+---
+> Total cycles: 10070730
+4271,4275c4271,4275
+< Load hits: 300101
+< Load misses: 18096
+< Store hits: 164798
+< Store misses: 32688
+< Total cycles: 8304783
+---
+> Load hits: 295156
+> Load misses: 23041
+> Store hits: 162775
+> Store misses: 34711
+> Total cycles: 10345742
+4280,4284c4280,4284
+< Load hits: 300101
+< Load misses: 18096
+< Store hits: 164798
+< Store misses: 32688
+< Total cycles: 22073883
+---
+> Load hits: 295156
+> Load misses: 23041
+> Store hits: 162775
+> Store misses: 34711
+> Total cycles: 25818956
+4289,4293c4289,4293
+< Load hits: 297735
+< Load misses: 20462
+< Store hits: 153917
+< Store misses: 43569
+< Total cycles: 22266914
+---
+> Load hits: 293469
+> Load misses: 24728
+> Store hits: 150742
+> Store misses: 46744
+> Total cycles: 22665611
+4298,4302c4298,4302
+< Load hits: 204260
+< Load misses: 16408
+< Store hits: 58086
+< Store misses: 24439
+< Total cycles: 6506593
+---
+> Load hits: 198555
+> Load misses: 22113
+> Store hits: 56343
+> Store misses: 26182
+> Total cycles: 8075380
+4307,4311c4307,4311
+< Load hits: 204260
+< Load misses: 16408
+< Store hits: 58086
+< Store misses: 24439
+< Total cycles: 10196493
+---
+> Load hits: 198555
+> Load misses: 22113
+> Store hits: 56343
+> Store misses: 26182
+> Total cycles: 13280555
+4316,4320c4316,4320
+< Load hits: 205073
+< Load misses: 15595
+< Store hits: 53657
+< Store misses: 28868
+< Total cycles: 10086325
+---
+> Load hits: 202424
+> Load misses: 18244
+> Store hits: 53188
+> Store misses: 29337
+> Total cycles: 10332512
+4329c4329
+< Total cycles: 13644483
+---
+> Total cycles: 11991442
+4338c4338
+< Total cycles: 26561183
+---
+> Total cycles: 26866556
+4347c4347
+< Total cycles: 24514757
+---
+> Total cycles: 24509408
+4356c4356
+< Total cycles: 11271193
+---
+> Total cycles: 11015470
+4365c4365
+< Total cycles: 13781893
+---
+> Total cycles: 14293445
+4374c4374
+< Total cycles: 10496676
+---
+> Total cycles: 10494224
+4379,4383c4379,4383
+< Load hits: 314756
+< Load misses: 3441
+< Store hits: 192423
+< Store misses: 5063
+< Total cycles: 13644483
+---
+> Load hits: 313766
+> Load misses: 4431
+> Store hits: 192187
+> Store misses: 5299
+> Total cycles: 13408052
+4388,4392c4388,4392
+< Load hits: 314756
+< Load misses: 3441
+< Store hits: 192423
+< Store misses: 5063
+< Total cycles: 26561183
+---
+> Load hits: 313766
+> Load misses: 4431
+> Store hits: 192187
+> Store misses: 5299
+> Total cycles: 27846366
+4397,4401c4397,4401
+< Load hits: 312848
+< Load misses: 5349
+< Store hits: 168760
+< Store misses: 28726
+< Total cycles: 24514757
+---
+> Load hits: 311875
+> Load misses: 6322
+> Store hits: 167495
+> Store misses: 29991
+> Total cycles: 25285570
+4406,4410c4406,4410
+< Load hits: 219345
+< Load misses: 1323
+< Store hits: 76571
+< Store misses: 5954
+< Total cycles: 11271193
+---
+> Load hits: 217756
+> Load misses: 2912
+> Store hits: 76294
+> Store misses: 6231
+> Total cycles: 12983481
+4415,4419c4415,4419
+< Load hits: 219345
+< Load misses: 1323
+< Store hits: 76571
+< Store misses: 5954
+< Total cycles: 13781893
+---
+> Load hits: 217756
+> Load misses: 2912
+> Store hits: 76294
+> Store misses: 6231
+> Total cycles: 15784656
+4424,4428c4424,4428
+< Load hits: 218216
+< Load misses: 2452
+< Store hits: 61908
+< Store misses: 20617
+< Total cycles: 10496676
+---
+> Load hits: 217878
+> Load misses: 2790
+> Store hits: 61764
+> Store misses: 20761
+> Total cycles: 10764142
+4437c4437
+< Total cycles: 16054883
+---
+> Total cycles: 14149702
+4446c4446
+< Total cycles: 28510583
+---
+> Total cycles: 28456016
+4455c4455
+< Total cycles: 26048719
+---
+> Total cycles: 26046905
+4464c4464
+< Total cycles: 11762393
+---
+> Total cycles: 11070843
+4473c4473
+< Total cycles: 14564393
+---
+> Total cycles: 14639218
+4482c4482
+< Total cycles: 11765792
+---
+> Total cycles: 11764785
+4487,4491c4487,4491
+< Load hits: 317016
+< Load misses: 1181
+< Store hits: 196045
+< Store misses: 1441
+< Total cycles: 16054883
+---
+> Load hits: 316664
+> Load misses: 1533
+> Store hits: 196010
+> Store misses: 1476
+> Total cycles: 15925350
+4496,4500c4496,4500
+< Load hits: 317016
+< Load misses: 1181
+< Store hits: 196045
+< Store misses: 1441
+< Total cycles: 28510583
+---
+> Load hits: 316664
+> Load misses: 1533
+> Store hits: 196010
+> Store misses: 1476
+> Total cycles: 29694064
+4505,4509c4505,4509
+< Load hits: 316383
+< Load misses: 1814
+< Store hits: 177122
+< Store misses: 20364
+< Total cycles: 26048719
+---
+> Load hits: 316072
+> Load misses: 2125
+> Store hits: 176959
+> Store misses: 20527
+> Total cycles: 27041631
+4514,4518c4514,4518
+< Load hits: 220318
+< Load misses: 350
+< Store hits: 80948
+< Store misses: 1577
+< Total cycles: 11762393
+---
+> Load hits: 220161
+> Load misses: 507
+> Store hits: 80906
+> Store misses: 1619
+> Total cycles: 12008286
+4523,4527c4523,4527
+< Load hits: 220318
+< Load misses: 350
+< Store hits: 80948
+< Store misses: 1577
+< Total cycles: 14564393
+---
+> Load hits: 220161
+> Load misses: 507
+> Store hits: 80906
+> Store misses: 1619
+> Total cycles: 15275861
+4532,4536c4532,4536
+< Load hits: 219661
+< Load misses: 1007
+< Store hits: 70224
+< Store misses: 12301
+< Total cycles: 11765792
+---
+> Load hits: 219573
+> Load misses: 1095
+> Store hits: 70153
+> Store misses: 12372
+> Total cycles: 12046226
+4545c4545
+< Total cycles: 5673083
+---
+> Total cycles: 7143943
+4554c4554
+< Total cycles: 21048283
+---
+> Total cycles: 23715457
+4563c4563
+< Total cycles: 21408263
+---
+> Total cycles: 21396438
+4572c4572
+< Total cycles: 4061293
+---
+> Total cycles: 5208398
+4581c4581
+< Total cycles: 9185193
+---
+> Total cycles: 11231573
+4590c4590
+< Total cycles: 8945045
+---
+> Total cycles: 8940877
+4595,4599c4595,4599
+< Load hits: 310357
+< Load misses: 7840
+< Store hits: 168761
+< Store misses: 28725
+< Total cycles: 5673083
+---
+> Load hits: 308388
+> Load misses: 9809
+> Store hits: 167812
+> Store misses: 29674
+> Total cycles: 7605574
+4604,4608c4604,4608
+< Load hits: 310357
+< Load misses: 7840
+< Store hits: 168761
+< Store misses: 28725
+< Total cycles: 21048283
+---
+> Load hits: 308388
+> Load misses: 9809
+> Store hits: 167812
+> Store misses: 29674
+> Total cycles: 24005288
+4613,4617c4613,4617
+< Load hits: 306372
+< Load misses: 11825
+< Store hits: 158966
+< Store misses: 38520
+< Total cycles: 21408263
+---
+> Load hits: 304892
+> Load misses: 13305
+> Store hits: 157779
+> Store misses: 39707
+> Total cycles: 21541771
+4622,4626c4622,4626
+< Load hits: 214373
+< Load misses: 6295
+< Store hits: 61173
+< Store misses: 21352
+< Total cycles: 4061293
+---
+> Load hits: 210566
+> Load misses: 10102
+> Store hits: 60303
+> Store misses: 22222
+> Total cycles: 5814991
+4631,4635c4631,4635
+< Load hits: 214373
+< Load misses: 6295
+< Store hits: 61173
+< Store misses: 21352
+< Total cycles: 9185193
+---
+> Load hits: 210566
+> Load misses: 10102
+> Store hits: 60303
+> Store misses: 22222
+> Total cycles: 11695466
+4640,4644c4640,4644
+< Load hits: 216500
+< Load misses: 4168
+< Store hits: 55077
+< Store misses: 27448
+< Total cycles: 8945045
+---
+> Load hits: 214946
+> Load misses: 5722
+> Store hits: 54913
+> Store misses: 27612
+> Total cycles: 9094559
+4653c4653
+< Total cycles: 10170083
+---
+> Total cycles: 9400891
+4662c4662
+< Total cycles: 25096083
+---
+> Total cycles: 25359205
+4671c4671
+< Total cycles: 23490765
+---
+> Total cycles: 23486697
+4680c4680
+< Total cycles: 9449593
+---
+> Total cycles: 9567308
+4689c4689
+< Total cycles: 13177693
+---
+> Total cycles: 13676483
+4698c4698
+< Total cycles: 10180912
+---
+> Total cycles: 10178855
+4703,4707c4703,4707
+< Load hits: 316205
+< Load misses: 1992
+< Store hits: 192860
+< Store misses: 4626
+< Total cycles: 10170083
+---
+> Load hits: 315886
+> Load misses: 2311
+> Store hits: 192802
+> Store misses: 4684
+> Total cycles: 9847772
+4712,4716c4712,4716
+< Load hits: 316205
+< Load misses: 1992
+< Store hits: 192860
+< Store misses: 4626
+< Total cycles: 25096083
+---
+> Load hits: 315886
+> Load misses: 2311
+> Store hits: 192802
+> Store misses: 4684
+> Total cycles: 25660486
+4721,4725c4721,4725
+< Load hits: 314129
+< Load misses: 4068
+< Store hits: 169568
+< Store misses: 27918
+< Total cycles: 23490765
+---
+> Load hits: 313849
+> Load misses: 4348
+> Store hits: 169223
+> Store misses: 28263
+> Total cycles: 23710072
+4730,4734c4730,4734
+< Load hits: 219983
+< Load misses: 685
+< Store hits: 76705
+< Store misses: 5820
+< Total cycles: 9449593
+---
+> Load hits: 219680
+> Load misses: 988
+> Store hits: 76640
+> Store misses: 5885
+> Total cycles: 9981405
+4739,4743c4739,4743
+< Load hits: 219983
+< Load misses: 685
+< Store hits: 76705
+< Store misses: 5820
+< Total cycles: 13177693
+---
+> Load hits: 219680
+> Load misses: 988
+> Store hits: 76640
+> Store misses: 5885
+> Total cycles: 13970580
+4748,4752c4748,4752
+< Load hits: 218611
+< Load misses: 2057
+< Store hits: 62144
+< Store misses: 20381
+< Total cycles: 10180912
+---
+> Load hits: 218560
+> Load misses: 2108
+> Store hits: 62121
+> Store misses: 20404
+> Total cycles: 10219581
+4761c4761
+< Total cycles: 10237283
+---
+> Total cycles: 9580532
+4770c4770
+< Total cycles: 26716083
+---
+> Total cycles: 26648446
+4779c4779
+< Total cycles: 24881351
+---
+> Total cycles: 24879902
+4788c4788
+< Total cycles: 8811993
+---
+> Total cycles: 8760507
+4797c4797
+< Total cycles: 14297593
+---
+> Total cycles: 14370482
+4806c4806
+< Total cycles: 11567444
+---
+> Total cycles: 11566499
+4811,4815c4811,4815
+< Load hits: 317446
+< Load misses: 751
+< Store hits: 196180
+< Store misses: 1306
+< Total cycles: 10237283
+---
+> Load hits: 317354
+> Load misses: 843
+> Store hits: 196167
+> Store misses: 1319
+> Total cycles: 10153240
+4820,4824c4820,4824
+< Load hits: 317446
+< Load misses: 751
+< Store hits: 196180
+< Store misses: 1306
+< Total cycles: 26716083
+---
+> Load hits: 317354
+> Load misses: 843
+> Store hits: 196167
+> Store misses: 1319
+> Total cycles: 26984354
+4829,4833c4829,4833
+< Load hits: 316748
+< Load misses: 1449
+< Store hits: 177754
+< Store misses: 19732
+< Total cycles: 24881351
+---
+> Load hits: 316691
+> Load misses: 1506
+> Store hits: 177745
+> Store misses: 19741
+> Total cycles: 25062236
+4838,4842c4838,4842
+< Load hits: 220382
+< Load misses: 286
+< Store hits: 80968
+< Store misses: 1557
+< Total cycles: 8811993
+---
+> Load hits: 220352
+> Load misses: 316
+> Store hits: 80955
+> Store misses: 1570
+> Total cycles: 8981277
+4847,4851c4847,4851
+< Load hits: 220382
+< Load misses: 286
+< Store hits: 80968
+< Store misses: 1557
+< Total cycles: 14297593
+---
+> Load hits: 220352
+> Load misses: 316
+> Store hits: 80955
+> Store misses: 1570
+> Total cycles: 14508052
+4856,4860c4856,4860
+< Load hits: 219723
+< Load misses: 945
+< Store hits: 70276
+< Store misses: 12249
+< Total cycles: 11567444
+---
+> Load hits: 219722
+> Load misses: 946
+> Store hits: 70275
+> Store misses: 12250
+> Total cycles: 11569697
+4869c4869
+< Total cycles: 4936883
+---
+> Total cycles: 6412751
+4878c4878
+< Total cycles: 20807483
+---
+> Total cycles: 23378265
+4887c4887
+< Total cycles: 21209548
+---
+> Total cycles: 21199720
+4896c4896
+< Total cycles: 3085693
+---
+> Total cycles: 4474154
+4905c4905
+< Total cycles: 8729593
+---
+> Total cycles: 10735629
+4914c4914
+< Total cycles: 8875819
+---
+> Total cycles: 8872346
+4919,4923c4919,4923
+< Load hits: 312765
+< Load misses: 5432
+< Store hits: 169749
+< Store misses: 27737
+< Total cycles: 4936883
+---
+> Load hits: 312081
+> Load misses: 6116
+> Store hits: 169443
+> Store misses: 28043
+> Total cycles: 6566967
+4928,4932c4928,4932
+< Load hits: 312765
+< Load misses: 5432
+< Store hits: 169749
+< Store misses: 27737
+< Total cycles: 20807483
+---
+> Load hits: 312081
+> Load misses: 6116
+> Store hits: 169443
+> Store misses: 28043
+> Total cycles: 23476581
+4937,4941c4937,4941
+< Load hits: 308369
+< Load misses: 9828
+< Store hits: 159951
+< Store misses: 37535
+< Total cycles: 21209548
+---
+> Load hits: 307869
+> Load misses: 10328
+> Store hits: 159468
+> Store misses: 38018
+> Total cycles: 21248737
+4946,4950c4946,4950
+< Load hits: 218929
+< Load misses: 1739
+< Store hits: 61622
+< Store misses: 20903
+< Total cycles: 3085693
+---
+> Load hits: 217390
+> Load misses: 3278
+> Store hits: 61410
+> Store misses: 21115
+> Total cycles: 4686115
+4955,4959c4955,4959
+< Load hits: 218929
+< Load misses: 1739
+< Store hits: 61622
+< Store misses: 20903
+< Total cycles: 8729593
+---
+> Load hits: 217390
+> Load misses: 3278
+> Store hits: 61410
+> Store misses: 21115
+> Total cycles: 10909190
+4964,4968c4964,4968
+< Load hits: 217195
+< Load misses: 3473
+< Store hits: 55351
+< Store misses: 27174
+< Total cycles: 8875819
+---
+> Load hits: 217145
+> Load misses: 3523
+> Store hits: 55334
+> Store misses: 27191
+> Total cycles: 8877279
+4977c4977
+< Total cycles: 7029283
+---
+> Total cycles: 6602896
+4986c4986
+< Total cycles: 24716783
+---
+> Total cycles: 24972410
+4995c4995
+< Total cycles: 23271730
+---
+> Total cycles: 23267936
+5004c5004
+< Total cycles: 7139993
+---
+> Total cycles: 7258594
+5013c5013
+< Total cycles: 13100493
+---
+> Total cycles: 13598169
+5022c5022
+< Total cycles: 10156115
+---
+> Total cycles: 10154089
+5027,5031c5027,5031
+< Load hits: 316610
+< Load misses: 1587
+< Store hits: 192939
+< Store misses: 4547
+< Total cycles: 7029283
+---
+> Load hits: 316501
+> Load misses: 1696
+> Store hits: 192919
+> Store misses: 4567
+> Total cycles: 6760387
+5036,5040c5036,5040
+< Load hits: 316610
+< Load misses: 1587
+< Store hits: 192939
+< Store misses: 4547
+< Total cycles: 24716783
+---
+> Load hits: 316501
+> Load misses: 1696
+> Store hits: 192919
+> Store misses: 4567
+> Total cycles: 25075501
+5045,5049c5045,5049
+< Load hits: 314403
+< Load misses: 3794
+< Store hits: 169733
+< Store misses: 27753
+< Total cycles: 23271730
+---
+> Load hits: 314394
+> Load misses: 3803
+> Store hits: 169730
+> Store misses: 27756
+> Total cycles: 23275124
+5054,5058c5054,5058
+< Load hits: 220069
+< Load misses: 599
+< Store hits: 76717
+< Store misses: 5808
+< Total cycles: 7139993
+---
+> Load hits: 220000
+> Load misses: 668
+> Store hits: 76705
+> Store misses: 5820
+> Total cycles: 7360125
+5063,5067c5063,5067
+< Load hits: 220069
+< Load misses: 599
+< Store hits: 76717
+< Store misses: 5808
+< Total cycles: 13100493
+---
+> Load hits: 220000
+> Load misses: 668
+> Store hits: 76705
+> Store misses: 5820
+> Total cycles: 13662900
+5076c5076
+< Total cycles: 10156115
+---
+> Total cycles: 10154089
+5085c5085
+< Total cycles: 6752483
+---
+> Total cycles: 6751820
+5094c5094
+< Total cycles: 26372483
+---
+> Total cycles: 26302934
+5103c5103
+< Total cycles: 24766165
+---
+> Total cycles: 24764752
+5112c5112
+< Total cycles: 6146393
+---
+> Total cycles: 6146121
+5121c5121
+< Total cycles: 14243493
+---
+> Total cycles: 14316096
+5130c5130
+< Total cycles: 11567444
+---
+> Total cycles: 11566499
+5139c5139
+< Total cycles: 6752483
+---
+> Total cycles: 6751820
+5148c5148
+< Total cycles: 26372483
+---
+> Total cycles: 26302934
+5157c5157
+< Total cycles: 24766165
+---
+> Total cycles: 24764752
+5166c5166
+< Total cycles: 6146393
+---
+> Total cycles: 6146121
+5175c5175
+< Total cycles: 14243493
+---
+> Total cycles: 14316096
+5184c5184
+< Total cycles: 11567444
+---
+> Total cycles: 11566499

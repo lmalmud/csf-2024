@@ -49,6 +49,7 @@ class Cache {
 
 		void tick();
 
+		void writeToMemory();
 
 		friend ostream& operator<<(ostream& os, const Cache& c);
 
@@ -63,9 +64,7 @@ class Cache {
 		
 		void store(uint32_t address);
 
-		void writeToMemory();
 
-		void cleanUpCache();
 };
 
 #endif // CACHE_H
