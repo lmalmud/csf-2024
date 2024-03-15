@@ -13,12 +13,11 @@
 #ifndef CACHE_H
 #define CACHE_H
 
-
 class Cache {
 	private:
 		std::vector<Set> sets;
 		
-		int numSets,  numBlocks,  bytesPerBlock;
+		int numSets, numBlocks, bytesPerBlock;
 		bool writeAllocate; // if false, then no-write-alocate
 		bool writeThrough; // if false, then writeBack
 		bool lru; // if false, then fifo
@@ -26,7 +25,7 @@ class Cache {
 		int numOffsetBits, numIndexBits, numTagBits;
 		uint32_t cacheClock;
 		
-		//statistics:
+		// statistics:
 		uint32_t totalLoads;
 		uint32_t totalStores;
 		uint32_t loadHits;
@@ -41,11 +40,11 @@ class Cache {
 
 		void handleLoadMiss(int address);
 
-		void handleLoadHit(int address, Slot* slot);
+		void handleLoadHit(Slot* slot);
 
 		void handleStoreMiss(int address);
 
-		void handleStoreHit(int address, Slot* slot);
+		void handleStoreHit(Slot* slot);
 
 		void tick();
 

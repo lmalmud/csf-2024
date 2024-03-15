@@ -30,9 +30,7 @@ class Set {
 
 		Slot* lru();
 		Slot* fifo();
-
-		
-		
+	
 };
 
 #endif //SET_H

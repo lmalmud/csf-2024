@@ -45,7 +45,6 @@ uint32_t Cache::getTag(int address) {
 	return address >> (this->numOffsetBits + this->numIndexBits);
 }
 
-
 void Cache::load(uint32_t address){
 	int index = getIndex(address);
 	int tag = getTag(address);
@@ -57,7 +56,7 @@ void Cache::load(uint32_t address){
 		handleLoadMiss(address); // will increment loadMisses
 	} else {
 		this->loadHits++;
-		handleLoadHit(address, currSlot); // will increment loadHits
+		handleLoadHit(currSlot); // will increment loadHits
 	}
 }
 
@@ -80,13 +79,13 @@ void Cache::store(uint32_t address){
 		handleStoreMiss(address);
 	} else {
 		this->storeHits++;
-		handleStoreHit(address, currSlot);
+		handleStoreHit(currSlot);
 	}
 }
 
 /* This occurs when you are trying to rewrite a value, and it is
 	in the cache. */
-void Cache::handleStoreHit(int address, Slot* slot) {
+void Cache::handleStoreHit(Slot* slot) {
 
 	// the following operations occur whether it is write-allocate or not
 	slot->access_ts = cacheClock; // update cache slot time accessed
@@ -94,7 +93,7 @@ void Cache::handleStoreHit(int address, Slot* slot) {
 	this->totalCycles += 1; // add one cycle for writing to cache
 	
 	if (this->writeThrough) {
-		totalCycles += 100; // also write to memory
+		totalCycles += 100; // also write to memory, note only write four bits!
 	} else {
 		// because the tag was there, so it did not have to be loaded
 		slot->dirty = true; // now there is an inconsistency between the slot and memory
@@ -107,16 +106,17 @@ void Cache::handleStoreHit(int address, Slot* slot) {
 void Cache::handleStoreMiss(int address) {
 	if (writeAllocate) { 
 		handleLoadMiss(address); // must put it in the cache first, which is handled by this function
-		sets.at(getIndex(address)).isHit(getTag(address))->dirty = true; // now there is an inconsistency between the slot and memory
+		// now there is an inconsistency between the slot and memory
+		sets.at(getIndex(address)).isHit(getTag(address))->dirty = true;
 	} else {
-		totalCycles += 100;
+		totalCycles += 100; // note that we only write four bits!
 	}
 	
 	this->tick();
 }
 
 
-void Cache::handleLoadHit(int address, Slot* slot) {
+void Cache::handleLoadHit(Slot* slot) {
 	slot->access_ts = this->cacheClock;
 	slot->load_ts = this->cacheClock;
 	this->totalCycles += 1; // loads from the cache only take one cycle
@@ -147,7 +147,6 @@ void Cache::getStatistics() {
 	cout << "Store misses: " << this->storeMisses << endl;
 	cout << "Total cycles: " << this->totalCycles << endl;
 }
-
 
 ostream& operator<<(ostream& os, const Cache& c) {
 	os << "CACHE. TIME: " << c.cacheClock << endl;
