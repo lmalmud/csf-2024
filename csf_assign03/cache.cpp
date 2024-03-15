@@ -133,7 +133,7 @@ void Cache::handleStoreMiss(int address) {
 
 void Cache::handleLoadHit(int address, Slot* slot) {
 	slot->access_ts = this->cacheClock;
-	slot->load_ts = this->cacheClock; // RECALIBRATING
+	slot->load_ts = this->cacheClock;
 	this->totalCycles += 1; // loads from the cache only take one cycle
 	this->tick();
 }
@@ -143,7 +143,8 @@ void Cache::handleLoadMiss(int address) {
 	this->totalCycles++;
 	if (!writeThrough && replacedDirtyBlock) {
 		writeToMemory(); // if write back and we just evicted a dirty block need to account for writing it to main mem
-		sets.at(getIndex(address)).isHit(getTag(address))->dirty = false; // JUST CHANGED
+		// FIXME: should the block be dirty right now?
+		sets.at(getIndex(address)).isHit(getTag(address))->dirty = false;
 	}
 	writeToMemory(); // the time it takes to load the value from main memory
 	this->tick();

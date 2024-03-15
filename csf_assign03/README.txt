@@ -1,3 +1,7 @@
+Brady Bock
+Lucy Malmud
+
+NOTES:
 // sets blocks bytesPerBlock
 
 0x12345678 example
