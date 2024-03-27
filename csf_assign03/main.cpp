@@ -18,10 +18,10 @@ using std::string;
 
 int main(int argc, char **argv){
 
-	if (argc != 7) {
+	/*if (argc != 7) {
 		cerr << "ERROR: Incorrect number of parameters present." << endl;
 		return 1;
-	}
+	}*/
 
 	// NOTE: converted all types to uint32_t because an address is uint32,
 	// so it does not make sense for any of these to be larger
