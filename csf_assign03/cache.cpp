@@ -89,7 +89,8 @@ void Cache::handleStoreHit(Slot* slot) {
 
 	// the following operations occur whether it is write-allocate or not
 	slot->access_ts = cacheClock; // update cache slot time accessed
-	slot->load_ts = cacheClock; // update since a new value was loaded (check me NOT SURE- do we count same tag but new value as new?)
+	// THIS COMMENTED OUT BECAUSE BLOCK WASN'T LOADED.
+	//slot->load_ts = cacheClock; // update since a new value was loaded (check me NOT SURE- do we count same tag but new value as new?)
 	this->totalCycles += 1; // add one cycle for writing to cache
 	
 	if (this->writeThrough) {
