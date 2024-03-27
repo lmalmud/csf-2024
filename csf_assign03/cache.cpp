@@ -119,7 +119,8 @@ void Cache::handleStoreMiss(int address) {
 
 void Cache::handleLoadHit(Slot* slot) {
 	slot->access_ts = this->cacheClock;
-	slot->load_ts = this->cacheClock;
+	// THIS COMMENTED OUT BECAUSE WE ONLY UPDATE WHEN BLOCK INITIALLY ADDED.
+	//slot->load_ts = this->cacheClock;
 	this->totalCycles += 1; // loads from the cache only take one cycle
 	this->tick();
 }

@@ -19,7 +19,7 @@ using std::string;
 int main(int argc, char **argv){
 
 	if (argc != 7) {
-		cerr << "ERROR: Not enough arguments present." << endl;
+		cerr << "ERROR: Incorrect number of parameters present." << endl;
 		return 1;
 	}
 
