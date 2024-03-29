@@ -55,15 +55,15 @@ int main(int argc, char **argv){
 	}
 
 	// ensures that all numerical inputs are valid
-	if ((num_sets & (num_sets - 1)) != 0 && (num_sets <= 0)) {
+	if ((num_sets & (num_sets - 1)) != 0 || (num_sets <= 0)) {
 		cerr << "ERROR: number of sets is not a positive power of two." << endl;
 		return 1;
 	}
-	if ((num_blocks & (num_blocks - 1)) != 0 && num_blocks <= 0) {
+	if ((num_blocks & (num_blocks - 1)) != 0 || num_blocks <= 0) {
 		cerr << "ERROR: number of blocks is not a positive power of two." << endl;
 		return 1;
 	}
-	if ((num_bytes & (num_bytes - 1)) != 0 && num_bytes < 4) {
+	if ((num_bytes & (num_bytes - 1)) != 0 || num_bytes < 4) {
 		cerr << "ERROR: number of bytes is not a positive power of two greater than four." << endl;
 		return 1;
 	}
