@@ -106,14 +106,34 @@ int main(int argc, char **argv) {
   char *end;
   size_t threshold = (size_t) strtoul(argv[2], &end, 10);
   if (end != argv[2] + strlen(argv[2])) {
-    // TODO: report an error (threshold value is invalid)
+    fatal("threshold value is invalid");
+    // TODO: report an error (threshold value is invalid) - DONE
   }
 
-  // TODO: open the file
+  // TODO: open the file - DONE
+  int fd = open(filename, O_RDWR);
+  if (fd < 0) { // file was not sucessfully opened
+    fatal("file could not be opened;");
+    // FIXME: is there any
+  }
 
-  // TODO: use fstat to determine the size of the file
+  // TODO: use fstat to determine the size of the file - DONE
+  struct stat statbuf;
+  int rc = fstat(fd, &statbuf); // gets file status
+  if (rc != 0) {
+    fatal("could not get file status");
+    // FIXME: is there anything else that needs to be done with handling the error
+  }
+  size_t file_size_in_bytes = statbuf.st_size;
 
   // TODO: map the file into memory using mmap
+  int64_t *data = mmap(NULL, file_size_in_bytes, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+  close(fd); // immediately close file descriptor, since mmap has a separate reference
+  if (data == MAP_FAILED) { // handle mmap error and exit
+    fatal("could not map error");
+    // FIXME: is there anything else that needs to be done with handling this error
+  }
+  // *data now behaves like a standard array of int64_t
 
   // TODO: sort the data!
 
