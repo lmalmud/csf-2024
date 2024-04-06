@@ -71,8 +71,43 @@ void merge_sort(int64_t *arr, size_t begin, size_t end, size_t threshold) {
   size_t mid = begin + size/2;
 
   // TODO: parallelize the recursive sorting
-  merge_sort(arr, begin, mid, threshold);
-  merge_sort(arr, mid, end, threshold);
+  pid_t pid_left = fork();
+  if (pid_left == -1) {
+    fatal("failure to create left child process");
+  } else if (pid_left == 0) {
+    merge_sort(arr, begin, mid, threshold); // sort first half in child process
+    exit(0); // child process ends
+  }
+  int wstatus_left; // blocks until the process indentified by pid_to_wait_for completes
+  pid_t actual_pid_left = waitpid(pid_left, &wstatus_left, 0);
+  if (actual_pid_left == -1) {
+    fatal("unable to wait for child process");
+  }
+  if (!WIFEXITED(wstatus_left)) { // subprocess crashed, was interrupted, or did not exit normally
+    fatal("left child did not exit normally");
+  }
+  if (WEXITSTATUS(wstatus_left) != 0) { // subprocess returned a non-zero exit code
+      fatal("left child returned non-zero exit code");
+  }
+  
+  pid_t pid_right = fork();
+  if (pid_right == -1) {
+    fatal("failure to create right child process");
+  } else if (pid_right == 0) {
+    merge_sort(arr, mid, end, threshold); // sort second half in parent process
+    exit(0);
+  }
+  int wstatus_right;
+  pid_t actual_pid_right = waitpid(pid_right, &wstatus_right, 0);
+  if (actual_pid_right == -1) {
+    fatal("unable to wait for right child process");
+  }
+  if (!WIFEXITED(wstatus_right)) { // subprocess crashed, was interrupted, or did not exit normally
+    fatal("right child did not exit normally");
+  }
+  if (WEXITSTATUS(wstatus_right) != 0) { // subprocess returned a non-zero exit code
+      fatal("right child returned non-zero exit code");
+  }
 
   // allocate temp array now, so we can avoid unnecessary work
   // if the malloc fails
@@ -113,8 +148,7 @@ int main(int argc, char **argv) {
   // TODO: open the file - DONE
   int fd = open(filename, O_RDWR);
   if (fd < 0) { // file was not sucessfully opened
-    fatal("file could not be opened;");
-    // FIXME: is there any
+    fatal("file could not be opened");
   }
 
   // TODO: use fstat to determine the size of the file - DONE
@@ -122,7 +156,6 @@ int main(int argc, char **argv) {
   int rc = fstat(fd, &statbuf); // gets file status
   if (rc != 0) {
     fatal("could not get file status");
-    // FIXME: is there anything else that needs to be done with handling the error
   }
   size_t file_size_in_bytes = statbuf.st_size;
 
@@ -131,13 +164,22 @@ int main(int argc, char **argv) {
   close(fd); // immediately close file descriptor, since mmap has a separate reference
   if (data == MAP_FAILED) { // handle mmap error and exit
     fatal("could not map error");
-    // FIXME: is there anything else that needs to be done with handling this error
   }
   // *data now behaves like a standard array of int64_t
 
-  // TODO: sort the data!
+  // TODO: sort the data! - DONE
+  merge_sort(data, 0, file_size_in_bytes, threshold);
 
-  // TODO: unmap and close the file
+  // TODO: unmap and close the file - DONE
+  int unmap_result = munmap(data, file_size_in_bytes);
+  if (unmap_result < 0) {
+    fatal("could not unmap memory");
+  }
+  int close_result = close(fd);
+  if (close_result < 0) {
+    fatal("could not close file");
+  }
 
-  // TODO: exit with a 0 exit code if sort was successful
+  // TODO: exit with a 0 exit code if sort was successful - DONE
+  exit(0);
 }
