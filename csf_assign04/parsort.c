@@ -95,6 +95,27 @@ void merge_sort(int64_t *arr, size_t begin, size_t end, size_t threshold) {
   pid_t actual_pid_left = waitpid(left_child, &wstatus_left, 0);
   int wstatus_right;
   pid_t actual_pid_right = waitpid(right_child, &wstatus_right, 0);
+    if (actual_pid_left == -1) {
+    fatal("unable to wait for left child process");
+  }
+  if (!WIFEXITED(wstatus_left)) { // subprocess crashed, was interrupted, or did not exit normally
+		// printf("size: %zu\n", size);
+    fatal("left child did not exit normally");
+  }
+  if (WEXITSTATUS(wstatus_left) != 0) { // subprocess returned a non-zero exit code
+      fatal("left child returned non-zero exit code");
+  }
+    if (actual_pid_right == -1) {
+    fatal("unable to wait for right child process");
+  }
+  if (!WIFEXITED(wstatus_right)) { // subprocess crashed, was interrupted, or did not exit normally
+    fatal("right child did not exit normally");
+  }
+  if (WEXITSTATUS(wstatus_right) != 0) { // subprocess returned a non-zero exit code
+      // printf("size: %zu\n", size);
+			fatal("right child returned non-zero exit code");
+  }
+
   /*
   pid_t pid_left = fork();
   if (pid_left == -1) {
