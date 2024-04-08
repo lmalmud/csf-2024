@@ -73,6 +73,29 @@ void merge_sort(int64_t *arr, size_t begin, size_t end, size_t threshold) {
 	// printf("fork!\n");
 
   // TODO: parallelize the recursive sorting
+  pid_t left_child = fork();
+  pid_t right_child;
+  if (left_child == -1) {
+    fatal("failure to create left child process");
+  }
+  if (left_child == 0) {
+    merge_sort(arr, begin, mid, threshold);
+    exit(0);
+  } else {
+    right_child = fork();
+    if (right_child == -1) {
+      fatal("failure to create right child process");
+    }
+    if (right_child == 0) {
+      merge_sort(arr, mid, end, threshold); // sort second half in parent process
+      exit(0);
+    }
+  }
+  int wstatus_left; // blocks until the process indentified by pid_to_wait_for completes
+  pid_t actual_pid_left = waitpid(left_child, &wstatus_left, 0);
+  int wstatus_right;
+  pid_t actual_pid_right = waitpid(right_child, &wstatus_right, 0);
+  /*
   pid_t pid_left = fork();
   if (pid_left == -1) {
     fatal("failure to create left child process");
@@ -114,6 +137,7 @@ void merge_sort(int64_t *arr, size_t begin, size_t end, size_t threshold) {
       // printf("size: %zu\n", size);
 			fatal("right child returned non-zero exit code");
   }
+  */
 
   // allocate temp array now, so we can avoid unnecessary work
   // if the malloc fails
@@ -186,8 +210,6 @@ int main(int argc, char **argv) {
   if (unmap_result < 0) {
     fatal("could not unmap memory");
   }
-	
-
 
   // TODO: exit with a 0 exit code if sort was successful - DONE
   exit(0);
