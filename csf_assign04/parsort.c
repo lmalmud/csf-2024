@@ -70,9 +70,8 @@ void merge_sort(int64_t *arr, size_t begin, size_t end, size_t threshold) {
   // recursively sort halves in parallel
 
   size_t mid = begin + size/2;
-	// printf("fork!\n");
 
-  // TODO: parallelize the recursive sorting
+  // TODO: parallelize the recursive sorting - DONE
   pid_t left_child = fork();
   pid_t right_child;
   if (left_child == -1) {
@@ -99,7 +98,6 @@ void merge_sort(int64_t *arr, size_t begin, size_t end, size_t threshold) {
     fatal("unable to wait for left child process");
   }
   if (!WIFEXITED(wstatus_left)) { // subprocess crashed, was interrupted, or did not exit normally
-		// printf("size: %zu\n", size);
     fatal("left child did not exit normally");
   }
   if (WEXITSTATUS(wstatus_left) != 0) { // subprocess returned a non-zero exit code
@@ -112,53 +110,8 @@ void merge_sort(int64_t *arr, size_t begin, size_t end, size_t threshold) {
     fatal("right child did not exit normally");
   }
   if (WEXITSTATUS(wstatus_right) != 0) { // subprocess returned a non-zero exit code
-      // printf("size: %zu\n", size);
 			fatal("right child returned non-zero exit code");
   }
-
-  /*
-  pid_t pid_left = fork();
-  if (pid_left == -1) {
-    fatal("failure to create left child process");
-  } else if (pid_left == 0) {
-    merge_sort(arr, begin, mid, threshold); // sort first half in child process
-		// printf("returned size: %zu\n", size);
-    exit(0); // child process ends
-  }
-
-  int wstatus_left; // blocks until the process indentified by pid_to_wait_for completes
-  pid_t actual_pid_left = waitpid(pid_left, &wstatus_left, 0);
-  if (actual_pid_left == -1) {
-    fatal("unable to wait for left child process");
-  }
-  if (!WIFEXITED(wstatus_left)) { // subprocess crashed, was interrupted, or did not exit normally
-		// printf("size: %zu\n", size);
-    fatal("left child did not exit normally");
-  }
-  if (WEXITSTATUS(wstatus_left) != 0) { // subprocess returned a non-zero exit code
-      fatal("left child returned non-zero exit code");
-  }
-  
-	pid_t pid_right = fork();
-  if (pid_right == -1) {
-    fatal("failure to create right child process");
-  } else if (pid_right == 0) {
-    merge_sort(arr, mid, end, threshold); // sort second half in parent process
-    exit(0);
-  }
-  int wstatus_right;
-  pid_t actual_pid_right = waitpid(pid_right, &wstatus_right, 0);
-  if (actual_pid_right == -1) {
-    fatal("unable to wait for right child process");
-  }
-  if (!WIFEXITED(wstatus_right)) { // subprocess crashed, was interrupted, or did not exit normally
-    fatal("right child did not exit normally");
-  }
-  if (WEXITSTATUS(wstatus_right) != 0) { // subprocess returned a non-zero exit code
-      // printf("size: %zu\n", size);
-			fatal("right child returned non-zero exit code");
-  }
-  */
 
   // allocate temp array now, so we can avoid unnecessary work
   // if the malloc fails
