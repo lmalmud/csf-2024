@@ -20,6 +20,7 @@ int compare_i64(const void *left_, const void *right_) {
 
 void seq_sort(int64_t *arr, size_t begin, size_t end) {
   size_t num_elements = end - begin;
+	// printf("base: %lu \t nmemb: %zu\n", *(arr + begin), num_elements);
   qsort(arr + begin, num_elements, sizeof(int64_t), compare_i64);
 }
 
@@ -69,6 +70,7 @@ void merge_sort(int64_t *arr, size_t begin, size_t end, size_t threshold) {
   // recursively sort halves in parallel
 
   size_t mid = begin + size/2;
+	// printf("fork!\n");
 
   // TODO: parallelize the recursive sorting
   pid_t pid_left = fork();
@@ -76,21 +78,24 @@ void merge_sort(int64_t *arr, size_t begin, size_t end, size_t threshold) {
     fatal("failure to create left child process");
   } else if (pid_left == 0) {
     merge_sort(arr, begin, mid, threshold); // sort first half in child process
+		// printf("returned size: %zu\n", size);
     exit(0); // child process ends
   }
+
   int wstatus_left; // blocks until the process indentified by pid_to_wait_for completes
   pid_t actual_pid_left = waitpid(pid_left, &wstatus_left, 0);
   if (actual_pid_left == -1) {
-    fatal("unable to wait for child process");
+    fatal("unable to wait for left child process");
   }
   if (!WIFEXITED(wstatus_left)) { // subprocess crashed, was interrupted, or did not exit normally
+		// printf("size: %zu\n", size);
     fatal("left child did not exit normally");
   }
   if (WEXITSTATUS(wstatus_left) != 0) { // subprocess returned a non-zero exit code
       fatal("left child returned non-zero exit code");
   }
   
-  pid_t pid_right = fork();
+	pid_t pid_right = fork();
   if (pid_right == -1) {
     fatal("failure to create right child process");
   } else if (pid_right == 0) {
@@ -106,7 +111,8 @@ void merge_sort(int64_t *arr, size_t begin, size_t end, size_t threshold) {
     fatal("right child did not exit normally");
   }
   if (WEXITSTATUS(wstatus_right) != 0) { // subprocess returned a non-zero exit code
-      fatal("right child returned non-zero exit code");
+      // printf("size: %zu\n", size);
+			fatal("right child returned non-zero exit code");
   }
 
   // allocate temp array now, so we can avoid unnecessary work
@@ -118,6 +124,7 @@ void merge_sort(int64_t *arr, size_t begin, size_t end, size_t threshold) {
   // child processes completed successfully, so in theory
   // we should be able to merge their results
   merge(arr, begin, mid, end, temp_arr);
+	// printf("arrays merged: %zu\t%zu\n", begin, end);
 
   // copy data back to main array
   for (size_t i = 0; i < size; i++)
@@ -155,30 +162,32 @@ int main(int argc, char **argv) {
   struct stat statbuf;
   int rc = fstat(fd, &statbuf); // gets file status
   if (rc != 0) {
+		close(fd);
     fatal("could not get file status");
   }
   size_t file_size_in_bytes = statbuf.st_size;
 
   // TODO: map the file into memory using mmap
   int64_t *data = mmap(NULL, file_size_in_bytes, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-  close(fd); // immediately close file descriptor, since mmap has a separate reference
+	int close_result = close(fd); // immediately close file descriptor, since mmap has a separate reference
+  if (close_result < 0) {
+    fatal("could not close file");
+  }
   if (data == MAP_FAILED) { // handle mmap error and exit
     fatal("could not map error");
   }
   // *data now behaves like a standard array of int64_t
 
   // TODO: sort the data! - DONE
-  merge_sort(data, 0, file_size_in_bytes, threshold);
+  merge_sort(data, 0, file_size_in_bytes/8, threshold);
 
   // TODO: unmap and close the file - DONE
   int unmap_result = munmap(data, file_size_in_bytes);
   if (unmap_result < 0) {
     fatal("could not unmap memory");
   }
-  int close_result = close(fd);
-  if (close_result < 0) {
-    fatal("could not close file");
-  }
+	
+
 
   // TODO: exit with a 0 exit code if sort was successful - DONE
   exit(0);
