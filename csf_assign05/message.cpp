@@ -49,6 +49,7 @@ std::string Message::get_username() const
   // TODO: implement - DONE
   // FIXME: is there anything we are supposed to do if someone tries
   // to get the username on a request that is not a login request?
+	// I think we should throw an exception?
   if (this->m_message_type == MessageType::LOGIN) {
     return this->m_args.at(0);
   }
