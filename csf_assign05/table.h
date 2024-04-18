@@ -18,11 +18,14 @@ private:
   // treated as the active table for get, has_key, etc.
   std::map<std::string, std::string> t_proposed;
   
-  // the previous state of the table
+  // the previous state of the table- includes ALL key, value pairs
+  std::map<std::string, std::string> t_previous;
 
   // copy constructor and assignment operator are prohibited
   Table( const Table & );
   Table &operator=( const Table & );
+
+  void printTables() const;
 
 public:
   Table( const std::string &name );
