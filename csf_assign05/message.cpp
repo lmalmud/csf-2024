@@ -160,7 +160,16 @@ bool Message::is_valid() const
     MessageType::PUSH, MessageType::SET, MessageType::GET, MessageType::FAILED,
     MessageType::ERROR, MessageType::FAILED, MessageType::DATA};
 
+  std::map<MessageType, int> numArgsForMessageType = {{MessageType::LOGIN, 1}, {MessageType::CREATE, 1},
+    {MessageType::PUSH, 1}, {MessageType::SET, 2}, {MessageType::GET, 2},
+    {MessageType::FAILED, 1}, {MessageType::ERROR, 1}, {MessageType::DATA, 1}};
+
   if (count(hasIdentifiers.begin(), hasIdentifiers.end(), this->m_message_type) >= 1) {
+
+    // incorrect number of arguments for the given MessageType
+    if ((int) this->m_args.size() != numArgsForMessageType.at(this->m_message_type)) {
+      return false;
+    }
 
     // these types of requests only have a quoted text string that must be checked
     if (this->m_message_type == MessageType::ERROR || this->m_message_type == MessageType::FAILED) {
