@@ -1,4 +1,5 @@
 #include <cassert>
+#include <iostream>
 #include "table.h"
 #include "exceptions.h"
 #include "guard.h"
@@ -59,13 +60,50 @@ bool Table::has_key( const std::string &key )
 
 void Table::commit_changes()
 {
-  // TODO: implement
-    // committed is set to proposed (to commit the changes)
+  // TODO: implement - DONE
+  // committed is set to proposed (to commit the changes)
   // previous is set to committed (in case we need to roll back in the future)
+  t_committed.clear();
+  t_previous.clear();
+  for (auto s = t_proposed.begin(); s != t_proposed.end(); s++) {
+    t_committed[s->first] = s->second;
+    t_previous[s->first] = s->second;
+  }
+
+  t_proposed.clear(); // so that all tentative changes are in sync with the current ones
+  for (auto s = t_committed.begin(); s != t_committed.end(); ++s) {
+    t_proposed[s->first] = s->second;
+  }
+  
 }
 
 void Table::rollback_changes()
 {
-  // TODO: implement
-  // committed is set to previous, abandoning the proposed changes
+  // TODO: implement - DONE
+  // committed and proposed is set to previous
+  t_committed.clear();
+  t_proposed.clear();
+  for (auto s = t_previous.begin(); s != t_previous.end(); s++) {
+    t_committed[s->first] = s->second;
+    t_proposed[s->first] = s->second;
+  }
+
+}
+
+
+void Table::printTables() const {
+  std::cout << "COMMITTED: " << std::endl;
+  for (auto s = t_committed.begin(); s != t_committed.end(); ++s) {
+    std::cout << s->first << ": " << s->second << std::endl;
+  }
+
+  std::cout << "PROPOSED: " << std::endl;
+  for (auto s = t_proposed.begin(); s != t_proposed.end(); ++s) {
+    std::cout << s->first << ": " << s->second << std::endl;
+  }
+
+  std::cout << "PREVIOUS: " << std::endl;
+  for (auto s = t_previous.begin(); s != t_previous.end(); ++s) {
+    std::cout << s->first << ": " << s->second << std::endl;
+  }
 }
