@@ -62,6 +62,7 @@ public:
   bool is_valid_identifier(std::string id) const;
   bool is_valid_value(std::string val) const;
   bool is_valid_quoted_text(std::string qt) const;
+  bool is_valid_length(std::string s) const;
 
   unsigned get_num_args() const { return m_args.size(); }
   std::string get_arg( unsigned i ) const { return m_args.at( i ); }

@@ -2,6 +2,7 @@
 #include <map>
 #include <regex>
 #include <cassert>
+#include <iostream>
 #include "message.h"
 
 Message::Message()
@@ -28,7 +29,7 @@ Message &Message::operator=( const Message &rhs )
   // TODO: implement - DONE
   this->m_message_type = rhs.get_message_type();
   this->m_args.clear(); // remove any previous values
-  for(int i = 0; i < rhs.get_num_args(); ++i) { // make deep copy of arguments list
+  for(int i = 0; i < (int) rhs.get_num_args(); ++i) { // make deep copy of arguments list
     this->m_args.push_back(rhs.get_arg(i));
   }
   return *this;
@@ -97,28 +98,58 @@ void Message::push_arg( const std::string &arg )
   m_args.push_back( arg );
 }
 
-// Helper function to determine if an identifier string is valid
+// Helper function to determine if an identifier string is valid - DONE
 bool Message::is_valid_identifier(std::string id) const {
+
+  if (!is_valid_length(id)) { return false; }
+
   if (!isalpha(id.at(0))) {
     return false; // immediately exit if does not start with a-z or A-Z
   }
 
-  for(int i = 1; i < id.length(); ++i) {  // for each character
-    if (!isalnum(id.at(i)) || id.at(i) != '_') { // must either be alphanumeric or underscore
+  for(size_t i = 1; i < id.length(); ++i) {  // for each character
+    if (!isalnum(id.at(i)) && id.at(i) != '_') { // must either be alphanumeric or underscore
       return false;
     }
   }
   return true;
 }
 
-// Helper function to determine if a value string is valid
+// Helper function to determine if a value string is valid - DONE
 bool Message::is_valid_value(std::string val) const {
+  if (!is_valid_length(val)) { return false; }
 
+  if (val.length() < 1) {
+    return false; // must be 1+ characters
+  } else {
+    for (size_t i = 0; i < val.length(); ++i) {
+      // immediately return false upon finding any whitespace
+      if (isspace(val.at(i))) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 // Helper function to determine if a quoted text string is valid
 bool Message::is_valid_quoted_text(std::string qt) const {
+  if (!is_valid_length(qt)) { return false; }
 
+  for (size_t i = 0; i < qt.length(); ++i) {
+    if (qt.at(i) == '\"') {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool Message::is_valid_length(std::string s) const {
+  if (s.length() >= MAX_ENCODED_LEN) { // encoded string is too big
+    return false;
+  } else {
+    return true;
+  }
 }
 
 bool Message::is_valid() const
@@ -131,16 +162,12 @@ bool Message::is_valid() const
 
   if (count(hasIdentifiers.begin(), hasIdentifiers.end(), this->m_message_type) >= 1) {
 
-    if (this->m_args.at(0).length() >= MAX_ENCODED_LEN) { // encoded string is too big
-      return false;
-    }
-    
     // these types of requests only have a quoted text string that must be checked
     if (this->m_message_type == MessageType::ERROR || this->m_message_type == MessageType::FAILED) {
       return is_valid_quoted_text(this->m_args.at(0));
     
     // these types of requests only have a value that must be checked
-    } else if (this->m_message_type == MessageType::PUSH || this->m_message_type == MessageType::POP) {
+    } else if (this->m_message_type == MessageType::PUSH || this->m_message_type == MessageType::DATA) {
       return is_valid_value(this->m_args.at(0));
     
     // LOGIN or CREATE request
