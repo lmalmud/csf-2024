@@ -9,6 +9,16 @@ class Table {
 private:
   std::string m_name;
   // TODO: add member variables
+  pthread_mutex_t my_mutex;
+
+  // the current value of the talbe
+  std::map<std::string, std::string> t_committed;
+
+  // the working value of the table
+  // treated as the active table for get, has_key, etc.
+  std::map<std::string, std::string> t_proposed;
+  
+  // the previous state of the table
 
   // copy constructor and assignment operator are prohibited
   Table( const Table & );
