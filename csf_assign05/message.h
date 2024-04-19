@@ -66,6 +66,7 @@ public:
 
   unsigned get_num_args() const { return m_args.size(); }
   std::string get_arg( unsigned i ) const { return m_args.at( i ); }
+	void clear_args() {m_args = std::vector<std::string>();	}
 };
 
 #endif // MESSAGE_H
