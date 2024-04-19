@@ -1,4 +1,7 @@
 #include <iostream>
+#include "message.h"
+#include "message_serialization.h"
+
 
 int main(int argc, char **argv)
 {
@@ -12,6 +15,13 @@ int main(int argc, char **argv)
   std::string username = argv[3];
   std::string table = argv[4];
   std::string key = argv[5];
+
+	Message msg(MessageType::LOGIN, {username});
+	std::string encoded_msg;
+	MessageSerialization::encode(msg, encoded_msg);
+
+	
+
 
   // TODO: implement
 }
