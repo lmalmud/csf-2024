@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <exception>
 #include <string>
 #include <utility>
@@ -10,8 +11,7 @@
 
 void MessageSerialization::encode( const Message &msg, std::string &encoded_msg )
 {
-  // TODO: implement
-
+  // TODO: implement - done
 
 
 	MessageType msgType = msg.get_message_type();
@@ -85,11 +85,6 @@ void MessageSerialization::encode( const Message &msg, std::string &encoded_msg 
 
 void MessageSerialization::decode( const std::string &encoded_msg_, Message &msg )
 {
-  std::stringstream s(encoded_msg_);
-	std::string currArg("");
-
-	s >> currArg;
-
 	std::map<std::string,MessageType> stringToArg = {{"LOGIN", MessageType::LOGIN}, 
 	{"CREATE", MessageType::CREATE}, {"PUSH", MessageType::PUSH}, {"POP", MessageType::POP}, 
 	{"TOP", MessageType::TOP}, {"SET", MessageType::SET}, {"GET", MessageType::GET}, 
@@ -98,7 +93,25 @@ void MessageSerialization::decode( const std::string &encoded_msg_, Message &msg
 	{"BYE", MessageType::BYE}, {"OK", MessageType::OK}, {"FAILED", MessageType::FAILED}, 
 	{"ERROR", MessageType::ERROR}, {"DATA", MessageType::DATA}, {"NONE", MessageType::NONE}};
 
+	Message tmp;
+	int result = encoded_msg_.compare(encoded_msg_.size()-1, 2, "\n");
+	if (result != 0) {
+		throw InvalidMessage("not terminated by new line");
+	}
+
+  std::stringstream s(encoded_msg_);
+	std::string currArg("");
+
+	if(!(s >> currArg)) {
+		throw InvalidMessage("too few args");
+	}
+
+
+
 	msg.set_message_type(stringToArg[currArg]);
+
+	int start = 0;
+	int end;
 
 
 	switch(stringToArg[currArg]) {
@@ -106,25 +119,32 @@ void MessageSerialization::decode( const std::string &encoded_msg_, Message &msg
 		case MessageType::LOGIN:
 		case MessageType::PUSH:
 		case MessageType::CREATE:
-			s >> currArg;
-			msg.push_arg(currArg);
+		case MessageType::DATA:
+			if(!(s >> currArg)) {
+				throw InvalidMessage("too few args");
+			}
+			//check if empty
+			tmp.push_arg(currArg);
 			break; 
 		case MessageType::SET:
 		case MessageType::GET:
-			s >> currArg;
-			msg.push_arg(currArg);
+			if(!(s >> currArg)) {
+				throw InvalidMessage("too few args");
+			}
+			tmp.push_arg(currArg);
 			currArg = "";
-			s >> currArg;
-			msg.push_arg(currArg);
+			if(!(s >> currArg)) {
+				throw InvalidMessage("too few args");
+			}
+			tmp.push_arg(currArg);
 			break;
 		case MessageType::FAILED:
-			// encoded_msg += "FAILED " + msg.get_quoted_text();
-			break;
 		case MessageType::ERROR:
-			// encoded_msg += "ERROR " + msg.get_quoted_text();
-			break;
-		case MessageType::DATA:
-			// encoded_msg += "DATA " + msg.get_value();
+			getline(s, currArg);
+    	start = currArg.find_first_not_of(" \t\\\"");
+			end = currArg.find_last_not_of( "\t\\\"");
+			currArg = start == end ? std::string() : currArg.substr(start, end - start + 1);
+			tmp.push_arg(currArg);
 			break;
 		case MessageType::POP:
 		case MessageType::TOP:
@@ -138,5 +158,14 @@ void MessageSerialization::decode( const std::string &encoded_msg_, Message &msg
 		case MessageType::OK:
 		case MessageType::NONE:
 		break;
+	}
+
+	if(tmp.is_valid()) {
+		msg.clear_args();
+		for(int i = 0; i < tmp.get_num_args(); i++) {
+		msg.push_arg(tmp.get_arg(i));
+	}
+	} else {
+		throw InvalidMessage("not a valid message");
 	}
 }

@@ -305,7 +305,6 @@ void test_message_serialization_encode( TestObjs *objs )
   MessageSerialization::encode( objs->login_req, s );
   ASSERT( "LOGIN alice\n" == s );
   MessageSerialization::encode( objs->create_req, s );
-		std::cout << "\n" << s << "\n";
   ASSERT( "CREATE accounts\n" == s );
 
   MessageSerialization::encode( objs->push_req, s );
@@ -351,6 +350,7 @@ void test_message_serialization_decode( TestObjs *objs )
 	
   MessageSerialization::decode( objs->encoded_create_req, msg );
   ASSERT( MessageType::CREATE == msg.get_message_type() );
+	// std::cout << msg.get_num_args();
   ASSERT( 1 == msg.get_num_args() );
   ASSERT( "invoices" == msg.get_table() );
 
