@@ -33,8 +33,9 @@ int main(int argc, char **argv)
 	rio_readinitb(&file_desc, fd);
 
 
+	//TODO: catch exceptions and print proper cerr message
 	Message msg(MessageType::LOGIN, {username});
-	MessageSerialization::encode(msg, encoded_msg);
+	// MessageSerialization::encode(msg, encoded_msg);
 
 	send_message(fd, &msg, encoded_msg);
 
