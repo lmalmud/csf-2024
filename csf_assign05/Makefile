@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -g -Wall -std=gnu11
 
 # Common C++ sources for clients/server/unit test program
-CXX_COMMON_SRCS = message.cpp message_serialization.cpp table.cpp value_stack.cpp
+CXX_COMMON_SRCS = message.cpp message_serialization.cpp table.cpp value_stack.cpp 
 CXX_COMMON_OBJS = $(CXX_COMMON_SRCS:%.cpp=%.o)
 
 # Server-only C++ sources
@@ -13,11 +13,11 @@ CXX_SERVER_SRCS = server.cpp client_connection.cpp server_main.cpp
 CXX_SERVER_OBJS = $(CXX_SERVER_SRCS:%.cpp=%.o)
 
 # C++ client common sources (used by all clients)
-CXX_CLIENT_SRCS =
+CXX_CLIENT_SRCS = communications.cpp
 CXX_CLIENT_OBJS = $(CXX_CLIENT_SRCS:%.cpp=%.o)
 
 # C++ client main function sources
-CXX_CLIENT_MAIN_SRCS = get_value.cpp set_value.cpp incr_value.cpp
+CXX_CLIENT_MAIN_SRCS = get_value.cpp set_value.cpp incr_value.cpp 
 CXX_CLIENT_MAIN_EXES = $(CXX_CLIENT_MAIN_SRCS:%.cpp=%)
 
 # C++ sources for unit tests
