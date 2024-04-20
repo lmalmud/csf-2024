@@ -26,26 +26,35 @@ int main(int argc, char **argv)
 	
 	int fd = open_clientfd(hostname.c_str(), port.c_str());
 	
-	if(fd < 0) {
+	if (fd < 0) {
 		throw CommException("Error with opening client fd");
 	}
 	rio_t file_desc;
 	rio_readinitb(&file_desc, fd);
 
-	Message msg(MessageType::LOGIN, {username});
-	send_message(fd, &msg, encoded_msg);
-	read_response(&file_desc, &msg);
+	try {
+		Message msg(MessageType::LOGIN, {username});
+		send_message(fd, &msg, encoded_msg);
+		read_response(&file_desc, &msg);
 
-	msg = Message(MessageType::PUSH, {value});
-	send_message(fd, &msg, encoded_msg);
-	read_response(&file_desc, &msg);
+		msg = Message(MessageType::PUSH, {value});
+		send_message(fd, &msg, encoded_msg);
+		read_response(&file_desc, &msg);
 
-	msg = Message(MessageType::SET, {table, key});
-	send_message(fd, &msg, encoded_msg);
-	read_response(&file_desc, &msg);
+		msg = Message(MessageType::SET, {table, key});
+		send_message(fd, &msg, encoded_msg);
+		read_response(&file_desc, &msg);
 
-	msg = Message(MessageType::BYE, {});
-	send_message(fd, &msg, encoded_msg);
-	read_response(&file_desc, &msg);
+		msg = Message(MessageType::BYE, {});
+		send_message(fd, &msg, encoded_msg);
+		read_response(&file_desc, &msg);
+	
+	} catch (const std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+		close(fd);
+		return 1;
+	}
+	close(fd);
+	return 0;
 
 }

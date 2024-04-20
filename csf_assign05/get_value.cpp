@@ -34,25 +34,31 @@ int main(int argc, char **argv)
 	rio_t file_desc;
 	rio_readinitb(&file_desc, fd);
 
-  // first message is login
-	Message msg(MessageType::LOGIN, {username});
-	send_message(fd, &msg, encoded_msg);
-	read_response(&file_desc, &msg);
+  try {
+    // first message is login
+    Message msg(MessageType::LOGIN, {username});
+    send_message(fd, &msg, encoded_msg);
+    read_response(&file_desc, &msg);
 
-  // second message is get
-	msg = Message(MessageType::GET, {table, key});
-	send_message(fd, &msg, encoded_msg);
-  read_response(&file_desc, &msg);
+    // second message is get
+    msg = Message(MessageType::GET, {table, key});
+    send_message(fd, &msg, encoded_msg);
+    read_response(&file_desc, &msg);
 
-  // third message is top
-	msg = Message(MessageType::TOP, {table, key});
-	send_message(fd, &msg, encoded_msg);
-	read_response(&file_desc, &msg);
+    // third message is top
+    msg = Message(MessageType::TOP, {table, key});
+    send_message(fd, &msg, encoded_msg);
+    read_response(&file_desc, &msg);
 
-  // fourth message is to politely close the connection
-	msg = Message(MessageType::BYE, {});
-	send_message(fd, &msg, encoded_msg);
+    // fourth message is to politely close the connection
+    msg = Message(MessageType::BYE, {});
+    send_message(fd, &msg, encoded_msg);
 
+  } catch (const std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+		close(fd);
+		return 1;
+	}
   close(fd);
   return 0;
 

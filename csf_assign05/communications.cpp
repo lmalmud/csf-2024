@@ -26,7 +26,6 @@ int read_response(rio_t* fd, Message* msg) {
 	} else if (msg->get_message_type() == MessageType::FAILED || msg->get_message_type() == MessageType::ERROR) {
 		// TODO: properly throw errors
 		throw FailedTransaction(msg->get_quoted_text());
-		return 1;
 	} 
 	// NOTE: if response is OK, we do not want to print anything
 
