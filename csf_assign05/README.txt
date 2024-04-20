@@ -1,3 +1,5 @@
+Brady Bock
+Lucy Malmud
 
 NOTES:
 chmod +x ref_server

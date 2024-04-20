@@ -29,22 +29,27 @@ int main(int argc, char **argv)
 	if (fd < 0) {
 		throw CommException("Error with opening client fd");
 	}
+
 	rio_t file_desc;
 	rio_readinitb(&file_desc, fd);
 
 	try {
+		// first message is login
 		Message msg(MessageType::LOGIN, {username});
 		send_message(fd, &msg, encoded_msg);
 		read_response(&file_desc, &msg);
 
+		// second messages pushes the desired input onto the value stack
 		msg = Message(MessageType::PUSH, {value});
 		send_message(fd, &msg, encoded_msg);
 		read_response(&file_desc, &msg);
 
+		// third message calls the SET function to assign the key value pair
 		msg = Message(MessageType::SET, {table, key});
 		send_message(fd, &msg, encoded_msg);
 		read_response(&file_desc, &msg);
 
+		// fourth message politely terminates the connection
 		msg = Message(MessageType::BYE, {});
 		send_message(fd, &msg, encoded_msg);
 		read_response(&file_desc, &msg);
