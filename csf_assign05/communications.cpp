@@ -12,20 +12,24 @@ int read_response(rio_t* fd, Message* msg) {
 	char buf[1024];
 	std::string buff_string(buf);
 
-	// std::cout << buff_string.size() << std::endl;
-
 	ssize_t bytes_read = rio_readlineb(fd, buf, 1024);
 	std::string encoded_msg(buf);
-	std::cout << encoded_msg;
-	if(bytes_read < 0) {
-		throw CommException("invalid write on read");
-	}
-	MessageSerialization::decode(encoded_msg, *msg);
 
-	//TODO: properly throw exceptions for error conditions
-	if(msg->get_message_type() == MessageType::FAILED || msg->get_message_type() == MessageType::ERROR) {
-		throw FailedTransaction("");
+	if (bytes_read < 0) {
+		throw CommException("Invalid write on read");
+		return 1;
+	}
+
+	MessageSerialization::decode(encoded_msg, *msg);
+	if (msg->get_message_type() == MessageType::DATA) {
+		std::cout << msg->get_value() << std::endl;
+	} else if (msg->get_message_type() == MessageType::FAILED || msg->get_message_type() == MessageType::ERROR) {
+		// TODO: properly throw errors
+		throw FailedTransaction(msg->get_quoted_text());
+		return 1;
 	} 
+	// NOTE: if response is OK, we do not want to print anything
+
 	return bytes_read;
 }
 
