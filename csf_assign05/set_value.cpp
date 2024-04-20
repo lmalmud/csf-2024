@@ -33,16 +33,14 @@ int main(int argc, char **argv)
 	rio_readinitb(&file_desc, fd);
 
 	Message msg(MessageType::LOGIN, {username});
-	// MessageSerialization::encode(msg, encoded_msg);
 	send_message(fd, &msg, encoded_msg);
 	read_response(&file_desc, &msg);
-
 
 	msg = Message(MessageType::PUSH, {value});
 	send_message(fd, &msg, encoded_msg);
 	read_response(&file_desc, &msg);
 
-	msg = Message(MessageType::SET, {table});
+	msg = Message(MessageType::SET, {table, key});
 	send_message(fd, &msg, encoded_msg);
 	read_response(&file_desc, &msg);
 

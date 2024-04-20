@@ -39,7 +39,6 @@ int main(int argc, char **argv)
 	send_message(fd, &msg, encoded_msg);
 	read_response(&file_desc, &msg);
 
-
   // second message is get
 	msg = Message(MessageType::GET, {table, key});
 	send_message(fd, &msg, encoded_msg);

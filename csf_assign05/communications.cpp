@@ -38,7 +38,7 @@ int send_message(int fd, Message* msg, std::string encoded_msg) {
 
 	// std::cout << encoded_msg;
 	int bytes_written = rio_writen(fd, encoded_msg.c_str(), strlen(encoded_msg.c_str()));
-	if(bytes_written != encoded_msg.size()) {
+	if(bytes_written != (int) encoded_msg.size()) {
 		throw CommException("invalid write on write");
 	}
 	return bytes_written;
