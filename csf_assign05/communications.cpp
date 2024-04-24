@@ -15,7 +15,7 @@ int read_response(rio_t* fd, Message* msg) {
 	std::string encoded_msg(buf);
 
 	if (bytes_read < 0) {
-		throw CommException("Invalid write on read");
+		throw CommException("Invalid read on read");
 		return 1;
 	}
 

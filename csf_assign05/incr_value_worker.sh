@@ -4,7 +4,6 @@ if [[ $# -ne 6 ]]; then
   >&2 echo "Usage: ./incr_value_worker.sh <port> <table> <key> <use transactions (yes/no)> <count output file> <num incr>"
   exit 1
 fi
-echo "starting worker"
 
 port="$1"
 table="$2"
@@ -17,14 +16,12 @@ num_incr="$6"
 num_successful=0
 
 error_log=$(basename ${output_file} .out)_err.log
-# echo "" >> log.txt
+
 count=0
 while [[ "${count}" -lt "${num_incr}" ]]; do
-	echo "${count}"
   if [[ "${use_transactions}" = "yes" ]]; then
     ./incr_value -t localhost ${port} bob ${table} ${key} 2> ${error_log}
   else
-		# echo "./incr_value localhost ${port} bob ${table} ${key} 2> ${error_log}" &>> log.txt
     ./incr_value localhost ${port} bob ${table} ${key} 2> ${error_log}
   fi
 

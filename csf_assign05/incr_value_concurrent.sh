@@ -36,19 +36,20 @@ run ./ref_client.rb localhost ${port} "LOGIN alice" "PUSH 0" "SET fruit apples" 
 
 >&2 echo "Spawning workers..."
 
-total_incr=8000
+total_incr=10000
 
 ./incr_value_worker.sh ${port} fruit apples ${use_transactions} worker1.out $(expr ${total_incr} / 2) &
 worker1_pid=$!
 >&3 echo pid ${worker1_pid}
-# ./incr_value_worker.sh ${port} fruit apples ${use_transactions} worker2.out $(expr ${total_incr} / 2) &
-# worker2_pid=$!
-# >&3 echo pid ${worker2_pid}
+
+./incr_value_worker.sh ${port} fruit apples ${use_transactions} worker2.out $(expr ${total_incr} / 2) &
+worker2_pid=$!
+>&3 echo pid ${worker2_pid}
 
 # Wait for workers to finish
 >&2 echo "Waiting for workers to finish..."
 wait ${worker1_pid}
-# wait ${worker2_pid}
+wait ${worker2_pid}
 
 # Check final count
 >&2 echo "Checking final count..."
