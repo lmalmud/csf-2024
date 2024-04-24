@@ -67,7 +67,7 @@ void *Server::client_worker( void *arg )
   // Assuming that your ClientConnection class has a member function
   // called chat_with_client(), your implementation might look something
   // like this:
-
+	pthread_detach( pthread_self() );
   std::unique_ptr<ClientConnection> client( static_cast<ClientConnection *>( arg ) );
   client->chat_with_client();
   return nullptr;
