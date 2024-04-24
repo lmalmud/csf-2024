@@ -28,6 +28,8 @@ void ClientConnection::chat_with_client()
 	std::string stringMsg("");
 
 	do{
+		msg = Message();
+		stringMsg.clear();
 		//reads line from socket as a message object
 		int bytesRead = read_response(&m_fdbuf, &msg);
 		if(bytesRead < 0) {
@@ -41,8 +43,7 @@ void ClientConnection::chat_with_client()
 			processMessage(msg);
 		}
 
-		msg = Message();
-		stringMsg.clear();
+		
 	} while(msg.get_message_type() != MessageType::BYE);
 	
 
