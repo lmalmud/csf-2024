@@ -65,7 +65,9 @@ void Server::create_table( const std::string &name ) {
 	tables.push_back(new_table);
 
 }
+
 Table *Server::find_table( const std::string &name ){
+  // NOTE: this is used to access tables from individual ClientConnections
   for (auto t = tables.begin(); t != tables.end(); ++t) {
     if ((*t)->get_name() == name) { // NOTE: *t is where the iterator points to
       return *t; // *t is the address of the table

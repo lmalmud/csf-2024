@@ -47,29 +47,40 @@ void ClientConnection::chat_with_client()
 
 }
 
-// TODO: additional member functions
-
 void ClientConnection::processTransaction() {
 	for (auto s = transaction.begin(); s != transaction.end(); s++) {
-		//lock tables and carry out transactions in message
+		// lock tables and carry out transactions in message
 	}
 }
 
+void ClientConnection::handleSet(Message msg) {
+  Table* table = m_server->find_table(msg.get_table());
+  if (!inTransaction) { // in autolock mode
+
+  } else { // in transaction mode, so we use trylock
+
+  }
+}
+
 void ClientConnection::processMessage(Message msg) {
-switch(msg.get_message_type()) {
+  switch(msg.get_message_type()) {
 		case MessageType::LOGIN:
 			loginName = msg.get_username();
 			break;
 		case MessageType::CREATE:
+      m_server->create_table(msg.get_table());
 			break;
 		case MessageType::PUSH:
 			valStack.push(msg.get_arg(0));
 			break;
 		case MessageType::POP:
+      valStack.pop();
 			break;
 		case MessageType::TOP:
+      valStack.get_top();
 			break;
 		case MessageType::SET:
+      handleSet(msg);
 			break;
 		case MessageType::GET:
 			break;

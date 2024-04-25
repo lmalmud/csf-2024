@@ -20,13 +20,20 @@ private:
 	std::vector<Message*> transaction; // pointers to all messages in the processed transaction
 	ValueStack valStack;
   std::vector<Table*> locked; // a vector of currently locked tables
-  const int MAX_LINE_SIZE = 1024;
+  const int MAX_LINE_SIZE = 1024; // used for processing raw text from the server
 
   // copy constructor and assignment operator are prohibited
   ClientConnection( const ClientConnection & );
   ClientConnection &operator=( const ClientConnection & );
-	void processMessage(Message msg);
+	
+  /* Handles all message types. */
+  void processMessage(Message msg);
+
+  /* Called upon the COMMIT of a message*/
 	void processTransaction();
+
+  /* Handles the set command. */
+  void handleSet(Message msg);
 
 public:
   ClientConnection( Server *server, int client_fd );
