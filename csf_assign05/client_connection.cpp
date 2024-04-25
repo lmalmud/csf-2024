@@ -87,29 +87,46 @@ void ClientConnection::sendResponse(Message msg) {
 		}
 		case MessageType::FAILED:
 		case MessageType::ERROR:
+		std::string res = msg.get_quoted_text() + "\r\n";
+			rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
 			break;	
 		case MessageType::DATA:
+		{
+			std::string res = "DATA " + msg.get_value() + "\r\n";
+			rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
 			break;
+		}
 		default:
 			break;
 	}
 }
 	
-
+/*
+NOTES ON THIS FUNCTION [IN PROGRESS]
+- all operations (except BYE) are written
+- the only operation that properly sends a response back is LOGIN
+*/
 void ClientConnection::processMessage(Message msg) {
   switch (msg.get_message_type()) {
-		case MessageType::LOGIN:
+		case MessageType::LOGIN: // DONE & WORKS
 			loginName = msg.get_username();
+			sendResponse(Message(MessageType::OK));
 			break;
 		case MessageType::CREATE:
       		m_server->create_table(msg.get_table());
 			break;
-		case MessageType::PUSH:
+		case MessageType::PUSH: 
+			std::cout << "PUSH\n"; // NOTE: currently, when PUSH is typed, it does not register here.
 			valStack.push(msg.get_arg(0));
 			sendResponse(Message(MessageType::OK));
 			break;
 		case MessageType::POP:
-      		valStack.pop();
+			std::cout << "POP\n";
+			try {
+				valStack.pop();
+			} catch (OperationException &ex) {
+				sendResponse(Message(MessageType::FAILED, {ex.what()}));
+			}
 			break;
 		case MessageType::TOP:
       		valStack.get_top();
@@ -124,7 +141,7 @@ void ClientConnection::processMessage(Message msg) {
 			valStack.push(res);
 			break;
 		}
-		case MessageType::ADD:
+		case MessageType::ADD: // FIXME: need to handle possible OperationExceptions
 		{
 			int left, right;
 			popTwo(&left, &right);
@@ -165,13 +182,15 @@ void ClientConnection::processMessage(Message msg) {
 			}
 			break;
 		case MessageType::COMMIT:
-			if(!inTransaction) {
+			if (!inTransaction) {
 				throw OperationException("Attempt to commit from outside a transaction");
 			} else {
 				processTransaction();
 			}
 		case MessageType::BYE:
 			// do stuff to close connection
+			// FIXME: unlock all tables?
+			// QUESTION: is there anything else that has to be done
 			break;
 		case MessageType::OK:
 		case MessageType::FAILED:
@@ -179,6 +198,7 @@ void ClientConnection::processMessage(Message msg) {
 		case MessageType::DATA:
 			throw CommException("Illegal message type recieved by server");
 		default:
+			std::cout << "DEFAULT CASE\n";
 			throw InvalidMessage("Invalid message type");
 			break;
 	}
