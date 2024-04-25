@@ -87,9 +87,11 @@ void ClientConnection::sendResponse(Message msg) {
 		}
 		case MessageType::FAILED:
 		case MessageType::ERROR:
-		std::string res = msg.get_quoted_text() + "\r\n";
+		{
+			std::string res = msg.get_quoted_text() + "\r\n";
 			rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
 			break;	
+		}
 		case MessageType::DATA:
 		{
 			std::string res = "DATA " + msg.get_value() + "\r\n";
