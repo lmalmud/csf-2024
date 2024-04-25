@@ -35,6 +35,13 @@ private:
   /* Handles the set command. */
   void handleSet(Message msg);
 
+  /* Pops two integers from the value stack and stores their
+  values in the given variables. */
+  void popTwo(int* right, int* left);
+
+  /* Sends the given message back to the server. */
+  void sendResponse(Message msg);
+
 public:
   ClientConnection( Server *server, int client_fd );
   ~ClientConnection();
