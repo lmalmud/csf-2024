@@ -13,7 +13,7 @@ Server::Server()
   // TODO: initialize member variables
 {
   // TODO: implement
-	tables = new std::vector<Table>();
+	//tables = new std::vector<Table*>();
 }
 
 Server::~Server()
@@ -23,40 +23,55 @@ Server::~Server()
 
 void Server::listen( const std::string &port )
 {
-  // TODO: implement - done??
+  // TODO: implement - DONE
 	server_fd = open_listenfd(port.c_str());
 	if (server_fd < 0) {
-		//add proper exception later 
+    // FIXME: add proper exception later 
+    // is this not the proper exception?
 		throw CommException("Error opening server port");
 	}
 }
 
 void Server::server_loop()
 {
-  // TODO: implement - done?
+  // TODO: implement
 
-	int client_fd = Accept(server_fd, NULL, NULL);
-	if (client_fd < 0) {
-		throw CommException("Error accepting client connection");
-	}
+  // this function is called after listen
+  while (1) {
+    int client_fd;
 
-  ClientConnection *client = new ClientConnection( this, client_fd );
-  pthread_t thr_id;
-  if ( pthread_create( &thr_id, nullptr, client_worker, client ) != 0 ){
-		log_error( "Could not create client thread" );
-	}
-    
+    do {
+      client_fd = Accept(server_fd, NULL, NULL);
+    } while (client_fd < 0 && errno == EINTR);
+    if (client_fd < 0) {
+		  throw CommException("Error accepting client connection");
+	  }
+
+    // note that we dynamically allocate new memory for the ClientConnection object
+    ClientConnection *client = new ClientConnection(this, client_fd);
+    pthread_t thr_id;
+    if (pthread_create(&thr_id, NULL, client_worker, client) != 0 ) {
+      // sets up the thread to start in the client_worker function
+		  // log_error( "Could not create client thread" );
+      throw CommException("Could not create client thread"); // NOTE: switched to fatal exception
+	  }
+  }
 }
 
 void Server::create_table( const std::string &name ) {
-	//do we need to lock tables?
-	tables->push_back(Table(name));
+	// NOTE: we do not need to lock the table since it has just been created
+  // and is now ready to be modified
+  Table* new_table = new Table(name);
+	tables.push_back(new_table);
 
 }
 Table *Server::find_table( const std::string &name ){
-	//search through tables vector and find find table with this name
-	//mutex?
-	//i think we dont need one bc its just looking and not changing anything but idk
+  for (auto t = tables.begin(); t != tables.end(); ++t) {
+    if ((*t)->get_name() == name) { // NOTE: *t is where the iterator points to
+      return *t; // *t is the address of the table
+    }
+  }
+  return NULL; // table could not be found
 }
 
 
@@ -67,8 +82,8 @@ void *Server::client_worker( void *arg )
   // Assuming that your ClientConnection class has a member function
   // called chat_with_client(), your implementation might look something
   // like this:
-	pthread_detach( pthread_self() );
-  std::unique_ptr<ClientConnection> client( static_cast<ClientConnection *>( arg ) );
+	pthread_detach(pthread_self());
+  std::unique_ptr<ClientConnection> client(static_cast<ClientConnection *>(arg));
   client->chat_with_client();
   return nullptr;
 
@@ -78,5 +93,3 @@ void Server::log_error( const std::string &what )
 {
   std::cerr << "Error: " << what << "\n";
 }
-
-// TODO: implement member functions

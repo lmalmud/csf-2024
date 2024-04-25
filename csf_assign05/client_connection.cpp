@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cassert>
+#include <iostream>
 #include "csapp.h"
 #include "message.h"
 #include "message_serialization.h"
@@ -24,32 +25,25 @@ ClientConnection::~ClientConnection()
 
 void ClientConnection::chat_with_client()
 {
-	Message msg;
-	std::string stringMsg("");
+  // NOTE: this function does not operate within a loop
+  // because it will be repeatedly called from the main server loop
 
-	do{
-		msg = Message();
-		stringMsg.clear();
-		//reads line from socket as a message object
-		int bytesRead = read_response(&m_fdbuf, &msg);
-		if(bytesRead < 0) {
-			throw CommException("invalid read of server");
-		}
+  rio_t in; // the read content
+  rio_readinitb(&in, m_client_fd); // initialize the read input/output
+  Message* msg = new Message(); // the message object that will ultimately contain the appropriate content
+  char *linebuffer = (char*) malloc(MAX_LINE_SIZE); // allocate maximum line size for the buffer
+  if (Rio_readlineb(&in, linebuffer, MAX_LINE_SIZE) < 0) {
+    throw new CommException("Unable to read message from client.");
+  }
 
-		if(inTransaction) {
-			transaction.push_back(msg);
-		}
-		else{
-			processMessage(msg);
-		}
+  // decode the processed line and set up the msg object
+  MessageSerialization::decode(linebuffer, *msg);
 
-		
-	} while(msg.get_message_type() != MessageType::BYE);
-	
-
-	if(msg.get_message_type() == MessageType::LOGIN) {
-		
-	}
+  if (inTransaction) {
+    transaction.push_back(msg);
+  } else {
+    processMessage(*msg);
+  }
 
 }
 
@@ -88,16 +82,15 @@ switch(msg.get_message_type()) {
 		case MessageType::DIV:
 			break;
 		case MessageType::BEGIN:
-			if(inTransaction) {
-				throw OperationException("attemp to begin a transaction from within a transaction");
-			}
-			else{
+			if (inTransaction) {
+				throw OperationException("Attempt to begin a transaction from within a transaction");
+			} else{
 				inTransaction = true;
 			}
 			break;
 		case MessageType::COMMIT:
 			if(!inTransaction) {
-				throw OperationException("attemp to commit from outside a transaction");
+				throw OperationException("Attempt to commit from outside a transaction");
 			} else {
 				processTransaction();
 			}
