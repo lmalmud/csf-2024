@@ -31,20 +31,22 @@ void ClientConnection::chat_with_client()
 
   rio_t in; // the read content
   rio_readinitb(&in, m_client_fd); // initialize the read input/output
-  Message* msg = new Message(); // the message object that will ultimately contain the appropriate content
-  char *linebuffer = (char*) malloc(MAX_LINE_SIZE); // allocate maximum line size for the buffer
-  if (Rio_readlineb(&in, linebuffer, MAX_LINE_SIZE) < 0) {
-    throw new CommException("Unable to read message from client.");
-  }
+  while(1){
+		Message* msg = new Message(); // the message object that will ultimately contain the appropriate content
+		char *linebuffer = (char*) malloc(MAX_LINE_SIZE); // allocate maximum line size for the buffer
+		if (rio_readlineb(&in, linebuffer, MAX_LINE_SIZE) < 0) {
+			throw new CommException("Unable to read message from client.");
+		}
 
-  // decode the processed line and set up the msg object
-  MessageSerialization::decode(linebuffer, *msg);
-
-  if (inTransaction) {
-    transaction.push_back(msg);
-  } else {
-    processMessage(*msg);
-  }
+		// decode the processed line and set up the msg object
+		MessageSerialization::decode(linebuffer, *msg);
+		std::cout << linebuffer;
+		if (inTransaction) {
+			transaction.push_back(msg);
+		} else {
+			processMessage(*msg);
+		}
+	}
 
 }
 

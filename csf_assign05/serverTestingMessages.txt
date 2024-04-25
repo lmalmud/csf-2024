@@ -1,0 +1,7 @@
+LOGIN alice
+PUSH 1
+CREATE fruits
+SET fruits apples
+PUSH 4
+GET fruits apples
+TOP
