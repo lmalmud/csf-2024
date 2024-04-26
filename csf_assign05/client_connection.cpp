@@ -41,19 +41,9 @@ void ClientConnection::chat_with_client()
 		// decode the processed line and set up the msg object
 		MessageSerialization::decode(linebuffer, *msg);
 		std::cout << linebuffer;
-		if (inTransaction) {
-			transaction.push_back(msg);
-		} else {
-			processMessage(*msg);
-		}
+		processMessage(*msg);
 	}
 
-}
-
-void ClientConnection::processTransaction() {
-	for (auto s = transaction.begin(); s != transaction.end(); s++) {
-		// lock tables and carry out transactions in message
-	}
 }
 
 void ClientConnection::handleSet(Message msg) {
@@ -62,13 +52,18 @@ void ClientConnection::handleSet(Message msg) {
   valStack.pop(); // must also remove the top value
   if (!inTransaction) { // in autolock mode
 	table->lock();
-	locked.push_back(table); // keep track of currently locked tables in a vector
 	table->set(msg.get_key(), value);
 	table->unlock();
-	locked.erase(std::find(locked.begin(), locked.end(), table));
-	// FIXME: must send OK response
+	sendResponse(Message(MessageType::OK));
   } else { // in transaction mode, so we use trylock
-
+	if (!table->trylock()) {
+		// failed, so when the message is comitted we need to roll back all changes
+		transactionFailed = true;
+	}
+	accessed.push_back(table); // keep track of currently locked tables in a vector
+	table->set(msg.get_key(), value);
+	table->unlock();
+	sendResponse(Message(MessageType::OK));
   }
 
 }
@@ -77,7 +72,8 @@ void ClientConnection::handleGet(Message msg) {
 	try {
 		Table* table = m_server->find_table(msg.get_table());
 		std::string res = table->get(msg.get_key());
-		valStack.push(res); // FIXME: send response
+		valStack.push(res);
+		sendResponse(Message(MessageType::DATA, {res}));
 	} catch (std::runtime_error& ex) {
 		throw new OperationException("Invalid table get access");
 	}
@@ -85,10 +81,15 @@ void ClientConnection::handleGet(Message msg) {
 }
 
 void ClientConnection::popTwo(int* right, int*left) {
-	*left = stoi(valStack.get_top());
-	valStack.pop();
-	*right = stoi(valStack.get_top());
-	valStack.pop();
+	try {
+		*left = stoi(valStack.get_top());
+		valStack.pop();
+		*right = stoi(valStack.get_top());
+		valStack.pop();
+	} catch (OperationException& ex) { // in case there were not two values
+		throw new OperationException(ex.what());
+	}
+	
 }
 
 void ClientConnection::sendResponse(Message msg) {
@@ -116,94 +117,134 @@ void ClientConnection::sendResponse(Message msg) {
 			break;
 	}
 }
+
+void ClientConnection::handleLogin(Message msg) {
+	loginName = msg.get_username();
+	sendResponse(Message(MessageType::OK));
+}
+
+void ClientConnection::handleCreate(Message msg) {
+	m_server->create_table(msg.get_table());
+	sendResponse(Message(MessageType::OK));
+}
+
+void ClientConnection::handlePush(Message msg) {
+	valStack.push(msg.get_arg(0));
+	sendResponse(Message(MessageType::OK));
+}
+
+void ClientConnection::handlePop(Message msg) {
+	try {
+		valStack.pop();
+		sendResponse(Message(MessageType::OK));
+	} catch (OperationException &ex) {
+		sendResponse(Message(MessageType::FAILED, {ex.what()}));
+	}
+}
+
+void ClientConnection::handleOpp(MessageType m) {
+	try {
+		int left, right;
+		popTwo(&left, &right);
+		int res;
+		switch (m) {
+			case MessageType::ADD:
+				res = left + right;
+				break;
+			case MessageType::SUB:
+				res = left - right;
+				break;
+			case MessageType::DIV:
+				res = left / right;
+				break;
+			case MessageType::MUL:
+				res = left * right;
+				break;
+			default:
+				res = 0;
+		}
+		valStack.push(std::to_string(res));
+		sendResponse(Message(MessageType::OK));
+	} catch (const OperationException& ex) { // FIXME: needs to be able to handle division by zero, etc
+		throw new OperationException("Unable to perform arithmetic operation");
+	}
+}
+
+void ClientConnection::handleBye() {
+	// FIXME: is this something that we need here or does it only matter when we close a transaction
+	for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
+		(*t)->unlock();
+	}
+	close(m_client_fd); // close file descriptor
+	// exit(0); <- FIXME: is this something that we want?
+}
+
+void ClientConnection::handleBegin() {
+	if (inTransaction) {
+		throw OperationException("Attempt to begin a transaction from within a transaction");
+	} else{
+		inTransaction = true;
+		transactionFailed = false;
+	}
+}
+
+void ClientConnection::handleCommit() {
+	if (!inTransaction) {
+		throw OperationException("Attempt to commit from outside a transaction");
+	} else {
+		inTransaction = false;
+		if (transactionFailed) {
+			for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
+				(*t)->rollback_changes();
+				(*t)->unlock();
+			}
+		} else {
+			for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
+				(*t)->commit_changes();
+				(*t)->unlock();
+			}
+		}
+	}
+}
 	
-/*
-NOTES ON THIS FUNCTION [IN PROGRESS]
-- all operations (except BYE) are written
-- the only operation that properly sends a response back is LOGIN
-*/
 void ClientConnection::processMessage(Message msg) {
 	try {
 		switch (msg.get_message_type()) {
 			case MessageType::LOGIN:
-				loginName = msg.get_username();
-				sendResponse(Message(MessageType::OK));
+				handleLogin(msg);
 				break;
 			case MessageType::CREATE:
-				m_server->create_table(msg.get_table()); // FIXME: does not send response
+				handleCreate(msg);
 				break;
 			case MessageType::PUSH: 
-				valStack.push(msg.get_arg(0));
-				sendResponse(Message(MessageType::OK));
+				handlePush(msg);
 				break;
 			case MessageType::POP:
-				try {
-					valStack.pop();
-				} catch (OperationException &ex) {
-					sendResponse(Message(MessageType::FAILED, {ex.what()}));
-				}
+				handlePop(msg);
 				break;
 			case MessageType::TOP:
-				valStack.get_top(); // FIXME: send response
+				valStack.get_top();
 				break;
 			case MessageType::SET:
 				handleSet(msg);
 				break;
 			case MessageType::GET:
-			{
 				handleGet(msg);
 				break;
-			}
-			case MessageType::ADD: // FIXME: need to handle possible OperationExceptions
-			{
-				int left, right;
-				popTwo(&left, &right);
-				int res = left + right;
-				valStack.push(std::to_string(res));
-				sendResponse(Message(MessageType::OK));
-				break;
-			}
+			case MessageType::ADD:
 			case MessageType::SUB:
-			{
-				int left, right;
-				popTwo(&left, &right);
-				int res = left - right;
-				valStack.push(std::to_string(res));
-				break;
-			}
 			case MessageType::MUL:
-			{
-				int left, right;
-				popTwo(&left, &right);
-				int res = left * right;
-				valStack.push(std::to_string(res));
-				break;
-			}
 			case MessageType::DIV:
-			{
-				int left, right;
-				popTwo(&left, &right);
-				int res = left / right;
-				valStack.push(std::to_string(res));
+				handleOpp(msg.get_message_type());
 				break;
-			}
 			case MessageType::BEGIN:
-				if (inTransaction) {
-					throw OperationException("Attempt to begin a transaction from within a transaction");
-				} else{
-					inTransaction = true;
-				}
+				handleBegin();
 				break;
 			case MessageType::COMMIT:
-				if (!inTransaction) {
-					throw OperationException("Attempt to commit from outside a transaction");
-				} else {
-					processTransaction();
-				}
+				handleCommit();
+				break;
 			case MessageType::BYE:
-				// do stuff to close connection
-				// FIXME: unlock all tables?
-				// QUESTION: is there anything else that has to be done
+				handleBye();
 				break;
 			case MessageType::OK:
 			case MessageType::FAILED:
@@ -218,4 +259,5 @@ void ClientConnection::processMessage(Message msg) {
 		sendResponse(Message(MessageType::FAILED, {ex.what()}));
 	}
 	// FIXME: handle other exceptions that may be thrown
+	
 }

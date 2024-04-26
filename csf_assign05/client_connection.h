@@ -17,9 +17,9 @@ private:
   rio_t m_fdbuf;
 	std::string loginName; // login name of user
 	bool inTransaction; // represents whether we are currently processing a transaction
-	std::vector<Message*> transaction; // pointers to all messages in the processed transaction
+  bool transactionFailed;
 	ValueStack valStack;
-  std::vector<Table*> locked; // a vector of currently locked tables
+  std::vector<Table*> accessed; // a vector of tables accessed during the transaction
   const int MAX_LINE_SIZE = 1024; // used for processing raw text from the server
 
   // copy constructor and assignment operator are prohibited
@@ -28,9 +28,6 @@ private:
 	
   /* Handles all message types. */
   void processMessage(Message msg);
-
-  /* Called upon the COMMIT of a message*/
-	void processTransaction();
 
   /* Handles the set command. */
   void handleSet(Message msg);
@@ -44,6 +41,15 @@ private:
 
   /* Sends the given message back to the server. */
   void sendResponse(Message msg);
+
+  void handleLogin(Message msg);
+  void handleCreate(Message msg);
+  void handlePush(Message msg);
+  void handlePop(Message msg);
+  void handleOpp(MessageType m);
+  void handleBye();
+  void handleBegin();
+  void handleCommit();
 
 public:
   ClientConnection( Server *server, int client_fd );
