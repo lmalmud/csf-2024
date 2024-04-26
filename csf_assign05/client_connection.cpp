@@ -210,6 +210,9 @@ void ClientConnection::handleCommit() {
 	
 void ClientConnection::processMessage(Message msg) {
 	try {
+		if (false) { // FIXME: add appropriate condition
+			throw new InvalidMessage("First mesage must be login");
+		}
 		switch (msg.get_message_type()) {
 			case MessageType::LOGIN:
 				handleLogin(msg);

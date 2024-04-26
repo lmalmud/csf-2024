@@ -15,7 +15,7 @@ private:
   Server *m_server; // pointer to parent server
   int m_client_fd; // file descriptor of current connection
   rio_t m_fdbuf;
-	std::string loginName; // login name of user
+	std::string loginName = ""; // login name of user
 	bool inTransaction; // represents whether we are currently processing a transaction
   bool transactionFailed;
 	ValueStack valStack;
