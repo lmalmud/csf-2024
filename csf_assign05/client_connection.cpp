@@ -31,7 +31,7 @@ void ClientConnection::chat_with_client()
 
   rio_t in; // the read content
   rio_readinitb(&in, m_client_fd); // initialize the read input/output
-  while(1){
+  while (1) {
 		Message* msg = new Message(); // the message object that will ultimately contain the appropriate content
 		char *linebuffer = (char*) malloc(MAX_LINE_SIZE); // allocate maximum line size for the buffer
 		if (rio_readlineb(&in, linebuffer, MAX_LINE_SIZE) < 0) {
@@ -61,15 +61,27 @@ void ClientConnection::handleSet(Message msg) {
   std::string value = valStack.get_top();
   valStack.pop(); // must also remove the top value
   if (!inTransaction) { // in autolock mode
-
-  } else { // in transaction mode, so we use trylock
 	table->lock();
 	locked.push_back(table); // keep track of currently locked tables in a vector
 	table->set(msg.get_key(), value);
 	table->unlock();
 	locked.erase(std::find(locked.begin(), locked.end(), table));
+	// FIXME: must send OK response
+  } else { // in transaction mode, so we use trylock
+
   }
 
+}
+
+void ClientConnection::handleGet(Message msg) {
+	try {
+		Table* table = m_server->find_table(msg.get_table());
+		std::string res = table->get(msg.get_key());
+		valStack.push(res); // FIXME: send response
+	} catch (std::runtime_error& ex) {
+		throw new OperationException("Invalid table get access");
+	}
+	
 }
 
 void ClientConnection::popTwo(int* right, int*left) {
@@ -111,99 +123,99 @@ NOTES ON THIS FUNCTION [IN PROGRESS]
 - the only operation that properly sends a response back is LOGIN
 */
 void ClientConnection::processMessage(Message msg) {
-  switch (msg.get_message_type()) {
-		case MessageType::LOGIN: // DONE & WORKS
-			loginName = msg.get_username();
-			sendResponse(Message(MessageType::OK));
-			break;
-		case MessageType::CREATE:
-      		m_server->create_table(msg.get_table());
-			break;
-		case MessageType::PUSH: 
-			std::cout << "PUSH\n"; // NOTE: currently, when PUSH is typed, it does not register here.
-			valStack.push(msg.get_arg(0));
-			sendResponse(Message(MessageType::OK));
-			break;
-		case MessageType::POP:
-			std::cout << "POP\n";
-			try {
-				valStack.pop();
-			} catch (OperationException &ex) {
-				sendResponse(Message(MessageType::FAILED, {ex.what()}));
+	try {
+		switch (msg.get_message_type()) {
+			case MessageType::LOGIN:
+				loginName = msg.get_username();
+				sendResponse(Message(MessageType::OK));
+				break;
+			case MessageType::CREATE:
+				m_server->create_table(msg.get_table()); // FIXME: does not send response
+				break;
+			case MessageType::PUSH: 
+				valStack.push(msg.get_arg(0));
+				sendResponse(Message(MessageType::OK));
+				break;
+			case MessageType::POP:
+				try {
+					valStack.pop();
+				} catch (OperationException &ex) {
+					sendResponse(Message(MessageType::FAILED, {ex.what()}));
+				}
+				break;
+			case MessageType::TOP:
+				valStack.get_top(); // FIXME: send response
+				break;
+			case MessageType::SET:
+				handleSet(msg);
+				break;
+			case MessageType::GET:
+			{
+				handleGet(msg);
+				break;
 			}
-			break;
-		case MessageType::TOP:
-      		valStack.get_top();
-			break;
-		case MessageType::SET:
-      		handleSet(msg);
-			break;
-		case MessageType::GET:
-		{
-			Table* table = m_server->find_table(msg.get_table());
-			std::string res = table->get(msg.get_key());
-			valStack.push(res);
-			break;
-		}
-		case MessageType::ADD: // FIXME: need to handle possible OperationExceptions
-		{
-			int left, right;
-			popTwo(&left, &right);
-			int res = left + right;
-			valStack.push(std::to_string(res));
-			sendResponse(Message(MessageType::OK));
-			break;
-		}
-		case MessageType::SUB:
-		{
-			int left, right;
-			popTwo(&left, &right);
-			int res = left - right;
-			valStack.push(std::to_string(res));
-			break;
-		}
-		case MessageType::MUL:
-		{
-			int left, right;
-			popTwo(&left, &right);
-			int res = left * right;
-			valStack.push(std::to_string(res));
-			break;
-		}
-		case MessageType::DIV:
-		{
-			int left, right;
-			popTwo(&left, &right);
-			int res = left / right;
-			valStack.push(std::to_string(res));
-			break;
-		}
-		case MessageType::BEGIN:
-			if (inTransaction) {
-				throw OperationException("Attempt to begin a transaction from within a transaction");
-			} else{
-				inTransaction = true;
+			case MessageType::ADD: // FIXME: need to handle possible OperationExceptions
+			{
+				int left, right;
+				popTwo(&left, &right);
+				int res = left + right;
+				valStack.push(std::to_string(res));
+				sendResponse(Message(MessageType::OK));
+				break;
 			}
-			break;
-		case MessageType::COMMIT:
-			if (!inTransaction) {
-				throw OperationException("Attempt to commit from outside a transaction");
-			} else {
-				processTransaction();
+			case MessageType::SUB:
+			{
+				int left, right;
+				popTwo(&left, &right);
+				int res = left - right;
+				valStack.push(std::to_string(res));
+				break;
 			}
-		case MessageType::BYE:
-			// do stuff to close connection
-			// FIXME: unlock all tables?
-			// QUESTION: is there anything else that has to be done
-			break;
-		case MessageType::OK:
-		case MessageType::FAILED:
-		case MessageType::ERROR:
-		case MessageType::DATA:
-			throw CommException("Illegal message type recieved by server");
-		default:
-			std::cout << "DEFAULT CASE\n";
-			throw InvalidMessage("Invalid message type");
-			break;
+			case MessageType::MUL:
+			{
+				int left, right;
+				popTwo(&left, &right);
+				int res = left * right;
+				valStack.push(std::to_string(res));
+				break;
+			}
+			case MessageType::DIV:
+			{
+				int left, right;
+				popTwo(&left, &right);
+				int res = left / right;
+				valStack.push(std::to_string(res));
+				break;
+			}
+			case MessageType::BEGIN:
+				if (inTransaction) {
+					throw OperationException("Attempt to begin a transaction from within a transaction");
+				} else{
+					inTransaction = true;
+				}
+				break;
+			case MessageType::COMMIT:
+				if (!inTransaction) {
+					throw OperationException("Attempt to commit from outside a transaction");
+				} else {
+					processTransaction();
+				}
+			case MessageType::BYE:
+				// do stuff to close connection
+				// FIXME: unlock all tables?
+				// QUESTION: is there anything else that has to be done
+				break;
+			case MessageType::OK:
+			case MessageType::FAILED:
+			case MessageType::ERROR:
+			case MessageType::DATA:
+				throw CommException("Illegal message type recieved by server");
+			default:
+				throw InvalidMessage("Invalid message type");
+				break;
+		}
+	} catch (const OperationException& ex) {
+		sendResponse(Message(MessageType::FAILED, {ex.what()}));
 	}
+	// FIXME: handle other exceptions that may be thrown
 }

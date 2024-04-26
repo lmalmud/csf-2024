@@ -35,6 +35,9 @@ private:
   /* Handles the set command. */
   void handleSet(Message msg);
 
+  /* Handle the get command. */
+  void handleGet(Message msg);
+
   /* Pops two integers from the value stack and stores their
   values in the given variables. */
   void popTwo(int* right, int* left);
