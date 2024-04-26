@@ -103,7 +103,7 @@ void ClientConnection::sendResponse(Message msg) {
 		case MessageType::FAILED:
 		case MessageType::ERROR:
 		{
-			std::string res = msg.get_quoted_text() + "\r\n";
+			std::string res = "ERROR \"" + msg.get_quoted_text() + "\"\r\n";
 			rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
 			break;	
 		}
@@ -198,6 +198,7 @@ void ClientConnection::handleCommit() {
 				(*t)->rollback_changes();
 				(*t)->unlock();
 			}
+			throw FailedTransaction("Transaction failure. Changes have been rolled back.");
 		} else {
 			for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
 				(*t)->commit_changes();
@@ -257,7 +258,12 @@ void ClientConnection::processMessage(Message msg) {
 		}
 	} catch (const OperationException& ex) {
 		sendResponse(Message(MessageType::FAILED, {ex.what()}));
+	} catch (const CommException& ex) { // irrecoverable
+		sendResponse(Message(MessageType::FAILED, {ex.what()}));
+	} catch (const InvalidMessage& ex) { // irrecoverable
+		sendResponse(Message(MessageType::FAILED, {ex.what()}));
+	} catch (const FailedTransaction& ex) {
+		sendResponse(Message(MessageType::FAILED, {ex.what()}));
 	}
-	// FIXME: handle other exceptions that may be thrown
 	
 }
