@@ -5,7 +5,7 @@
 #include "message.h"
 #include "csapp.h"
 #include <vector>
-#include "communications.h"
+#include "message.h"
 #include "value_stack.h"
 class Server; // forward declaration
 class Table; // forward declaration
@@ -15,10 +15,10 @@ private:
   Server *m_server; // pointer to parent server
   int m_client_fd; // file descriptor of current connection
   rio_t m_fdbuf;
-	std::string loginName = ""; // login name of user
+	std::string loginName; // login name of user
 	bool inTransaction; // represents whether we are currently processing a transaction
   bool transactionFailed;
-	bool isLoggedIn;
+  bool isLoggedIn = false;
 	ValueStack* valStack;
   std::vector<Table*> accessed; // a vector of tables accessed during the transaction
   const int MAX_LINE_SIZE = 1024; // used for processing raw text from the server
@@ -52,7 +52,7 @@ private:
   void handleBegin();
   void handleCommit();
 
-	void endTransaction(bool transactionSucceeded);
+  void endTransaction(bool transactionSucceeded);
 
 public:
   ClientConnection( Server *server, int client_fd );

@@ -10,6 +10,7 @@
 #include "message_serialization.h"
 #include "server.h"
 #include "exceptions.h"
+#include "communications.h"
 #include "client_connection.h"
 #include "value_stack.h"
 
@@ -93,17 +94,18 @@ void ClientConnection::handleSet(Message msg) {
 void ClientConnection::handleGet(Message msg) {
 	try {
 		Table* table = m_server->find_table(msg.get_table());
-		if(table == NULL) {
-			throw OperationException("no such table");
+		if (table == NULL) {
+			throw OperationException("No such table");
 		}
 		std::string res("");
 		try {
-			 res = table->get(msg.get_key());
+			res = table->get(msg.get_key());
 		} catch (const std::out_of_range& ex) {
-			throw OperationException("no such key");
+			throw OperationException("No such key");
 		}
 		valStack->push(res);
 	} catch (const std::runtime_error& ex) {
+		// got here by running: LOGIN LUCY, CREATE FRUIT, GET ABC A
 		throw OperationException("Invalid table get access (SHOULD NEVER GET HERE. IS PROBLEM IF IT DOES)");
 	}
 	
@@ -174,6 +176,8 @@ void ClientConnection::handleOpp(MessageType m) {
 				res = 0;
 		}
 		valStack->push(std::to_string(res));
+	} catch (const std::invalid_argument& ex) {
+		throw OperationException("Cannot perform arithmetic operation with non-integer value.");
 	} catch (const OperationException& ex) { // FIXME: needs to be able to handle division by zero, etc
 		throw OperationException("Unable to perform arithmetic operation");
 	}
