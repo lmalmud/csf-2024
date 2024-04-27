@@ -3,6 +3,7 @@
 #include <regex>
 #include <cassert>
 #include <iostream>
+#include <stdexcept>
 #include "message.h"
 
 Message::Message()

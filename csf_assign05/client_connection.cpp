@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <cstring>
 #include <iostream>
 #include <cassert>
 #include <iostream>
@@ -100,11 +101,11 @@ void ClientConnection::handleGet(Message msg) {
 		std::string res("");
 		try {
 			 res = table->get(msg.get_key());
-		} catch (std::out_of_range ex) {
+		} catch (const std::out_of_range& ex) {
 			throw OperationException("no such key");
 		}
 		valStack->push(res);
-	} catch (std::runtime_error& ex) {
+	} catch (const std::runtime_error& ex) {
 		throw OperationException("Invalid table get access (SHOULD NEVER GET HERE. IS PROBLEM IF IT DOES)");
 	}
 	
@@ -116,7 +117,7 @@ void ClientConnection::popTwo(int* right, int*left) {
 		valStack->pop();
 		*right = stoi(valStack->get_top());
 		valStack->pop();
-	} catch (OperationException& ex) { // in case there were not two values
+	} catch (const OperationException& ex) { // in case there were not two values
 		throw OperationException(ex.what());
 	}
 	
@@ -125,7 +126,10 @@ void ClientConnection::popTwo(int* right, int*left) {
 void ClientConnection::sendResponse(Message msg) {
 	int bytes_written = 0;
 	std::string encoded_msg("");
-	send_message(m_client_fd, &msg, encoded_msg);
+	bytes_written = send_message(m_client_fd, &msg, encoded_msg);
+	if(bytes_written < (int) std::strlen(encoded_msg.c_str())) {
+		throw CommException("invalid write");
+	}
 	// switch (msg.get_message_type()) { // FIXME: DO THE REST.
 	// 	case MessageType::OK:
 	// 	{

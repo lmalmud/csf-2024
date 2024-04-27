@@ -90,7 +90,6 @@ void *Server::client_worker( void *arg )
 	try{
   client->chat_with_client();
 	} catch (std::exception ex) {
-		std::cout << ex.what();
 	}
   return nullptr;
 
