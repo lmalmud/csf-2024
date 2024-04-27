@@ -161,9 +161,9 @@ void MessageSerialization::decode( const std::string &encoded_msg_, Message &msg
 		break;
 	}
 
-	if(tmp.is_valid()) {
+	if (tmp.is_valid()) {
 		msg.clear_args();
-		for(int i = 0; i < tmp.get_num_args(); i++) {
+		for(u_int i = 0; i < tmp.get_num_args(); i++) {
 		msg.push_arg(tmp.get_arg(i));
 	}
 	} else {

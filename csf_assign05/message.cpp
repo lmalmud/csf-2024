@@ -21,7 +21,7 @@ Message::Message( const Message &other )
 {
 	this->set_message_type(other.get_message_type());
 	m_args = std::vector<std::string>();
-	for(int i = 0; i < other.get_num_args(); i++) {
+	for(int i = 0; i < (int) other.get_num_args(); i++) {
 		push_arg(other.get_arg(i));
 	}
 }

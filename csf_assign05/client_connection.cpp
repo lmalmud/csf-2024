@@ -43,7 +43,7 @@ void ClientConnection::chat_with_client()
 		// decode the processed line and set up the msg object
 		MessageSerialization::decode(linebuffer, *msg);
 
-		std::cout << linebuffer; //testing purpose
+		//std::cout << linebuffer; // FIXME: comment out before submission testing purpose
 
 		try{
 			processMessage(*msg);
@@ -209,6 +209,7 @@ void ClientConnection::handleBye() {
 		(*t)->unlock();
 	}
 	close(m_client_fd); // close file descriptor
+	free(this); // free resources
 	exit(0);
 }
 
@@ -229,7 +230,7 @@ void ClientConnection::handleCommit() {
 	}
 }
 
-//unlocks tables and rolls back changes if necessary
+// Unlocks tables and rolls back changes if necessary
 void ClientConnection::endTransaction(bool transactionSucceeded) {
 	inTransaction = false;
 	if (!transactionSucceeded) {
@@ -246,7 +247,7 @@ void ClientConnection::endTransaction(bool transactionSucceeded) {
 }
 	
 void ClientConnection::processMessage(Message msg) {
-	if (!isLoggedIn && msg.get_message_type() != MessageType::LOGIN) { // FIXME: add appropriate condition
+	if (!isLoggedIn && msg.get_message_type() != MessageType::LOGIN) {
 		throw InvalidMessage("First mesage must be login");
 	}
 	switch (msg.get_message_type()) {
