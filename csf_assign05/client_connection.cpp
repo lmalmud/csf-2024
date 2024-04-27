@@ -18,6 +18,7 @@ ClientConnection::ClientConnection( Server *server, int client_fd )
 {
 	inTransaction = false;
 	isLoggedIn = false;
+	valStack = new ValueStack();
   rio_readinitb( &m_fdbuf, m_client_fd );
 }
 
@@ -28,8 +29,6 @@ ClientConnection::~ClientConnection()
 
 void ClientConnection::chat_with_client()
 {
-  // NOTE: this function does not operate within a loop
-  // because it will be repeatedly called from the main server loop
 
   rio_t in; // the read content
   rio_readinitb(&in, m_client_fd); // initialize the read input/output
@@ -37,19 +36,32 @@ void ClientConnection::chat_with_client()
 		Message* msg = new Message(); // the message object that will ultimately contain the appropriate content
 		char *linebuffer = (char*) malloc(MAX_LINE_SIZE); // allocate maximum line size for the buffer
 		if (rio_readlineb(&in, linebuffer, MAX_LINE_SIZE) < 0) {
-			throw new CommException("Unable to read message from client.");
+			throw CommException("Unable to read message from client.");
 		}
 
 		// decode the processed line and set up the msg object
 		MessageSerialization::decode(linebuffer, *msg);
-		std::cout << linebuffer;
+
+		std::cout << linebuffer; //testing purpose
 
 		try{
 			processMessage(*msg);
-
-		} catch (InvalidMessage ex) {
+		} 
+		catch (const CommException& ex) { // irrecoverable
 			sendResponse(Message(MessageType::ERROR, {ex.what()}));
+			handleBye();
 		}
+		catch (const InvalidMessage& ex) { // irrecoverable
+			sendResponse(Message(MessageType::ERROR, {ex.what()}));
+			handleBye();
+		} 
+		catch (const FailedTransaction& ex) {
+			sendResponse(Message(MessageType::FAILED, {ex.what()}));
+			endTransaction(false);
+		} 
+		catch (const OperationException& ex) {
+			sendResponse(Message(MessageType::FAILED, {ex.what()}));
+		} 
 			
 	}
 
@@ -61,25 +73,20 @@ void ClientConnection::handleSet(Message msg) {
 	if(table == NULL) {
 		throw OperationException("no such table");
 	}
-  std::string value = valStack.get_top();
-  valStack.pop(); // must also remove the top value
+  std::string value = valStack->get_top();
+  valStack->pop(); // must also remove the top value
   if (!inTransaction) { // in autolock mode
 		table->lock();
 		table->set(msg.get_key(), value);
 		table->unlock();
-		sendResponse(Message(MessageType::OK));
   } else { // in transaction mode, so we use trylock
-		//check if table can not be locked and it is not locked by this transaction
+		//check if table can not be locked and it is not already locked by this transaction
 		if (std::find(accessed.begin(), accessed.end(), table) == accessed.end() && !table->trylock()) {
-			// failed, so when the message is comitted we need to roll back all changes
-			transactionFailed = true;
-			endTransaction();
-			return;
+			throw FailedTransaction("could not get table lock");
 		}
 		accessed.push_back(table); // keep track of currently locked tables in a vector
 		table->set(msg.get_key(), value);
 		table->unlock();
-		sendResponse(Message(MessageType::OK));
   }
 
 }
@@ -96,22 +103,21 @@ void ClientConnection::handleGet(Message msg) {
 		} catch (std::out_of_range ex) {
 			throw OperationException("no such key");
 		}
-		valStack.push(res);
-		sendResponse(Message(MessageType::DATA, {res}));
+		valStack->push(res);
 	} catch (std::runtime_error& ex) {
-		throw new OperationException("Invalid table get access");
+		throw OperationException("Invalid table get access (SHOULD NEVER GET HERE. IS PROBLEM IF IT DOES)");
 	}
 	
 }
 
 void ClientConnection::popTwo(int* right, int*left) {
 	try {
-		*left = stoi(valStack.get_top());
-		valStack.pop();
-		*right = stoi(valStack.get_top());
-		valStack.pop();
+		*left = stoi(valStack->get_top());
+		valStack->pop();
+		*right = stoi(valStack->get_top());
+		valStack->pop();
 	} catch (OperationException& ex) { // in case there were not two values
-		throw new OperationException(ex.what());
+		throw OperationException(ex.what());
 	}
 	
 }
@@ -147,28 +153,23 @@ void ClientConnection::sendResponse(Message msg) {
 
 void ClientConnection::handleLogin(Message msg) {
 	loginName = msg.get_username();
-	sendResponse(Message(MessageType::OK));
 	isLoggedIn = true;
 }
 
 void ClientConnection::handleCreate(Message msg) {
 	//need to lock vertex of tables in server?
 	m_server->create_table(msg.get_table());
-	sendResponse(Message(MessageType::OK));
 }
 
 void ClientConnection::handlePush(Message msg) {
-	valStack.push(msg.get_arg(0));
-	sendResponse(Message(MessageType::OK));
+	valStack->push(msg.get_arg(0));
+	// std::cout << msg.get_arg(0) << std::endl;
 }
 
 void ClientConnection::handlePop(Message msg) {
-	try {
-		valStack.pop();
-		sendResponse(Message(MessageType::OK));
-	} catch (OperationException &ex) {
-		sendResponse(Message(MessageType::FAILED, {ex.what()}));
-	}
+	valStack->pop();	
+	// std::cout << "popped\n";
+
 }
 
 void ClientConnection::handleOpp(MessageType m) {
@@ -192,21 +193,18 @@ void ClientConnection::handleOpp(MessageType m) {
 			default:
 				res = 0;
 		}
-		valStack.push(std::to_string(res));
-		sendResponse(Message(MessageType::OK));
+		valStack->push(std::to_string(res));
 	} catch (const OperationException& ex) { // FIXME: needs to be able to handle division by zero, etc
-		throw new OperationException("Unable to perform arithmetic operation");
+		throw OperationException("Unable to perform arithmetic operation");
 	}
 }
 
 void ClientConnection::handleBye() {
-	// FIXME: is this something that we need here or does it only matter when we close a transaction
-	//I think we should keep this incase BYE is sent in the middle of a transaction
+	
 	for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
 		(*t)->unlock();
 	}
 	close(m_client_fd); // close file descriptor
-	// exit(0); <- FIXME: is this something that we want? i think so b/c otherwise it will loop forever
 	exit(0);
 }
 
@@ -223,19 +221,18 @@ void ClientConnection::handleCommit() {
 	if (!inTransaction) {
 		throw OperationException("Attempt to commit from outside a transaction");
 	} else {
-		endTransaction();
+		endTransaction(true);
 	}
 }
 
 //unlocks tables and rolls back changes if necessary
-void ClientConnection::endTransaction() {
+void ClientConnection::endTransaction(bool transactionSucceeded) {
 	inTransaction = false;
-	if (transactionFailed) {
+	if (!transactionSucceeded) {
 		for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
 			(*t)->rollback_changes();
 			(*t)->unlock();
 		}
-		throw FailedTransaction("Transaction failure. Changes have been rolled back.");
 	} else {
 		for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
 			(*t)->commit_changes();
@@ -245,64 +242,66 @@ void ClientConnection::endTransaction() {
 }
 	
 void ClientConnection::processMessage(Message msg) {
-	try {
-		if (!isLoggedIn && msg.get_message_type() != MessageType::LOGIN) { // FIXME: add appropriate condition
-			throw new InvalidMessage("First mesage must be login");
-		}
-		switch (msg.get_message_type()) {
-			case MessageType::LOGIN:
-				handleLogin(msg);
-				break;
-			case MessageType::CREATE:
-				handleCreate(msg);
-				break;
-			case MessageType::PUSH: 
-				handlePush(msg);
-				break;
-			case MessageType::POP:
-				handlePop(msg);
-				break;
-			case MessageType::TOP:
-				valStack.get_top();
-				break;
-			case MessageType::SET:
-				handleSet(msg);
-				break;
-			case MessageType::GET:
-				handleGet(msg);
-				break;
-			case MessageType::ADD:
-			case MessageType::SUB:
-			case MessageType::MUL:
-			case MessageType::DIV:
-				handleOpp(msg.get_message_type());
-				break;
-			case MessageType::BEGIN:
-				handleBegin();
-				break;
-			case MessageType::COMMIT:
-				handleCommit();
-				break;
-			case MessageType::BYE:
-				handleBye();
-				break;
-			case MessageType::OK:
-			case MessageType::FAILED:
-			case MessageType::ERROR:
-			case MessageType::DATA:
-				throw CommException("Illegal message type recieved by server");
-			default:
-				throw InvalidMessage("Invalid message type");
-				break;
-		}
-	} catch (const OperationException& ex) {
-		sendResponse(Message(MessageType::FAILED, {ex.what()}));
-	} catch (const CommException& ex) { // irrecoverable
-		sendResponse(Message(MessageType::FAILED, {ex.what()}));
-	} catch (const InvalidMessage& ex) { // irrecoverable
-		sendResponse(Message(MessageType::FAILED, {ex.what()}));
-	} catch (const FailedTransaction& ex) {
-		sendResponse(Message(MessageType::FAILED, {ex.what()}));
+	if (!isLoggedIn && msg.get_message_type() != MessageType::LOGIN) { // FIXME: add appropriate condition
+		throw InvalidMessage("First mesage must be login");
 	}
+	switch (msg.get_message_type()) {
+		case MessageType::LOGIN:
+			handleLogin(msg);
+			sendResponse(Message(MessageType::OK));
+
+			break;
+		case MessageType::CREATE:
+			handleCreate(msg);
+			sendResponse(Message(MessageType::OK));
+			break;
+		case MessageType::PUSH: 
+			handlePush(msg);
+			sendResponse(Message(MessageType::OK));
+			break;
+		case MessageType::POP:
+			handlePop(msg);
+			sendResponse(Message(MessageType::OK));
+			break;
+		case MessageType::TOP:
+			sendResponse(Message(MessageType::DATA, {valStack->get_top()}));
+			break;
+		case MessageType::SET:
+			handleSet(msg);
+			sendResponse(Message(MessageType::OK));
+			break;
+		case MessageType::GET:
+			handleGet(msg);
+			sendResponse(Message(MessageType::OK));
+			break;
+		case MessageType::ADD:
+		case MessageType::SUB:
+		case MessageType::MUL:
+		case MessageType::DIV:
+			handleOpp(msg.get_message_type());
+			sendResponse(Message(MessageType::OK));
+			break;
+		case MessageType::BEGIN:
+			handleBegin();
+			sendResponse(Message(MessageType::OK));
+			break;
+		case MessageType::COMMIT:
+			handleCommit();
+			sendResponse(Message(MessageType::OK));
+			break;
+		case MessageType::BYE:
+			sendResponse(Message(MessageType::OK));
+			handleBye();
+			break;
+		case MessageType::OK:
+		case MessageType::FAILED:
+		case MessageType::ERROR:
+		case MessageType::DATA:
+			throw CommException("Illegal message type recieved by server");
+		default:
+			throw InvalidMessage("Invalid message type");
+			break;
+	}
+
 	
 }

@@ -19,7 +19,7 @@ private:
 	bool inTransaction; // represents whether we are currently processing a transaction
   bool transactionFailed;
 	bool isLoggedIn;
-	ValueStack valStack;
+	ValueStack* valStack;
   std::vector<Table*> accessed; // a vector of tables accessed during the transaction
   const int MAX_LINE_SIZE = 1024; // used for processing raw text from the server
 
@@ -52,7 +52,7 @@ private:
   void handleBegin();
   void handleCommit();
 
-	void endTransaction();
+	void endTransaction(bool transactionSucceeded);
 
 public:
   ClientConnection( Server *server, int client_fd );
