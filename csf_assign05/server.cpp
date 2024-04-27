@@ -34,7 +34,6 @@ void Server::listen( const std::string &port )
 
 void Server::server_loop()
 {
-  // TODO: implement
 
   // this function is called after listen
   while (1) {
@@ -87,10 +86,11 @@ void *Server::client_worker( void *arg )
   // like this:
 	pthread_detach(pthread_self());
   std::unique_ptr<ClientConnection> client(static_cast<ClientConnection *>(arg));
-	try{
-  client->chat_with_client();
-	} catch (std::exception ex) {
-	}
+	try {
+    client->chat_with_client();
+	} catch (const std::runtime_error& ex) {
+    std::cout << "caught" << std::endl;
+  }
   return nullptr;
 
 }

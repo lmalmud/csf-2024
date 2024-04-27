@@ -45,7 +45,7 @@ void ClientConnection::chat_with_client()
 
 		//std::cout << linebuffer; // FIXME: comment out before submission testing purpose
 
-		try{
+		try {
 			processMessage(*msg);
 		} 
 		catch (const CommException& ex) { // irrecoverable
@@ -209,8 +209,7 @@ void ClientConnection::handleBye() {
 		(*t)->unlock();
 	}
 	close(m_client_fd); // close file descriptor
-	free(this); // free resources
-	exit(0);
+	// NOTE: we do not want to exit since then other clients cannot communicate- exit(0);
 }
 
 void ClientConnection::handleBegin() {
