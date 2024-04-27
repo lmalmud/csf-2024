@@ -86,10 +86,11 @@ void *Server::client_worker( void *arg )
   // like this:
 	pthread_detach(pthread_self());
   std::unique_ptr<ClientConnection> client(static_cast<ClientConnection *>(arg));
-	try {
-    client->chat_with_client();
+	
+  try {
+    client->chat_with_client(); // NOTE: taken out of try-catch since erros are handled elsewhere
 	} catch (const std::runtime_error& ex) {
-    std::cout << "caught" << std::endl;
+    // so that flow continues after non fatal errors
   }
   return nullptr;
 

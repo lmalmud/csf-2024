@@ -43,8 +43,6 @@ void ClientConnection::chat_with_client()
 		// decode the processed line and set up the msg object
 		MessageSerialization::decode(linebuffer, *msg);
 
-		//std::cout << linebuffer; // FIXME: comment out before submission testing purpose
-
 		try {
 			processMessage(*msg);
 		} 
@@ -81,7 +79,7 @@ void ClientConnection::handleSet(Message msg) {
 		table->set(msg.get_key(), value);
 		table->unlock();
   } else { // in transaction mode, so we use trylock
-		//check if table can not be locked and it is not already locked by this transaction
+		// Check if table can not be locked and it is not already locked by this transaction
 		if (std::find(accessed.begin(), accessed.end(), table) == accessed.end() && !table->trylock()) {
 			throw FailedTransaction("could not get table lock");
 		}
@@ -130,29 +128,7 @@ void ClientConnection::sendResponse(Message msg) {
 	if(bytes_written < (int) std::strlen(encoded_msg.c_str())) {
 		throw CommException("invalid write");
 	}
-	// switch (msg.get_message_type()) { // FIXME: DO THE REST.
-	// 	case MessageType::OK:
-	// 	{
-	// 		std::string res = "OK\r\n";
-	// 		rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
-	// 		break;
-	// 	}
-	// 	case MessageType::FAILED:
-	// 	case MessageType::ERROR:
-	// 	{
-	// 		std::string res = "ERROR \"" + msg.get_quoted_text() + "\"\r\n";
-	// 		rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
-	// 		break;	
-	// 	}
-	// 	case MessageType::DATA:
-	// 	{
-	// 		std::string res = "DATA " + msg.get_value() + "\r\n";
-	// 		rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
-	// 		break;
-	// 	}
-	// 	default:
-	// 		break;
-	// }
+
 }
 
 void ClientConnection::handleLogin(Message msg) {
@@ -248,6 +224,9 @@ void ClientConnection::endTransaction(bool transactionSucceeded) {
 void ClientConnection::processMessage(Message msg) {
 	if (!isLoggedIn && msg.get_message_type() != MessageType::LOGIN) {
 		throw InvalidMessage("First mesage must be login");
+	}
+	if (!msg.is_valid()) {
+		throw InvalidMessage("Imporper message format");
 	}
 	switch (msg.get_message_type()) {
 		case MessageType::LOGIN:
