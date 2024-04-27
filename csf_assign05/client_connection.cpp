@@ -1,14 +1,15 @@
+#include <cstddef>
 #include <iostream>
 #include <cassert>
 #include <iostream>
 #include <algorithm>
+#include <stdexcept>
 #include "csapp.h"
 #include "message.h"
 #include "message_serialization.h"
 #include "server.h"
 #include "exceptions.h"
 #include "client_connection.h"
-#include "communications.h"
 #include "value_stack.h"
 
 ClientConnection::ClientConnection( Server *server, int client_fd )
@@ -16,6 +17,7 @@ ClientConnection::ClientConnection( Server *server, int client_fd )
   , m_client_fd( client_fd )
 {
 	inTransaction = false;
+	isLoggedIn = false;
   rio_readinitb( &m_fdbuf, m_client_fd );
 }
 
@@ -41,29 +43,43 @@ void ClientConnection::chat_with_client()
 		// decode the processed line and set up the msg object
 		MessageSerialization::decode(linebuffer, *msg);
 		std::cout << linebuffer;
-		processMessage(*msg);
+
+		try{
+			processMessage(*msg);
+
+		} catch (InvalidMessage ex) {
+			sendResponse(Message(MessageType::ERROR, {ex.what()}));
+		}
+			
 	}
 
 }
 
 void ClientConnection::handleSet(Message msg) {
+
   Table* table = m_server->find_table(msg.get_table());
+	if(table == NULL) {
+		throw OperationException("no such table");
+	}
   std::string value = valStack.get_top();
   valStack.pop(); // must also remove the top value
   if (!inTransaction) { // in autolock mode
-	table->lock();
-	table->set(msg.get_key(), value);
-	table->unlock();
-	sendResponse(Message(MessageType::OK));
+		table->lock();
+		table->set(msg.get_key(), value);
+		table->unlock();
+		sendResponse(Message(MessageType::OK));
   } else { // in transaction mode, so we use trylock
-	if (!table->trylock()) {
-		// failed, so when the message is comitted we need to roll back all changes
-		transactionFailed = true;
-	}
-	accessed.push_back(table); // keep track of currently locked tables in a vector
-	table->set(msg.get_key(), value);
-	table->unlock();
-	sendResponse(Message(MessageType::OK));
+		//check if table can not be locked and it is not locked by this transaction
+		if (std::find(accessed.begin(), accessed.end(), table) == accessed.end() && !table->trylock()) {
+			// failed, so when the message is comitted we need to roll back all changes
+			transactionFailed = true;
+			endTransaction();
+			return;
+		}
+		accessed.push_back(table); // keep track of currently locked tables in a vector
+		table->set(msg.get_key(), value);
+		table->unlock();
+		sendResponse(Message(MessageType::OK));
   }
 
 }
@@ -71,7 +87,15 @@ void ClientConnection::handleSet(Message msg) {
 void ClientConnection::handleGet(Message msg) {
 	try {
 		Table* table = m_server->find_table(msg.get_table());
-		std::string res = table->get(msg.get_key());
+		if(table == NULL) {
+			throw OperationException("no such table");
+		}
+		std::string res("");
+		try {
+			 res = table->get(msg.get_key());
+		} catch (std::out_of_range ex) {
+			throw OperationException("no such key");
+		}
 		valStack.push(res);
 		sendResponse(Message(MessageType::DATA, {res}));
 	} catch (std::runtime_error& ex) {
@@ -93,37 +117,42 @@ void ClientConnection::popTwo(int* right, int*left) {
 }
 
 void ClientConnection::sendResponse(Message msg) {
-	switch (msg.get_message_type()) { // FIXME: DO THE REST.
-		case MessageType::OK:
-		{
-			std::string res = "OK\r\n";
-			rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
-			break;
-		}
-		case MessageType::FAILED:
-		case MessageType::ERROR:
-		{
-			std::string res = "ERROR \"" + msg.get_quoted_text() + "\"\r\n";
-			rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
-			break;	
-		}
-		case MessageType::DATA:
-		{
-			std::string res = "DATA " + msg.get_value() + "\r\n";
-			rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
-			break;
-		}
-		default:
-			break;
-	}
+	int bytes_written = 0;
+	std::string encoded_msg("");
+	send_message(m_client_fd, &msg, encoded_msg);
+	// switch (msg.get_message_type()) { // FIXME: DO THE REST.
+	// 	case MessageType::OK:
+	// 	{
+	// 		std::string res = "OK\r\n";
+	// 		rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
+	// 		break;
+	// 	}
+	// 	case MessageType::FAILED:
+	// 	case MessageType::ERROR:
+	// 	{
+	// 		std::string res = "ERROR \"" + msg.get_quoted_text() + "\"\r\n";
+	// 		rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
+	// 		break;	
+	// 	}
+	// 	case MessageType::DATA:
+	// 	{
+	// 		std::string res = "DATA " + msg.get_value() + "\r\n";
+	// 		rio_writen(m_client_fd, res.c_str(), strlen(res.c_str()));
+	// 		break;
+	// 	}
+	// 	default:
+	// 		break;
+	// }
 }
 
 void ClientConnection::handleLogin(Message msg) {
 	loginName = msg.get_username();
 	sendResponse(Message(MessageType::OK));
+	isLoggedIn = true;
 }
 
 void ClientConnection::handleCreate(Message msg) {
+	//need to lock vertex of tables in server?
 	m_server->create_table(msg.get_table());
 	sendResponse(Message(MessageType::OK));
 }
@@ -172,16 +201,18 @@ void ClientConnection::handleOpp(MessageType m) {
 
 void ClientConnection::handleBye() {
 	// FIXME: is this something that we need here or does it only matter when we close a transaction
+	//I think we should keep this incase BYE is sent in the middle of a transaction
 	for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
 		(*t)->unlock();
 	}
 	close(m_client_fd); // close file descriptor
-	// exit(0); <- FIXME: is this something that we want?
+	// exit(0); <- FIXME: is this something that we want? i think so b/c otherwise it will loop forever
+	exit(0);
 }
 
 void ClientConnection::handleBegin() {
 	if (inTransaction) {
-		throw OperationException("Attempt to begin a transaction from within a transaction");
+		throw FailedTransaction("Attempt to begin a transaction from within a transaction");
 	} else{
 		inTransaction = true;
 		transactionFailed = false;
@@ -192,25 +223,30 @@ void ClientConnection::handleCommit() {
 	if (!inTransaction) {
 		throw OperationException("Attempt to commit from outside a transaction");
 	} else {
-		inTransaction = false;
-		if (transactionFailed) {
-			for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
-				(*t)->rollback_changes();
-				(*t)->unlock();
-			}
-			throw FailedTransaction("Transaction failure. Changes have been rolled back.");
-		} else {
-			for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
-				(*t)->commit_changes();
-				(*t)->unlock();
-			}
+		endTransaction();
+	}
+}
+
+//unlocks tables and rolls back changes if necessary
+void ClientConnection::endTransaction() {
+	inTransaction = false;
+	if (transactionFailed) {
+		for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
+			(*t)->rollback_changes();
+			(*t)->unlock();
+		}
+		throw FailedTransaction("Transaction failure. Changes have been rolled back.");
+	} else {
+		for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
+			(*t)->commit_changes();
+			(*t)->unlock();
 		}
 	}
 }
 	
 void ClientConnection::processMessage(Message msg) {
 	try {
-		if (false) { // FIXME: add appropriate condition
+		if (!isLoggedIn && msg.get_message_type() != MessageType::LOGIN) { // FIXME: add appropriate condition
 			throw new InvalidMessage("First mesage must be login");
 		}
 		switch (msg.get_message_type()) {

@@ -26,7 +26,7 @@ std::string ValueStack::get_top() const
 {
   // TODO: implement - DONE
   if (this->is_empty()) {
-    throw OperationException("cannot get_top() since stack is empty.");
+    throw OperationException("cannot get top since stack is empty.");
   } else {
     return v_stack.at(v_stack.size() - 1);
   }
@@ -36,7 +36,7 @@ void ValueStack::pop()
 {
   // TODO: implement - DONE
   if (this->is_empty()) {
-    throw OperationException("cannot pop() since stack is empty.");
+    throw OperationException("cannot pop since stack is empty.");
   } else {
     v_stack.erase(v_stack.end() - 1);
   }

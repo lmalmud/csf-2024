@@ -38,14 +38,13 @@ bool Table::trylock()
 
 void Table::set( const std::string &key, const std::string &value )
 {
-  // TODO: implement
   t_proposed[key] = value;
 }
 
 std::string Table::get( const std::string &key )
 {
   // TODO: implement
-  return t_proposed[key];
+  return t_proposed.at(key);
 }
 
 bool Table::has_key( const std::string &key )

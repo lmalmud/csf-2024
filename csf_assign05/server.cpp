@@ -61,6 +61,7 @@ void Server::server_loop()
 void Server::create_table( const std::string &name ) {
 	// NOTE: we do not need to lock the table since it has just been created
   // and is now ready to be modified
+	
   Table* new_table = new Table(name);
 	tables.push_back(new_table);
 
@@ -86,7 +87,11 @@ void *Server::client_worker( void *arg )
   // like this:
 	pthread_detach(pthread_self());
   std::unique_ptr<ClientConnection> client(static_cast<ClientConnection *>(arg));
+	try{
   client->chat_with_client();
+	} catch (std::exception ex) {
+		std::cout << ex.what();
+	}
   return nullptr;
 
 }

@@ -13,7 +13,7 @@ CXX_SERVER_SRCS = server.cpp client_connection.cpp server_main.cpp
 CXX_SERVER_OBJS = $(CXX_SERVER_SRCS:%.cpp=%.o)
 
 # C++ client common sources (used by all clients)
-CXX_CLIENT_SRCS = communications.cpp
+CXX_CLIENT_SRCS = 
 CXX_CLIENT_OBJS = $(CXX_CLIENT_SRCS:%.cpp=%.o)
 
 # C++ client main function sources
@@ -28,7 +28,7 @@ CXX_TEST_OBJS = $(CXX_TEST_SRCS:%.cpp=%.o)
 CXX_ALL_SRCS = $(CXX_COMMON_SRCS) $(CXX_SERVER_SRCS) $(CXX_CLIENT_SRCS) $(CXX_CLIENT_MAIN_SRCS)
 
 # Common C sources for both clients and server
-C_COMMON_SRCS = csapp.c
+C_COMMON_SRCS = csapp.c communications.cpp
 C_COMMON_OBJS = $(C_COMMON_SRCS:%.c=%.o)
 
 # C sources for unit tests

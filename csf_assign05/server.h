@@ -8,6 +8,7 @@
 #include "client_connection.h"
 #include "value_stack.h"
 #include <vector>
+#include <pthread.h>
 
 
 class Server {

@@ -11,7 +11,6 @@
 
 void MessageSerialization::encode( const Message &msg, std::string &encoded_msg )
 {
-  // TODO: implement - done
 	std::string candidate_msg("");
 
 	MessageType msgType = msg.get_message_type();
