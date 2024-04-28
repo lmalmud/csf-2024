@@ -114,10 +114,13 @@ if [[ "${total_successful_transactions}" -eq 0 ]]; then
   success=no
 fi
 
-# Find sum of all balances, compare against expected total
+# Find sum of all balances, compare against expected total.
+# Also, keep track of number of accounts where the final balance
+# changed. (There should be at least one.)
 >&2 echo "Retrieving all final account balances..."
 i=0
 total=0
+num_changed=0
 
 # for each account...
 while [[ $i -lt $NUM_ACCOUNTS ]]; do
@@ -132,6 +135,11 @@ while [[ $i -lt $NUM_ACCOUNTS ]]; do
       success=no
     fi
 
+    # check whether the balanced changed
+    if [[ "${balance}" -ne "$INITIAL_BALANCE" ]]; then
+      num_changed=$((num_changed + 1))
+    fi
+
     # add to running total
     total=$((total + balance))
 
@@ -142,6 +150,12 @@ while [[ $i -lt $NUM_ACCOUNTS ]]; do
   # next account
   i=$((i + 1))
 done
+
+>&2 echo "Number of accounts which changed: ${num_changed}"
+if [[ "${num_changed}" -eq 0 ]]; then
+  >&2 echo "No account balanced changed: transactions did not actually modify any tables?"
+  success=no
+fi
 
 >&2 echo "Comparing final account balances to expected total..."
 expected=$(($NUM_ACCOUNTS * 3 * $INITIAL_BALANCE))

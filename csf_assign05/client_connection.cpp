@@ -63,10 +63,17 @@ void ClientConnection::chat_with_client()
 		} 
 		catch (const FailedTransaction& ex) {
 			sendResponse(Message(MessageType::FAILED, {ex.what()}));
-			endTransaction(false);
+			endTransaction();
 		} 
 		catch (const OperationException& ex) {
-			sendResponse(Message(MessageType::FAILED, {ex.what()}));
+			if (inTransaction) {
+				transactionFailed = true;
+				sendResponse(Message(MessageType::FAILED, {ex.what()}));
+				endTransaction();
+			} else {
+				sendResponse(Message(MessageType::FAILED, {ex.what()}));
+			}
+			
 		} 
 			
 	}
@@ -75,25 +82,30 @@ void ClientConnection::chat_with_client()
 
 void ClientConnection::handleSet(Message msg) {
 
+	// QUESTION: if a transaction fails, should the value remain on the stack?
+
   Table* table = m_server->find_table(msg.get_table());
 	if(table == NULL) {
 		throw OperationException("No such table");
 	}
   std::string value = valStack->get_top();
-  valStack->pop(); // must also remove the top value
+  
   if (!inTransaction) { // in autolock mode
 		table->lock();
 		table->set(msg.get_key(), value);
 		table->unlock();
   } else { // in transaction mode, so we use trylock
 		// Check if table can not be locked and it is not already locked by this transaction
-		if (/*std::find(accessed.begin(), accessed.end(), table) == accessed.end() && */table->trylock()) {
+		if (table->trylock()) {
+			transactionFailed = true;
 			throw FailedTransaction("Could not get table lock");
 		}
 		accessed.push_back(table); // keep track of currently locked tables in a vector
 		table->set(msg.get_key(), value);
-		//table->unlock();
+		table->unlock();
   }
+
+  valStack->pop(); // must also remove the top value
 
 }
 
@@ -112,7 +124,7 @@ void ClientConnection::handleGet(Message msg) {
 		valStack->push(res);
 	} catch (const std::runtime_error& ex) {
 		// got here by running: LOGIN LUCY, CREATE FRUIT, GET ABC A
-		throw OperationException("Invalid table get access (SHOULD NEVER GET HERE. IS PROBLEM IF IT DOES)");
+		throw OperationException("Invalid table get access");
 	}
 	
 }
@@ -133,7 +145,7 @@ void ClientConnection::sendResponse(Message msg) {
 	int bytes_written = 0;
 	std::string encoded_msg("");
 	bytes_written = send_message(m_client_fd, &msg, encoded_msg);
-	if(bytes_written < (int) std::strlen(encoded_msg.c_str())) {
+	if (bytes_written < (int) std::strlen(encoded_msg.c_str())) {
 		throw CommException("Invalid write");
 	}
 
@@ -186,9 +198,8 @@ void ClientConnection::handleOpp(MessageType m) {
 }
 
 void ClientConnection::handleBye() {
-	
-	for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
-		(*t)->unlock();
+	if (inTransaction) { // may need to release locks
+		endTransaction();
 	}
 	close(m_client_fd); // close file descriptor
 	// NOTE: we do not want to exit since then other clients cannot communicate- exit(0);
@@ -196,10 +207,10 @@ void ClientConnection::handleBye() {
 
 void ClientConnection::handleBegin() {
 	if (inTransaction) {
+		transactionFailed = true;
 		throw FailedTransaction("Attempt to begin a transaction from within a transaction");
-	} else{
+	} else {
 		inTransaction = true;
-		transactionFailed = false;
 	}
 }
 
@@ -207,14 +218,13 @@ void ClientConnection::handleCommit() {
 	if (!inTransaction) {
 		throw OperationException("Attempt to commit from outside a transaction");
 	} else {
-		endTransaction(true);
+		endTransaction();
 	}
 }
 
 // Unlocks tables and rolls back changes if necessary
-void ClientConnection::endTransaction(bool transactionSucceeded) {
-	inTransaction = false;
-	if (!transactionSucceeded) {
+void ClientConnection::endTransaction() {
+	if (transactionFailed) {
 		for (auto t = accessed.begin(); t != accessed.end(); ++t) { // unlock all tables
 			(*t)->rollback_changes();
 			(*t)->unlock();
@@ -225,9 +235,13 @@ void ClientConnection::endTransaction(bool transactionSucceeded) {
 			(*t)->unlock();
 		}
 	}
+	inTransaction = false;
+	transactionFailed = false;
+	accessed.clear(); // erase all tables
 }
 	
 void ClientConnection::processMessage(Message msg) {
+	//std::cout << "in transaction: " << inTransaction << std::endl;
 	if (!isLoggedIn && msg.get_message_type() != MessageType::LOGIN) {
 		throw InvalidMessage("First mesage must be login");
 	}

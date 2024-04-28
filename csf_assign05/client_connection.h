@@ -52,7 +52,7 @@ private:
   void handleBegin();
   void handleCommit();
 
-  void endTransaction(bool transactionSucceeded);
+  void endTransaction();
 
 public:
   ClientConnection( Server *server, int client_fd );
