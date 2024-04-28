@@ -40,9 +40,15 @@ void ClientConnection::chat_with_client()
 		if (rio_readlineb(&in, linebuffer, MAX_LINE_SIZE) < 0) {
 			throw CommException("Unable to read message from client.");
 		}
-
 		// decode the processed line and set up the msg object
-		MessageSerialization::decode(linebuffer, *msg);
+		
+		try {
+			MessageSerialization::decode(linebuffer, *msg);
+		// Catches invalid message formats, like too few arguments
+		} catch (const InvalidMessage& ex) {
+			sendResponse(Message(MessageType::ERROR, {ex.what()}));
+			handleBye();
+		}
 
 		try {
 			processMessage(*msg);
@@ -139,19 +145,15 @@ void ClientConnection::handleLogin(Message msg) {
 }
 
 void ClientConnection::handleCreate(Message msg) {
-	//need to lock vertex of tables in server?
 	m_server->create_table(msg.get_table());
 }
 
 void ClientConnection::handlePush(Message msg) {
 	valStack->push(msg.get_arg(0));
-	// std::cout << msg.get_arg(0) << std::endl;
 }
 
 void ClientConnection::handlePop(Message msg) {
-	valStack->pop();	
-	// std::cout << "popped\n";
-
+	valStack->pop();
 }
 
 void ClientConnection::handleOpp(MessageType m) {
@@ -229,6 +231,7 @@ void ClientConnection::processMessage(Message msg) {
 	if (!isLoggedIn && msg.get_message_type() != MessageType::LOGIN) {
 		throw InvalidMessage("First mesage must be login");
 	}
+	
 	if (!msg.is_valid()) {
 		throw InvalidMessage("Imporper message format");
 	}
@@ -236,13 +239,13 @@ void ClientConnection::processMessage(Message msg) {
 		case MessageType::LOGIN:
 			handleLogin(msg);
 			sendResponse(Message(MessageType::OK));
-
 			break;
 		case MessageType::CREATE:
 			handleCreate(msg);
 			sendResponse(Message(MessageType::OK));
 			break;
-		case MessageType::PUSH: 
+		case MessageType::PUSH:
+			std::cout << "thinks valid\n"; 
 			handlePush(msg);
 			sendResponse(Message(MessageType::OK));
 			break;
