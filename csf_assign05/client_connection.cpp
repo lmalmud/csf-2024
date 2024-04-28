@@ -82,31 +82,30 @@ void ClientConnection::chat_with_client()
 
 void ClientConnection::handleSet(Message msg) {
 
-	// QUESTION: if a transaction fails, should the value remain on the stack?
-
   Table* table = m_server->find_table(msg.get_table());
 	if(table == NULL) {
 		throw OperationException("No such table");
 	}
-  std::string value = valStack->get_top();
+  	std::string value = valStack->get_top();
   
-  if (!inTransaction) { // in autolock mode
+  
+	if (!inTransaction) { // in autolock mode
 		table->lock();
 		table->set(msg.get_key(), value);
 		table->unlock();
-  } else { // in transaction mode, so we use trylock
+   	} else { // in transaction mode, so we use trylock
 		// Check if table can not be locked and it is not already locked by this transaction
-		if (table->trylock()) {
+		if (std::find(accessed.begin(), accessed.end(), table) == accessed.end() && table->trylock()) {
 			transactionFailed = true;
 			throw FailedTransaction("Could not get table lock");
 		}
 		accessed.push_back(table); // keep track of currently locked tables in a vector
 		table->set(msg.get_key(), value);
-		table->unlock();
-  }
+		// table->unlock();
+  	}
 
-  valStack->pop(); // must also remove the top value
-
+	// QUESTION: if a transaction fails, should the value remain on the stack?
+	valStack->pop(); // must also remove the top value (which we only want to do if the transaction succeeds)
 }
 
 void ClientConnection::handleGet(Message msg) {
