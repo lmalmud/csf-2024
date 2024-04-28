@@ -87,8 +87,8 @@ void ClientConnection::handleSet(Message msg) {
 		table->unlock();
   } else { // in transaction mode, so we use trylock
 		// Check if table can not be locked and it is not already locked by this transaction
-		if (std::find(accessed.begin(), accessed.end(), table) == accessed.end() && !table->trylock()) {
-			throw FailedTransaction("could not get table lock");
+		if (/*std::find(accessed.begin(), accessed.end(), table) == accessed.end() && */table->trylock()) {
+			throw FailedTransaction("Could not get table lock");
 		}
 		accessed.push_back(table); // keep track of currently locked tables in a vector
 		table->set(msg.get_key(), value);
@@ -231,7 +231,7 @@ void ClientConnection::processMessage(Message msg) {
 	if (!isLoggedIn && msg.get_message_type() != MessageType::LOGIN) {
 		throw InvalidMessage("First mesage must be login");
 	}
-	
+
 	if (!msg.is_valid()) {
 		throw InvalidMessage("Imporper message format");
 	}
@@ -245,7 +245,6 @@ void ClientConnection::processMessage(Message msg) {
 			sendResponse(Message(MessageType::OK));
 			break;
 		case MessageType::PUSH:
-			std::cout << "thinks valid\n"; 
 			handlePush(msg);
 			sendResponse(Message(MessageType::OK));
 			break;
