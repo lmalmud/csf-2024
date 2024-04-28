@@ -77,7 +77,7 @@ void ClientConnection::handleSet(Message msg) {
 
   Table* table = m_server->find_table(msg.get_table());
 	if(table == NULL) {
-		throw OperationException("no such table");
+		throw OperationException("No such table");
 	}
   std::string value = valStack->get_top();
   valStack->pop(); // must also remove the top value
@@ -92,7 +92,7 @@ void ClientConnection::handleSet(Message msg) {
 		}
 		accessed.push_back(table); // keep track of currently locked tables in a vector
 		table->set(msg.get_key(), value);
-		table->unlock();
+		//table->unlock();
   }
 
 }
@@ -134,7 +134,7 @@ void ClientConnection::sendResponse(Message msg) {
 	std::string encoded_msg("");
 	bytes_written = send_message(m_client_fd, &msg, encoded_msg);
 	if(bytes_written < (int) std::strlen(encoded_msg.c_str())) {
-		throw CommException("invalid write");
+		throw CommException("Invalid write");
 	}
 
 }
